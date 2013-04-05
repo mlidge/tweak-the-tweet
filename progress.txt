@@ -1,0 +1,6 @@
+# A file for TtT members to record progress and notes.
+# Don't forget to also have good commit messages!
+
+5 Apr 2013
+Mary Jones: 
+  Created github repo and added progress.txt
