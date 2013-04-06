@@ -49,8 +49,6 @@ public class SettingsActivity extends Activity {
 	}
 	
 	public void commitSettings(View view) {
-		
-		
 		finish();
 	}
 }
