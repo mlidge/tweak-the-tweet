@@ -24,22 +24,29 @@ public final class R {
         public static final int ic_launcher=0x7f020000;
     }
     public static final class id {
-        public static final int action_settings=0x7f080009;
-        public static final int button_debug=0x7f080004;
-        public static final int button_settings=0x7f080002;
-        public static final int button_setup=0x7f080001;
-        public static final int button_tweet=0x7f080003;
-        public static final int buttonsettingssave=0x7f080008;
-        public static final int debug_button_finish=0x7f080000;
-        public static final int radiobuttondata=0x7f080006;
-        public static final int radiobuttonsms=0x7f080007;
-        public static final int radiogroup=0x7f080005;
+        public static final int action_settings=0x7f08000f;
+        public static final int button_compose=0x7f080007;
+        public static final int button_debug=0x7f080006;
+        public static final int button_send_tweet=0x7f08000e;
+        public static final int button_settings=0x7f080004;
+        public static final int button_setup=0x7f080003;
+        public static final int button_tweet=0x7f080005;
+        public static final int buttonsettingssave=0x7f08000b;
+        public static final int debug_button_finish=0x7f080002;
+        public static final int radiobuttondata=0x7f080009;
+        public static final int radiobuttonsms=0x7f08000a;
+        public static final int radiogroup=0x7f080008;
+        public static final int tweet_compose=0x7f080000;
+        public static final int tweet_confirm=0x7f080001;
+        public static final int tweet_layout=0x7f08000c;
+        public static final int tweet_string=0x7f08000d;
     }
     public static final class layout {
-        public static final int activity_debug=0x7f030000;
-        public static final int activity_main=0x7f030001;
-        public static final int activity_settings=0x7f030002;
-        public static final int activity_tweet=0x7f030003;
+        public static final int activity_compose=0x7f030000;
+        public static final int activity_debug=0x7f030001;
+        public static final int activity_main=0x7f030002;
+        public static final int activity_settings=0x7f030003;
+        public static final int activity_tweet=0x7f030004;
     }
     public static final class menu {
         public static final int main=0x7f070000;
@@ -47,11 +54,14 @@ public final class R {
     public static final class string {
         public static final int action_settings=0x7f050001;
         public static final int app_name=0x7f050000;
+        public static final int button_compose_text=0x7f050012;
         public static final int button_debug_text=0x7f05000e;
+        public static final int button_send_tweet_text=0x7f050010;
         public static final int button_settings_text=0x7f05000b;
         public static final int button_setup_text=0x7f05000d;
         public static final int button_tweet_text=0x7f05000c;
         public static final int buttonsave=0x7f050004;
+        public static final int compose_name=0x7f050013;
         public static final int debug_button_finish_text=0x7f05000f;
         public static final int debug_name=0x7f050009;
         public static final int hello_world=0x7f050005;
@@ -59,7 +69,8 @@ public final class R {
         public static final int radiosms=0x7f050003;
         public static final int settings_name=0x7f050006;
         public static final int setup_name=0x7f050008;
-        public static final int twitter_name=0x7f050007;
+        public static final int tweet_confirm_text=0x7f050011;
+        public static final int tweet_name=0x7f050007;
         public static final int welcome=0x7f05000a;
     }
     public static final class style {

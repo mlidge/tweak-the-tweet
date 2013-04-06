@@ -2,20 +2,17 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical" 
-    android:id="@+id/tweet_layout">
+    android:orientation="vertical" >
     
+    <EditText android:id="@+id/tweet_compose"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:scrollbars="vertical" />
 
-    <TextView android:id="@+id/tweet_string"
+    <Button android:id="@+id/tweet_confirm"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        />
-    
-    <Button android:id="@+id/button_send_tweet"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/button_send_tweet_text"
-        android:onClick="sendTweet" />
-    
-    
+        android:text="@string/tweet_confirm_text"
+        android:onClick="confirmTweet" />
+   
 </LinearLayout>

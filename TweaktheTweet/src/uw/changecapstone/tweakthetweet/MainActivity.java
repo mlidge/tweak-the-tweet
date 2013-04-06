@@ -8,6 +8,18 @@ import android.view.View;
 
 public class MainActivity extends Activity {
 
+	private final static int ACTIVITY_COMPOSE = 5;
+	final static String TWEET_STRING = "TWEET_STRING";
+	
+	@Override
+	protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+		super.onActivityResult(requestCode, resultCode, data);
+		String tweet = data.getStringExtra(TWEET_STRING);
+		Intent intent = new Intent(this, TweetActivity.class);
+		intent.putExtra(TWEET_STRING, tweet);
+		startActivity(intent);
+	}
+
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -31,5 +43,10 @@ public class MainActivity extends Activity {
 	public void printDebug(View view) {
 		Intent intent = new Intent(this, DebugActivity.class); 
 		startActivity(intent);
+	}
+	
+	public void composeTweet(View view) {
+		Intent intent = new Intent(this, ComposeActivity.class);
+		startActivityForResult(intent, ACTIVITY_COMPOSE);
 	}
 }

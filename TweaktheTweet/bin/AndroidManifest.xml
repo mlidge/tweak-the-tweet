@@ -29,11 +29,14 @@
                 android:name="uw.changecapstone.tweakthetweet.SetupActivity"
                 android:label="@string/setup_name" />
         <activity
-                android:name="uw.changecapstone.tweakthetweet.TwitterActivity"
-                android:label="@string/twitter_name" />
+                android:name="uw.changecapstone.tweakthetweet.TweetActivity"
+                android:label="@string/tweet_name" />
         <activity
                 android:name="uw.changecapstone.tweakthetweet.DebugActivity"
                 android:label="@string/debug_name" />
+        <activity
+                android:name="uw.changecapstone.tweakthetweet.ComposeActivity"
+                android:label="@string/compose_name" />
     </application>
 
 </manifest>
