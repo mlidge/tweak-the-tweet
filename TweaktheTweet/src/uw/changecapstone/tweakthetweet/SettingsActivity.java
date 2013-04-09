@@ -18,9 +18,7 @@ public class SettingsActivity extends Activity {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_settings);
 		editor = PreferenceManager.getDefaultSharedPreferences(this).edit();
-		//editor.putBoolean(DATA_ON, true);
-		//editor.putBoolean(GPS_ON, false);
-		//editor.apply();
+
 		
 		final RadioGroup radioGroup = (RadioGroup) findViewById(R.id.radiogroup);
 		

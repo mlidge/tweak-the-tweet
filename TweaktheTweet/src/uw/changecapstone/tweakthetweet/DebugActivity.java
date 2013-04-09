@@ -30,8 +30,9 @@ public class DebugActivity extends Activity {
 		SharedPreferences pref = PreferenceManager.getDefaultSharedPreferences(this);
 		boolean data = pref.getBoolean(DATA_ON, true);
 		boolean gps = pref.getBoolean(GPS_ON, false);
+		String username = pref.getString("USERNAME", null);
 		
-		textView1.setText("Data: " + data + "\nGPS: " + gps);
+		textView1.setText("Data: " + data + "\nGPS: " + gps +"\n username: " + username  );
 		
 		setContentView(textView1);
 		//setContentView(R.layout.activity_debug);
