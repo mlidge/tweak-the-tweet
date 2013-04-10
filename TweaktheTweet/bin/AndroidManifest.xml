@@ -9,20 +9,31 @@
         android:targetSdkVersion="17" />
 
     <uses-permission android:name="android.permission.SEND_SMS" />
-    
+    <uses-permission android:name="android.permission.INTERNET"/>
     <application
         android:allowBackup="true"
         android:icon="@drawable/ic_launcher"
         android:label="@string/app_name"
         android:theme="@style/AppTheme" >
+        
+               
+                
         <activity
             android:name="uw.changecapstone.tweakthetweet.MainActivity"
-            android:label="@string/app_name" >
+            android:label="@string/app_name" 
+            >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
+                </intent-filter>
+                <intent-filter>
+             <category android:name="android.intent.category.DEFAULT"/>  
+            <category android:name="android.intent.category.BROWSABLE"/>  
+            <data android:scheme="tttcallback" android:host="connect" />
             </intent-filter>
+                
+         
         </activity>
         <activity
                 android:name="uw.changecapstone.tweakthetweet.SettingsActivity"
@@ -39,6 +50,13 @@
         <activity
                 android:name="uw.changecapstone.tweakthetweet.ComposeActivity"
                 android:label="@string/compose_name" />
+        <activity
+                android:name="uw.changecapstone.tweakthetweet.OAuthTwitterActivity"
+                android:label="oauthtwitter" />
+        <activity
+                android:name="uw.changecapstone.tweakthetweet.TwitterWebView"
+                android:label="twitterwebview" />
+        
     </application>
 
 </manifest>

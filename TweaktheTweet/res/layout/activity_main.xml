@@ -18,7 +18,8 @@
     <Button android:id="@+id/button_setup"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/button_setup_text" />
+        android:text="@string/button_setup_text"
+        android:onClick="authenticateTwitter" />
 
     <Button android:id="@+id/button_settings"
         android:layout_width="wrap_content"
