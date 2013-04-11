@@ -10,10 +10,10 @@
 	
 	<!--  MainActivity -->
 	<string name="button_settings_text">Edit Settings</string>
-	<string name="button_tweet_text">TWEET MOTHERFUCKERS</string>
+	<string name="button_tweet_text">Tweet</string>
 	<string name="button_setup_text">Setup Application</string>
 	<string name="button_debug_text">View Debug Info</string>
-	<string name="button_compose_text">compose thingy thing yay!</string>
+	<string name="button_compose_text">Compose</string>
 	<string name="welcome">WELCOME TO TWEAK THE TWEET!!</string>
 	
 	
@@ -30,11 +30,11 @@
 	<!--  DebugActivity -->
 	<string name="debug_button_finish_text">End Debug</string>
 	<!-- TweetActivity -->
-	<string name="button_send_tweet_text">Send thingy thing yay!</string>
+	<string name="button_send_tweet_text">Send</string>
 	
 	<!-- ComposeActivity -->
-	<string name="tweet_confirm_text">tweet confirm thingy thing yay!</string>
-	<string name="compose_name">compose</string>
+	<string name="tweet_confirm_text">Confirm</string>
+	<string name="compose_name">Compose</string>
 	
 
 </resources>
