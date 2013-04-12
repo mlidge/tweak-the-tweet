@@ -1,0 +1,4 @@
+## eclipse specific
+.metadata/*
+TweaktheTweet/bin/*
+
