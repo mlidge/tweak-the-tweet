@@ -75,6 +75,11 @@ public class MainActivity extends Activity {
 		startActivity(i);
 	}
 		
+	public void testComposeString(View view) {
+		Intent i = new Intent(this, TestStringBuilder.class);
+		startActivity(i);
+		
+	}
 		
 
 }

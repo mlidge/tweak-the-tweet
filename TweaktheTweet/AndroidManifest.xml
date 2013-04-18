@@ -9,54 +9,55 @@
         android:targetSdkVersion="17" />
 
     <uses-permission android:name="android.permission.SEND_SMS" />
-    <uses-permission android:name="android.permission.INTERNET"/>
+    <uses-permission android:name="android.permission.INTERNET" />
+
     <application
         android:allowBackup="true"
         android:icon="@drawable/ic_launcher"
         android:label="@string/app_name"
         android:theme="@style/AppTheme" >
-        
-               
-                
         <activity
             android:name="uw.changecapstone.tweakthetweet.MainActivity"
-            android:label="@string/app_name" 
-            >
+            android:label="@string/app_name" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
-                </intent-filter>
-                <intent-filter>
-             <category android:name="android.intent.category.DEFAULT"/>  
-            <category android:name="android.intent.category.BROWSABLE"/>  
-            <data android:scheme="tttcallback" android:host="connect" />
             </intent-filter>
-                
-         
+            <intent-filter>
+                <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="android.intent.category.BROWSABLE" />
+
+                <data
+                    android:host="connect"
+                    android:scheme="tttcallback" />
+            </intent-filter>
         </activity>
         <activity
-                android:name="uw.changecapstone.tweakthetweet.SettingsActivity"
-                android:label="@string/settings_name" />
+            android:name="uw.changecapstone.tweakthetweet.SettingsActivity"
+            android:label="@string/settings_name" />
         <activity
-                android:name="uw.changecapstone.tweakthetweet.SetupActivity"
-                android:label="@string/setup_name" />
+            android:name="uw.changecapstone.tweakthetweet.SetupActivity"
+            android:label="@string/setup_name" />
         <activity
-                android:name="uw.changecapstone.tweakthetweet.TweetActivity"
-                android:label="@string/tweet_name" />
+            android:name="uw.changecapstone.tweakthetweet.TweetActivity"
+            android:label="@string/tweet_name" />
         <activity
-                android:name="uw.changecapstone.tweakthetweet.DebugActivity"
-                android:label="@string/debug_name" />
+            android:name="uw.changecapstone.tweakthetweet.DebugActivity"
+            android:label="@string/debug_name" />
         <activity
-                android:name="uw.changecapstone.tweakthetweet.ComposeActivity"
-                android:label="@string/compose_name" />
+            android:name="uw.changecapstone.tweakthetweet.ComposeActivity"
+            android:label="@string/compose_name" />
         <activity
-                android:name="uw.changecapstone.tweakthetweet.OAuthTwitterActivity"
-                android:label="oauthtwitter" />
+            android:name="uw.changecapstone.tweakthetweet.OAuthTwitterActivity"
+            android:label="oauthtwitter" />
         <activity
-                android:name="uw.changecapstone.tweakthetweet.TwitterWebView"
-                android:label="twitterwebview" />
-        
+            android:name="uw.changecapstone.tweakthetweet.TwitterWebView"
+            android:label="twitterwebview" />
+        <activity
+            android:name="uw.changecapstone.tweakthetweet.TestStringBuilder"
+            android:label="@string/title_activity_test_string_builder" >
+        </activity>
     </application>
 
 </manifest>
