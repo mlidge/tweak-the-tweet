@@ -3,31 +3,40 @@
     android:layout_height="match_parent"
     android:orientation="vertical" >
 
-    <EditText android:id="@+id/test_text"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content" 
-        android:inputType="none" />
+    <EditText
+        android:id="@+id/city_name"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:hint="@string/test_string_city_hint"
+        android:inputType="textMultiLine" />
 
     <Spinner
         android:id="@+id/disaster_tag_spinner"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:entries="@array/disaster_tags"
         android:prompt="@string/disaster_tag_prompt" />
 
-    <EditText
-        android:id="@+id/disaster_description"
+    <Spinner
+        android:id="@+id/event_tag_spinner"
         android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
+    <EditText
+        android:id="@+id/test_text"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:hint="@string/test_string_builder_hint"
-        android:inputType="textMultiLine" >
+        android:ems="10"
+        android:inputType="none" >
 
         <requestFocus />
     </EditText>
     
-	<Button android:id="@+id/tweet_confirm"
+	<Button android:id="@+id/test_proceed_1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/tweet_confirm_text"
-        android:onClick="buildString" />
+        android:text="@string/test_build_next"
+        android:onClick="nextViewCategory" />
     
 </LinearLayout>

@@ -31,8 +31,12 @@
     <!-- ComposeActivity -->
     <string name="tweet_confirm_text">Confirm</string>
     <string name="compose_name">Compose</string>
+        
+    <!--  TestStringBuilder -->
     <string name="test_button">Test</string>
+    <string name="test_build_next">Next</string>
     <string name="title_activity_test_string_builder">TestStringBuilder</string>
+    <string name="title_activity_test_string_builder_category">TestStringBuilderCategory</string>
     <string-array name="disaster_tags">
         <item >Choose a Disaster…</item>
         <item >Earthquake</item>
@@ -41,7 +45,8 @@
         <item >Tsunami</item>
         <item >Storm</item>
     </string-array>
-        <string name="disaster_tag_prompt">Choose a Disaster…</string>
-        <string name="test_string_builder_hint">Enter description...</string>
+    <string name="disaster_tag_prompt">Choose a Disaster…</string>
+    <string name="test_string_city_hint">Enter current city name</string>
+    <string name="test_string_details_hint">Additional details</string>
 
 </resources>

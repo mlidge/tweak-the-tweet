@@ -58,6 +58,9 @@
             android:name="uw.changecapstone.tweakthetweet.TestStringBuilder"
             android:label="@string/title_activity_test_string_builder" >
         </activity>
+        <activity
+            android:name="uw.changecapstone.tweakthetweet.TestStringBuilderCategory"
+            android:label="@string/title_activity_test_string_builder" />
     </application>
 
 </manifest>
