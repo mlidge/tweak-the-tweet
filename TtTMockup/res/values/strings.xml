@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">TtTMockup</string>
+    <string name="action_settings">Settings</string>
+    <string name="button_user_tag_entry">Enter Your Own Tag</string>
+    <string name="title_activity_location">Location Tag</string>
+    <string name="location_title_text">Do you want us to use</string>
+    <string name="current_location_button_text">Current Location</string>
+    <string name="location_divider_text">or</string>
+    <string name="previous_location_button_text">Previous Location</string>
+    <string name="address_hint_text">4504 16th Ave. NE 8206</string>
+    <string name="enter_location_text">Enter Location</string>
+    <string name="map_placeholder_text">Insert Map Here!</string>
+    <string name="title_activity_map">Map Location</string>
+    <string name="title_activity_category">Category Tag</string>
+    <string name="category_placeholder_text">Proceed</string>
+    <string name="title_activity_other">Other Tags</string>
+    <string name="contact_text">Contact</string>
+    <string name="phone_hint_text">(XXX)-(XXX)-(XXXX)</string>
+
+</resources>
