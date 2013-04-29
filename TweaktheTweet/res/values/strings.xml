@@ -1,12 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <!-- activity names -->
+    <!-- activity names(titles) -->
     <string name="app_name">TweaktheTweet</string>
     <string name="settings_name">Settings</string>
     <string name="tweet_name">Twitter</string>
     <string name="setup_name">Setup</string>
     <string name="debug_name">Debug</string>
+    <string name="title_activity_map_display">Event Map</string>
+    <string name="title_activity_location_and_map"> Map and Info</string>
 
     <!-- MainActivity -->
     <string name="button_settings_text">Edit Settings</string>
@@ -16,7 +18,10 @@
     <string name="button_compose_text">Compose</string>
     <string name="welcome">WELCOME TO TWEAK THE TWEET!!</string>
     <string name="action_settings">Settings</string>
-
+    <string name="button_show_map">Show Map</string>
+    <string name="edit_message">Enter a Location</string>
+	<string name="button_enter">Enter</string>
+    
     <!-- SettingsActivity -->
     <string name="radiodata">Use Data</string>
     <string name="radiosms">Use SMS</string>
@@ -50,8 +55,7 @@
     <string name="disaster_tag_prompt">Choose a Disaster…</string>
     <string name="test_string_city_hint">Enter current city name</string>
     <string name="test_string_details_hint">Additional details</string>
-    
-    <!--  map -->
-    <string name="title_activity_map_display">Show Map</string>
 
+    <!-- MapActivities -->
+    
 </resources>

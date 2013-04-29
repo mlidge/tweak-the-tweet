@@ -50,11 +50,29 @@
         android:layout_height="wrap_content"
         android:text="@string/test_button"
         android:onClick="testComposeString" />
+    
     <Button
-        android:id="@+id/map_test"
+        android:id="@+id/show_map"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/title_activity_map_display"
+        android:text="@string/button_show_map"
         android:onClick="showMap" />
+    
+    <LinearLayout 
+	        android:orientation="horizontal"
+	        android:layout_width="wrap_content"
+	        android:layout_height="wrap_content">
+	    <EditText android:id="@+id/edit_message"
+	        android:layout_weight="1"
+	        android:layout_width="0dp"
+	        android:layout_height="wrap_content"
+	        android:hint="@string/edit_message" />
+	    
+	    <Button
+	        android:layout_width="wrap_content"
+	        android:layout_height="wrap_content"
+	        android:text="@string/button_enter"
+	        android:onClick="readLocationMessage" />
+    </LinearLayout>
 
 </LinearLayout>

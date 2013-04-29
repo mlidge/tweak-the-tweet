@@ -145,59 +145,62 @@ containing a value of this type.
         public static final int ic_launcher=0x7f020000;
     }
     public static final class id {
-        public static final int action_settings=0x7f040020;
-        public static final int additional_details_text=0x7f04001b;
+        public static final int action_settings=0x7f040021;
+        public static final int additional_details_text=0x7f04001c;
         public static final int button_compose=0x7f04000c;
         public static final int button_debug=0x7f04000b;
-        public static final int button_send_tweet=0x7f04001f;
+        public static final int button_send_tweet=0x7f040020;
         public static final int button_settings=0x7f040009;
         public static final int button_setup=0x7f040008;
         public static final int button_test=0x7f04000d;
         public static final int button_tweet=0x7f04000a;
-        public static final int buttonsettingssave=0x7f040015;
-        public static final int category_tag_spinner=0x7f04001a;
-        public static final int city_name=0x7f040016;
+        public static final int buttonsettingssave=0x7f040016;
+        public static final int category_tag_spinner=0x7f04001b;
+        public static final int city_name=0x7f040017;
         public static final int debug_button_finish=0x7f040007;
-        public static final int disaster_tag_spinner=0x7f040017;
-        public static final int event_tag_spinner=0x7f040018;
+        public static final int disaster_tag_spinner=0x7f040018;
+        public static final int edit_message=0x7f04000f;
+        public static final int event_tag_spinner=0x7f040019;
         public static final int hybrid=0x7f040004;
-        public static final int locinfo=0x7f04000f;
-        public static final int map=0x7f040010;
-        public static final int map_test=0x7f04000e;
+        public static final int locinfo=0x7f040010;
+        public static final int map=0x7f040011;
         public static final int none=0x7f040000;
         public static final int normal=0x7f040001;
-        public static final int radiobuttondata=0x7f040013;
-        public static final int radiobuttonsms=0x7f040014;
-        public static final int radiogroup=0x7f040012;
+        public static final int radiobuttondata=0x7f040014;
+        public static final int radiobuttonsms=0x7f040015;
+        public static final int radiogroup=0x7f040013;
         public static final int satellite=0x7f040002;
+        public static final int show_map=0x7f04000e;
         public static final int terrain=0x7f040003;
         public static final int test_proceed_1=0x7f040006;
-        public static final int test_proceed_2=0x7f04001c;
-        public static final int test_text=0x7f040019;
+        public static final int test_proceed_2=0x7f04001d;
+        public static final int test_text=0x7f04001a;
         public static final int tweet_compose=0x7f040005;
-        public static final int tweet_layout=0x7f04001d;
-        public static final int tweet_string=0x7f04001e;
-        public static final int webview=0x7f040011;
+        public static final int tweet_layout=0x7f04001e;
+        public static final int tweet_string=0x7f04001f;
+        public static final int webview=0x7f040012;
     }
     public static final class layout {
         public static final int activity_compose=0x7f030000;
         public static final int activity_debug=0x7f030001;
-        public static final int activity_main=0x7f030002;
-        public static final int activity_map_display=0x7f030003;
-        public static final int activity_oauthtwitter=0x7f030004;
-        public static final int activity_settings=0x7f030005;
-        public static final int activity_test_string_builder=0x7f030006;
-        public static final int activity_test_string_builder_category=0x7f030007;
-        public static final int activity_tweet=0x7f030008;
+        public static final int activity_location_and_map=0x7f030002;
+        public static final int activity_main=0x7f030003;
+        public static final int activity_map_display=0x7f030004;
+        public static final int activity_oauthtwitter=0x7f030005;
+        public static final int activity_settings=0x7f030006;
+        public static final int activity_test_string_builder=0x7f030007;
+        public static final int activity_test_string_builder_category=0x7f030008;
+        public static final int activity_tweet=0x7f030009;
     }
     public static final class menu {
-        public static final int main=0x7f090000;
-        public static final int map_display=0x7f090001;
-        public static final int test_string_builder=0x7f090002;
+        public static final int location_and_map=0x7f090000;
+        public static final int main=0x7f090001;
+        public static final int map_display=0x7f090002;
+        public static final int test_string_builder=0x7f090003;
     }
     public static final class string {
-        public static final int action_settings=0x7f05001c;
-        /**  activity names 
+        public static final int action_settings=0x7f05001e;
+        /**  activity names(titles) 
          */
         public static final int app_name=0x7f050011;
         /**   Title for notification shown when GooglePlayServices is unavailable [CHAR LIMIT=70] 
@@ -209,17 +212,19 @@ containing a value of this type.
         /**   Requested by string saying which app requested the notification. [CHAR LIMIT=42] 
          */
         public static final int auth_client_requested_by_msg=0x7f050010;
-        public static final int button_compose_text=0x7f05001a;
-        public static final int button_debug_text=0x7f050019;
+        public static final int button_compose_text=0x7f05001c;
+        public static final int button_debug_text=0x7f05001b;
+        public static final int button_enter=0x7f050021;
         /**  TweetActivity 
          */
-        public static final int button_send_tweet_text=0x7f050022;
+        public static final int button_send_tweet_text=0x7f050027;
         /**  MainActivity 
          */
-        public static final int button_settings_text=0x7f050016;
-        public static final int button_setup_text=0x7f050018;
-        public static final int button_tweet_text=0x7f050017;
-        public static final int buttonsave=0x7f05001f;
+        public static final int button_settings_text=0x7f050018;
+        public static final int button_setup_text=0x7f05001a;
+        public static final int button_show_map=0x7f05001f;
+        public static final int button_tweet_text=0x7f050019;
+        public static final int buttonsave=0x7f050024;
         /**  Button in confirmation dialog to enable Google Play services.  Clicking it
         will direct user to application settings of Google Play services where they
         can enable it [CHAR LIMIT=40] 
@@ -273,35 +278,35 @@ containing a value of this type.
         find the service-side assets. [CHAR LIMIT=25] 
          */
         public static final int common_signin_button_text_long=0x7f05000d;
-        public static final int compose_name=0x7f050024;
+        public static final int compose_name=0x7f050029;
         /**  DebugActivity 
          */
-        public static final int debug_button_finish_text=0x7f050021;
+        public static final int debug_button_finish_text=0x7f050026;
         public static final int debug_name=0x7f050015;
-        public static final int disaster_tag_prompt=0x7f050029;
-        public static final int hello_world=0x7f050020;
+        public static final int disaster_tag_prompt=0x7f05002e;
+        public static final int edit_message=0x7f050020;
+        public static final int hello_world=0x7f050025;
         /**  SettingsActivity 
          */
-        public static final int radiodata=0x7f05001d;
-        public static final int radiosms=0x7f05001e;
+        public static final int radiodata=0x7f050022;
+        public static final int radiosms=0x7f050023;
         public static final int settings_name=0x7f050012;
         public static final int setup_name=0x7f050014;
-        public static final int test_build_next=0x7f050026;
+        public static final int test_build_next=0x7f05002b;
         /**  TestStringBuilder 
          */
-        public static final int test_button=0x7f050025;
-        public static final int test_string_city_hint=0x7f05002a;
-        public static final int test_string_details_hint=0x7f05002b;
-        /**   map 
-         */
-        public static final int title_activity_map_display=0x7f05002c;
-        public static final int title_activity_test_string_builder=0x7f050027;
-        public static final int title_activity_test_string_builder_category=0x7f050028;
+        public static final int test_button=0x7f05002a;
+        public static final int test_string_city_hint=0x7f05002f;
+        public static final int test_string_details_hint=0x7f050030;
+        public static final int title_activity_location_and_map=0x7f050017;
+        public static final int title_activity_map_display=0x7f050016;
+        public static final int title_activity_test_string_builder=0x7f05002c;
+        public static final int title_activity_test_string_builder_category=0x7f05002d;
         /**  ComposeActivity 
          */
-        public static final int tweet_confirm_text=0x7f050023;
+        public static final int tweet_confirm_text=0x7f050028;
         public static final int tweet_name=0x7f050013;
-        public static final int welcome=0x7f05001b;
+        public static final int welcome=0x7f05001d;
     }
     public static final class style {
         /** 

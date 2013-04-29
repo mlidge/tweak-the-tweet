@@ -9,13 +9,15 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.View;
 import android.webkit.WebView;
+import android.widget.EditText;
 
 public class MainActivity extends Activity {
 
 
 	private final static int ACTIVITY_COMPOSE = 5;
 	final static String TWEET_STRING = "TWEET_STRING";
-	
+	public final static String LOCATION_TEXT = "uw.changecapstone.tweakthetweet.MESSAGE";
+
 	WebView webview;
 	
 	SharedPreferences pref; 
@@ -83,6 +85,16 @@ public class MainActivity extends Activity {
 	public void showMap(View view){
 		Intent intent = new Intent(this, MapDisplayActivity.class);
 		startActivity(intent);
+	}
+	/*when the user clicks the "Enter" button, 
+	 * we are going to read the textfield content and 
+	 * do some validity checks before we show/zoom map*/
+	public void readLocationMessage(View view){
+		Intent intent = new Intent(this, LocationAndMapActivity.class);
+	    EditText editText = (EditText) findViewById(R.id.edit_message);
+	    String message = editText.getText().toString();
+	    intent.putExtra(LOCATION_TEXT, message);
+	    startActivity(intent);
 	}
 
 }
