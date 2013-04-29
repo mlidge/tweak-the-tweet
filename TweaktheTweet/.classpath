@@ -5,5 +5,11 @@
 	<classpathentry kind="lib" path="libs/twitter4j-core-3.0.3.jar"/>
 	<classpathentry kind="src" path="src"/>
 	<classpathentry kind="src" path="gen"/>
+	<classpathentry kind="lib" path="/Users/mussie/Desktop/google-play-services_lib/libs/google-play-services.jar"/>
+	<classpathentry kind="lib" path="/Users/mussie/Desktop/android-sdk-macosx/add-ons/addon-google_apis-google-16/libs/maps.jar">
+		<attributes>
+			<attribute name="javadoc_location" value="file:/Users/mussie/Desktop/android-sdk-macosx/add-ons/addon-google_apis-google-16/docs/reference"/>
+		</attributes>
+	</classpathentry>
 	<classpathentry kind="output" path="bin/classes"/>
 </classpath>

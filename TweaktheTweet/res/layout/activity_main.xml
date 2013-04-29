@@ -50,5 +50,11 @@
         android:layout_height="wrap_content"
         android:text="@string/test_button"
         android:onClick="testComposeString" />
+    <Button
+        android:id="@+id/map_test"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/title_activity_map_display"
+        android:onClick="showMap" />
 
 </LinearLayout>

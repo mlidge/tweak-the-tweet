@@ -80,6 +80,9 @@ public class MainActivity extends Activity {
 		startActivity(i);
 		
 	}
-		
+	public void showMap(View view){
+		Intent intent = new Intent(this, MapDisplayActivity.class);
+		startActivity(intent);
+	}
 
 }
