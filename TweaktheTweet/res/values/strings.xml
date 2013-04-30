@@ -18,9 +18,9 @@
     <string name="button_compose_text">Compose</string>
     <string name="welcome">WELCOME TO TWEAK THE TWEET!!</string>
     <string name="action_settings">Settings</string>
-    <string name="button_show_map">Show Map</string>
+    <string name="button_enable_gps">Enable GPS</string>
     <string name="edit_message">Enter a Location</string>
-	<string name="button_enter">Enter</string>
+	<string name="button_show_map">Show Map</string>
     
     <!-- SettingsActivity -->
     <string name="radiodata">Use Data</string>
