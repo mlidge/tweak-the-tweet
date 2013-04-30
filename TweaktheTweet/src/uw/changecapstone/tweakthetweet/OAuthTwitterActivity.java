@@ -44,11 +44,12 @@ public class OAuthTwitterActivity extends Activity {
 		pref = PreferenceManager.getDefaultSharedPreferences(this);
 		Log.d("OAUTH", "starting task");
 		if (!isTwitterLoggedInAlready()) {
-			
+			TwitterAuthenticate task = new TwitterAuthenticate();
+			task.execute(new String[] {null});
+		
+		} else {
 		finish();
 		}
-		TwitterAuthenticate task = new TwitterAuthenticate();
-		task.execute(new String[] {null});
 		// Get the access token
 		
 		
