@@ -12,7 +12,7 @@
 
     <!-- MainActivity -->
     <string name="button_settings_text">Edit Settings</string>
-    <string name="button_tweet_text">Tweet</string>
+    <string name="button_logout_text">Log Out</string>
     <string name="button_setup_text">Setup Application</string>
     <string name="button_debug_text">View Debug Info</string>
     <string name="button_compose_text">Compose</string>

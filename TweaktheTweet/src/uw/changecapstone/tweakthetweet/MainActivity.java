@@ -9,11 +9,9 @@ import android.preference.PreferenceManager;
 import android.util.Log;
 import android.view.Menu;
 import android.view.View;
-<<<<<<< Updated upstream
 import android.webkit.WebView;
 import android.widget.EditText;
-=======
->>>>>>> Stashed changes
+
 
 public class MainActivity extends Activity {
 
