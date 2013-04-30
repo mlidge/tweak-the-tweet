@@ -3,6 +3,7 @@ package uw.changecapstone.tweakthetweet;
 import android.app.Activity;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.content.SharedPreferences.Editor;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.util.Log;
@@ -11,14 +12,19 @@ import android.view.View;
 import android.webkit.WebView;
 import android.widget.EditText;
 
+
 public class MainActivity extends Activity {
 
 
 	private final static int ACTIVITY_COMPOSE = 5;
+
 	final static String TWEET_STRING = "TWEET_STRING";
 	public final static String LOCATION_TEXT = "uw.changecapstone.tweakthetweet.MESSAGE";
 
-	WebView webview;
+	private static final String PREF_KEY_OAUTH_TOKEN = "oauth_token";
+	private static final String PREF_KEY_OAUTH_SECRET = "oauth_token_secret";
+	private static final String PREF_KEY_TWITTER_LOGIN = "isTwitterLoggedIn";
+
 	
 	SharedPreferences pref; 
 	
@@ -37,9 +43,15 @@ public class MainActivity extends Activity {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_main);
 		pref = PreferenceManager.getDefaultSharedPreferences(this);
-		
+		checkLogInStatus();
 	}
 	
+	private void checkLogInStatus() {
+	  if (!pref.getBoolean(PREF_KEY_TWITTER_LOGIN, false)) {
+		  Intent i = new Intent(this, OAuthTwitterActivity.class);
+		  startActivity(i);
+	  }
+	}
 	
 
 	@Override
@@ -82,6 +94,7 @@ public class MainActivity extends Activity {
 		startActivity(i);
 		
 	}
+
 	public void showMap(View view){
 		Intent intent = new Intent(this, MapDisplayActivity.class);
 		startActivity(intent);
@@ -96,5 +109,19 @@ public class MainActivity extends Activity {
 	    intent.putExtra(LOCATION_TEXT, message);
 	    startActivity(intent);
 	}
+
+	
+	public void twitterLogout(View view) {
+		Editor e = pref.edit();
+		e.remove(PREF_KEY_OAUTH_TOKEN);
+		e.remove(PREF_KEY_OAUTH_SECRET);
+		e.remove(PREF_KEY_TWITTER_LOGIN);
+		e.remove("USERNAME");
+		e.commit();
+	
+		
+	}
+		
+
 
 }

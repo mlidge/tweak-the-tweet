@@ -1,10 +1,7 @@
 package uw.changecapstone.tweakthetweet;
 
-import twitter4j.Twitter;
-import twitter4j.auth.RequestToken;
 import android.app.Activity;
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
@@ -17,9 +14,6 @@ public class TwitterWebView extends Activity {
 	Uri uri;
 	String url;
     WebView TwitterWebView;
-    private static Twitter twitter;
-	private static RequestToken requestToken;
-	private static SharedPreferences pref;
 	// Preference Constants
 	static String PREFERENCE_NAME = "twitter_oauth";
 	static final String PREF_KEY_OAUTH_TOKEN = "oauth_token";
@@ -64,7 +58,6 @@ private Intent mIntent;
             
 			
         
-			//TwitterWebView.setVisibility(View.INVISIBLE);
 			
         } catch (Exception e) {
             e.printStackTrace();
