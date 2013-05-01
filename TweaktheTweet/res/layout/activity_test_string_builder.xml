@@ -2,6 +2,14 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical" >
+    
+    <EditText
+        android:id="@+id/test_tweet"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:hint="@string/test_string_city_hint"
+        android:inputType="textMultiLine" />
 
     <EditText
         android:id="@+id/city_name"
@@ -18,21 +26,12 @@
         android:entries="@array/disaster_tags"
         android:prompt="@string/disaster_tag_prompt" />
 
-    <Spinner
-        android:id="@+id/event_tag_spinner"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
-
-    <EditText
-        android:id="@+id/test_text"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:ems="10"
-        android:inputType="none" >
-
-        <requestFocus />
-    </EditText>
-    
+	<ListView
+	    android:id="@+id/list"
+	    android:layout_width="match_parent"
+	    android:layout_height="wrap_content" >
+	</ListView>
+	
 	<Button android:id="@+id/test_proceed_1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
