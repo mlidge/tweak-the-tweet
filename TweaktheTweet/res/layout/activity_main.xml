@@ -53,10 +53,10 @@
         android:onClick="testComposeString" />
     
     <Button
-        android:id="@+id/enable_gps"
+        android:id="@+id/use_gps"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/button_enable_gps"
+        android:text="@string/button_use_gps_loc"
         android:onClick="showMap" />
     
     <LinearLayout 

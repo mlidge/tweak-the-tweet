@@ -37,8 +37,8 @@ public class TweetActivity extends Activity {
 	private String tweet;
 	private SharedPreferences pref;
 	private boolean geoLocation;
-	private static final String LAT = "latitude";
-	private static final String LONG = "longitude";
+	private static final String LAT = "uw.changecapstone.tweakthetweet.latitude";
+	private static final String LONG = "uw.changecapstone.tweakthetweet.longitude";
 	private String latitude;
 	private String longitude;
 	
@@ -56,7 +56,6 @@ public class TweetActivity extends Activity {
 		
 		latitude = ((Double)intent.getDoubleExtra(LAT, 0.0)).toString();
 		longitude = ((Double)intent.getDoubleExtra(LONG, 0.0)).toString();
-		
 		t.setText(tweet);
 		pref = PreferenceManager.getDefaultSharedPreferences(this);
 
