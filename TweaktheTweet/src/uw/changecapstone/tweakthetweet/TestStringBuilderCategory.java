@@ -15,14 +15,21 @@ import android.widget.AdapterView.OnItemSelectedListener;
 public class TestStringBuilderCategory extends Activity {
 
 	private Spinner category_tag_spinner;
-	
+	private String tweet;
+	private EditText add_descript, test_tweet;
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_test_string_builder_category);
 		
-		category_tag_spinner = (Spinner) findViewById(R.id.disaster_tag_spinner);
+		Bundle bundle = getIntent().getExtras();
+		tweet = bundle.getString("tweet");
+		
+		category_tag_spinner = (Spinner) findViewById(R.id.category_tag_spinner);
+		add_descript = (EditText) findViewById(R.id.additional_details_text);
+		test_tweet = (EditText) findViewById(R.id.test_tweet);
+		test_tweet.setText(tweet);
 	}
 
 	@Override
@@ -33,22 +40,23 @@ public class TestStringBuilderCategory extends Activity {
 	}
 	
 	public void nextViewLocation(View view){
-		if (category_tag_spinner.getSelectedItem()==null){
-			AlertDialog alertDialog = new AlertDialog.Builder(this).create();
-			alertDialog.setTitle("Error");
-			alertDialog.setMessage("Please select an issue");
-			// -1 = BUTTON_POSITIVE = a positive button?
-			alertDialog.setButton(-1, "OK", new DialogInterface.OnClickListener() {
-				public void onClick(DialogInterface dialog, int which) {
-					// here you can add functions
-				}
-			});
-			alertDialog.show();
-		} else {
-			//tweet += event_tag_spinner.getSelectedItem().toString();
-			//Intent i = new Intent(this, TestStringBuilderCategory.class);
-			//i.putExtra("tweet", tweet);
-			//startActivity(i);
-		}
+//		if (category_tag_spinner.getSelectedItem()==null){
+//			AlertDialog alertDialog = new AlertDialog.Builder(this).create();
+//			alertDialog.setTitle("Error");
+//			alertDialog.setMessage("Please select a category");
+//			// -1 = BUTTON_POSITIVE = a positive button?
+//			alertDialog.setButton(-1, "OK", new DialogInterface.OnClickListener() {
+//				public void onClick(DialogInterface dialog, int which) {
+//					// here you can add functions
+//				}
+//			});
+//			alertDialog.show();
+//		} else {
+		tweet += " " + category_tag_spinner.getSelectedItem().toString();
+		tweet += " " + add_descript.getText().toString();
+		Intent i = new Intent(this, TestStringBuilderLocation.class);
+		i.putExtra("tweet", tweet);
+		startActivity(i);
+//		}
 	}
 }

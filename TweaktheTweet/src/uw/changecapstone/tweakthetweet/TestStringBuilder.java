@@ -25,7 +25,8 @@ public class TestStringBuilder extends Activity implements OnItemSelectedListene
 	private Spinner disaster_tag_spinner;
 	private ListView disaster_list;
 	private String disaster_tag;
-	private EditText city_name, test_tweet;
+	private EditText city_name;
+	private EditText test_tweet;
 	private String tweet;
 	
 	@Override
@@ -38,6 +39,7 @@ public class TestStringBuilder extends Activity implements OnItemSelectedListene
 		test_tweet = (EditText) findViewById(R.id.test_tweet);
 		disaster_list = (ListView) findViewById(R.id.list);
 		disaster_tag = "";
+		tweet = "";
 		
 		// Set Click Listener
 		disaster_tag_spinner.setOnItemSelectedListener(this);
@@ -51,8 +53,7 @@ public class TestStringBuilder extends Activity implements OnItemSelectedListene
 				disaster_tag = (String) adapter.getItemAtPosition(position);
 				test_tweet.setText(disaster_tag);
 			}
-			
-			
+		
 		});
 	}
 
@@ -116,15 +117,15 @@ public class TestStringBuilder extends Activity implements OnItemSelectedListene
 //        //startActivity(i);
 //    }
 	
-	public void addDisasterOnSpinner() {
-		
-		List<String> list = new ArrayList<String>();
-		list.add("Flood");
-		list.add("Earthquake");
-		ArrayAdapter<String> dataAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, list);
-		dataAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-		disaster_tag_spinner.setAdapter(dataAdapter);
-	}
+//	public void addDisasterOnSpinner() {
+//		
+//		List<String> list = new ArrayList<String>();
+//		list.add("Flood");
+//		list.add("Earthquake");
+//		ArrayAdapter<String> dataAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, list);
+//		dataAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+//		disaster_tag_spinner.setAdapter(dataAdapter);
+//	}
 	
 	
 	public void nextViewCategory(View view){
@@ -152,18 +153,12 @@ public class TestStringBuilder extends Activity implements OnItemSelectedListene
     	//Test data for initial event list
     	//Read this in from somewhere else
     	String[] testData = new String[] {
-    			"#TestEvent1\n\tDescription1",
-    			"#TestEvent2\n\tDescription2",
-    			"#TestEvent3\n\tDescription3",
-    			"#TestEvent4\n\tDescription4",
-    			"#TestEvent5\n\tDescription5",
-    			"#TestEvent6\n\tDescription6",
-    			"#TestEvent7\n\tDescription7",
-    			"#TestEvent8\n\tDescription8",
-    			"#TestEvent9\n\tDescription9",
-    			"#TestEvent10\n\tDescription10",
-    			"#TestEvent11\n\tDescription11",
-    			"#TestEvent12\n\tDescription12",
+    			"#TestEvent1",
+    			"#TestEvent2",
+    			"#TestEvent3",
+    			"#TestEvent4",
+    			"#TestEvent5",
+    			"#TestEvent6",
     	};
  
     	// Create a String array adapter using the testData values
