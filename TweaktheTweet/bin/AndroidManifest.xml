@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="uw.changecapstone.tweakthetweet"
+    android:versionCode="1"
+    android:versionName="1.0" >
+
+    <uses-sdk
+        android:minSdkVersion="9"
+        android:targetSdkVersion="17" />
+
+    <permission
+        android:name="uw.changecapstone.tweakthetweet.permission.MAPS_RECEIVE"
+        android:protectionLevel="signature" />
+
+    <uses-permission android:name="uw.changecapstone.tweakthetweet.permission.MAPS_RECEIVE" />
+    <uses-permission android:name="android.permission.SEND_SMS" />
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="com.google.android.providers.gsf.permission.READ_GSERVICES" />
+    <!--
+    The following two permissions are not required to use
+	Google Maps Android API v2, but are recommended.
+    -->
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_GPS" />
+
+    <uses-feature
+        android:glEsVersion="0x00020000"
+        android:required="true" />
+
+    <application
+        android:allowBackup="true"
+        android:icon="@drawable/ic_launcher"
+        android:label="@string/app_name"
+        android:theme="@style/AppTheme" >
+        <activity
+            android:name="uw.changecapstone.tweakthetweet.MainActivity"
+            android:label="@string/app_name" >
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+            <intent-filter>
+                <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="android.intent.category.BROWSABLE" />
+
+                <data
+                    android:host="connect"
+                    android:scheme="tttcallback" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name="uw.changecapstone.tweakthetweet.SettingsActivity"
+            android:label="@string/settings_name" />
+        <activity
+            android:name="uw.changecapstone.tweakthetweet.SetupActivity"
+            android:label="@string/setup_name" />
+        <activity
+            android:name="uw.changecapstone.tweakthetweet.TweetActivity"
+            android:label="@string/tweet_name" />
+        <activity
+            android:name="uw.changecapstone.tweakthetweet.DebugActivity"
+            android:label="@string/debug_name" />
+        <activity
+            android:name="uw.changecapstone.tweakthetweet.ComposeActivity"
+            android:label="@string/compose_name" />
+        <activity
+            android:name="uw.changecapstone.tweakthetweet.OAuthTwitterActivity"
+            android:label="oauthtwitter" />
+        <activity
+            android:name="uw.changecapstone.tweakthetweet.TwitterWebView"
+            android:label="twitterwebview" />
+        <activity
+            android:name="uw.changecapstone.tweakthetweet.TestStringBuilder"
+            android:label="@string/title_activity_test_string_builder" >
+        </activity>
+        <activity
+            android:name="uw.changecapstone.tweakthetweet.TestStringBuilderCategory"
+            android:label="@string/title_activity_test_string_builder" />
+        <activity
+            android:name="uw.changecapstone.tweakthetweet.MapDisplayActivity"
+            android:label="@string/title_activity_map_display" >
+        </activity>
+        <activity
+            android:name="uw.changecapstone.tweakthetweet.LocationAndMapActivity"
+            android:label="@string/title_activity_location_and_map" >
+        </activity>
+
+        <meta-data
+            android:name="com.google.android.maps.v2.API_KEY"
+            android:value="AIzaSyDpCgfyV1E09kVzwV4LBdjOqGJBhljNYo0" />
+
+        <activity
+            android:name="uw.changecapstone.tweakthetweet.TestStringBuilderLocation"
+            android:label="@string/title_activity_test_string_builder_location" >
+        </activity>
+        <activity
+            android:name="uw.changecapstone.tweakthetweet.TestStringBuilderMap"
+            android:label="@string/title_activity_test_string_builder_map" >
+        </activity>
+        <activity
+            android:name="uw.changecapstone.tweakthetweet.TestStringBuilderConfirm"
+            android:label="@string/title_activity_test_string_builder_confirm" >
+        </activity>
+    </application>
+
+</manifest>
