@@ -5,23 +5,6 @@
 	<classpathentry kind="lib" path="libs/twitter4j-core-3.0.3.jar"/>
 	<classpathentry kind="src" path="src"/>
 	<classpathentry kind="src" path="gen"/>
-	<classpathentry kind="lib" path="/Users/mussie/Desktop/android-sdk-macosx/platforms/android-16/android.jar">
-		<attributes>
-			<attribute name="javadoc_location" value="file:/Users/mussie/Desktop/android-sdk-macosx/docs/reference"/>
-		</attributes>
-		<accessrules>
-			<accessrule kind="nonaccessible" pattern="com/android/internal/**"/>
-		</accessrules>
-	</classpathentry>
-	<classpathentry kind="lib" path="/Users/mussie/Desktop/android-sdk-macosx/platforms/android-17/android.jar">
-		<attributes>
-			<attribute name="javadoc_location" value="file:/Users/mussie/Desktop/android-sdk-macosx/docs/reference"/>
-		</attributes>
-		<accessrules>
-			<accessrule kind="nonaccessible" pattern="com/android/internal/**"/>
-		</accessrules>
-	</classpathentry>
 	<classpathentry kind="lib" path="libs/maps.jar"/>
-	<classpathentry kind="lib" path="/google-play-services_lib/libs/google-play-services.jar"/>
 	<classpathentry kind="output" path="bin/classes"/>
 </classpath>
