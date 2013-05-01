@@ -25,8 +25,8 @@ public class LocationAndMapActivity extends Activity {
 	private GoogleMap mMap;
 	private LatLng latLng;
 	GeoPoint p;
-	public final static String LATITUDE = "uw.changecapstone.tweakthetweet.latitude";
-	public final static String LONGITUDE = "uw.changecapstone.tweakthetweet.longitude";
+	/*public final static String LAT = "uw.changecapstone.tweakthetweet.latitude";
+	public final static String LONG = "uw.changecapstone.tweakthetweet.longitude";*/
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -55,10 +55,10 @@ public class LocationAndMapActivity extends Activity {
 		public void onMapClick(LatLng point) {
 			double lat = point.latitude;
 			double lng = point.longitude;
-			Intent intent = new Intent();
-		    intent.putExtra(LATITUDE, lat);
-		    intent.putExtra(LONGITUDE, lng);
-		    startActivity(intent);
+			/*Intent intent = new Intent();
+		    intent.putExtra(LAT, lat);
+		    intent.putExtra(LONG, lng);
+		    startActivity(intent);*/
 			Toast.makeText(getBaseContext(), "Location: "+lat + "," + 
 					lng, Toast.LENGTH_SHORT).show();
 		}
@@ -90,6 +90,8 @@ public class LocationAndMapActivity extends Activity {
 				Address address = addresses.get(0);
 				double lat = address.getLatitude();
 				double lng = address.getLongitude();
+				//TODO: To send the address to tweet intent : TODO
+				Toast.makeText(getBaseContext(), "Tweet Address: "+address.getAddressLine(0), Toast.LENGTH_SHORT).show();
 				latLng = new LatLng(lat, lng);
 				mMap.animateCamera(CameraUpdateFactory.newLatLngZoom(latLng, 14));
 			}
