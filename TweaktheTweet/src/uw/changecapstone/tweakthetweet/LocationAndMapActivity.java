@@ -25,6 +25,8 @@ public class LocationAndMapActivity extends Activity {
 	private GoogleMap mMap;
 	private LatLng latLng;
 	GeoPoint p;
+	public final static String LATITUDE = "uw.changecapstone.tweakthetweet.latitude";
+	public final static String LONGITUDE = "uw.changecapstone.tweakthetweet.longitude";
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -32,7 +34,8 @@ public class LocationAndMapActivity extends Activity {
 		// Get the message from the intent
 		Intent intent = getIntent();
 		String location = intent.getStringExtra(MainActivity.LOCATION_TEXT);
-			mMap = ((MapFragment) getFragmentManager().findFragmentById(R.id.loc_map)).getMap();
+		mMap = ((MapFragment) getFragmentManager().findFragmentById(R.id.loc_map)).getMap();
+		mMap.setMyLocationEnabled(true);
 		if (location == null || location.equals("")){
 			mMap.addMarker(new MarkerOptions()
 	        .position(new LatLng(47.6561359, -122.3042217))
@@ -50,8 +53,14 @@ public class LocationAndMapActivity extends Activity {
 	private OnMapClickListener getOnMapClickListener() {
 		return new OnMapClickListener() {			
 		public void onMapClick(LatLng point) {
-			Toast.makeText(getBaseContext(), "Location: "+point.latitude + "," + 
-					point.longitude, Toast.LENGTH_SHORT).show();
+			double lat = point.latitude;
+			double lng = point.longitude;
+			Intent intent = new Intent();
+		    intent.putExtra(LATITUDE, lat);
+		    intent.putExtra(LONGITUDE, lng);
+		    startActivity(intent);
+			Toast.makeText(getBaseContext(), "Location: "+lat + "," + 
+					lng, Toast.LENGTH_SHORT).show();
 		}
 		
 	};
@@ -65,8 +74,6 @@ public class LocationAndMapActivity extends Activity {
 			List <Address> addresses = null;
 			
 			try {
-				/*if(Geocoder.isPresent())
-					System.out.println("true: server is up");*/
 				//Get maximum of 1 Address that matches the input text
 				addresses = geocoder.getFromLocationName(arg0[0],1);
 			} catch (IOException e){
@@ -82,10 +89,9 @@ public class LocationAndMapActivity extends Activity {
 			else /*if (addresses != null && addresses.size() > 0)*/{
 				Address address = addresses.get(0);
 				double lat = address.getLatitude();
-				System.out.println("lat"+lat);
 				double lng = address.getLongitude();
 				latLng = new LatLng(lat, lng);
-				mMap.animateCamera(CameraUpdateFactory.newLatLngZoom(latLng, 10));
+				mMap.animateCamera(CameraUpdateFactory.newLatLngZoom(latLng, 14));
 			}
 		}
 	}

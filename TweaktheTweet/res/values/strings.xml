@@ -18,7 +18,7 @@
     <string name="button_compose_text">Compose</string>
     <string name="welcome">WELCOME TO TWEAK THE TWEET!!</string>
     <string name="action_settings">Settings</string>
-    <string name="button_enable_gps">Enable GPS</string>
+    <string name="button_use_gps_loc">Use GPS Location</string>
     <string name="edit_message">Enter a Location</string>
 	<string name="button_show_map">Show Map</string>
     
