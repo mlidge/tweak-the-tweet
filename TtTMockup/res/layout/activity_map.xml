@@ -26,7 +26,7 @@
         android:layout_gravity="center_horizontal"
         android:gravity="center"
         android:onClick="chooseLocation"
-        android:text="@string/current_location_button_text" />
+        android:text="@string/category_placeholder_text" />
     
     <TextView 
     android:layout_width="fill_parent"

@@ -1,21 +1,31 @@
 package com.example.tttmockup;
 
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
 import android.os.Bundle;
 import android.app.Activity;
+import android.app.AlertDialog;
 import android.app.ListActivity;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.view.Menu;
 import android.view.View;
 import android.widget.ArrayAdapter;
+import android.widget.EditText;
 import android.widget.ListAdapter;
 import android.widget.ListView;
+import android.widget.SimpleAdapter;
 
 public class MainActivity extends ListActivity {
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		
+		show911PopUp();
 		//Create adapter
 		ListAdapter adapter = createAdapter();
 		setListAdapter(adapter);
@@ -26,27 +36,21 @@ public class MainActivity extends ListActivity {
      * @return a ListAdapter for the current list activity
      */
     protected ListAdapter createAdapter()
-    {
-    	//Test data for initial event list
-    	//Read this in from somewhere else
-    	String[] testData = new String[] {
-    			"#TestEvent1\n\tDescription1",
-    			"#TestEvent2\n\tDescription2",
-    			"#TestEvent3\n\tDescription3",
-    			"#TestEvent4\n\tDescription4",
-    			"#TestEvent5\n\tDescription5",
-    			"#TestEvent6\n\tDescription6",
-    			"#TestEvent7\n\tDescription7",
-    			"#TestEvent8\n\tDescription8",
-    			"#TestEvent9\n\tDescription9",
-    			"#TestEvent10\n\tDescription10",
-    			"#TestEvent11\n\tDescription11",
-    			"#TestEvent12\n\tDescription12",
-    	};
- 
-    	// Create a String array adapter using the testData values
-    	ListAdapter adapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, testData);
- 
+    {	
+    	List<Map<String, String>> data = new ArrayList<Map<String, String>>();
+    	
+    	//Use a loop to generate a new map and add it to the data list when real data is parsed
+    	for(int i=0; i<10; i++){
+    		Map<String, String> datum = new HashMap<String, String>();
+            datum.put("First Line", "#TestEvent"+i);
+            datum.put("Second Line","Description"+i);
+            data.add(Collections.unmodifiableMap(datum));
+    	}
+        
+        SimpleAdapter adapter = new SimpleAdapter(this, data,
+                android.R.layout.simple_list_item_2, 
+                new String[] {"First Line", "Second Line" }, 
+                new int[] {android.R.id.text1, android.R.id.text2 });
     	return adapter;
     }
     
@@ -56,5 +60,48 @@ public class MainActivity extends ListActivity {
         Intent i = new Intent(getApplicationContext(), LocationActivity.class);
         startActivity(i);
     }
+    
+    private void show911PopUp() {
+
+    	 AlertDialog.Builder helpBuilder = new AlertDialog.Builder(this);
+    	 helpBuilder.setTitle("911 Notification");
+    	 helpBuilder.setMessage("Insert Notification Text Here!");
+    	 
+    	 helpBuilder.setPositiveButton("Continue", new DialogInterface.OnClickListener() {
+
+    	  @Override
+    	  public void onClick(DialogInterface dialog, int which) {
+    		  showCitySelectionPopUp();
+    	  }
+    	 });
+
+    	 AlertDialog helpDialog = helpBuilder.create();
+    	 helpDialog.show();
+
+    }
+    
+    private void showCitySelectionPopUp() {
+
+	   	 AlertDialog.Builder cityBuilder = new AlertDialog.Builder(this);
+	   	 cityBuilder.setTitle("City");
+	   	 cityBuilder.setMessage("Enter your city:");
+	   	 final EditText input = new EditText(this);
+
+	   	 input.setSingleLine(true); //Restrict city input to a single line
+	   	 input.setText("");
+	   	 cityBuilder.setView(input);
+	   	
+	   	 cityBuilder.setPositiveButton("Continue", new DialogInterface.OnClickListener() {
+	
+	   	  @Override
+	   	  public void onClick(DialogInterface dialog, int which) {
+	   		  // Do nothing for now
+	   	  }
+	   	 });
+	
+	   	 AlertDialog helpDialog = cityBuilder.create();
+	   	 helpDialog.show();
+
+   	}
 
 }

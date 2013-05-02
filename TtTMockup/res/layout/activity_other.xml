@@ -20,9 +20,39 @@
         android:layout_alignParentLeft="true"
         android:layout_below="@+id/textView1"
         android:ems="10"
-        android:phoneNumber="true" >
+        android:phoneNumber="true"
+        android:hint="@string/phone_hint_text" >
+    </EditText>
+
+    <EditText
+        android:id="@+id/edit_details"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:layout_below="@+id/edit_message"
+        android:layout_toRightOf="@+id/photo_button"
+        android:ems="10" >
 
         <requestFocus />
     </EditText>
+
+    <Button
+        android:id="@+id/photo_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@+id/edit_details"
+        android:layout_alignBottom="@+id/edit_details"
+        android:layout_alignParentLeft="true"
+        android:hint="@string/details_text"
+        android:text="@string/photo_text" />
+
+    <Button
+        android:id="@+id/review_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/photo_button"
+        android:layout_centerHorizontal="true"
+        android:onClick="reviewTweet"
+        android:text="@string/review_text" />
 
 </RelativeLayout>

@@ -38,6 +38,10 @@
             android:name="com.example.tttmockup.OtherActivity"
             android:label="@string/title_activity_other" >
         </activity>
+        <activity
+            android:name="com.example.tttmockup.ReviewActivity"
+            android:label="@string/title_activity_review" >
+        </activity>
     </application>
 
 </manifest>
