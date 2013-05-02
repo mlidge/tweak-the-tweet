@@ -43,7 +43,7 @@ public class MainActivity extends Activity {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_main);
 		pref = PreferenceManager.getDefaultSharedPreferences(this);
-		checkLogInStatus();
+		//checkLogInStatus();
 	}
 	
 	private void checkLogInStatus() {

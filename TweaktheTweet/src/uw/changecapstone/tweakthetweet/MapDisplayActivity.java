@@ -46,10 +46,10 @@ public class MapDisplayActivity extends Activity {
     			((Intent) e).putExtra(LAT, lat);
     			((Intent) e).putExtra(LONG, lng);
     			e.commit();*/
-				Intent intent = new Intent(this,TweetActivity.class);
-			    intent.putExtra(LAT, lat);
-			    intent.putExtra(LONG, lng);
-			    startActivity(intent);
+				/*Intent intent = new Intent();
+			    intent.putExtra(LATITUDE, lat);
+			    intent.putExtra(LONGITUDE, lng);
+			    startActivity(intent);*/
 				Toast.makeText(getBaseContext(), "Current Location: "+lat + "," + lng, Toast.LENGTH_SHORT).show();
 				mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(new LatLng(lat, lng), 14));
 			}
