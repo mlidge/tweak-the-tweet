@@ -23,6 +23,10 @@ public class TestStringBuilderMap extends Activity {
 		location_text = (EditText) findViewById(R.id.location_text);
 		test_tweet = (EditText) findViewById(R.id.test_tweet);
 		test_tweet.setText(tweet);
+		
+		// Disable input for test_tweet: It's only there to display the current tweet
+		test_tweet.setEnabled(false);
+		test_tweet.setFocusable(false);
 	}
 
 	@Override
@@ -33,6 +37,9 @@ public class TestStringBuilderMap extends Activity {
 	}
 	
 	public void nextViewConfirm(View view){
+		// In case the user backed, we don't want to accidentally duplicate strings, so we pull from the bundle again
+		Bundle bundle = getIntent().getExtras();
+		tweet = bundle.getString("tweet");
 		tweet += " #loc " + location_text.getText().toString();
 		Intent i = new Intent(this, TestStringBuilderConfirm.class);
 		i.putExtra("tweet", tweet);

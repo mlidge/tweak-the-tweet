@@ -30,6 +30,10 @@ public class TestStringBuilderCategory extends Activity {
 		add_descript = (EditText) findViewById(R.id.additional_details_text);
 		test_tweet = (EditText) findViewById(R.id.test_tweet);
 		test_tweet.setText(tweet);
+		
+		// Disable input for test_tweet: It's only there to display the current tweet
+		test_tweet.setEnabled(false);
+		test_tweet.setFocusable(false);
 	}
 
 	@Override
@@ -52,6 +56,9 @@ public class TestStringBuilderCategory extends Activity {
 //			});
 //			alertDialog.show();
 //		} else {
+		// In case the user backed, we don't want to accidentally duplicate strings, so we pull from the bundle again
+		Bundle bundle = getIntent().getExtras();
+		tweet = bundle.getString("tweet");
 		tweet += " " + category_tag_spinner.getSelectedItem().toString();
 		tweet += " " + add_descript.getText().toString();
 		Intent i = new Intent(this, TestStringBuilderLocation.class);

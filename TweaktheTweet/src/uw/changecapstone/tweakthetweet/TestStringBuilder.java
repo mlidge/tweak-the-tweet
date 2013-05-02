@@ -41,6 +41,10 @@ public class TestStringBuilder extends Activity implements OnItemSelectedListene
 		disaster_tag = "";
 		tweet = "";
 		
+		// Disable input for test_tweet: It's only there to display the current tweet
+		test_tweet.setEnabled(false);
+		test_tweet.setFocusable(false);
+		
 		// Set Click Listener
 		disaster_tag_spinner.setOnItemSelectedListener(this);
 
@@ -141,6 +145,8 @@ public class TestStringBuilder extends Activity implements OnItemSelectedListene
 //			});
 //			alertDialog.show();
 //		} else {
+		// In case the user backed, we don't want to accidentally duplicate an event tag
+		tweet = "";
 		tweet += disaster_tag;
 		Intent i = new Intent(this, TestStringBuilderCategory.class);
 		i.putExtra("tweet", tweet);
