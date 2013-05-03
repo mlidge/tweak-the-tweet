@@ -64,10 +64,15 @@ public class MainActivity extends Activity implements DialogListener{
 	
 	private void checkNetworkStatus() {
 		ConnectivityManager cm =
-		        (ConnectivityManager)this.getSystemService(Context.CONNECTIVITY_SERVICE);
-		 
-		NetworkInfo activeNetwork = cm.getActiveNetworkInfo();
-		boolean isConnected = activeNetwork.isConnectedOrConnecting();
+		        (ConnectivityManager)getSystemService(Context.CONNECTIVITY_SERVICE);
+		//boolean noConnection = cm==null;
+		
+		
+				NetworkInfo activeNetwork = cm.getActiveNetworkInfo();
+		
+				boolean isConnected = (activeNetwork != null) && (activeNetwork.isConnectedOrConnecting());
+		
+	
 		if (!isConnected) {
 			DialogFragment network = new NetworkDialogFragment();
 			network.show(getFragmentManager(), NETWORK_DIALOG_TAG);
@@ -151,7 +156,7 @@ public class MainActivity extends Activity implements DialogListener{
 	
 	public void setUseSMS() {
 		Editor e = pref.edit();
-		e.putBoolean(DATA_ON, true);
+		e.putBoolean(DATA_ON, false);
 		e.commit();
 	}
 
