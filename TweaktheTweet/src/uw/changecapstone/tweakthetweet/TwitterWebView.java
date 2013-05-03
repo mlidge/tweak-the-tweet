@@ -1,7 +1,9 @@
 package uw.changecapstone.tweakthetweet;
 
 import android.app.Activity;
+import android.app.ProgressDialog;
 import android.content.Intent;
+import android.graphics.Bitmap;
 import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
@@ -13,12 +15,12 @@ public class TwitterWebView extends Activity {
 
 	Uri uri;
 	String url;
-    WebView TwitterWebView;
+    WebView webview;
 	// Preference Constants
 	static String PREFERENCE_NAME = "twitter_oauth";
 	static final String PREF_KEY_OAUTH_TOKEN = "oauth_token";
 	static final String PREF_KEY_OAUTH_SECRET = "oauth_token_secret";
-	static final String PREF_KEY_TWITTER_LOGIN = "isTwitterLoggedIn";
+	static final String PREF_KEY_TWITTER_LOGIN = "isTwitterLoggewedIn";
 
 	static final String TWITTER_CALLBACK_URL = "tttcallback://connect";
 
@@ -42,19 +44,54 @@ private Intent mIntent;
         Log.d("WEB", "starting webview setup");
         
         try {
-            TwitterWebView = (WebView) findViewById(R.id.webview);
-            TwitterWebView.setVisibility(View.VISIBLE);
+            webview = (WebView) findViewById(R.id.webview);
+            webview.setVisibility(View.VISIBLE);
 
-            setContentView(TwitterWebView);
-            TwitterWebView.setWebViewClient(new TwitterWebViewClient());
-            TwitterWebView.getSettings().setJavaScriptEnabled(true);
-            TwitterWebView.getSettings().setDomStorageEnabled(true);
-            TwitterWebView.getSettings().setSavePassword(false);
-            TwitterWebView.getSettings().setSaveFormData(false);
-            TwitterWebView.getSettings().setSupportZoom(false);
+            setContentView(webview);
+            
+            webview.setWebViewClient(new WebViewClient(){
+            	 ProgressDialog _dialog;
+            	@Override
+                public void onPageStarted(WebView view, String url, Bitmap favicon) {
+                 // TODO Auto-generated method stub
+                 _dialog = ProgressDialog.show(TwitterWebView.this, "", "Loading");
+                 super.onPageStarted(view, url, favicon);
+                }
+            	
+            	public boolean shouldOverrideUrlLoading(WebView view, String url) {
+            		view.loadUrl(url);
+            		 Uri uri = Uri.parse(url);
+            		 Log.d("WEB", "in override");
+            		if (uri.toString().contains(TWITTER_CALLBACK_URL)) {
+            			Log.d("WEB", "in if");
+            			_dialog.dismiss();
+            			String oauthVerifier = uri.getQueryParameter( "oauth_verifier" );
+            			mIntent.putExtra( "oauth_verifier", oauthVerifier );
+            			setResult( RESULT_OK, mIntent );
+            			finish();
+            		}
+                    
+                    return true;
+            	}	
+            	
+            	@Override
+                public void onPageFinished(WebView view, String url) {
+                 // TODO Auto-generated method stub
+                 super.onPageFinished(view, url);
+                 _dialog.dismiss();
+                }
+
+            }
+            	
+            );
+            webview.getSettings().setJavaScriptEnabled(true);
+            webview.getSettings().setDomStorageEnabled(true);
+            webview.getSettings().setSavePassword(false);
+            webview.getSettings().setSaveFormData(false);
+            webview.getSettings().setSupportZoom(false);
             
             Log.d("WEB", "about to load url");
-            TwitterWebView.loadUrl(url);
+            webview.loadUrl(url);
             
 			
         
@@ -63,22 +100,5 @@ private Intent mIntent;
             e.printStackTrace();
         }
     }
-    
-    public class TwitterWebViewClient extends WebViewClient {
-    	public boolean shouldOverrideUrlLoading(WebView view, String url) {
-    		view.loadUrl(url);
-    		 Uri uri = Uri.parse(url);
-    		 Log.d("WEB", "in override");
-    		if (uri.toString().contains(TWITTER_CALLBACK_URL)) {
-    			Log.d("WEB", "in if");
-    			String oauthVerifier = uri.getQueryParameter( "oauth_verifier" );
-    		 mIntent.putExtra( "oauth_verifier", oauthVerifier );
-             setResult( RESULT_OK, mIntent );
-             finish();
-    		}
-            
-            return true;
-    	}	
 
-    }
 }

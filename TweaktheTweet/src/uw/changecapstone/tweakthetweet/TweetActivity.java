@@ -8,8 +8,16 @@ import twitter4j.TwitterFactory;
 import twitter4j.auth.AccessToken;
 import twitter4j.conf.ConfigurationBuilder;
 import android.app.Activity;
+import android.app.DialogFragment;
+import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.content.SharedPreferences.Editor;
+import android.content.pm.ApplicationInfo;
+import android.content.pm.PackageManager;
+import android.content.pm.PackageManager.NameNotFoundException;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
@@ -20,17 +28,18 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 
-public class TweetActivity extends Activity {
-	private static String TWITTER_CONSUMER_KEY = "aKvxacsn9CcPme65ZGIJw"; // place your consumer key here
-	private static String TWITTER_CONSUMER_SECRET = "FHmGqglOorKw1ArGsPJo6XvvbPqHgck360lx4zc"; // place your consumer secret here
-
+public class TweetActivity extends Activity implements DialogListener{
+	private static String TWITTER_CONSUMER_KEY = "twitterconsumerkey"; // place your consumer key here
+	private static String TWITTER_CONSUMER_SECRET = "twitterconsumersecret"; // place your consumer secret here
 	// Preference Constants
 	
 	private static final String PREF_KEY_OAUTH_TOKEN = "oauth_token";
 	private static final String PREF_KEY_OAUTH_SECRET = "oauth_token_secret";
 	
 	
-
+	private static final String PREF_KEY_TWITTER_LOGIN = "isTwitterLoggedIn";
+	private static final String LOGIN_DIALOG_TAG = "logindialog";
+	private static final String NETWORK_DIALOG_TAG = "networkdialog";
 	
 	private static final String GEO_LOC = "geolocation";
 	private static final String SHORT_CODE = "40404";
@@ -41,6 +50,9 @@ public class TweetActivity extends Activity {
 	private static final String LONG = "uw.changecapstone.tweakthetweet.longitude";
 	private String latitude;
 	private String longitude;
+	private String twitterConsumerKey;
+	private String twitterConsumerSecret;
+	private boolean data;
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -58,28 +70,77 @@ public class TweetActivity extends Activity {
 		longitude = ((Double)intent.getDoubleExtra(LONG, 0.0)).toString();
 		t.setText(tweet);
 		pref = PreferenceManager.getDefaultSharedPreferences(this);
-
+		data = pref.getBoolean("data", true);
+		checkNetworkStatus();
 	}
+	
 	public void sendTweet(View view) {
-		 try { 
-			 /*
-			  * choose to use data or sms based on settings
-			  */
-			 	boolean data = pref.getBoolean("data", true);
-			 	if (data) {
-			 		UpdateTwitterStatus updateTask = new UpdateTwitterStatus();
-			 		updateTask.execute(new String[] {tweet, latitude, longitude});
-			 		
-			 	} else {
-			 		SmsManager smsManager = SmsManager.getDefault();
-					smsManager.sendTextMessage(SHORT_CODE, null, tweet, null, null);
-					Toast.makeText(getApplicationContext(), "SMS Sent!",
-								Toast.LENGTH_LONG).show();	
-			 	}
-			 	
-			  } catch (Exception e) {
-				e.printStackTrace();
-			  }
+		if (data) {
+			dataTweet();
+		} else {
+			smsTweet();
+		}
+	}
+	
+	private void dataTweet() {
+		checkLogInStatus();
+		try {
+			ApplicationInfo ai = getPackageManager().getApplicationInfo(this.getPackageName(), PackageManager.GET_META_DATA);
+			Bundle metadata = ai.metaData;
+			twitterConsumerKey = metadata.getString(TWITTER_CONSUMER_KEY);
+			twitterConsumerSecret = metadata.getString(TWITTER_CONSUMER_SECRET);
+		} catch (NameNotFoundException e) {
+			e.printStackTrace();
+		}
+		UpdateTwitterStatus updateTask = new UpdateTwitterStatus();
+ 		updateTask.execute(new String[] {tweet, latitude, longitude});
+	}
+	
+	private void smsTweet() {
+		SmsManager smsManager = SmsManager.getDefault();
+		smsManager.sendTextMessage(SHORT_CODE, null, tweet, null, null);
+		Toast.makeText(getApplicationContext(), "SMS Sent!",
+					Toast.LENGTH_LONG).show();
+	}
+	
+	private void checkNetworkStatus() {
+		ConnectivityManager cm =
+		        (ConnectivityManager)this.getSystemService(Context.CONNECTIVITY_SERVICE);
+		 
+		NetworkInfo activeNetwork = cm.getActiveNetworkInfo();
+		boolean isConnected = activeNetwork.isConnectedOrConnecting();
+		if (!isConnected) {
+			DialogFragment network = new NetworkDialogFragment();
+			network.show(getFragmentManager(), NETWORK_DIALOG_TAG);
+		} else {
+			data = true;;
+		}
+		
+	}
+	
+	private void checkLogInStatus() {
+	  if (!pref.getBoolean(PREF_KEY_TWITTER_LOGIN, false)) {
+		 DialogFragment logIn = new LoginDialogFragment();
+		 logIn.show(getFragmentManager(), LOGIN_DIALOG_TAG);
+	  }
+	}
+	
+
+	@Override
+	public void onDialogPositiveClick(DialogFragment dialog) {
+		String tag = dialog.getTag();
+		if (tag.equals(LOGIN_DIALOG_TAG)) {
+			Intent i = new Intent(this, OAuthTwitterActivity.class);
+			startActivity(i);
+		} else if (tag.equals(NETWORK_DIALOG_TAG)) {
+			data = false;
+		}
+		
+	}
+	@Override
+	public void onDialogNegativeClick(DialogFragment dialog) {
+		
+		
 	}
 	
 	/*
@@ -102,8 +163,8 @@ public class TweetActivity extends Activity {
 			double longitude = Double.parseDouble(args[2]);
 			try	{
 				ConfigurationBuilder builder = new ConfigurationBuilder();
-				builder.setOAuthConsumerKey(TWITTER_CONSUMER_KEY);
-				builder.setOAuthConsumerSecret(TWITTER_CONSUMER_SECRET);
+				builder.setOAuthConsumerKey(twitterConsumerKey);
+				builder.setOAuthConsumerSecret(twitterConsumerSecret);
 				
 				// Access Token 
 				String access_token = pref.getString(PREF_KEY_OAUTH_TOKEN, "");
@@ -158,6 +219,7 @@ public class TweetActivity extends Activity {
 		}
 
 	}
+
 	
 	
 }

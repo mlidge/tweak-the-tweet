@@ -1,19 +1,25 @@
 package uw.changecapstone.tweakthetweet;
 
 import android.app.Activity;
+import android.app.AlertDialog;
+import android.app.Dialog;
+import android.app.DialogFragment;
+import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.SharedPreferences.Editor;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.util.Log;
 import android.view.Menu;
 import android.view.View;
-import android.webkit.WebView;
 import android.widget.EditText;
 
 
-public class MainActivity extends Activity {
+public class MainActivity extends Activity implements DialogListener{
 
 
 	private final static int ACTIVITY_COMPOSE = 5;
@@ -24,9 +30,11 @@ public class MainActivity extends Activity {
 	private static final String PREF_KEY_OAUTH_TOKEN = "oauth_token";
 	private static final String PREF_KEY_OAUTH_SECRET = "oauth_token_secret";
 	private static final String PREF_KEY_TWITTER_LOGIN = "isTwitterLoggedIn";
-
+	private static final String LOGIN_DIALOG_TAG = "logindialog";
+	private static final String NETWORK_DIALOG_TAG = "networkdialog";
+	private final static String DATA_ON = "data";
 	
-	SharedPreferences pref; 
+	private SharedPreferences pref; 
 	
 	@Override
 	protected void onActivityResult(int requestCode, int resultCode, Intent data) {
@@ -43,18 +51,33 @@ public class MainActivity extends Activity {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_main);
 		pref = PreferenceManager.getDefaultSharedPreferences(this);
-		//checkLogInStatus();
+		checkNetworkStatus();
+		checkLogInStatus();
 	}
 	
 	private void checkLogInStatus() {
 	  if (!pref.getBoolean(PREF_KEY_TWITTER_LOGIN, false)) {
-		  Intent i = new Intent(this, OAuthTwitterActivity.class);
-		  startActivity(i);
+		  DialogFragment logIn = new LoginDialogFragment();
+		  logIn.show(getFragmentManager(), LOGIN_DIALOG_TAG);
 	  }
 	}
 	
-
-	@Override
+	private void checkNetworkStatus() {
+		ConnectivityManager cm =
+		        (ConnectivityManager)this.getSystemService(Context.CONNECTIVITY_SERVICE);
+		 
+		NetworkInfo activeNetwork = cm.getActiveNetworkInfo();
+		boolean isConnected = activeNetwork.isConnectedOrConnecting();
+		if (!isConnected) {
+			DialogFragment network = new NetworkDialogFragment();
+			network.show(getFragmentManager(), NETWORK_DIALOG_TAG);
+		} else {
+			Editor e = pref.edit();
+			e.putBoolean(DATA_ON, true);
+			e.commit();
+		}
+		
+	}
 	protected void onResume() {
 		// TODO Auto-generated method stub
 		super.onResume();
@@ -77,13 +100,15 @@ public class MainActivity extends Activity {
 		Intent intent = new Intent(this, DebugActivity.class); 
 		startActivity(intent);
 	}
-	
+
+	// debug compose button
 	public void composeTweet(View view) {
 		Intent intent = new Intent(this, ComposeActivity.class);
 		Log.d("COMPOSE", "startig compose");
 		startActivityForResult(intent, ACTIVITY_COMPOSE);
 	}
 	
+	// manually authenticate to twitter
 	public void authenticateTwitter(View view) {
 		Intent i = new Intent(this, OAuthTwitterActivity.class);
 		startActivity(i);
@@ -112,16 +137,43 @@ public class MainActivity extends Activity {
 
 	
 	public void twitterLogout(View view) {
-		Editor e = pref.edit();
-		e.remove(PREF_KEY_OAUTH_TOKEN);
-		e.remove(PREF_KEY_OAUTH_SECRET);
-		e.remove(PREF_KEY_TWITTER_LOGIN);
-		e.remove("USERNAME");
-		e.commit();
+		if (pref.getBoolean(PREF_KEY_TWITTER_LOGIN, false)) {
+			Editor e = pref.edit();
+			e.remove(PREF_KEY_OAUTH_TOKEN);
+			e.remove(PREF_KEY_OAUTH_SECRET);
+			e.remove(PREF_KEY_TWITTER_LOGIN);
+			e.remove("USERNAME");
+			e.commit();
+		}
 	
 		
 	}
+	
+	public void setUseSMS() {
+		Editor e = pref.edit();
+		e.putBoolean(DATA_ON, true);
+		e.commit();
+	}
+
+
+	@Override
+	public void onDialogPositiveClick(DialogFragment dialog) {
+		String tag = dialog.getTag();
+		if (tag.equals(LOGIN_DIALOG_TAG)) {
+			Intent i = new Intent(this, OAuthTwitterActivity.class);
+			startActivity(i);
+		} else if (tag.equals(NETWORK_DIALOG_TAG)) {
+			setUseSMS();
+		}
 		
+	}
+
+	@Override
+	public void onDialogNegativeClick(DialogFragment dialog) {
+		
+		
+	}
+
 
 
 }

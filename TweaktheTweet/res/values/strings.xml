@@ -21,7 +21,9 @@
     <string name="button_use_gps_loc">Use GPS Location</string>
     <string name="edit_message">Enter a Location</string>
     <string name="button_show_map">Show Map</string>
-
+    
+	<string name="cancel">Cancel</string>
+    
     <!-- SettingsActivity -->
     <string name="radiodata">Use Data</string>
     <string name="radiosms">Use SMS</string>
@@ -85,4 +87,13 @@
     <string name="title_activity_test_string_builder_map">TestStringBuilderMap</string>
     <string name="title_activity_test_string_builder_confirm">TestStringBuilderConfirm</string>
 
+    <!-- DialogFragments -->
+    <string name="login_yes">Sign me in!</string>
+    <string name="login_message">You are currently not signed in to Twitter. Would you like to sign in now?</string>
+    <string name="network_yes">Ok</string>
+    <string name="network_message">
+        TweaktheTweet has detected you are not connected to a network. 
+        Would you like to send your tweets via text message? Note: you will not be able to use our
+        dynaming mapping feature.
+    </string>
 </resources>

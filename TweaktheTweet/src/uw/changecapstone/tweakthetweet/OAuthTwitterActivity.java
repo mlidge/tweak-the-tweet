@@ -7,6 +7,7 @@ import twitter4j.User;
 import twitter4j.auth.AccessToken;
 import twitter4j.auth.RequestToken;
 import android.app.Activity;
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.SharedPreferences.Editor;
@@ -42,6 +43,7 @@ public class OAuthTwitterActivity extends Activity {
 	
 	private String twitterConsumerKey;
 	private String twitterConsumerSecret;
+	private ProgressDialog dialog;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -61,7 +63,7 @@ public class OAuthTwitterActivity extends Activity {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
-			
+			dialog = ProgressDialog.show(this, "", "Loading");
 			TwitterAuthenticate task = new TwitterAuthenticate();
 			task.execute(new String[] {null});
 		
@@ -123,6 +125,7 @@ public class OAuthTwitterActivity extends Activity {
 
 		@Override
 		protected void onPostExecute(String result) {
+			dialog.dismiss();
 			finish();
 		}
 	}
@@ -130,13 +133,14 @@ public class OAuthTwitterActivity extends Activity {
 	private class TwitterAuthenticate extends AsyncTask<String, String, String> {
 		   
 		String resultUrl;
-	
+		//ProgressDialog _dialog;
 		
 	    @Override
 	    protected String doInBackground(String... urls) {
 	    	TwitterFactory factory = new TwitterFactory();
 			twitter = factory.getInstance();
 			Log.d("OAUTH", "do in background");
+			//_dialog = ProgressDialog.show(.this, "", "Redirecting to Twitter");
 			try {
 				twitter = new TwitterFactory().getInstance();
 				  twitter.setOAuthConsumer(
@@ -161,6 +165,7 @@ public class OAuthTwitterActivity extends Activity {
 		protected void onPostExecute(String result) {
 			// TODO Auto-generated method stub
 			super.onPostExecute(result);
+			//_dialog.dismiss();
 			Log.d("OAUTH", "starting post");
 			Intent i = new Intent(OAuthTwitterActivity.this, TwitterWebView.class);
 			i.putExtra("url", resultUrl);
