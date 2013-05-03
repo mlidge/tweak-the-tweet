@@ -10,6 +10,9 @@ import android.app.Activity;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.SharedPreferences.Editor;
+import android.content.pm.ApplicationInfo;
+import android.content.pm.PackageManager;
+import android.content.pm.PackageManager.NameNotFoundException;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
@@ -17,8 +20,8 @@ import android.util.Log;
 
 public class OAuthTwitterActivity extends Activity {
 
-	static String TWITTER_CONSUMER_KEY = "aKvxacsn9CcPme65ZGIJw"; // place your consumer key here
-	static String TWITTER_CONSUMER_SECRET = "FHmGqglOorKw1ArGsPJo6XvvbPqHgck360lx4zc"; // place your consumer secret here
+	static String TWITTER_CONSUMER_KEY = "twitterconsumerkey"; // place your consumer key here
+	static String TWITTER_CONSUMER_SECRET = "twitterconsumersecret"; // place your consumer secret here
 
 	// Preference Constants
 	static String PREFERENCE_NAME = "twitter_oauth";
@@ -36,6 +39,9 @@ public class OAuthTwitterActivity extends Activity {
 	private static Twitter twitter;
 	private static RequestToken requestToken;
 	private static SharedPreferences pref;
+	
+	private String twitterConsumerKey;
+	private String twitterConsumerSecret;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -44,12 +50,25 @@ public class OAuthTwitterActivity extends Activity {
 		pref = PreferenceManager.getDefaultSharedPreferences(this);
 		Log.d("OAUTH", "starting task");
 		if (!isTwitterLoggedInAlready()) {
+			ApplicationInfo ai;
+			try {
+				ai = getPackageManager().getApplicationInfo(this.getPackageName(), PackageManager.GET_META_DATA);
+				Bundle metadata = ai.metaData;
+				twitterConsumerKey = metadata.getString(TWITTER_CONSUMER_KEY);
+				twitterConsumerSecret = metadata.getString(TWITTER_CONSUMER_SECRET);
+				
+			} catch (NameNotFoundException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			
 			TwitterAuthenticate task = new TwitterAuthenticate();
 			task.execute(new String[] {null});
 		
 		} else {
 		finish();
 		}
+		
 		// Get the access token
 		
 		
@@ -121,8 +140,8 @@ public class OAuthTwitterActivity extends Activity {
 			try {
 				twitter = new TwitterFactory().getInstance();
 				  twitter.setOAuthConsumer(
-				      TWITTER_CONSUMER_KEY,
-				     TWITTER_CONSUMER_SECRET);
+						  twitterConsumerKey,
+						  twitterConsumerSecret);
 				  requestToken = twitter.getOAuthRequestToken(
 				      TWITTER_CALLBACK_URL);
 				  
