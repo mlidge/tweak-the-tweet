@@ -70,13 +70,14 @@
         <activity
             android:name="uw.changecapstone.tweakthetweet.OAuthTwitterActivity"
             android:label="oauthtwitter" />
-        
+
         <meta-data
             android:name="twitterconsumerkey"
-            android:value="aKvxacsn9CcPme65ZGIJw"/>
+            android:value="aKvxacsn9CcPme65ZGIJw" />
         <meta-data
             android:name="twitterconsumersecret"
             android:value="FHmGqglOorKw1ArGsPJo6XvvbPqHgck360lx4zc" />
+
         <activity
             android:name="uw.changecapstone.tweakthetweet.TwitterWebView"
             android:label="twitterwebview" />
@@ -111,6 +112,10 @@
         <activity
             android:name="uw.changecapstone.tweakthetweet.TestStringBuilderConfirm"
             android:label="@string/title_activity_test_string_builder_confirm" >
+        </activity>
+        <activity
+            android:name="uw.changecapstone.tweakthetweet.PreviousLocationActivity"
+            android:label="@string/title_activity_previous_location" >
         </activity>
     </application>
 

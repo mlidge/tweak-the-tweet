@@ -25,7 +25,6 @@ public class MainActivity extends Activity implements DialogListener{
 	private final static int ACTIVITY_COMPOSE = 5;
 
 	final static String TWEET_STRING = "TWEET_STRING";
-	
 
 	private static final String PREF_KEY_OAUTH_TOKEN = "oauth_token";
 	private static final String PREF_KEY_OAUTH_SECRET = "oauth_token_secret";
@@ -124,8 +123,6 @@ public class MainActivity extends Activity implements DialogListener{
 		startActivity(i);
 		
 	}
-
-	
 	
 	public void twitterLogout(View view) {
 		if (pref.getBoolean(PREF_KEY_TWITTER_LOGIN, false)) {

@@ -17,7 +17,7 @@
      android:layout_width="fill_parent"
      android:layout_height="wrap_content"
      android:text="@string/current_location_button_text"
-     android:onClick="nextViewMap"
+     android:onClick="useCurrentLoc"
      android:gravity="center" />
     
     <TextView 
@@ -32,7 +32,7 @@
      android:layout_width="fill_parent"
      android:layout_height="wrap_content"
      android:text="@string/previous_location_button_text"
-     android:onClick="nextViewMap"
+     android:onClick="usePreviousLoc"
      android:gravity="center" />
 
 </LinearLayout>

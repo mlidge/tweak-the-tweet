@@ -28,10 +28,22 @@ public class TestStringBuilderLocation extends Activity {
 		return true;
 	}
 	
-	public void nextViewMap(View view){
+	// commented the "nextViewMap() method and added two methods for 
+	// current and previous locations (Mussie)
+	/*public void nextViewMap(View view){
+		Intent i = new Intent(this, TestStringBuilderMap.class);
+		i.putExtra("tweet", tweet);
+		startActivity(i);
+	}*/
+	public void useCurrentLoc(View view){
 		Intent i = new Intent(this, TestStringBuilderMap.class);
 		i.putExtra("tweet", tweet);
 		startActivity(i);
 	}
-
+	
+	public void usePreviousLoc(View view){
+		Intent i = new Intent(this, PreviousLocationActivity.class);
+		i.putExtra("tweet", tweet);
+		startActivity(i);
+	}
 }
