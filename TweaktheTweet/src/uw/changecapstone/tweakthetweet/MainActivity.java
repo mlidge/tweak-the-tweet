@@ -25,7 +25,7 @@ public class MainActivity extends Activity implements DialogListener{
 	private final static int ACTIVITY_COMPOSE = 5;
 
 	final static String TWEET_STRING = "TWEET_STRING";
-	public final static String LOCATION_TEXT = "uw.changecapstone.tweakthetweet.MESSAGE";
+	
 
 	private static final String PREF_KEY_OAUTH_TOKEN = "oauth_token";
 	private static final String PREF_KEY_OAUTH_SECRET = "oauth_token_secret";
@@ -125,21 +125,7 @@ public class MainActivity extends Activity implements DialogListener{
 		
 	}
 
-	public void showMap(View view){
-		Intent intent = new Intent(this, MapDisplayActivity.class);
-		startActivity(intent);
-	}
-	/*when the user clicks the "Enter" button, 
-	 * we are going to read the textfield content and 
-	 * do some validity checks before we show/zoom map*/
-	public void readLocationMessage(View view){
-		Intent intent = new Intent(this, LocationAndMapActivity.class);
-	    EditText editText = (EditText) findViewById(R.id.edit_message);
-	    String message = editText.getText().toString();
-	    intent.putExtra(LOCATION_TEXT, message);
-	    startActivity(intent);
-	}
-
+	
 	
 	public void twitterLogout(View view) {
 		if (pref.getBoolean(PREF_KEY_TWITTER_LOGIN, false)) {

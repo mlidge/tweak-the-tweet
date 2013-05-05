@@ -33,7 +33,7 @@ public class LocationAndMapActivity extends Activity {
 		setContentView(R.layout.activity_location_and_map);
 		// Get the message from the intent
 		Intent intent = getIntent();
-		String location = intent.getStringExtra(MainActivity.LOCATION_TEXT);
+		String location = intent.getStringExtra(TestStringBuilderMap.LOCATION_TEXT);
 		mMap = ((MapFragment) getFragmentManager().findFragmentById(R.id.loc_map)).getMap();
 		mMap.setMyLocationEnabled(true);
 		if (location == null || location.equals("")){
