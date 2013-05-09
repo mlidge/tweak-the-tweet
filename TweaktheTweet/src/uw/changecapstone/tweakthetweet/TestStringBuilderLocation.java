@@ -9,7 +9,7 @@ import android.widget.EditText;
 
 public class TestStringBuilderLocation extends Activity {
 
-	private String tweet;
+	private String tweet, disaster;
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -18,6 +18,7 @@ public class TestStringBuilderLocation extends Activity {
 		
 		Bundle bundle = getIntent().getExtras();
 		tweet = bundle.getString("tweet");
+		disaster = bundle.getString("disaster");
 				
 	}
 
@@ -38,12 +39,14 @@ public class TestStringBuilderLocation extends Activity {
 	public void useCurrentLoc(View view){
 		Intent i = new Intent(this, TestStringBuilderMap.class);
 		i.putExtra("tweet", tweet);
+		i.putExtra("disaster", disaster);
 		startActivity(i);
 	}
 	
 	public void usePreviousLoc(View view){
 		Intent i = new Intent(this, PreviousLocationActivity.class);
 		i.putExtra("tweet", tweet);
+		i.putExtra("disaster", disaster);
 		startActivity(i);
 	}
 }

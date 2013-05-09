@@ -7,20 +7,36 @@
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context=".TestStringBuilderConfirm" >
-
+    
+    
     <EditText
         android:id="@+id/test_tweet"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/char_count"
         android:ems="10"
         android:inputType="textMultiLine" />
+    
+    <TextView
+      	android:id="@+id/char_count"
+       	android:layout_width="wrap_content"
+       	android:layout_height="wrap_content"
+       	android:layout_below="@+id/test_tweet"
+       	android:textAppearance="?android:attr/textAppearanceSmall" />
+    
+    <EditText
+        android:id="@+id/additional_details"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/char_count"
+        android:hint="@string/test_string_details_hint" />
 
     <Button
         android:id="@+id/button1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignLeft="@+id/test_tweet"
-        android:layout_below="@+id/test_tweet"
+        android:layout_below="@+id/additional_details"
         android:onClick="nextViewHome"
         android:text="@string/test_build_send" />
 

@@ -5,12 +5,14 @@
     android:layout_height="match_parent"
     tools:context=".MapActivity" >
 
+	<!--
     <EditText
         android:id="@+id/test_tweet"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:ems="10"
         android:inputType="none" />
+    -->
     
     <!-- commented out (Mussie) <TextView 
     android:layout_width="fill_parent"
@@ -48,11 +50,18 @@
         android:layout_height="wrap_content"
         android:text="@string/button_use_gps_loc"
         android:onClick="showMap" />
+
+	<TextView
+     	android:id="@+id/char_count"
+       	android:layout_width="wrap_content"
+       	android:layout_height="wrap_content"
+       	android:textAppearance="?android:attr/textAppearanceSmall" />
     
     <LinearLayout 
 	        android:orientation="horizontal"
 	        android:layout_width="wrap_content"
 	        android:layout_height="wrap_content">
+	        
 	    <EditText android:id="@+id/edit_message"
 	        android:layout_weight="1"
 	        android:layout_width="0dp"
