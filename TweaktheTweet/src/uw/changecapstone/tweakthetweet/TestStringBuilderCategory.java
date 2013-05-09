@@ -61,7 +61,7 @@ public class TestStringBuilderCategory extends Activity {
 		tweet = bundle.getString("tweet");
 		tweet += " " + category_tag_spinner.getSelectedItem().toString();
 		tweet += " " + add_descript.getText().toString();
-		Intent i = new Intent(this, TestStringBuilderLocation.class);
+		Intent i = new Intent(this, TestStringBuilderConfirm.class);
 		i.putExtra("tweet", tweet);
 		startActivity(i);
 //		}

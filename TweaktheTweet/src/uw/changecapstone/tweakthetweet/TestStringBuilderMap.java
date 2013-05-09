@@ -51,7 +51,7 @@ public class TestStringBuilderMap extends Activity {
 	    startActivity(intent);
 	}
 
-	public void nextViewConfirm(View view){
+	public void nextViewCategory(View view){
 		// In case the user backed, we don't want to accidentally duplicate strings, so we pull from the bundle again
 		Bundle bundle = getIntent().getExtras();
 		tweet = bundle.getString("tweet");
@@ -60,7 +60,7 @@ public class TestStringBuilderMap extends Activity {
 		EditText editText = (EditText) findViewById(R.id.edit_message);
 	    String message = editText.getText().toString();
 		tweet += " #loc " + message;
-		Intent i = new Intent(this, TestStringBuilderConfirm.class);
+		Intent i = new Intent(this, TestStringBuilderCategory.class);
 		i.putExtra("tweet", tweet);
 		startActivity(i);
 	}

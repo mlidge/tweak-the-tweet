@@ -132,7 +132,7 @@ public class TestStringBuilder extends Activity implements OnItemSelectedListene
 //	}
 	
 	
-	public void nextViewCategory(View view){
+	public void nextViewLocation(View view){
 //		if (event_tag_spinner.getSelectedItem()==null){
 //			AlertDialog alertDialog = new AlertDialog.Builder(this).create();
 //			alertDialog.setTitle("Error");
@@ -148,7 +148,7 @@ public class TestStringBuilder extends Activity implements OnItemSelectedListene
 		// In case the user backed, we don't want to accidentally duplicate an event tag
 		tweet = "";
 		tweet += disaster_tag;
-		Intent i = new Intent(this, TestStringBuilderCategory.class);
+		Intent i = new Intent(this, TestStringBuilderLocation.class);
 		i.putExtra("tweet", tweet);
 		startActivity(i);
 //		}
