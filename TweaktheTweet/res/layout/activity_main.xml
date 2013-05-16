@@ -52,5 +52,10 @@
         android:text="@string/test_button"
         android:onClick="testComposeString" />
     
-    
+     <Button
+		android:id="@+id/button_to_photo"
+		android:layout_width="wrap_content"
+		android:layout_height="wrap_content"
+		android:text="@string/button_to_photo_activity"
+		android:onClick="testPhoto" />
 </LinearLayout>

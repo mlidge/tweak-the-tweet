@@ -98,5 +98,11 @@
     <string name="title_activity_previous_location">PreviousLocationActivity</string>
     <string name="title_activity_test_string_builder_disaster_list">TestStringBuilderDisasterList</string>
     <string name="title_activity_test_string_builder_add_details">TestStringBuilderAddDetails</string>
-
+    <string name="title_activity_photo">PhotoActivity</string>
+	<string name="button_to_photo_activity">To Photo Activity</string>
+	<string name="button_take_pic">Take A Picture</string>
+	<string name="button_choose_pic">Choose A Picture</string>
+	<string name="album_name">Camera Pictures</string>
+	<string name="cannot">Cannot</string>
+	
 </resources>
