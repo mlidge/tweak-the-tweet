@@ -80,7 +80,9 @@
     <string name="category_placeholder_text">Proceed</string>
     <string name="title_activity_other">Other Tags</string>
     <string name="contact_text">Contact</string>
-    <string name="phone_hint_text">(XXX)-(XXX)-(XXXX)</string>
+    <string name="phone_hint_text">(XXX) XXX - XXXX</string>
+    <string name="photo_text">Photo</string>
+    <string name="details_text">Enter Details...</string>
 
     <!-- MapActivities -->
 
