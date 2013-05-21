@@ -1,107 +1,72 @@
 package com.example.tttmockup;
 
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
 
 import android.os.Bundle;
 import android.app.Activity;
 import android.app.AlertDialog;
-import android.app.ListActivity;
 import android.content.DialogInterface;
 import android.content.Intent;
-import android.view.Menu;
+import android.content.SharedPreferences;
+import android.content.SharedPreferences.Editor;
+import android.view.LayoutInflater;
 import android.view.View;
-import android.widget.ArrayAdapter;
-import android.widget.EditText;
-import android.widget.ListAdapter;
-import android.widget.ListView;
-import android.widget.SimpleAdapter;
+import android.view.Window;
+import android.widget.CheckBox;
 
-public class MainActivity extends ListActivity {
-
+public class MainActivity extends CustomWindow {
+	public static final String PREFS_NAME = "MyPrefsFile1";
+	public CheckBox dontRemindAgain;
+	
 	@Override
-	protected void onCreate(Bundle savedInstanceState) {
+	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
+		
+		setContentView(R.layout.activity_main);
+        this.title.setText("Let's start tweaking");
+        
 		show911PopUp();
-		//Create adapter
-		ListAdapter adapter = createAdapter();
-		setListAdapter(adapter);
+		
+		
 	}
 	
-	/**
-     * Create and return a list adapter for the current list activity
-     * @return a ListAdapter for the current list activity
-     */
-    protected ListAdapter createAdapter()
-    {	
-    	List<Map<String, String>> data = new ArrayList<Map<String, String>>();
-    	
-    	//Use a loop to generate a new map and add it to the data list when real data is parsed
-    	for(int i=0; i<10; i++){
-    		Map<String, String> datum = new HashMap<String, String>();
-            datum.put("First Line", "#TestEvent"+i);
-            datum.put("Second Line","Description"+i);
-            data.add(Collections.unmodifiableMap(datum));
-    	}
-        
-        SimpleAdapter adapter = new SimpleAdapter(this, data,
-                android.R.layout.simple_list_item_2, 
-                new String[] {"First Line", "Second Line" }, 
-                new int[] {android.R.id.text1, android.R.id.text2 });
-    	return adapter;
-    }
-    
-    //Automatically switch to next screen no matter what button is clicked (for test mockup purposes)
-    @Override 
-    public void onListItemClick(ListView l, View v, int position, long id) {
-        Intent i = new Intent(getApplicationContext(), LocationActivity.class);
+    public void proceedForNow(View view){
+    	Intent i = new Intent(getApplicationContext(), DisasterActivity.class);
         startActivity(i);
     }
     
     private void show911PopUp() {
-
-    	 AlertDialog.Builder helpBuilder = new AlertDialog.Builder(this);
-    	 helpBuilder.setTitle("911 Notification");
-    	 helpBuilder.setMessage("Insert Notification Text Here!");
+    	 AlertDialog.Builder reminderBuilder = new AlertDialog.Builder(this);
+    	 LayoutInflater inflater = getLayoutInflater();
+   	     View checkboxLayout = inflater.inflate(R.layout.emergency_popup, null);
+    	 dontRemindAgain = (CheckBox) checkboxLayout.findViewById(R.id.emergency_checkbox);
     	 
-    	 helpBuilder.setPositiveButton("Continue", new DialogInterface.OnClickListener() {
+    	 reminderBuilder.setTitle("911 Notification");
+    	 reminderBuilder.setMessage("Remember, if you need immediate emergency assistance, call 911!");
+    	 
+    	 reminderBuilder.setView(checkboxLayout);
+    	 
+    	 reminderBuilder.setPositiveButton("Continue", new DialogInterface.OnClickListener() {
 
     	  @Override
     	  public void onClick(DialogInterface dialog, int which) {
-    		  showCitySelectionPopUp();
+    		  Boolean isChecked = false;
+    		  if(dontRemindAgain.isChecked()){
+    			  isChecked = true;
+    			  SharedPreferences settings = getSharedPreferences(PREFS_NAME, 0);
+    			  Editor editor = settings.edit();
+    			  editor.putBoolean("skip", isChecked);
+    			  editor.commit();
+    			  
+    		  }
+    		  //Do nothing for now
     	  }
     	 });
-
-    	 AlertDialog helpDialog = helpBuilder.create();
-    	 helpDialog.show();
-
+    	 SharedPreferences settings = getSharedPreferences(PREFS_NAME, 0);
+    	 Boolean toSkip = settings.getBoolean("skip", false);
+    	 if(!toSkip){
+    		 AlertDialog helpDialog = reminderBuilder.create();
+        	 helpDialog.show(); 
+    	 }
     }
-    
-    private void showCitySelectionPopUp() {
-
-	   	 AlertDialog.Builder cityBuilder = new AlertDialog.Builder(this);
-	   	 cityBuilder.setTitle("City");
-	   	 cityBuilder.setMessage("Enter your city:");
-	   	 final EditText input = new EditText(this);
-
-	   	 input.setSingleLine(true); //Restrict city input to a single line
-	   	 input.setText("");
-	   	 cityBuilder.setView(input);
-	   	
-	   	 cityBuilder.setPositiveButton("Continue", new DialogInterface.OnClickListener() {
-	
-	   	  @Override
-	   	  public void onClick(DialogInterface dialog, int which) {
-	   		  // Do nothing for now
-	   	  }
-	   	 });
-	
-	   	 AlertDialog helpDialog = cityBuilder.create();
-	   	 helpDialog.show();
-
-   	}
 
 }

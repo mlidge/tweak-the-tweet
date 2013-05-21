@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/background_box_color"
+    android:paddingLeft="5dp"
+    android:paddingRight="5dp"
+    android:orientation="vertical" >
+
+    <TextView
+        android:id="@+id/enter_your_own_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:paddingTop="5dp"
+        android:textSize="20sp"
+        android:textIsSelectable="false" />
+
+    <RelativeLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal" >
+
+        <Button
+            android:id="@+id/proceed_state"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:onClick="proceedToLocation"
+            android:text="@string/proceed_label" />
+
+        <FrameLayout
+            android:id="@+id/disaster_text_box_border"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_toLeftOf="@id/proceed_state"
+            android:background="#a1a1a1"
+            android:padding="1dp" >
+
+            <EditText
+                android:id="@+id/disaster_text_box"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/background"
+                android:ems="9"
+                android:inputType="none" >
+            </EditText>
+        </FrameLayout>
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal" >
+
+            <TextView
+                android:id="@+id/your_tweet"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentTop="true"
+                android:paddingTop="5dp"
+                android:text="@string/tweet_text"
+                android:textSize="20sp" />
+
+            <TextView
+                android:id="@+id/character_count"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_alignParentTop="true"
+                android:paddingTop="5dp"
+                android:text="@string/character_count_text"
+                android:textSize="20sp" />
+
+    </RelativeLayout>
+
+    <EditText
+        android:id="@+id/tweet_display"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/tweet_box_color"
+        android:ems="9"
+        android:inputType="none"
+        android:hint="@string/tweet_placeholder_text" >
+
+    </EditText>
+
+</LinearLayout>
