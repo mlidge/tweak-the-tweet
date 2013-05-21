@@ -80,7 +80,9 @@
     <string name="category_placeholder_text">Proceed</string>
     <string name="title_activity_other">Other Tags</string>
     <string name="contact_text">Contact</string>
-    <string name="phone_hint_text">(XXX)-(XXX)-(XXXX)</string>
+    <string name="phone_hint_text">(XXX) XXX - XXXX</string>
+    <string name="photo_text">Photo</string>
+    <string name="details_text">Enter Details...</string>
 
     <!-- MapActivities -->
 
@@ -98,5 +100,11 @@
     <string name="title_activity_previous_location">PreviousLocationActivity</string>
     <string name="title_activity_test_string_builder_disaster_list">TestStringBuilderDisasterList</string>
     <string name="title_activity_test_string_builder_add_details">TestStringBuilderAddDetails</string>
-
+    <string name="title_activity_photo">PhotoActivity</string>
+	<string name="button_to_photo_activity">To Photo Activity</string>
+	<string name="button_take_pic">Take A Picture</string>
+	<string name="button_choose_pic">Choose A Picture</string>
+	<string name="album_name">Camera Pictures</string>
+	<string name="cannot">Cannot</string>
+	
 </resources>

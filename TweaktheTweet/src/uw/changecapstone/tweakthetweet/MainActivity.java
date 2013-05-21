@@ -162,6 +162,9 @@ public class MainActivity extends Activity implements DialogListener{
 		
 	}
 
-
+	public void testPhoto(View view) {
+		Intent i = new Intent(this, PhotoActivity.class);
+		startActivity(i);
+	}
 
 }
