@@ -1,5 +1,10 @@
 package uw.changecapstone.tweakthetweet;
 
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
 import android.os.Bundle;
 import android.app.Activity;
 import android.content.Intent;
@@ -21,8 +26,15 @@ public class TestStringBuilderDisasterList extends Activity {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_test_string_builder_disaster_list);
 		
-		Bundle bundle = getIntent().getExtras();
-		String city_name = bundle.getString("city");
+		// TODO: We get coordinates of location from Google Maps
+		// We compare it with all the parameter coordinates of events
+		// We build a list of events that the coordinates fall within
+		
+//		Bundle bundle = getIntent().getExtras();
+//		int coord_x = bundle.getString("coord_x");
+//		int coord_y = bundle.getString("coord_y");
+		int coord_x = 0;
+		int coord_y = 0;
 		
 		disaster_list = (ListView) findViewById(R.id.list);
 		disaster_list.setOnItemClickListener(new OnItemClickListener() {
@@ -38,7 +50,7 @@ public class TestStringBuilderDisasterList extends Activity {
 		});
 		
 		// Create adapter
-		disaster_list.setAdapter(createAdapter(city_name));
+		disaster_list.setAdapter(createAdapter(coord_x, coord_y));
 	}
 
 	@Override
@@ -50,29 +62,35 @@ public class TestStringBuilderDisasterList extends Activity {
 	}
 	
 	
-	protected ListAdapter createAdapter(String city)
+	protected ListAdapter createAdapter(int curr_x, int curr_y)
     {
-    	//Test data for initial event list
-    	//Read this in from somewhere else
-    	String[] testData = new String[] {
-    			"#TestEvent1",
-    			"#TestEvent2",
-    			"#TestEvent3",
-    			"#TestEvent4",
-    			"#TestEvent5",
-    			"#TestEvent6",
-    	};
-    	String[] testData2 = new String[] {};
- 
-    	// Create a String array adapter using the testData values
-    	ListAdapter adapter;
-    	if (city.equals("Seattle")){
-    		adapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, testData);
-    	} else {
-    		adapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, testData2);
-    	}
- 
-    	return adapter;
+		Map<String, Map<String, Integer>> testMap = new HashMap<String, Map<String, Integer>>();
+		testMap.put("#TestEvent1", new HashMap<String, Integer>());
+		testMap.get("#TestEvent1").put("max_x", 10);
+		testMap.get("#TestEvent1").put("max_y", 10);
+		testMap.get("#TestEvent1").put("min_x", 0);
+		testMap.get("#TestEvent1").put("min_y", 0);
+		testMap.put("#TestEvent2", new HashMap<String, Integer>());
+		testMap.get("#TestEvent2").put("max_x", 20);
+		testMap.get("#TestEvent2").put("max_y", 20);
+		testMap.get("#TestEvent2").put("min_x", 10);
+		testMap.get("#TestEvent2").put("min_y", 10);
+		testMap.put("#TestEvent3", new HashMap<String, Integer>());
+		testMap.get("#TestEvent3").put("max_x", 5);
+		testMap.get("#TestEvent3").put("max_y", 5);
+		testMap.get("#TestEvent3").put("min_x", 0);
+		testMap.get("#TestEvent3").put("min_y", 0);
+
+		
+		List<String> testData = new ArrayList<String>();
+		for(String event_tag : testMap.keySet()) {
+			if (curr_x <= testMap.get(event_tag).get("max_x") && curr_x >= testMap.get(event_tag).get("min_x") &&
+					curr_y <= testMap.get(event_tag).get("max_y") && curr_y >= testMap.get(event_tag).get("min_y")){
+				testData.add(event_tag);
+			}
+		}
+
+		return new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, testData);
     }
 	
 	

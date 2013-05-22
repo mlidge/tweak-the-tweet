@@ -1,37 +1,97 @@
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical" >
-    
-    <!-- 
-    <EditText
-        android:id="@+id/test_tweet"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:ems="10"
-        android:inputType="none" />
-    -->
+    android:orientation="vertical"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    tools:context=".MainActivity" >
 
-    <EditText
-        android:id="@+id/city_name"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:ems="10"
-        android:hint="@string/test_string_city_hint"
-        android:inputType="textMultiLine" />
-
-    <!-- 
-	<ListView
-	    android:id="@+id/list"
-	    android:layout_width="match_parent"
-	    android:layout_height="wrap_content" >
-	</ListView>
-	-->
-	
-	<Button android:id="@+id/test_proceed_1"
+    <TextView
+        android:id="@+id/location_text"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/test_build_next"
-        android:onClick="nextViewLocation" />
-    
-</LinearLayout>
+        android:text="@string/location_reporting_text"
+        android:textSize="20sp" />
+
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/location_text"
+        android:layout_below="@+id/location_text"
+        android:layout_marginTop="15dp"
+        android:padding="10dp"
+        android:orientation="vertical" >
+        
+		<FrameLayout
+		    android:id="@+id/gps_button_border"
+		    android:layout_width="wrap_content"
+		    android:layout_height="wrap_content"
+		    android:padding="1dp" >
+			    
+	            <Button
+	                android:id="@+id/gps_button"
+	                android:layout_width="wrap_content"
+	                android:layout_height="wrap_content"
+	                android:background="#98b2b6"
+	                android:paddingBottom="5dp"
+	                android:paddingLeft="5dp"
+	                android:paddingRight="5dp"
+	                android:paddingTop="5dp"
+	                android:text="@string/gps_text"
+	                android:onClick="nextViewCurrentGPS" />
+	            
+            </FrameLayout>
+
+            <TextView
+                android:id="@+id/or_text_label"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:paddingTop="10dp"
+                android:paddingBottom="10dp"
+                android:textSize="18sp"
+                android:text="@string/or_text" />
+
+            <TextView
+                android:id="@+id/enter_location_label_text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="18sp"
+                android:text="@string/enter_text" />
+
+        <RelativeLayout
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+             >
+
+            <Button
+                android:id="@+id/proceed_state"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:onClick="nextViewLocInput"
+                android:text="@string/proceed_label" />
+            
+			<FrameLayout
+			    android:layout_width="fill_parent"
+			    android:layout_height="wrap_content"
+			    android:padding="1dp"
+			    android:layout_toLeftOf="@id/proceed_state" >
+			    
+			            <EditText
+			                android:id="@+id/location_text_box"
+			                android:layout_width="fill_parent"
+			                android:layout_height="wrap_content"
+			                android:ems="9"
+			                android:inputType="none" >
+			            </EditText>
+			            
+			</FrameLayout>
+
+        </RelativeLayout>
+    </LinearLayout>
+
+</RelativeLayout>

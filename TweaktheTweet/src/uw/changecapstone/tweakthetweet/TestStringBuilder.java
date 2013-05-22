@@ -29,7 +29,7 @@ import android.widget.EditText;
 
 public class TestStringBuilder extends Activity{
 
-	private EditText city_name;
+	private EditText location_text_box;
 
 	
 	@Override
@@ -37,7 +37,7 @@ public class TestStringBuilder extends Activity{
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_test_string_builder);
 
-		city_name = (EditText) findViewById(R.id.city_name);
+		location_text_box = (EditText) findViewById(R.id.location_text_box);
 	}
 
 	@Override
@@ -48,9 +48,18 @@ public class TestStringBuilder extends Activity{
 	}
 	
 	
-	public void nextViewLocation(View view){
+	public void nextViewLocText(View view){
+		// TODO: Mussie needs to pull the text location, find it on google maps,
+		// and pass the coordinates on
 		Intent i = new Intent(this, TestStringBuilderDisasterList.class);
-		i.putExtra("city", city_name.getText().toString());
+		i.putExtra("loc", location_text_box.getText().toString());
+		startActivity(i);
+	}
+	
+	public void nextViewCurrentGPS(View view){
+		// TODO: Mussie needs to pull the GPS coordinates and pass it on
+		// (check that it exists on google maps?)
+		Intent i = new Intent(this, TestStringBuilderDisasterList.class);
 		startActivity(i);
 	}
 
