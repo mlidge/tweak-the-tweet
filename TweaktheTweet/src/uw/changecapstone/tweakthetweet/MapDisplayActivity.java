@@ -6,8 +6,6 @@ import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
-import android.content.SharedPreferences;
-import android.content.SharedPreferences.Editor;
 import android.location.Location;
 import android.location.LocationListener;
 import android.location.LocationManager;
@@ -27,7 +25,6 @@ public class MapDisplayActivity extends Activity {
 	Context context = this;
 	public final static String LAT = "uw.changecapstone.tweakthetweet.latitude";
 	public final static String LONG = "uw.changecapstone.tweakthetweet.longitude";
-	private static SharedPreferences pref;
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -42,13 +39,9 @@ public class MapDisplayActivity extends Activity {
 				//Get lat/long, show using toast, and animate to the location
 				double lat = location.getLatitude();
 				double lng = location.getLongitude();
-				/*Editor e = pref.edit();
-    			((Intent) e).putExtra(LAT, lat);
-    			((Intent) e).putExtra(LONG, lng);
-    			e.commit();*/
 				/*Intent intent = new Intent();
-			    intent.putExtra(LATITUDE, lat);
-			    intent.putExtra(LONGITUDE, lng);
+			    intent.putExtra(LAT, lat);
+			    intent.putExtra(LONG, lng);
 			    startActivity(intent);*/
 				Toast.makeText(getBaseContext(), "Current Location: "+lat + "," + lng, Toast.LENGTH_SHORT).show();
 				mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(new LatLng(lat, lng), 14));
@@ -66,13 +59,9 @@ public class MapDisplayActivity extends Activity {
 				//Get Lat/long, show using toast, and animate to the location
 				double lat = location.getLatitude();
 				double lng = location.getLongitude();
-				/*Editor e = pref.edit();
-    			((Intent) e).putExtra(LAT, lat);
-    			((Intent) e).putExtra(LONG, lng);
-    			e.commit();*/
 				/*Intent intent = new Intent();
-			    intent.putExtra(LATITUDE, lat);
-			    intent.putExtra(LONGITUDE, lng);
+			    intent.putExtra(LAT, lat);
+			    intent.putExtra(LONG, lng);
 			    startActivity(intent);*/
 				Toast.makeText(getBaseContext(), "Current Location: "+lat + "," + lng, Toast.LENGTH_SHORT).show();
 				mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(new LatLng(lat, lng), 14));
