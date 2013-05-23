@@ -95,7 +95,7 @@ public class TestStringBuilderDisasterList extends Activity {
 	
 	
 	public void nextViewLocation(View view){
-		Intent i = new Intent(this, TestStringBuilderLocation.class);
+		Intent i = new Intent(this, TestStringBuilderMap.class);
 		i.putExtra("tweet", tweet);
 		i.putExtra("disaster", tweet);
 		startActivity(i);

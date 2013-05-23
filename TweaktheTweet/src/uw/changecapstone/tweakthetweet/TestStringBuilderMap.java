@@ -49,6 +49,8 @@ public class TestStringBuilderMap extends Activity {
 //		test_tweet.setEnabled(false);
 //		test_tweet.setFocusable(false);
 		
+		// TODO: Display map of event area with user's location
+		
 		char_count = (TextView) findViewById(R.id.char_count);
 		char_count.setText(String.valueOf(140 - tweet.length() - " #loc ".length()) + " characters left in tweet");
 		location_text = (EditText) findViewById(R.id.edit_message);
@@ -82,11 +84,13 @@ public class TestStringBuilderMap extends Activity {
 		// In case the user backed, we don't want to accidentally duplicate strings, so we pull from the bundle again
 		Bundle bundle = getIntent().getExtras();
 		tweet = bundle.getString("tweet");
-		//commented the following line (Mussie)
-		//tweet += " #loc " + location_text.getText().toString();
+		
 		EditText editText = (EditText) findViewById(R.id.edit_message);
 	    String message = editText.getText().toString();
-		tweet += " #loc " + message;
+	    if (!message.isEmpty()) {
+	    	tweet += " #loc " + message;
+	    }
+	    
 		Intent i = new Intent(this, TestStringBuilderCategory.class);
 		i.putExtra("tweet", tweet);
 		i.putExtra("disaster", disaster);
