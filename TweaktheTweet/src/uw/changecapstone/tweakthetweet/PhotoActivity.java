@@ -222,17 +222,18 @@ public class PhotoActivity extends Activity {
 			startActivity(intent);*/
 		}
 		else if (requestCode == CHOOSE_PICTURE && resultCode == RESULT_OK){
-			Uri selectedImage = data.getData();
+			Uri selectedImageUri = data.getData();
             String[] filePathColumn = { MediaStore.Images.Media.DATA };
             
-            Cursor cursor = getContentResolver().query(selectedImage,
+            Cursor cursor = getContentResolver().query(selectedImageUri,
                     filePathColumn, null, null, null);
             cursor.moveToFirst();
  
             int columnIndex = cursor.getColumnIndex(filePathColumn[0]);
             String picturePath = cursor.getString(columnIndex);
             cursor.close();
-            
+            mImageView.setImageURI(selectedImageUri);
+            System.out.println("Image Path: "+picturePath);
             mImageView.setImageBitmap(BitmapFactory.decodeFile(picturePath));
 		}
 	}

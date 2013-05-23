@@ -72,7 +72,7 @@ public class TestStringBuilderMap extends Activity {
 	 * do some validity checks before we show/zoom map*/
 	public void readLocationMessage(View view){
 		Intent intent = new Intent(this, LocationAndMapActivity.class);
-	    String message = location_text.toString();
+	    String message = location_text.getText().toString();
 	    intent.putExtra(LOCATION_TEXT, message);
 	    startActivity(intent);
 	}
