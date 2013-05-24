@@ -1,11 +1,102 @@
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/background"
+    android:orientation="vertical"
     android:paddingBottom="@dimen/activity_vertical_margin"
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context=".MainActivity" >
 
-</LinearLayout>
+    <TextView
+        android:id="@+id/state_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/state_reporting_text"
+        android:textSize="20sp" />
+
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/state_text"
+        android:layout_below="@+id/state_text"
+        android:layout_marginTop="15dp"
+        android:padding="10dp"
+        android:orientation="vertical"
+        android:background="@color/background_box_color" >
+        
+		<FrameLayout
+		    android:id="@+id/gps_button_border"
+		    android:layout_width="wrap_content"
+		    android:layout_height="wrap_content"
+		    android:background="@color/border_color"
+		    android:padding="1dp" >
+			    
+	            <Button
+	                android:id="@+id/gps_button"
+	                android:layout_width="wrap_content"
+	                android:layout_height="wrap_content"
+	                android:background="#98b2b6"
+	                android:paddingBottom="5dp"
+	                android:paddingLeft="5dp"
+	                android:paddingRight="5dp"
+	                android:paddingTop="5dp"
+	                android:text="@string/gps_text"
+	                android:textColor="@color/background" />
+	            
+            </FrameLayout>
+
+            <TextView
+                android:id="@+id/or_text_label"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:paddingTop="10dp"
+                android:paddingBottom="10dp"
+                android:textSize="18sp"
+                android:text="@string/or_text" />
+
+            <TextView
+                android:id="@+id/enter_state_label_text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="18sp"
+                android:text="@string/enter_text" />
+
+        <RelativeLayout
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+             >
+
+            <Button
+                android:id="@+id/proceed_state"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:onClick="proceedForNow"
+                android:text="@string/proceed_label" />
+            
+			<FrameLayout
+			    android:layout_width="fill_parent"
+			    android:layout_height="wrap_content"
+			    android:padding="1dp"
+			    android:layout_toLeftOf="@id/proceed_state"
+			    android:background="@color/border_color" >
+			    
+			            <EditText
+			                android:id="@+id/state_text_box"
+			                android:layout_width="fill_parent"
+			                android:layout_height="wrap_content"
+			                android:background="@color/background"
+			                android:ems="9"
+			                android:inputType="none" >
+			            </EditText>
+			            
+			</FrameLayout>
+
+        </RelativeLayout>
+    </LinearLayout>
+
+</RelativeLayout>

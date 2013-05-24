@@ -4,11 +4,18 @@ import java.util.List;
 
 import android.annotation.SuppressLint;
 import android.app.Activity;
+import android.app.AlertDialog;
+import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.location.Address;
 import android.location.Geocoder;
+import android.location.Location;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.provider.Settings;
+import android.util.Log;
+import android.view.View;
 import android.widget.Toast;
 
 import com.google.android.gms.maps.CameraUpdateFactory;
@@ -25,15 +32,18 @@ public class LocationAndMapActivity extends Activity {
 	private GoogleMap mMap;
 	private LatLng latLng;
 	GeoPoint p;
+	Context context = this;
 	public final static String LAT = "uw.changecapstone.tweakthetweet.latitude";
 	public final static String LONG = "uw.changecapstone.tweakthetweet.longitude";
+	public final static double MAX_DISTANCE_OFFSET = 2000.0;
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_location_and_map);
 		// Get the message from the intent
 		Intent intent = getIntent();
-		String location = intent.getStringExtra(MainActivity.LOCATION_TEXT);
+		String location = intent.getStringExtra(TestStringBuilderMap.LOCATION_TEXT);
+		
 		mMap = ((MapFragment) getFragmentManager().findFragmentById(R.id.loc_map)).getMap();
 		mMap.setMyLocationEnabled(true);
 		if (location == null || location.equals("")){
@@ -55,9 +65,10 @@ public class LocationAndMapActivity extends Activity {
 		public void onMapClick(LatLng point) {
 			double lat = point.latitude;
 			double lng = point.longitude;
+			latLng = new LatLng(lat, lng);
 			/*Intent intent = new Intent(this, TweetActivity.class);
-		    intent.putExtra(LAT, lat);
-		    intent.putExtra(LONG, lng);
+		    intent.putExtra(LAT, latLng.latitude);
+		    intent.putExtra(LONG, latLng.latitude);
 		    startActivity(intent);*/
 			Toast.makeText(getBaseContext(), "Location: "+lat + "," + 
 					lng, Toast.LENGTH_SHORT).show();
@@ -91,6 +102,10 @@ public class LocationAndMapActivity extends Activity {
 				double lat = address.getLatitude();
 				double lng = address.getLongitude();
 				latLng = new LatLng(lat, lng);
+				/*Intent i = new Intent(this, TweetActivity.class);
+				i.putExtra("LAT", latLng.latitude);
+				i.putExtra("LONG", latLng.longitude);
+				startActivity(i);*/
 				mMap.animateCamera(CameraUpdateFactory.newLatLngZoom(latLng, 14));
 				Toast.makeText(getBaseContext(), "Tweet Address: "+address.getAddressLine(0), Toast.LENGTH_SHORT).show();
 			}

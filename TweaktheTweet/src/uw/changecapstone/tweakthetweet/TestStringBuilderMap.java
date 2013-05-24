@@ -3,14 +3,35 @@ package uw.changecapstone.tweakthetweet;
 import android.os.Bundle;
 import android.app.Activity;
 import android.content.Intent;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.view.Menu;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.TextView;
 
 public class TestStringBuilderMap extends Activity {
 
-	private String tweet;
+	private String tweet, disaster;
+	private TextView char_count;
 	private EditText location_text, test_tweet;
+	public final static String LOCATION_TEXT = "uw.changecapstone.tweakthetweet.MESSAGE";
+	
+	private final TextWatcher charCountWatcher = new TextWatcher() {
+		public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+			char_count.setText(String.valueOf(140 - tweet.length() - " #loc ".length()) + " characters left in tweet");
+		}
+
+		public void onTextChanged(CharSequence s, int start, int before, int count) {
+			char_count.setText(String.valueOf(140 - tweet.length() - " #loc ".length() - s.length()) + " characters left in tweet");
+		}
+
+		@Override
+		public void afterTextChanged(Editable arg0) {
+			// TODO Auto-generated method stub
+		}
+
+	};
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -19,14 +40,21 @@ public class TestStringBuilderMap extends Activity {
 		
 		Bundle bundle = getIntent().getExtras();
 		tweet = bundle.getString("tweet");
+		disaster = bundle.getString("disaster");
 		
-		location_text = (EditText) findViewById(R.id.location_text);
-		test_tweet = (EditText) findViewById(R.id.test_tweet);
-		test_tweet.setText(tweet);
+//		test_tweet = (EditText) findViewById(R.id.test_tweet);
+//		test_tweet.setText(tweet);
+//		
+//		// Disable input for test_tweet: It's only there to display the current tweet
+//		test_tweet.setEnabled(false);
+//		test_tweet.setFocusable(false);
 		
-		// Disable input for test_tweet: It's only there to display the current tweet
-		test_tweet.setEnabled(false);
-		test_tweet.setFocusable(false);
+		// TODO: Display map of event area with user's location
+		
+		char_count = (TextView) findViewById(R.id.char_count);
+		char_count.setText(String.valueOf(140 - tweet.length() - " #loc ".length()) + " characters left in tweet");
+		location_text = (EditText) findViewById(R.id.edit_message);
+		location_text.addTextChangedListener(charCountWatcher);
 	}
 
 	@Override
@@ -36,13 +64,36 @@ public class TestStringBuilderMap extends Activity {
 		return true;
 	}
 	
-	public void nextViewConfirm(View view){
+	
+	public void showMap(View view){
+		Intent intent = new Intent(this, MapDisplayActivity.class);
+		startActivity(intent);
+	}
+	/*when the user clicks the "Enter" button, 
+	 * we are going to read the textfield content and 
+	 * do some validity checks before we show/zoom map*/
+	public void readLocationMessage(View view){
+		Intent intent = new Intent(this, LocationAndMapActivity.class);
+	    String message = location_text.getText().toString();
+	    intent.putExtra(LOCATION_TEXT, message);
+	    startActivity(intent);
+	}
+
+	
+	public void nextViewCategory(View view){
 		// In case the user backed, we don't want to accidentally duplicate strings, so we pull from the bundle again
 		Bundle bundle = getIntent().getExtras();
 		tweet = bundle.getString("tweet");
-		tweet += " #loc " + location_text.getText().toString();
-		Intent i = new Intent(this, TestStringBuilderConfirm.class);
+		
+		EditText editText = (EditText) findViewById(R.id.edit_message);
+	    String message = editText.getText().toString();
+	    if (!message.isEmpty()) {
+	    	tweet += " #loc " + message;
+	    }
+	    
+		Intent i = new Intent(this, TestStringBuilderCategory.class);
 		i.putExtra("tweet", tweet);
+		i.putExtra("disaster", disaster);
 		startActivity(i);
 	}
 

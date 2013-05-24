@@ -10,21 +10,51 @@ import android.os.Bundle;
 import android.app.Activity;
 import android.app.ListActivity;
 import android.content.Intent;
+import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ListAdapter;
 import android.widget.ListView;
 import android.widget.SimpleAdapter;
+import android.widget.TextView;
+import android.widget.AdapterView.OnItemClickListener;
 
-public class CategoryActivity extends ListActivity {
+public class CategoryActivity extends CustomWindow {
 
+	private ListView categoryListView;
 	@Override
-	protected void onCreate(Bundle savedInstanceState) {
+	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
+		setContentView(R.layout.activity_category);
+		this.title.setText("#category");
+		
+		categoryListView = (ListView) findViewById(R.id.category_list);
+		
+		//Set a listener for whenever a button is clicked
+		categoryListView.setOnItemClickListener(new OnItemClickListener() {
+			@Override
+			public void onItemClick(AdapterView<?> parent, View view, int position,
+					long id) {
+				
+				//Automatically switch to next screen no matter what button is clicked (for test mockup purposes)
+				Intent i = new Intent(getApplicationContext(), OtherActivity.class);
+		        startActivity(i);
+				
+			}
+        });
+		
+		//Add footer for entering your own hashtag and displaying tweet
+		View footerView = ((LayoutInflater)getSystemService(LAYOUT_INFLATER_SERVICE)).inflate(R.layout.listview_footer, null, false);
+		categoryListView.addFooterView(footerView);
+		
+		//Set the enter your own label to match the category page
+		TextView footerLabel = (TextView) findViewById(R.id.enter_your_own_text);
+		footerLabel.setText("or enter your own #category");
 		
 		//Create adapter
 		ListAdapter adapter = createAdapter();
-		setListAdapter(adapter);
+		categoryListView.setAdapter(adapter);
 	}
 
 	@Override
@@ -49,7 +79,7 @@ public class CategoryActivity extends ListActivity {
             datum.put("Second Line","Description"+i);
             data.add(Collections.unmodifiableMap(datum));
     	}
-        
+    	
         SimpleAdapter adapter = new SimpleAdapter(this, data,
                 android.R.layout.simple_list_item_2, 
                 new String[] {"First Line", "Second Line" }, 
@@ -57,11 +87,5 @@ public class CategoryActivity extends ListActivity {
     	return adapter;
     }
     
-    //Automatically switch to next screen no matter what button is clicked (for test mockup purposes)
-    @Override 
-    public void onListItemClick(ListView l, View v, int position, long id) {
-    	Intent i = new Intent(this, OtherActivity.class);
-		startActivity(i);
-    }
 
 }

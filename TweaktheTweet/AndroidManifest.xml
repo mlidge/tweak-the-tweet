@@ -17,10 +17,11 @@
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.CAMERA"/>
     <uses-permission android:name="com.google.android.providers.gsf.permission.READ_GSERVICES" />
     <!--
     The following two permissions are not required to use
-	Google Maps Android API v2, but are recommended.
+	Google Maps Android API v2, but are recommended.
     -->
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
@@ -29,7 +30,8 @@
     <uses-feature
         android:glEsVersion="0x00020000"
         android:required="true" />
-
+	<uses-feature android:name="android.hardware.camera" />
+	<uses-feature android:name="android.hardware.camera.autofocus"/>
     <application
         android:allowBackup="true"
         android:icon="@drawable/ic_launcher"
@@ -69,20 +71,21 @@
             android:label="@string/compose_name" />
         <activity
             android:name="uw.changecapstone.tweakthetweet.OAuthTwitterActivity"
-            android:label="@string/oauth_name" />
+            android:label="oauthtwitter" />
         <activity
             android:name="uw.changecapstone.tweakthetweet.SignUpTwitterActivity"
             android:label="@string/signup_name" />
-        
+
         <meta-data
             android:name="twitterconsumerkey"
-            android:value="aKvxacsn9CcPme65ZGIJw"/>
+            android:value="aKvxacsn9CcPme65ZGIJw" />
         <meta-data
             android:name="twitterconsumersecret"
             android:value="FHmGqglOorKw1ArGsPJo6XvvbPqHgck360lx4zc" />
+
         <activity
             android:name="uw.changecapstone.tweakthetweet.TwitterWebView"
-            android:label="@string/webview_name" />
+            android:label="twitterwebview" />
         <activity
             android:name="uw.changecapstone.tweakthetweet.TestStringBuilder"
             android:label="@string/title_activity_test_string_builder" >
@@ -115,6 +118,21 @@
             android:name="uw.changecapstone.tweakthetweet.TestStringBuilderConfirm"
             android:label="@string/title_activity_test_string_builder_confirm" >
         </activity>
+        <activity
+            android:name="uw.changecapstone.tweakthetweet.PreviousLocationActivity"
+            android:label="@string/title_activity_previous_location" >
+        </activity>
+        <activity
+            android:name="uw.changecapstone.tweakthetweet.TestStringBuilderDisasterList"
+            android:label="@string/title_activity_test_string_builder_disaster_list" >
+        </activity>
+        <activity
+            android:name="uw.changecapstone.tweakthetweet.TestStringBuilderAddDetails"
+            android:label="@string/title_activity_test_string_builder_add_details" >
+        </activity>
+        <activity
+            android:name="uw.changecapstone.tweakthetweet.PhotoActivity"
+            android:label="@string/title_activity_photo" >
+        </activity>
     </application>
-
 </manifest>

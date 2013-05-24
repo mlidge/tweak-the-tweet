@@ -4,30 +4,13 @@
     android:layout_height="match_parent"
     android:orientation="vertical" >
 
-    <EditText
-        android:id="@+id/test_tweet"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:ems="10"
-        android:inputType="none" />
     
-    <Spinner
-        android:id="@+id/category_tag_spinner"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content" 
-        android:entries="@array/category_tags" />
+    <ListView
+	    android:id="@+id/list"
+	    android:layout_width="match_parent"
+	    android:layout_height="wrap_content" >
+	</ListView>
 
-    <EditText
-        android:id="@+id/additional_details_text"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:hint="@string/test_string_details_hint" />
 
-    <Button
-        android:id="@+id/test_proceed_2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/test_build_next"
-        android:onClick="nextViewLocation" />
 
 </LinearLayout>

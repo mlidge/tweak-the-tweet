@@ -65,25 +65,62 @@
         <item>#stuck</item>
     </string-array>
 
-    <string name="disaster_tag_prompt">Choose a Disaster…</string>
+       <string name="disaster_tag_prompt">Choose a Disaster…</string>
     <string name="test_string_city_hint">Enter current city name</string>
     <string name="test_string_details_hint">Additional details</string>
-    <string name="button_user_tag_entry">Enter Your Own Tag</string>
-    <string name="title_activity_location">Location Tag</string>
     <string name="location_title_text">Do you want us to use</string>
     <string name="current_location_button_text">Current Location</string>
     <string name="location_divider_text">or</string>
     <string name="previous_location_button_text">Previous Location</string>
-    <string name="address_hint_text">4504 16th Ave. NE 8206</string>
+    <string name="button_user_tag_entry">Enter Your Own Tag</string>
+    <string name="title_activity_location">Location Tag</string>
+    <string name="location_question_text">Where exactly are you reporting about?</string>
+    <string name="location_question_subtext">Tell Twitter viewers the location</string>
+    <string name="map_instruction_text">Locate and tap on the map the exact place you are reporting about</string>
+    <string name="continue_without_location_text">continue without a location</string>
+    <string name="address_hint_text">42 Wallaby Way, Sydney</string>
     <string name="enter_location_text">Enter Location</string>
     <string name="map_placeholder_text">Insert Map Here!</string>
+    <string name="review_text">Review Tweet</string>
+    <string name="do_not_remind_text">Do not remind me again</string>
+    <string name="title_activity_review">ReviewActivity</string>
+    <string name="title_activity_city">CityActivity</string>
+    <string name="title_activity_disaster">DisasterActivity</string>
+    <string name="location_reporting_text">What location are you reporting about?</string>
+    <string name="gps_text">Get Current Location (Use GPS)</string>
+    <string name="enter_text">Enter A Town, City, or Region:</string>
+    <string name="or_text">or</string>
+    <string name="proceed_label">></string>
+    <string name="title_activity_custom_window">CustomWindow</string>
+    <string name="disaster_reporting_text">What disaster are you reporting about?</string>
+    <string name="enter_your_own_hint">i.e. #northhurricane</string>
+    <string name="tweet_text">your tweet</string>
+    <string name="character_count_text">140 left</string>
+    <string name="category_question_text">What are you reporting about?</string>
+    <string name="tweet_placeholder_text">Your tweet should show up here!</string>
+    <string name="other_instruction_text">Add more details</string>
+    <string name="other_instruction_hint">i.e. I need food, water, and shelter</string>
+    <string name="time_text">Time</string>
+    <string name="time_text_hint">i.e. 5/8 - 6:00 pm</string>
+    <string name="source_text">Source</string>
+    <string name="source_text_hint">i.e. US News</string>
+    <string name="contact_text_hint">i.e. 2061234567</string>
+    <string name="title_activity_review_tweet">ReviewTweetActivity</string>
+    <!--
+    commented (Mussie) <string name="address_hint_text">4504 16th Ave. NE 8206</string>
+    <string name="enter_location_text">Enter Location</string>
+    <string name="map_placeholder_text">Insert Map Here!</string>
+
+    -->
+    <string name="button_use_trail_log">Use Trail Log</string>
     <string name="title_activity_map">Map Location</string>
     <string name="title_activity_category">Category Tag</string>
     <string name="category_placeholder_text">Proceed</string>
     <string name="title_activity_other">Other Tags</string>
     <string name="contact_text">Contact</string>
-    <string name="phone_hint_text">(XXX)-(XXX)-(XXXX)</string>
-
+    <string name="phone_hint_text">(XXX) XXX - XXXX</string>
+    <string name="photo_text">Photo</string>
+    <string name="details_text">Enter Details...</string>
     <!-- MapActivities -->
 
     <string name="title_activity_test_string_builder_location">TestStringBuilderLocation</string>
@@ -99,5 +136,14 @@
         TweaktheTweet has detected you are not connected to a network. 
         Would you like to send your tweets via text message? Note: you will not be able to use our
         dynaming mapping feature.
-    </string>
+</string>
+    <string name="title_activity_previous_location">PreviousLocationActivity</string>
+    <string name="title_activity_test_string_builder_disaster_list">TestStringBuilderDisasterList</string>
+    <string name="title_activity_test_string_builder_add_details">TestStringBuilderAddDetails</string>
+    <string name="title_activity_photo">PhotoActivity</string>
+	<string name="button_to_photo_activity">To Photo Activity</string>
+	<string name="button_take_pic">Take A Picture</string>
+	<string name="button_choose_pic">Choose A Picture</string>
+	<string name="album_name">Camera Pictures</string>
+	<string name="cannot">Cannot</string>
 </resources>
