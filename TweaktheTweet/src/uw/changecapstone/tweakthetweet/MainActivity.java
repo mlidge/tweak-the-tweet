@@ -52,7 +52,7 @@ public class MainActivity extends Activity implements DialogListener{
 		setContentView(R.layout.activity_main);
 		pref = PreferenceManager.getDefaultSharedPreferences(this);
 		checkNetworkStatus();
-		checkLogInStatus();
+		//checkLogInStatus();
 	}
 	
 	private void checkLogInStatus() {
@@ -129,6 +129,7 @@ public class MainActivity extends Activity implements DialogListener{
 		Intent intent = new Intent(this, MapDisplayActivity.class);
 		startActivity(intent);
 	}
+	
 	/*when the user clicks the "Enter" button, 
 	 * we are going to read the textfield content and 
 	 * do some validity checks before we show/zoom map*/
@@ -175,7 +176,13 @@ public class MainActivity extends Activity implements DialogListener{
 
 	@Override
 	public void onDialogNegativeClick(DialogFragment dialog) {
-		
+		String tag = dialog.getTag();
+		if (tag.equals(LOGIN_DIALOG_TAG)) {
+			/*
+			Intent i = new Intent(this, SignUpTwitterActivity.class);
+			startActivity(i);
+			*/
+		}
 		
 	}
 

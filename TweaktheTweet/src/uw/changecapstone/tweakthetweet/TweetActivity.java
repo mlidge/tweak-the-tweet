@@ -1,5 +1,7 @@
 package uw.changecapstone.tweakthetweet;
 
+import java.io.File;
+
 import twitter4j.GeoLocation;
 import twitter4j.StatusUpdate;
 import twitter4j.Twitter;
@@ -12,7 +14,6 @@ import android.app.DialogFragment;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.content.SharedPreferences.Editor;
 import android.content.pm.ApplicationInfo;
 import android.content.pm.PackageManager;
 import android.content.pm.PackageManager.NameNotFoundException;
@@ -40,9 +41,10 @@ public class TweetActivity extends Activity implements DialogListener{
 	private static final String PREF_KEY_TWITTER_LOGIN = "isTwitterLoggedIn";
 	private static final String LOGIN_DIALOG_TAG = "logindialog";
 	private static final String NETWORK_DIALOG_TAG = "networkdialog";
-	
+	private static final String PHOTO_PATH = "photopath";
 	private static final String GEO_LOC = "geolocation";
 	private static final String SHORT_CODE = "40404";
+	private static final String HAS_PHOTO = "hasphoto";
 	private String tweet;
 	private SharedPreferences pref;
 	private boolean geoLocation;
@@ -52,6 +54,8 @@ public class TweetActivity extends Activity implements DialogListener{
 	private String longitude;
 	private String twitterConsumerKey;
 	private String twitterConsumerSecret;
+	private String photoPath;
+	private boolean hasPhoto;
 	private boolean data;
 	
 	@Override
@@ -68,6 +72,8 @@ public class TweetActivity extends Activity implements DialogListener{
 		
 		latitude = ((Double)intent.getDoubleExtra(LAT, 0.0)).toString();
 		longitude = ((Double)intent.getDoubleExtra(LONG, 0.0)).toString();
+		hasPhoto = intent.getBooleanExtra(HAS_PHOTO, false);
+		photoPath = (hasPhoto) ? intent.getStringExtra(PHOTO_PATH) : "";
 		t.setText(tweet);
 		pref = PreferenceManager.getDefaultSharedPreferences(this);
 		data = pref.getBoolean("data", true);
@@ -93,7 +99,7 @@ public class TweetActivity extends Activity implements DialogListener{
 			e.printStackTrace();
 		}
 		UpdateTwitterStatus updateTask = new UpdateTwitterStatus();
- 		updateTask.execute(new String[] {tweet, latitude, longitude});
+ 		updateTask.execute(new String[] {tweet, latitude, longitude, photoPath});
 	}
 	
 	private void smsTweet() {
@@ -149,13 +155,7 @@ public class TweetActivity extends Activity implements DialogListener{
 	
 	private class UpdateTwitterStatus extends AsyncTask<String, String, String> {
 
-		/**
-		 * Before starting background thread Show Progress Dialog
-	
-
-		/**
-		 * getting Places JSON
-		 * */
+		
 		protected String doInBackground(String... args) {
 			Log.d("Tweet Text", "> " + args[0]);
 			String status = args[0];
@@ -175,11 +175,16 @@ public class TweetActivity extends Activity implements DialogListener{
 					GeoLocation location = new GeoLocation(lat, longitude);
 					newStatus.setLocation(location);
 				}
+				if (hasPhoto) {
+					String filePath = args[3];
+					File photo = new File(filePath);
+					newStatus.setMedia(photo);
+				}
 				AccessToken accessToken = new AccessToken(access_token, access_token_secret);
 				Twitter twitter = new TwitterFactory(builder.build()).getInstance(accessToken);
 				
 				// Update status
-				twitter4j.Status response = twitter.updateStatus(status);
+				twitter4j.Status response = twitter.updateStatus(newStatus);
 				
 				Log.d("Status", "> " + response.getText());
 			} catch (TwitterException e) {

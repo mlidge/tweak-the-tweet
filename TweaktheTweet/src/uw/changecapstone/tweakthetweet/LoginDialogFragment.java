@@ -39,7 +39,7 @@ public class LoginDialogFragment extends DialogFragment {
                 	   mListener.onDialogPositiveClick(LoginDialogFragment.this);
                    }
                })
-               .setNegativeButton(R.string.cancel, new DialogInterface.OnClickListener() {
+               .setNegativeButton(R.string.login_no, new DialogInterface.OnClickListener() {
                    public void onClick(DialogInterface dialog, int id) {
                 	   mListener.onDialogNegativeClick(LoginDialogFragment.this);
                    }

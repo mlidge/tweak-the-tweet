@@ -11,40 +11,17 @@ import android.view.View;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
 
-public class TwitterWebView extends Activity {
-
-	Uri uri;
-	String url;
-    WebView webview;
-	// Preference Constants
-	static String PREFERENCE_NAME = "twitter_oauth";
-	static final String PREF_KEY_OAUTH_TOKEN = "oauth_token";
-	static final String PREF_KEY_OAUTH_SECRET = "oauth_token_secret";
-	static final String PREF_KEY_TWITTER_LOGIN = "isTwitterLoggewedIn";
-
-	static final String TWITTER_CALLBACK_URL = "tttcallback://connect";
+public class SignUpTwitterActivity extends Activity {
 	private static final String TWITTER_URL = "http://mobile.twitter.com";
 	private static final String TWITTER_URL_S = "https://mobile.twitter.com";
-
-	// Twitter oauth urls
-	static final String URL_TWITTER_AUTH = "auth_url";
-	static final String URL_TWITTER_OAUTH_VERIFIER = "oauth_verifier";
-	static final String URL_TWITTER_OAUTH_TOKEN = "oauth_token";
-	
-	
-private Intent mIntent;
-ProgressDialog _dialog;
+	private static final String TWITTER_SIGNUP = "http://mobile.twitter.com/signup";
+	WebView webview;
+	ProgressDialog _dialog;
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_oauthtwitter);
-       mIntent=getIntent();
-        Bundle extras = mIntent.getExtras();
-        url = extras.getString("url");
-        uri = Uri.parse(url);
-        url = uri.toString();
+      
         
-        Log.d("WEB", url);
-        Log.d("WEB", "starting webview setup");
         
         try {
             webview = (WebView) findViewById(R.id.webview);
@@ -65,13 +42,10 @@ ProgressDialog _dialog;
             		view.loadUrl(url);
             		 Uri uri = Uri.parse(url);
             		 Log.d("WEB", "in override");
-            		if (uri.toString().contains(TWITTER_CALLBACK_URL)) {
-            			Log.d("WEB", "in if");
+            		if (url.equals(TWITTER_URL) || url.equals(TWITTER_URL_S)) {
             			_dialog.dismiss();
-            			String oauthVerifier = uri.getQueryParameter( "oauth_verifier" );
-            			mIntent.putExtra( "oauth_verifier", oauthVerifier );
-            			setResult( RESULT_OK, mIntent );
-            			finish();
+            			Intent i = new Intent(SignUpTwitterActivity.this, OAuthTwitterActivity.class);
+            			startActivity(i);
             		}
                     
                     return true;
@@ -82,6 +56,10 @@ ProgressDialog _dialog;
                  // TODO Auto-generated method stub
                  super.onPageFinished(view, url);
                  _dialog.dismiss();
+                 //if (!url.equals(TWITTER_SIGNUP)) {
+                 //Intent i = new Intent(SignUpTwitterActivity.this, OAuthTwitterActivity.class);
+                 //startActivity(i);
+                 //}
                 }
 
             }
@@ -92,9 +70,10 @@ ProgressDialog _dialog;
             webview.getSettings().setSavePassword(false);
             webview.getSettings().setSaveFormData(false);
             webview.getSettings().setSupportZoom(false);
-            _dialog = ProgressDialog.show(TwitterWebView.this, "", "Loading");
+            _dialog = ProgressDialog.show(this, "", "Loading");
             Log.d("WEB", "about to load url");
-            webview.loadUrl(url);
+            
+            webview.loadUrl(TWITTER_SIGNUP);
             
 			
         
@@ -103,5 +82,4 @@ ProgressDialog _dialog;
             e.printStackTrace();
         }
     }
-
 }

@@ -9,6 +9,9 @@
     <string name="debug_name">Debug</string>
     <string name="title_activity_map_display">Event Map</string>
     <string name="title_activity_location_and_map"> Map and Info</string>
+    <string name="oauth_name">Sign in to Twitter</string>
+    <string name="signup_name">Sign up for Twitter</string>
+    <string name="webview_name">Sign in to Twitter</string>
 
     <!-- MainActivity -->
     <string name="button_settings_text">Edit Settings</string>
@@ -89,8 +92,9 @@
 
     <!-- DialogFragments -->
     <string name="login_yes">Sign me in!</string>
-    <string name="login_message">You are currently not signed in to Twitter. Would you like to sign in now?</string>
-    <string name="network_yes">Ok</string>
+    <string name="login_no">Sign me up!</string>
+    <string name="login_message">You are currently not signed in to Twitter. Would you like to sign in to you account, or create a new one?</string>
+    <string name="network_yes">Use SMS</string>
     <string name="network_message">
         TweaktheTweet has detected you are not connected to a network. 
         Would you like to send your tweets via text message? Note: you will not be able to use our
