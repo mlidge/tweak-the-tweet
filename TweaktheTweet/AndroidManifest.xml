@@ -69,7 +69,10 @@
             android:label="@string/compose_name" />
         <activity
             android:name="uw.changecapstone.tweakthetweet.OAuthTwitterActivity"
-            android:label="oauthtwitter" />
+            android:label="@string/oauth_name" />
+        <activity
+            android:name="uw.changecapstone.tweakthetweet.SignUpTwitterActivity"
+            android:label="@string/signup_name" />
         
         <meta-data
             android:name="twitterconsumerkey"
@@ -79,7 +82,7 @@
             android:value="FHmGqglOorKw1ArGsPJo6XvvbPqHgck360lx4zc" />
         <activity
             android:name="uw.changecapstone.tweakthetweet.TwitterWebView"
-            android:label="twitterwebview" />
+            android:label="@string/webview_name" />
         <activity
             android:name="uw.changecapstone.tweakthetweet.TestStringBuilder"
             android:label="@string/title_activity_test_string_builder" >
