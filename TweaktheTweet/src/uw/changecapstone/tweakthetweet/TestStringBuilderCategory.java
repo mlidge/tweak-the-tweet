@@ -7,6 +7,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
+import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.View;
 import android.widget.AdapterView;
@@ -19,7 +20,7 @@ import android.widget.TextView;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.AdapterView.OnItemSelectedListener;
 
-public class TestStringBuilderCategory extends Activity {
+public class TestStringBuilderCategory extends CustomWindow {
 
 	private String tweet, category;
 	//private TextView char_count;
@@ -46,6 +47,7 @@ public class TestStringBuilderCategory extends Activity {
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_test_string_builder_category);
+		this.title.setText("#category");
 		
 		Bundle bundle = getIntent().getExtras();
 		tweet = bundle.getString("tweet");
@@ -64,8 +66,20 @@ public class TestStringBuilderCategory extends Activity {
 		
 		});
 		
+		//Add footer for entering your own hashtag and displaying tweet
+		View footerView = ((LayoutInflater)getSystemService(LAYOUT_INFLATER_SERVICE)).inflate(R.layout.listview_footer, null, false);
+		category_list.addFooterView(footerView);
+		
+		//Set the enter your own label to match the category page
+		TextView footerLabel = (TextView) findViewById(R.id.enter_your_own_text);
+		footerLabel.setText("or enter your own #category");
+		
+		//Create adapter
+		ListAdapter adapter = createAdapter(disaster);
+		category_list.setAdapter(adapter);
+		
 		// Create adapter
-		category_list.setAdapter(createAdapter(disaster));
+		//category_list.setAdapter(createAdapter(disaster));
 		
 //		char_count = (TextView) findViewById(R.id.char_count);
 //		add_details = (EditText) findViewById(R.id.additional_details);

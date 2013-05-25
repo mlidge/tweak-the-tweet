@@ -92,15 +92,16 @@
         <activity
             android:name="uw.changecapstone.tweakthetweet.TestStringBuilder"
             android:label="@string/title_activity_test_string_builder"
-            android:theme="@style/CustomTheme"
-             >
+            android:theme="@style/CustomTheme">
         </activity>
         <activity
             android:name="uw.changecapstone.tweakthetweet.TestStringBuilderCategory"
-            android:label="@string/title_activity_test_string_builder" />
+            android:label="@string/title_activity_test_string_builder"
+            android:theme="@style/CustomTheme" />
         <activity
             android:name="uw.changecapstone.tweakthetweet.MapDisplayActivity"
-            android:label="@string/title_activity_map_display" >
+            android:label="@string/title_activity_map_display"
+            android:theme="@style/CustomTheme" >
         </activity>
         <activity
             android:name="uw.changecapstone.tweakthetweet.LocationAndMapActivity"
@@ -117,7 +118,8 @@
         </activity>
         <activity
             android:name="uw.changecapstone.tweakthetweet.TestStringBuilderMap"
-            android:label="@string/title_activity_test_string_builder_map" >
+            android:label="@string/title_activity_test_string_builder_map"
+            android:theme="@style/CustomTheme" >
         </activity>
         <activity
             android:name="uw.changecapstone.tweakthetweet.TestStringBuilderConfirm"
@@ -129,7 +131,8 @@
         </activity>
         <activity
             android:name="uw.changecapstone.tweakthetweet.TestStringBuilderDisasterList"
-            android:label="@string/title_activity_test_string_builder_disaster_list" >
+            android:label="@string/title_activity_test_string_builder_disaster_list"
+            android:theme="@style/CustomTheme" >
         </activity>
         <activity
             android:name="uw.changecapstone.tweakthetweet.TestStringBuilderAddDetails"

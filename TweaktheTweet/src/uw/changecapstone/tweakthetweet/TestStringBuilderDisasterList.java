@@ -8,15 +8,18 @@ import java.util.Map;
 import android.os.Bundle;
 import android.app.Activity;
 import android.content.Intent;
+import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.EditText;
 import android.widget.ListAdapter;
 import android.widget.ListView;
+import android.widget.TextView;
 import android.widget.AdapterView.OnItemClickListener;
 
-public class TestStringBuilderDisasterList extends Activity {
+public class TestStringBuilderDisasterList extends CustomWindow {
 
 	private ListView disaster_list;
 	private String tweet;
@@ -25,6 +28,7 @@ public class TestStringBuilderDisasterList extends Activity {
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_test_string_builder_disaster_list);
+		this.title.setText("#disaster");
 		
 		// TODO: We get coordinates of location from Google Maps
 		// We compare it with all the parameter coordinates of events
@@ -49,8 +53,26 @@ public class TestStringBuilderDisasterList extends Activity {
 		
 		});
 		
+		
+		//Add footer for entering your own hashtag and displaying tweet
+		View footerView = ((LayoutInflater)getSystemService(LAYOUT_INFLATER_SERVICE)).inflate(R.layout.listview_footer, null, false);
+		disaster_list.addFooterView(footerView);
+	    
+		//Set the enter your own label to match the disaster page
+		TextView footerLabel = (TextView) findViewById(R.id.enter_your_own_text);
+		footerLabel.setText("or enter your own #disaster");
+		
+		//Set the hint in the text box to match the disaster page
+		EditText stateTextBox = (EditText) findViewById(R.id.disaster_text_box);
+		stateTextBox.setHint("i.e. #northhurricane");
+		
+		//Create adapter
+		ListAdapter adapter = createAdapter(coord_x, coord_y);
+		disaster_list.setAdapter(adapter);
+		
+		
 		// Create adapter
-		disaster_list.setAdapter(createAdapter(coord_x, coord_y));
+		//disaster_list.setAdapter(createAdapter(coord_x, coord_y));
 	}
 
 	@Override

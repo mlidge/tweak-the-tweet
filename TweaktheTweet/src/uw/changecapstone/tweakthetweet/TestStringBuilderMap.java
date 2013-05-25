@@ -10,7 +10,7 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.TextView;
 
-public class TestStringBuilderMap extends Activity {
+public class TestStringBuilderMap extends CustomWindow {
 
 	private String tweet, disaster;
 	private TextView char_count;
@@ -37,6 +37,7 @@ public class TestStringBuilderMap extends Activity {
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_test_string_builder_map);
+		this.title.setText("#location");
 		
 		Bundle bundle = getIntent().getExtras();
 		tweet = bundle.getString("tweet");
