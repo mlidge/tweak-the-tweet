@@ -87,10 +87,10 @@
     <string name="title_activity_city">CityActivity</string>
     <string name="title_activity_disaster">DisasterActivity</string>
     <string name="location_reporting_text">What location are you reporting about?</string>
-    <string name="gps_text">Get Current Location (Use GPS)</string>
-    <string name="enter_text">Enter A Town, City, or Region:</string>
+    <string name="gps_text">Get my GPS Location</string>
+    <string name="enter_text">Enter a city /state/ region</string>
     <string name="or_text">or</string>
-    <string name="proceed_label">></string>
+    <string name="proceed_description">proceed</string>
     <string name="title_activity_custom_window">CustomWindow</string>
     <string name="disaster_reporting_text">What disaster are you reporting about?</string>
     <string name="enter_your_own_hint">i.e. #northhurricane</string>
