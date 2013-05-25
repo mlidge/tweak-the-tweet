@@ -39,7 +39,7 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.Toast;
 
-public class TestStringBuilder extends Activity{
+public class TestStringBuilder extends CustomWindow{
 
 	private EditText location_text_box;
 	Context context = this;
@@ -49,7 +49,8 @@ public class TestStringBuilder extends Activity{
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_test_string_builder);
-
+		this.title.setText("Let's start tweaking");
+		
 		location_text_box = (EditText) findViewById(R.id.location_text_box);
 	}
 

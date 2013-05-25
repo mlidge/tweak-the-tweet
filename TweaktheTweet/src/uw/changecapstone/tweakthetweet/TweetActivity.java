@@ -59,7 +59,7 @@ public class TweetActivity extends Activity implements DialogListener{
 	private boolean data;
 	
 	@Override
-	protected void onCreate(Bundle savedInstanceState) {
+	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		
 		setContentView(R.layout.activity_tweet);
@@ -78,6 +78,7 @@ public class TweetActivity extends Activity implements DialogListener{
 		pref = PreferenceManager.getDefaultSharedPreferences(this);
 		data = pref.getBoolean("data", true);
 		checkNetworkStatus();
+		
 	}
 	
 	public void sendTweet(View view) {
