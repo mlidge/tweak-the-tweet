@@ -7,7 +7,7 @@
  <CheckBox android:id="@+id/emergency_checkbox" 
      android:layout_width="wrap_content"
      android:layout_height="wrap_content"
-     android:textColor="@color/background"
+     android:textColor="@color/background_color"
      android:text="@string/do_not_remind_text"></CheckBox>
 
 </LinearLayout>

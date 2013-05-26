@@ -123,7 +123,8 @@
         </activity>
         <activity
             android:name="uw.changecapstone.tweakthetweet.TestStringBuilderConfirm"
-            android:label="@string/title_activity_test_string_builder_confirm" >
+            android:label="@string/title_activity_test_string_builder_confirm"
+            android:theme="@style/CustomTheme" >
         </activity>
         <activity
             android:name="uw.changecapstone.tweakthetweet.PreviousLocationActivity"
@@ -136,7 +137,8 @@
         </activity>
         <activity
             android:name="uw.changecapstone.tweakthetweet.TestStringBuilderAddDetails"
-            android:label="@string/title_activity_test_string_builder_add_details" >
+            android:label="@string/title_activity_test_string_builder_add_details"
+            android:theme="@style/CustomTheme"  >
         </activity>
         <activity
             android:name="uw.changecapstone.tweakthetweet.PhotoActivity"

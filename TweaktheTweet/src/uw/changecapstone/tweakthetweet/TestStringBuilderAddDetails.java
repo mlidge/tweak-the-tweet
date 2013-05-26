@@ -4,12 +4,13 @@ import android.os.Bundle;
 import android.app.Activity;
 import android.view.Menu;
 
-public class TestStringBuilderAddDetails extends Activity {
+public class TestStringBuilderAddDetails extends CustomWindow {
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_test_string_builder_add_details);
+		this.title.setText("#more info");
 	}
 
 	@Override

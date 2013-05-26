@@ -17,7 +17,6 @@
     <string name="category_placeholder_text">Proceed</string>
     <string name="title_activity_other">Other Tags</string>
     <string name="phone_hint_text">(XXX) XXX - XXXX</string>
-    <string name="details_text">Enter Details...</string>
     <string name="review_text">Review Tweet</string>
     <string name="do_not_remind_text">Do not remind me again</string>
     <string name="title_activity_review">ReviewActivity</string>
@@ -36,7 +35,7 @@
     <string name="character_count_text">140 left</string>
     <string name="category_question_text">What are you reporting about?</string>
     <string name="tweet_placeholder_text">Your tweet should show up here!</string>
-    <string name="other_instruction_text">Add more details</string>
+    <string name="other_instruction_text">Add more details for your #category</string>
     <string name="other_instruction_hint">i.e. I need food, water, and shelter</string>
     <string name="photo_text">Add Photo</string>
     <string name="time_text">Time</string>

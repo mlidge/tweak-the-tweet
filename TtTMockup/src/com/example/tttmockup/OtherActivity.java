@@ -18,9 +18,6 @@ public class OtherActivity extends CustomWindow {
 		setContentView(R.layout.activity_other);
 		this.title.setText("#more info");
 		
-		EditText editText = (EditText) findViewById(R.id.edit_message);
-		editText.addTextChangedListener(new PhoneNumberFormattingTextWatcher());
-		
 	}
 	
 	public void proceedToReview(View view){

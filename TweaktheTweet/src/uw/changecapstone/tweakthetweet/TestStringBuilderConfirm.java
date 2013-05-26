@@ -10,7 +10,7 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.TextView;
 
-public class TestStringBuilderConfirm extends Activity {
+public class TestStringBuilderConfirm extends CustomWindow {
 
 	private EditText test_tweet, add_details;
 	private TextView char_count;
@@ -38,6 +38,7 @@ public class TestStringBuilderConfirm extends Activity {
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_test_string_builder_confirm);
+		this.title.setText("Tweet Sent");
 		
 		Bundle bundle = getIntent().getExtras();
 		tweet = bundle.getString("tweet");
