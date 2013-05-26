@@ -11,7 +11,7 @@ public class ComposeActivity extends Activity {
 
 	public EditText message;
 	
-	@Override
+	@Override 
 	protected void onCreate(Bundle savedInstanceState) {
 		Log.d("COMPOSE", "entering compose");
 		super.onCreate(savedInstanceState);
