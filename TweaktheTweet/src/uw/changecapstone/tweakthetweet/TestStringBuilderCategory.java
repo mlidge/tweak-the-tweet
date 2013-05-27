@@ -133,6 +133,7 @@ public class TestStringBuilderCategory extends CustomWindow {
 		//tweet += " " + add_details.getText().toString();
 		Intent i = new Intent(this, TestStringBuilderConfirm.class);
 		i.putExtra("tweet", tweet);
+		i.putExtra("category", category);
 		startActivity(i);
 	}
 }
