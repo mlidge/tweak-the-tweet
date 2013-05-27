@@ -38,7 +38,7 @@ public class TestStringBuilderConfirm extends CustomWindow {
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_test_string_builder_confirm);
-		this.title.setText("Tweet Sent");
+		this.title.setText("#more info");
 		
 		Bundle bundle = getIntent().getExtras();
 		tweet = bundle.getString("tweet");

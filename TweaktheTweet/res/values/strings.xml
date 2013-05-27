@@ -90,7 +90,8 @@
     <string name="gps_text">Get my GPS Location</string>
     <string name="enter_text">Enter a city /state/ region</string>
     <string name="or_text">or</string>
-    <string name="proceed_description">proceed</string>
+    <string name="proceed_description">Proceed</string>
+    <string name="camera_description">Use Camera</string>
     <string name="title_activity_custom_window">CustomWindow</string>
     <string name="disaster_reporting_text">What disaster are you reporting about?</string>
     <string name="enter_your_own_hint">i.e. #northhurricane</string>
@@ -98,7 +99,7 @@
     <string name="character_count_text">140 left</string>
     <string name="category_question_text">What are you reporting about?</string>
     <string name="tweet_placeholder_text">Your tweet should show up here!</string>
-    <string name="other_instruction_text">Add more details</string>
+    <string name="other_instruction_text">Add more details for your #category</string>
     <string name="other_instruction_hint">i.e. I need food, water, and shelter</string>
     <string name="time_text">Time</string>
     <string name="time_text_hint">i.e. 5/8 - 6:00 pm</string>
@@ -119,7 +120,7 @@
     <string name="title_activity_other">Other Tags</string>
     <string name="contact_text">Contact</string>
     <string name="phone_hint_text">(XXX) XXX - XXXX</string>
-    <string name="photo_text">Photo</string>
+    <string name="photo_text">Add Photo</string>
     <string name="details_text">Enter Details...</string>
     <!-- MapActivities -->
 
