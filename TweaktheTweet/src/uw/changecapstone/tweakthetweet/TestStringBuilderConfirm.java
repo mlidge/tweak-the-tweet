@@ -83,28 +83,27 @@ public class TestStringBuilderConfirm extends CustomWindow {
 		}
 	
 		public void onTextChanged(CharSequence s, int start, int before, int count) {
-			if(tweet.contains(category)){
 				String[] splitTweet = tweet.split(category);
+				
+				if(!tweet.contains(category)){
+					//if the tweet does not contain the category tag, just append it to the end of the string
+					tweet = tweet + " " + category + " " + s;
+				}
+				
 				if(splitTweet.length==1){
 					tweet = tweet + " " + s;
 				}else{
 					if(splitTweet[1].contains("#")){
-						//If it contains another hash tag, somehow find a way to delete the current category text
+						//If the tweet contains another hash tag, replace the current category text
+						int indexOfNextTag = splitTweet[1].indexOf("#");
+						//Toast.makeText(getBaseContext(), splitTweet[1].substring(indexOfNextTag), Toast.LENGTH_SHORT).show();
+						tweet = splitTweet[0] + category + " " + s + " " + splitTweet[1].substring(indexOfNextTag);
 					}else{
 						//If it does not contain another hash tag, just replace the string after category tag
 						tweet = splitTweet[0] + category + " " + s;
-						test_tweet.setText(tweet);
 					}
-				
+					test_tweet.setText(tweet);
 				}
-			}
-			
-			/*StringBuilder editedTweet = new StringBuilder(tweet);
-			int indexOfCategory = editedTweet.indexOf(category) + category.length();
-			editedTweet.insert(indexOfCategory, " " + s);
-			tweet = editedTweet.toString();
-			test_tweet.setText(tweet);
-			*/
 		}
 	
 		@Override
@@ -114,20 +113,86 @@ public class TestStringBuilderConfirm extends CustomWindow {
 	
 	};
 	
+	
 	private final TextWatcher addTimeText = new TextWatcher() {
 		public void beforeTextChanged(CharSequence s, int start, int count, int after) {
 		}
 	
 		public void onTextChanged(CharSequence s, int start, int before, int count) {
-			StringBuilder editedTweet = new StringBuilder(tweet);
-			int indexOfCategory = editedTweet.indexOf(TIME_TAG);
-			if(indexOfCategory == -1){
-				editedTweet.append(TIME_TAG + " " + s);
-			}else{
-				editedTweet.insert(indexOfCategory, " " + s);
-			}
-			tweet = editedTweet.toString();
-			test_tweet.setText(editedTweet);
+				String[] splitTweet = tweet.split(TIME_TAG);
+				if(!tweet.contains(TIME_TAG)){
+					//if the tweet does not contain the time tag, just append it to the end of the string
+					tweet = tweet + " " + TIME_TAG + " " + s;
+				}else{
+					if(splitTweet[1].contains("#")){
+						//If the tweet contains another hash tag, replace the current time text
+						int indexOfNextTag = splitTweet[1].indexOf("#");
+						//Toast.makeText(getBaseContext(), splitTweet[1].substring(indexOfNextTag), Toast.LENGTH_SHORT).show();
+						tweet = splitTweet[0] + TIME_TAG + " " + s + " " +splitTweet[1].substring(indexOfNextTag);
+					}else{
+						//If it does not contain another hash tag, just replace the string after time tag
+						tweet = splitTweet[0] + TIME_TAG + " " + s;
+					}
+					test_tweet.setText(tweet);
+				}
+		}
+	
+		@Override
+		public void afterTextChanged(Editable arg0) {
+		}
+	
+	};
+	
+	private final TextWatcher addSourceText = new TextWatcher() {
+		public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+		}
+	
+		public void onTextChanged(CharSequence s, int start, int before, int count) {
+				String[] splitTweet = tweet.split(SOURCE_TAG);
+				if(!tweet.contains(SOURCE_TAG)){
+					//if the tweet does not contain the source tag, just append it to the end of the string
+					tweet = tweet + " " + SOURCE_TAG + " " + s;
+				}else{
+					if(splitTweet[1].contains("#")){
+						//If the tweet contains another hash tag, replace the current time text
+						int indexOfNextTag = splitTweet[1].indexOf("#");
+						//Toast.makeText(getBaseContext(), splitTweet[1].substring(indexOfNextTag), Toast.LENGTH_SHORT).show();
+						tweet = splitTweet[0] + SOURCE_TAG + " " + s + " " + splitTweet[1].substring(indexOfNextTag);
+					}else{
+						//If it does not contain another hash tag, just replace the string after time tag
+						tweet = splitTweet[0] + SOURCE_TAG + " " + s;
+					}
+					test_tweet.setText(tweet);
+				}
+		}
+	
+		@Override
+		public void afterTextChanged(Editable arg0) {
+		}
+	
+	};
+	
+	private final TextWatcher addContactText = new TextWatcher() {
+		public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+		}
+	
+		public void onTextChanged(CharSequence s, int start, int before, int count) {
+				String[] splitTweet = tweet.split(CONTACT_TAG);
+				if(!tweet.contains(CONTACT_TAG)){
+					//if the tweet does not contain the source tag, just append it to the end of the string
+					tweet = tweet + " " + CONTACT_TAG + " " + s;
+				}else{
+					if(splitTweet[1].contains("#")){
+						//If the tweet contains another hash tag, replace the current time text
+						int indexOfNextTag = splitTweet[1].indexOf("#");
+						//Toast.makeText(getBaseContext(), splitTweet[1].substring(indexOfNextTag), Toast.LENGTH_SHORT).show();
+						tweet = splitTweet[0] + CONTACT_TAG + " " + s + " " + splitTweet[1].substring(indexOfNextTag);
+					}else{
+						//If it does not contain another hash tag, just replace the string after time tag
+						tweet = splitTweet[0] + CONTACT_TAG + " " + s;
+					}
+					test_tweet.setText(tweet);
+				}
 		}
 	
 		@Override
@@ -168,11 +233,11 @@ public class TestStringBuilderConfirm extends CustomWindow {
 		
 		//Set up add source text box
 		add_source = (EditText) findViewById(R.id.source_text);
-		//add_source.addTextChangedListener(addTimeText);
+		add_source.addTextChangedListener(addSourceText);
 		
 		//Set up add contact text box
 		add_contact = (EditText) findViewById(R.id.contact_text);
-		//add_contact.addTextChangedListener(addTimeText);
+		add_contact.addTextChangedListener(addContactText);
 		
 		//Set instruction text based on category
 		TextView instructionText = (TextView) findViewById(R.id.add_more_details_text);
