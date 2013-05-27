@@ -15,6 +15,7 @@ import android.view.inputmethod.EditorInfo;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 import android.widget.TextView.OnEditorActionListener;
 
 public class TestStringBuilderConfirm extends CustomWindow {
@@ -22,9 +23,9 @@ public class TestStringBuilderConfirm extends CustomWindow {
 	private EditText test_tweet, add_details, add_time, add_source, add_contact;
 	private TextView char_count;
 	private String category, tweet, final_tweet;
-	private String TIME_TAG = "#time";
-	private String SOURCE_TAG = "#src";
-	private String CONTACT_TAG = "#cont";		
+	private final String TIME_TAG = "#time";
+	private final String SOURCE_TAG = "#src";
+	private final String CONTACT_TAG = "#cont";		
 	
 	/*private final TextWatcher charCountWatcher = new TextWatcher() {
 		public void beforeTextChanged(CharSequence s, int start, int count, int after) {
@@ -82,11 +83,28 @@ public class TestStringBuilderConfirm extends CustomWindow {
 		}
 	
 		public void onTextChanged(CharSequence s, int start, int before, int count) {
-			StringBuilder editedTweet = new StringBuilder(tweet);
+			if(tweet.contains(category)){
+				String[] splitTweet = tweet.split(category);
+				if(splitTweet.length==1){
+					tweet = tweet + " " + s;
+				}else{
+					if(splitTweet[1].contains("#")){
+						//If it contains another hash tag, somehow find a way to delete the current category text
+					}else{
+						//If it does not contain another hash tag, just replace the string after category tag
+						tweet = splitTweet[0] + category + " " + s;
+						test_tweet.setText(tweet);
+					}
+				
+				}
+			}
+			
+			/*StringBuilder editedTweet = new StringBuilder(tweet);
 			int indexOfCategory = editedTweet.indexOf(category) + category.length();
 			editedTweet.insert(indexOfCategory, " " + s);
 			tweet = editedTweet.toString();
 			test_tweet.setText(tweet);
+			*/
 		}
 	
 		@Override
@@ -152,7 +170,7 @@ public class TestStringBuilderConfirm extends CustomWindow {
 		add_source = (EditText) findViewById(R.id.source_text);
 		//add_source.addTextChangedListener(addTimeText);
 		
-		//Set up add source text box
+		//Set up add contact text box
 		add_contact = (EditText) findViewById(R.id.contact_text);
 		//add_contact.addTextChangedListener(addTimeText);
 		
@@ -168,10 +186,10 @@ public class TestStringBuilderConfirm extends CustomWindow {
 		return true;
 	}
 	
-	public void nextViewHome(View view) {
-		Intent i = new Intent(this, MainActivity.class);
+	public void nextViewSent(View view) {
+		Intent i = new Intent(this, TestStringBuilderTweetSent.class);
 		startActivity(i);
-		
+		i.putExtra("tweet", tweet);
 	}
 
 }
