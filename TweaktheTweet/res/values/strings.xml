@@ -47,8 +47,14 @@
     <string name="test_build_send">Send</string>
     <string name="title_activity_test_string_builder">TestStringBuilder</string>
     <string name="title_activity_test_string_builder_category">TestStringBuilderCategory</string>
-
+    
+    <!-- LocationWithGPS -->
+	<string name="continue_without_loc">I do not know the location.Continue with out a location. </string>
+	<string name="btn_gps_loc">Use my GPS location</string>
+	<string name="btn_tapped_loc">Use my tapped location</string>
+	
     <string-array name="disaster_tags">
+        
         <item>Flood</item>
         <item>Earthquake</item>
         <item>Tornado</item>
@@ -142,5 +148,6 @@
     <string name="album_name">Camera Pictures</string>
     <string name="cannot">Cannot</string>
     <string name="title_activity_test_string_builder_tweet_sent">TestStringBuilderTweetSent</string>
+    <string name="title_activity_location_with_gps">LocationWithGPS</string>
 
 </resources>

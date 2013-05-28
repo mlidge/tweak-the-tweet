@@ -1,0 +1,121 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:map="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".LocationAndMapActivity" >
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="TEST1" />
+    <RelativeLayout
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal" >
+
+            <ImageButton
+                android:id="@+id/proceed_state"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:contentDescription="@string/proceed_description"
+                android:background="@drawable/next"
+                android:onClick="readLocationMessage" />
+            
+			<FrameLayout
+			    android:layout_width="fill_parent"
+			    android:layout_height="wrap_content"
+			    android:padding="1dp"
+			    android:background="@color/border_color"
+			    android:layout_toLeftOf="@id/proceed_state" >
+			    
+			            <EditText
+			                android:id="@+id/location_text_box"
+			                android:layout_width="fill_parent"
+			                android:layout_height="wrap_content"
+			                android:ems="9"
+			                android:hint="@string/address_hint_text"
+			                android:background="@color/background_color"
+			                android:inputType="none" >
+			            </EditText>
+			            
+			</FrameLayout>
+
+    </RelativeLayout>
+	<TextView
+     	android:id="@+id/char_count"
+       	android:layout_width="wrap_content"
+       	android:layout_height="wrap_content"
+       	android:textAppearance="?android:attr/textAppearanceSmall" />
+	
+	<TextView 
+	    android:layout_width="wrap_content"
+	    android:layout_height="wrap_content"
+	    android:text="GPS text 1 (editable)"/>
+	
+	<TextView
+	   android:layout_width="wrap_content"
+	   android:layout_height="wrap_content"
+	   android:text="GPS text 2 (editable)" />
+	
+	<LinearLayout
+	    android:layout_width="match_parent"
+	    android:layout_height="wrap_content"
+	    android:orientation="horizontal"
+	    android:gravity="center_horizontal">
+    
+	<Button 
+	    android:id="@+id/gps_location_btn"
+	    android:layout_width="100dp"
+	    android:layout_height="90dp"
+	    android:text="@string/btn_gps_loc" 
+	    android:onClick="useGPSLocation"/>
+	
+	<Button
+	    android:id="@+id/tapped_location_btn"
+	    android:layout_width="100dp"
+	    android:layout_height="90dp"
+	    android:text="@string/btn_tapped_loc"
+	    android:onClick="useTappedLocation" />
+	
+	</LinearLayout>
+	
+	<fragment 
+        android:id="@+id/loc_map"
+        android:layout_width="match_parent"
+        android:layout_height="250dp"
+        class="com.google.android.gms.maps.MapFragment"
+         />
+	<RelativeLayout
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal" >
+
+            <ImageButton
+                android:id="@+id/proceed_state"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:contentDescription="@string/proceed_description"
+                android:background="@drawable/next"
+                android:onClick="nextViewCategory" />
+            
+			<FrameLayout
+			    android:layout_width="fill_parent"
+			    android:layout_height="wrap_content"
+			    android:padding="1dp"
+			    android:background="@color/border_color"
+			    android:layout_toLeftOf="@id/proceed_state" >
+			    		
+			    		<TextView
+	    					android:layout_width="wrap_content"
+	    					android:layout_height="wrap_content"
+	   						android:text="@string/continue_without_loc" />			            
+			</FrameLayout>
+
+        </RelativeLayout>
+
+	
+</LinearLayout>

@@ -39,7 +39,7 @@ public class MapDisplayActivity extends Activity {
 				//Get lat/long, show using toast, and animate to the location
 				double lat = location.getLatitude();
 				double lng = location.getLongitude();
-				/*Intent intent = new Intent();
+				/*Intent intent = new Intent(this, LocationAndMapActivity.class);
 			    intent.putExtra(LAT, lat);
 			    intent.putExtra(LONG, lng);
 			    startActivity(intent);*/
@@ -59,7 +59,7 @@ public class MapDisplayActivity extends Activity {
 				//Get Lat/long, show using toast, and animate to the location
 				double lat = location.getLatitude();
 				double lng = location.getLongitude();
-				/*Intent intent = new Intent();
+				/*Intent intent = new Intent(context, LocationAndMapActivity.class);
 			    intent.putExtra(LAT, lat);
 			    intent.putExtra(LONG, lng);
 			    startActivity(intent);*/

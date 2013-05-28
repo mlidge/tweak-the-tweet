@@ -23,7 +23,10 @@ public class TestStringBuilderDisasterList extends CustomWindow {
 
 	private ListView disaster_list;
 	private String tweet;
-	
+	public final static String LAT = "uw.changecapstone.tweakthetweet.latitude";
+	public final static String LONG = "uw.changecapstone.tweakthetweet.longitude";
+	static double latitude ;
+	static double longitude;
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -39,6 +42,12 @@ public class TestStringBuilderDisasterList extends CustomWindow {
 //		int coord_y = bundle.getString("coord_y");
 		int coord_x = 0;
 		int coord_y = 0;
+		
+		 //added by mussie. changed the string to double because intent was not used.
+		Intent intent = getIntent();
+		latitude = ((Double)intent.getDoubleExtra(TestStringBuilder.LAT, 0.0));
+		longitude = ((Double)intent.getDoubleExtra(TestStringBuilder.LONG, 0.0));
+		System.out.println("test: "+latitude+" "+longitude);
 		
 		disaster_list = (ListView) findViewById(R.id.list);
 		disaster_list.setOnItemClickListener(new OnItemClickListener() {
@@ -117,9 +126,13 @@ public class TestStringBuilderDisasterList extends CustomWindow {
 	
 	
 	public void nextViewLocation(View view){
-		Intent i = new Intent(this, TestStringBuilderMap.class);
+		//TODO: the intent is not used to get the LAT/LONG
+		Intent i = new Intent(this, LocationWithGPS.class);
 		i.putExtra("tweet", tweet);
 		i.putExtra("disaster", tweet);
+		i.putExtra(LAT, latitude);
+		i.putExtra(LONG, latitude);
+		System.out.println("going out of disaster list: "+latitude+" "+longitude);
 		startActivity(i);
 	}
 
