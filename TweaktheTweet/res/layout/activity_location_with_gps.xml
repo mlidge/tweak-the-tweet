@@ -9,51 +9,33 @@
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="TEST1" />
-    <RelativeLayout
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal" >
-
-            <ImageButton
-                android:id="@+id/proceed_state"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignParentRight="true"
-                android:contentDescription="@string/proceed_description"
-                android:background="@drawable/next"
-                android:onClick="readLocationMessage" />
+        android:text="If you know the location, enter an address to place it in your tweet"
+        android:textSize="20sp" />
             
-			<FrameLayout
-			    android:layout_width="fill_parent"
-			    android:layout_height="wrap_content"
-			    android:padding="1dp"
-			    android:background="@color/border_color"
-			    android:layout_toLeftOf="@id/proceed_state" >
-			    
-			            <EditText
-			                android:id="@+id/location_text_box"
-			                android:layout_width="fill_parent"
-			                android:layout_height="wrap_content"
-			                android:ems="9"
-			                android:hint="@string/address_hint_text"
-			                android:background="@color/background_color"
-			                android:inputType="none" >
-			            </EditText>
-			            
-			</FrameLayout>
-
-    </RelativeLayout>
-	<TextView
-     	android:id="@+id/char_count"
-       	android:layout_width="wrap_content"
-       	android:layout_height="wrap_content"
-       	android:textAppearance="?android:attr/textAppearanceSmall" />
+	<FrameLayout
+	    android:layout_width="fill_parent"
+	    android:layout_height="wrap_content"
+	    android:padding="1dp"
+	    android:background="@color/border_color" >
+	    
+	            <EditText
+	                android:id="@+id/location_text_box"
+	                android:layout_width="fill_parent"
+	                android:layout_height="wrap_content"
+	                android:ems="9"
+	                android:hint="i.e. address, intersection, name of place, etc."
+	                android:background="@color/background_color"
+	                android:inputType="none"
+	                android:imeOptions="actionDone"
+               		android:singleLine="true" >
+	            </EditText>
+	            
+	</FrameLayout>
 	
 	<TextView 
 	    android:layout_width="wrap_content"
 	    android:layout_height="wrap_content"
-	    android:text="GPS text 1 (editable)"/>
+	    android:text="Locate and tap on the map to get an accurate location (editable)"/>
 	
 	<TextView
 	   android:layout_width="wrap_content"
@@ -64,20 +46,33 @@
 	    android:layout_width="match_parent"
 	    android:layout_height="wrap_content"
 	    android:orientation="horizontal"
-	    android:gravity="center_horizontal">
+	    android:gravity="center"
+	    android:paddingTop="10dp" >
     
 	<Button 
 	    android:id="@+id/gps_location_btn"
+	    android:background="@color/default_button_color"
 	    android:layout_width="100dp"
 	    android:layout_height="90dp"
-	    android:text="@string/btn_gps_loc" 
+	    android:paddingBottom="5dp"
+        android:paddingLeft="5dp"
+        android:paddingRight="5dp"
+        android:paddingTop="5dp"
+	    android:text="@string/btn_gps_loc"
+	    android:textColor="@color/background_color" 
 	    android:onClick="useGPSLocation"/>
 	
 	<Button
 	    android:id="@+id/tapped_location_btn"
+	    android:background="@color/default_button_color"
 	    android:layout_width="100dp"
 	    android:layout_height="90dp"
+	    android:paddingBottom="5dp"
+        android:paddingLeft="5dp"
+        android:paddingRight="5dp"
+        android:paddingTop="5dp"
 	    android:text="@string/btn_tapped_loc"
+	    android:textColor="@color/background_color" 
 	    android:onClick="useTappedLocation" />
 	
 	</LinearLayout>
@@ -88,10 +83,12 @@
         android:layout_height="250dp"
         class="com.google.android.gms.maps.MapFragment"
          />
+	
 	<RelativeLayout
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal" >
+            android:orientation="horizontal"
+            android:paddingTop="10dp" >
 
             <ImageButton
                 android:id="@+id/proceed_state"
@@ -106,12 +103,12 @@
 			    android:layout_width="fill_parent"
 			    android:layout_height="wrap_content"
 			    android:padding="1dp"
-			    android:background="@color/border_color"
 			    android:layout_toLeftOf="@id/proceed_state" >
 			    		
 			    		<TextView
 	    					android:layout_width="wrap_content"
 	    					android:layout_height="wrap_content"
+	    					android:textColor="@color/default_text_color"
 	   						android:text="@string/continue_without_loc" />			            
 			</FrameLayout>
 
