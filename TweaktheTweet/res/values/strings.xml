@@ -76,8 +76,8 @@
     <string name="location_question_subtext">Tell Twitter viewers the location</string>
     <string name="map_instruction_text">Locate and tap on the map the exact place you are reporting about</string>
     <string name="continue_without_location_text">continue without a location</string>
-    <string name="address_hint_text">42 Wallaby Way, Sydney</string>
-    <string name="enter_location_text">Enter Location</string>
+    <string name="address_hint_text">i.e. address, intersection, name of place, etc.</string>
+    <string name="enter_location_text">If you know the location, enter an address to place it in your tweet</string>
     <string name="map_placeholder_text">Insert Map Here!</string>
     <string name="review_text">Review Tweet</string>
     <string name="do_not_remind_text">Do not remind me again</string>

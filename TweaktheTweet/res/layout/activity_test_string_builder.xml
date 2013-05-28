@@ -91,7 +91,9 @@
 			                android:layout_height="wrap_content"
 			                android:ems="9"
 			                android:background="@color/background_color"
-			                android:inputType="none" >
+			                android:inputType="none"
+			                android:imeOptions="actionDone"
+	                		android:singleLine="true" >
 			            </EditText>
 			            
 			</FrameLayout>

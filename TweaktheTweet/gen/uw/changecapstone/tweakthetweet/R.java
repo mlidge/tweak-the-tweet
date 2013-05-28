@@ -9,21 +9,153 @@ package uw.changecapstone.tweakthetweet;
 
 public final class R {
     public static final class array {
-        public static final int category_tags=0x7f080001;
-        public static final int disaster_tags=0x7f080000;
+        public static final int category_tags=0x7f090001;
+        public static final int disaster_tags=0x7f090000;
     }
     public static final class attr {
+        /** <p>Must be a floating point value, such as "<code>1.2</code>".
+<p>This may also be a reference to a resource (in the form
+"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
+theme attribute (in the form
+"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
+containing a value of this type.
+         */
+        public static final int cameraBearing=0x7f010001;
+        /** <p>Must be a floating point value, such as "<code>1.2</code>".
+<p>This may also be a reference to a resource (in the form
+"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
+theme attribute (in the form
+"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
+containing a value of this type.
+         */
+        public static final int cameraTargetLat=0x7f010002;
+        /** <p>Must be a floating point value, such as "<code>1.2</code>".
+<p>This may also be a reference to a resource (in the form
+"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
+theme attribute (in the form
+"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
+containing a value of this type.
+         */
+        public static final int cameraTargetLng=0x7f010003;
+        /** <p>Must be a floating point value, such as "<code>1.2</code>".
+<p>This may also be a reference to a resource (in the form
+"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
+theme attribute (in the form
+"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
+containing a value of this type.
+         */
+        public static final int cameraTilt=0x7f010004;
+        /** <p>Must be a floating point value, such as "<code>1.2</code>".
+<p>This may also be a reference to a resource (in the form
+"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
+theme attribute (in the form
+"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
+containing a value of this type.
+         */
+        public static final int cameraZoom=0x7f010005;
+        /** <p>Must be one of the following constant values.</p>
+<table>
+<colgroup align="left" />
+<colgroup align="left" />
+<colgroup align="left" />
+<tr><th>Constant</th><th>Value</th><th>Description</th></tr>
+<tr><td><code>none</code></td><td>0</td><td></td></tr>
+<tr><td><code>normal</code></td><td>1</td><td></td></tr>
+<tr><td><code>satellite</code></td><td>2</td><td></td></tr>
+<tr><td><code>terrain</code></td><td>3</td><td></td></tr>
+<tr><td><code>hybrid</code></td><td>4</td><td></td></tr>
+</table>
+         */
+        public static final int mapType=0x7f010000;
+        /** <p>Must be a boolean value, either "<code>true</code>" or "<code>false</code>".
+<p>This may also be a reference to a resource (in the form
+"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
+theme attribute (in the form
+"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
+containing a value of this type.
+         */
+        public static final int uiCompass=0x7f010006;
+        /** <p>Must be a boolean value, either "<code>true</code>" or "<code>false</code>".
+<p>This may also be a reference to a resource (in the form
+"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
+theme attribute (in the form
+"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
+containing a value of this type.
+         */
+        public static final int uiRotateGestures=0x7f010007;
+        /** <p>Must be a boolean value, either "<code>true</code>" or "<code>false</code>".
+<p>This may also be a reference to a resource (in the form
+"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
+theme attribute (in the form
+"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
+containing a value of this type.
+         */
+        public static final int uiScrollGestures=0x7f010008;
+        /** <p>Must be a boolean value, either "<code>true</code>" or "<code>false</code>".
+<p>This may also be a reference to a resource (in the form
+"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
+theme attribute (in the form
+"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
+containing a value of this type.
+         */
+        public static final int uiTiltGestures=0x7f010009;
+        /** <p>Must be a boolean value, either "<code>true</code>" or "<code>false</code>".
+<p>This may also be a reference to a resource (in the form
+"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
+theme attribute (in the form
+"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
+containing a value of this type.
+         */
+        public static final int uiZoomControls=0x7f01000a;
+        /** <p>Must be a boolean value, either "<code>true</code>" or "<code>false</code>".
+<p>This may also be a reference to a resource (in the form
+"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
+theme attribute (in the form
+"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
+containing a value of this type.
+         */
+        public static final int uiZoomGestures=0x7f01000b;
+        /** <p>Must be a boolean value, either "<code>true</code>" or "<code>false</code>".
+<p>This may also be a reference to a resource (in the form
+"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
+theme attribute (in the form
+"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
+containing a value of this type.
+         */
+        public static final int useViewLifecycle=0x7f01000c;
+        /** <p>Must be a boolean value, either "<code>true</code>" or "<code>false</code>".
+<p>This may also be a reference to a resource (in the form
+"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
+theme attribute (in the form
+"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
+containing a value of this type.
+         */
+        public static final int zOrderOnTop=0x7f01000d;
     }
     public static final class color {
-        public static final int background_box_color=0x7f040006;
-        public static final int background_color=0x7f040004;
-        public static final int border_color=0x7f040003;
-        public static final int default_button_color=0x7f040002;
-        public static final int default_text_color=0x7f040008;
-        public static final int important_button_color=0x7f040005;
-        public static final int subtext_color=0x7f040000;
-        public static final int title_color=0x7f040001;
-        public static final int tweet_box_color=0x7f040007;
+        public static final int background_box_color=0x7f040010;
+        public static final int background_color=0x7f04000e;
+        public static final int border_color=0x7f04000d;
+        public static final int common_action_bar_splitter=0x7f040009;
+        /**  Sign-in Button Colors 
+         */
+        public static final int common_signin_btn_dark_text_default=0x7f040000;
+        public static final int common_signin_btn_dark_text_disabled=0x7f040002;
+        public static final int common_signin_btn_dark_text_focused=0x7f040003;
+        public static final int common_signin_btn_dark_text_pressed=0x7f040001;
+        public static final int common_signin_btn_default_background=0x7f040008;
+        public static final int common_signin_btn_light_text_default=0x7f040004;
+        public static final int common_signin_btn_light_text_disabled=0x7f040006;
+        public static final int common_signin_btn_light_text_focused=0x7f040007;
+        public static final int common_signin_btn_light_text_pressed=0x7f040005;
+        public static final int common_signin_btn_text_dark=0x7f040013;
+        public static final int common_signin_btn_text_light=0x7f040014;
+        public static final int default_button_color=0x7f04000c;
+        public static final int default_text_color=0x7f040012;
+        public static final int important_button_color=0x7f04000f;
+        public static final int subtext_color=0x7f04000a;
+        public static final int title_color=0x7f04000b;
+        public static final int tweet_box_color=0x7f040011;
     }
     public static final class dimen {
         /**  Default screen margins, per the Android Design guidelines. 
@@ -32,72 +164,102 @@ public final class R {
          screen margins) for sw720dp devices (e.g. 10" tablets) in landscape here.
     
          */
-        public static final int activity_horizontal_margin=0x7f060000;
-        public static final int activity_vertical_margin=0x7f060001;
+        public static final int activity_horizontal_margin=0x7f080000;
+        public static final int activity_vertical_margin=0x7f080001;
     }
     public static final class drawable {
         public static final int camera_button=0x7f020000;
-        public static final int ic_launcher=0x7f020001;
-        public static final int next=0x7f020002;
+        public static final int common_signin_btn_icon_dark=0x7f020001;
+        public static final int common_signin_btn_icon_disabled_dark=0x7f020002;
+        public static final int common_signin_btn_icon_disabled_focus_dark=0x7f020003;
+        public static final int common_signin_btn_icon_disabled_focus_light=0x7f020004;
+        public static final int common_signin_btn_icon_disabled_light=0x7f020005;
+        public static final int common_signin_btn_icon_focus_dark=0x7f020006;
+        public static final int common_signin_btn_icon_focus_light=0x7f020007;
+        public static final int common_signin_btn_icon_light=0x7f020008;
+        public static final int common_signin_btn_icon_normal_dark=0x7f020009;
+        public static final int common_signin_btn_icon_normal_light=0x7f02000a;
+        public static final int common_signin_btn_icon_pressed_dark=0x7f02000b;
+        public static final int common_signin_btn_icon_pressed_light=0x7f02000c;
+        public static final int common_signin_btn_text_dark=0x7f02000d;
+        public static final int common_signin_btn_text_disabled_dark=0x7f02000e;
+        public static final int common_signin_btn_text_disabled_focus_dark=0x7f02000f;
+        public static final int common_signin_btn_text_disabled_focus_light=0x7f020010;
+        public static final int common_signin_btn_text_disabled_light=0x7f020011;
+        public static final int common_signin_btn_text_focus_dark=0x7f020012;
+        public static final int common_signin_btn_text_focus_light=0x7f020013;
+        public static final int common_signin_btn_text_light=0x7f020014;
+        public static final int common_signin_btn_text_normal_dark=0x7f020015;
+        public static final int common_signin_btn_text_normal_light=0x7f020016;
+        public static final int common_signin_btn_text_pressed_dark=0x7f020017;
+        public static final int common_signin_btn_text_pressed_light=0x7f020018;
+        public static final int ic_launcher=0x7f020019;
+        public static final int next=0x7f02001a;
     }
     public static final class id {
-        public static final int action_settings=0x7f0a0038;
-        public static final int add_more_details_text=0x7f0a0022;
-        public static final int additional_details=0x7f0a0023;
-        public static final int btnChoosePic=0x7f0a0010;
-        public static final int btnTakePic=0x7f0a000f;
-        public static final int button1=0x7f0a0015;
-        public static final int button_compose=0x7f0a0009;
-        public static final int button_debug=0x7f0a0008;
-        public static final int button_logout=0x7f0a0007;
-        public static final int button_send_tweet=0x7f0a002f;
-        public static final int button_settings=0x7f0a0006;
-        public static final int button_setup=0x7f0a0005;
-        public static final int button_test=0x7f0a000a;
-        public static final int button_to_photo=0x7f0a000b;
-        public static final int buttonsettingssave=0x7f0a0019;
-        public static final int char_count=0x7f0a002a;
-        public static final int character_count=0x7f0a0036;
-        public static final int contact_text=0x7f0a0028;
-        public static final int debug_button_finish=0x7f0a0002;
-        public static final int disaster_text_box=0x7f0a0034;
-        public static final int disaster_text_box_border=0x7f0a0033;
-        public static final int edit_message=0x7f0a0014;
-        public static final int enter_location_label_text=0x7f0a001c;
-        public static final int enter_your_own_text=0x7f0a0032;
-        public static final int find_btn=0x7f0a0003;
-        public static final int gps_button=0x7f0a001b;
-        public static final int imageView1=0x7f0a0011;
-        public static final int list=0x7f0a0021;
-        public static final int loc_map=0x7f0a0004;
-        public static final int location_text=0x7f0a001a;
-        public static final int location_text_box=0x7f0a001e;
-        public static final int locinfo=0x7f0a000c;
-        public static final int map=0x7f0a000d;
-        public static final int mytitle_layout_root=0x7f0a0030;
-        public static final int photo_button=0x7f0a0020;
-        public static final int photo_layout=0x7f0a0024;
-        public static final int proceed_state=0x7f0a001d;
-        public static final int radiobuttondata=0x7f0a0017;
-        public static final int radiobuttonsms=0x7f0a0018;
-        public static final int radiogroup=0x7f0a0016;
-        public static final int source_text=0x7f0a0027;
-        public static final int submit_button=0x7f0a002b;
-        public static final int test_proceed_1=0x7f0a0001;
-        public static final int test_tweet=0x7f0a0012;
-        public static final int textView1=0x7f0a001f;
-        public static final int textView4=0x7f0a0029;
-        public static final int time_text=0x7f0a0026;
-        public static final int title=0x7f0a0031;
-        public static final int tweet_compose=0x7f0a0000;
-        public static final int tweet_display=0x7f0a0037;
-        public static final int tweet_layout=0x7f0a002d;
-        public static final int tweet_string=0x7f0a002e;
-        public static final int use_gps=0x7f0a002c;
-        public static final int use_trail=0x7f0a0013;
-        public static final int vertical_border=0x7f0a0025;
-        public static final int webview=0x7f0a000e;
-        public static final int your_tweet=0x7f0a0035;
+        public static final int action_settings=0x7f05003e;
+        public static final int add_more_details_text=0x7f050027;
+        public static final int additional_details=0x7f050028;
+        public static final int btnChoosePic=0x7f050015;
+        public static final int btnTakePic=0x7f050014;
+        public static final int button1=0x7f05001a;
+        public static final int button_compose=0x7f05000e;
+        public static final int button_debug=0x7f05000d;
+        public static final int button_logout=0x7f05000c;
+        public static final int button_send_tweet=0x7f050034;
+        public static final int button_settings=0x7f05000b;
+        public static final int button_setup=0x7f05000a;
+        public static final int button_test=0x7f05000f;
+        public static final int button_to_photo=0x7f050010;
+        public static final int buttonsettingssave=0x7f05001e;
+        public static final int char_count=0x7f05002f;
+        public static final int contact_text=0x7f05002d;
+        public static final int debug_button_finish=0x7f050007;
+        public static final int disaster_text_box=0x7f05003a;
+        public static final int disaster_text_box_border=0x7f050039;
+        public static final int edit_message=0x7f050019;
+        public static final int enter_location_label_text=0x7f050021;
+        public static final int enter_your_own_text=0x7f050037;
+        public static final int find_btn=0x7f050008;
+        public static final int footer_character_count=0x7f05003c;
+        public static final int gps_button=0x7f050020;
+        public static final int hybrid=0x7f050004;
+        public static final int imageView1=0x7f050016;
+        public static final int list=0x7f050026;
+        public static final int loc_map=0x7f050009;
+        public static final int location_text=0x7f05001f;
+        public static final int location_text_box=0x7f050023;
+        public static final int locinfo=0x7f050011;
+        public static final int map=0x7f050012;
+        public static final int mytitle_layout_root=0x7f050035;
+        public static final int none=0x7f050000;
+        public static final int normal=0x7f050001;
+        public static final int photo_button=0x7f050025;
+        public static final int photo_layout=0x7f050029;
+        public static final int proceed_disaster=0x7f050038;
+        public static final int proceed_state=0x7f050022;
+        public static final int radiobuttondata=0x7f05001c;
+        public static final int radiobuttonsms=0x7f05001d;
+        public static final int radiogroup=0x7f05001b;
+        public static final int satellite=0x7f050002;
+        public static final int source_text=0x7f05002c;
+        public static final int submit_button=0x7f050030;
+        public static final int terrain=0x7f050003;
+        public static final int test_proceed_1=0x7f050006;
+        public static final int test_tweet=0x7f050017;
+        public static final int textView1=0x7f050024;
+        public static final int textView4=0x7f05002e;
+        public static final int time_text=0x7f05002b;
+        public static final int title=0x7f050036;
+        public static final int tweet_compose=0x7f050005;
+        public static final int tweet_display=0x7f05003d;
+        public static final int tweet_layout=0x7f050032;
+        public static final int tweet_string=0x7f050033;
+        public static final int use_gps=0x7f050031;
+        public static final int use_trail=0x7f050018;
+        public static final int vertical_border=0x7f05002a;
+        public static final int webview=0x7f050013;
+        public static final int your_tweet=0x7f05003b;
     }
     public static final class layout {
         public static final int activity_compose=0x7f030000;
@@ -121,146 +283,221 @@ public final class R {
         public static final int listview_footer=0x7f030012;
     }
     public static final class menu {
-        public static final int location_and_map=0x7f090000;
-        public static final int main=0x7f090001;
-        public static final int map_display=0x7f090002;
-        public static final int photo=0x7f090003;
-        public static final int previous_location=0x7f090004;
-        public static final int test_string_builder=0x7f090005;
-        public static final int test_string_builder_add_details=0x7f090006;
-        public static final int test_string_builder_confirm=0x7f090007;
-        public static final int test_string_builder_disaster_list=0x7f090008;
-        public static final int test_string_builder_location=0x7f090009;
-        public static final int test_string_builder_map=0x7f09000a;
-        public static final int test_string_builder_tweet_sent=0x7f09000b;
+        public static final int location_and_map=0x7f0a0000;
+        public static final int main=0x7f0a0001;
+        public static final int map_display=0x7f0a0002;
+        public static final int photo=0x7f0a0003;
+        public static final int previous_location=0x7f0a0004;
+        public static final int test_string_builder=0x7f0a0005;
+        public static final int test_string_builder_add_details=0x7f0a0006;
+        public static final int test_string_builder_confirm=0x7f0a0007;
+        public static final int test_string_builder_disaster_list=0x7f0a0008;
+        public static final int test_string_builder_location=0x7f0a0009;
+        public static final int test_string_builder_map=0x7f0a000a;
+        public static final int test_string_builder_tweet_sent=0x7f0a000b;
     }
     public static final class string {
-        public static final int action_settings=0x7f070010;
-        public static final int address_hint_text=0x7f07002f;
-        public static final int album_name=0x7f070063;
+        public static final int action_settings=0x7f060025;
+        public static final int address_hint_text=0x7f060044;
+        public static final int album_name=0x7f060078;
         /**  activity names(titles) 
          */
-        public static final int app_name=0x7f070000;
-        public static final int button_choose_pic=0x7f070062;
-        public static final int button_compose_text=0x7f07000e;
-        public static final int button_debug_text=0x7f07000d;
-        public static final int button_logout_text=0x7f07000b;
+        public static final int app_name=0x7f060015;
+        /**   Title for notification shown when GooglePlayServices is unavailable [CHAR LIMIT=70] 
+         */
+        public static final int auth_client_availability_notification_title=0x7f06000f;
+        /**   Title for notification shown when GooglePlayServices is unavailable [CHAR LIMIT=42] 
+         */
+        public static final int auth_client_play_services_err_notification_msg=0x7f060010;
+        /**   Requested by string saying which app requested the notification. [CHAR LIMIT=42] 
+         */
+        public static final int auth_client_requested_by_msg=0x7f060011;
+        public static final int button_choose_pic=0x7f060077;
+        public static final int button_compose_text=0x7f060023;
+        public static final int button_debug_text=0x7f060022;
+        public static final int button_logout_text=0x7f060020;
         /**  TweetActivity 
          */
-        public static final int button_send_tweet_text=0x7f07001a;
+        public static final int button_send_tweet_text=0x7f06002f;
         /**  MainActivity 
          */
-        public static final int button_settings_text=0x7f07000a;
-        public static final int button_setup_text=0x7f07000c;
-        public static final int button_show_map=0x7f070013;
-        public static final int button_take_pic=0x7f070061;
-        public static final int button_to_photo_activity=0x7f070060;
-        public static final int button_use_gps_loc=0x7f070011;
+        public static final int button_settings_text=0x7f06001f;
+        public static final int button_setup_text=0x7f060021;
+        public static final int button_show_map=0x7f060028;
+        public static final int button_take_pic=0x7f060076;
+        public static final int button_to_photo_activity=0x7f060075;
+        public static final int button_use_gps_loc=0x7f060026;
         /** 
     commented (Mussie) <string name="address_hint_text">4504 16th Ave. NE 8206</string>
     <string name="enter_location_text">Enter Location</string>
     <string name="map_placeholder_text">Insert Map Here!</string>
     
          */
-        public static final int button_use_trail_log=0x7f07004b;
-        public static final int button_user_tag_entry=0x7f070029;
-        public static final int buttonsave=0x7f070017;
-        public static final int camera_description=0x7f07003c;
-        public static final int cancel=0x7f070014;
-        public static final int cannot=0x7f070064;
-        public static final int category_placeholder_text=0x7f07004e;
-        public static final int category_question_text=0x7f070042;
-        public static final int character_count_text=0x7f070041;
-        public static final int compose_name=0x7f07001c;
-        public static final int contact_text=0x7f070050;
-        public static final int contact_text_hint=0x7f070049;
-        public static final int continue_without_location_text=0x7f07002e;
-        public static final int current_location_button_text=0x7f070026;
+        public static final int button_use_trail_log=0x7f060060;
+        public static final int button_user_tag_entry=0x7f06003e;
+        public static final int buttonsave=0x7f06002c;
+        public static final int camera_description=0x7f060051;
+        public static final int cancel=0x7f060029;
+        public static final int cannot=0x7f060079;
+        public static final int category_placeholder_text=0x7f060063;
+        public static final int category_question_text=0x7f060057;
+        public static final int character_count_text=0x7f060056;
+        /**  Button in confirmation dialog to enable Google Play services.  Clicking it
+        will direct user to application settings of Google Play services where they
+        can enable it [CHAR LIMIT=40] 
+         */
+        public static final int common_google_play_services_enable_button=0x7f060006;
+        /**  Message in confirmation dialog informing user they need to enable
+        Google Play services in application settings [CHAR LIMIT=NONE] 
+         */
+        public static final int common_google_play_services_enable_text=0x7f060005;
+        /**  Title of confirmation dialog informing user they need to enable
+        Google Play services in application settings [CHAR LIMIT=40] 
+         */
+        public static final int common_google_play_services_enable_title=0x7f060004;
+        /**  Button in confirmation dialog for installing Google Play services [CHAR LIMIT=40] 
+         */
+        public static final int common_google_play_services_install_button=0x7f060003;
+        /**  (For phones) Message in confirmation dialog informing user that
+        they need to install Google Play services (from Play Store) [CHAR LIMIT=NONE] 
+         */
+        public static final int common_google_play_services_install_text_phone=0x7f060001;
+        /**  (For tablets) Message in confirmation dialog informing user that
+        they need to install Google Play services (from Play Store) [CHAR LIMIT=NONE] 
+         */
+        public static final int common_google_play_services_install_text_tablet=0x7f060002;
+        /**  Title of confirmation dialog informing user that they need to install
+        Google Play services (from Play Store) [CHAR LIMIT=40] 
+         */
+        public static final int common_google_play_services_install_title=0x7f060000;
+        /**  Message in confirmation dialog informing user there is an unknown issue in Google Play
+        services [CHAR LIMIT=NONE] 
+         */
+        public static final int common_google_play_services_unknown_issue=0x7f060009;
+        /**  Message in confirmation dialog informing user that Google Play services is not supported on their device [CHAR LIMIT=NONE] 
+         */
+        public static final int common_google_play_services_unsupported_text=0x7f06000b;
+        /**  Title of confirmation dialog informing user that Google Play services is not supported on their device [CHAR LIMIT=40] 
+         */
+        public static final int common_google_play_services_unsupported_title=0x7f06000a;
+        /**  Button in confirmation dialog for updating Google Play services [CHAR LIMIT=40] 
+         */
+        public static final int common_google_play_services_update_button=0x7f06000c;
+        /**  Message in confirmation dialog informing user that they need to update
+        Google Play services (from Play Store) [CHAR LIMIT=NONE] 
+         */
+        public static final int common_google_play_services_update_text=0x7f060008;
+        /**  Title of confirmation dialog informing user that they need to update
+        Google Play services (from Play Store) [CHAR LIMIT=40] 
+         */
+        public static final int common_google_play_services_update_title=0x7f060007;
+        /**  Sign-in button text [CHAR LIMIT=15] 
+         */
+        public static final int common_signin_button_text=0x7f06000d;
+        /**  Long form sign-in button text [CHAR LIMIT=30] 
+         */
+        public static final int common_signin_button_text_long=0x7f06000e;
+        public static final int compose_name=0x7f060031;
+        public static final int contact_text=0x7f060065;
+        public static final int contact_text_hint=0x7f06005e;
+        public static final int continue_without_location_text=0x7f060043;
+        public static final int current_location_button_text=0x7f06003b;
         /**  DebugActivity 
          */
-        public static final int debug_button_finish_text=0x7f070019;
-        public static final int debug_name=0x7f070004;
-        public static final int details_text=0x7f070053;
-        public static final int disaster_reporting_text=0x7f07003e;
-        public static final int disaster_tag_prompt=0x7f070022;
-        public static final int do_not_remind_text=0x7f070033;
-        public static final int edit_message=0x7f070012;
-        public static final int enter_location_text=0x7f070030;
-        public static final int enter_text=0x7f070039;
-        public static final int enter_your_own_hint=0x7f07003f;
-        public static final int gps_text=0x7f070038;
-        public static final int hello_world=0x7f070018;
-        public static final int location_divider_text=0x7f070027;
-        public static final int location_question_subtext=0x7f07002c;
-        public static final int location_question_text=0x7f07002b;
-        public static final int location_reporting_text=0x7f070037;
-        public static final int location_title_text=0x7f070025;
-        public static final int login_message=0x7f070059;
-        public static final int login_no=0x7f070058;
+        public static final int debug_button_finish_text=0x7f06002e;
+        public static final int debug_name=0x7f060019;
+        public static final int details_text=0x7f060068;
+        public static final int disaster_reporting_text=0x7f060053;
+        public static final int disaster_tag_prompt=0x7f060037;
+        public static final int do_not_remind_text=0x7f060048;
+        public static final int edit_message=0x7f060027;
+        public static final int enter_location_text=0x7f060045;
+        public static final int enter_text=0x7f06004e;
+        public static final int enter_your_own_hint=0x7f060054;
+        public static final int gps_text=0x7f06004d;
+        public static final int hello_world=0x7f06002d;
+        /**  Location client code resources (prefix with location_client) 
+
+        Begin strings for location.reporting
+    
+
+        Some InactiveReason names.  See more in OneUp/package/location/res/values/strings.xml
+    
+         */
+        public static final int location_client_ulr_inactive_age_under_13=0x7f060012;
+        public static final int location_client_ulr_inactive_age_unknown=0x7f060013;
+        public static final int location_client_ulr_inactive_unknown_restriction=0x7f060014;
+        public static final int location_divider_text=0x7f06003c;
+        public static final int location_question_subtext=0x7f060041;
+        public static final int location_question_text=0x7f060040;
+        public static final int location_reporting_text=0x7f06004c;
+        public static final int location_title_text=0x7f06003a;
+        public static final int login_message=0x7f06006e;
+        public static final int login_no=0x7f06006d;
         /**  DialogFragments 
          */
-        public static final int login_yes=0x7f070057;
-        public static final int map_instruction_text=0x7f07002d;
-        public static final int map_placeholder_text=0x7f070031;
-        public static final int network_message=0x7f07005b;
-        public static final int network_yes=0x7f07005a;
-        public static final int oauth_name=0x7f070007;
-        public static final int or_text=0x7f07003a;
-        public static final int other_instruction_hint=0x7f070044;
-        public static final int phone_hint_text=0x7f070051;
-        public static final int photo_text=0x7f070052;
-        public static final int previous_location_button_text=0x7f070028;
-        public static final int proceed_description=0x7f07003b;
+        public static final int login_yes=0x7f06006c;
+        public static final int map_instruction_text=0x7f060042;
+        public static final int map_placeholder_text=0x7f060046;
+        public static final int network_message=0x7f060070;
+        public static final int network_yes=0x7f06006f;
+        public static final int oauth_name=0x7f06001c;
+        public static final int or_text=0x7f06004f;
+        public static final int other_instruction_hint=0x7f060059;
+        public static final int phone_hint_text=0x7f060066;
+        public static final int photo_text=0x7f060067;
+        public static final int previous_location_button_text=0x7f06003d;
+        public static final int proceed_description=0x7f060050;
         /**  SettingsActivity 
          */
-        public static final int radiodata=0x7f070015;
-        public static final int radiosms=0x7f070016;
-        public static final int review_text=0x7f070032;
-        public static final int settings_name=0x7f070001;
-        public static final int setup_name=0x7f070003;
-        public static final int signup_name=0x7f070008;
-        public static final int source_text=0x7f070047;
-        public static final int source_text_hint=0x7f070048;
-        public static final int test_build_next=0x7f07001e;
-        public static final int test_build_send=0x7f07001f;
+        public static final int radiodata=0x7f06002a;
+        public static final int radiosms=0x7f06002b;
+        public static final int review_text=0x7f060047;
+        public static final int settings_name=0x7f060016;
+        public static final int setup_name=0x7f060018;
+        public static final int signup_name=0x7f06001d;
+        public static final int source_text=0x7f06005c;
+        public static final int source_text_hint=0x7f06005d;
+        public static final int test_build_next=0x7f060033;
+        public static final int test_build_send=0x7f060034;
         /**  TestStringBuilder 
          */
-        public static final int test_button=0x7f07001d;
-        public static final int test_string_city_hint=0x7f070023;
-        public static final int test_string_details_hint=0x7f070024;
-        public static final int time_text=0x7f070045;
-        public static final int time_text_hint=0x7f070046;
-        public static final int title_activity_category=0x7f07004d;
-        public static final int title_activity_city=0x7f070035;
-        public static final int title_activity_custom_window=0x7f07003d;
-        public static final int title_activity_disaster=0x7f070036;
-        public static final int title_activity_location=0x7f07002a;
-        public static final int title_activity_location_and_map=0x7f070006;
-        public static final int title_activity_map=0x7f07004c;
-        public static final int title_activity_map_display=0x7f070005;
-        public static final int title_activity_other=0x7f07004f;
-        public static final int title_activity_photo=0x7f07005f;
-        public static final int title_activity_previous_location=0x7f07005c;
-        public static final int title_activity_review=0x7f070034;
-        public static final int title_activity_review_tweet=0x7f07004a;
-        public static final int title_activity_test_string_builder=0x7f070020;
-        public static final int title_activity_test_string_builder_add_details=0x7f07005e;
-        public static final int title_activity_test_string_builder_category=0x7f070021;
-        public static final int title_activity_test_string_builder_confirm=0x7f070056;
-        public static final int title_activity_test_string_builder_disaster_list=0x7f07005d;
+        public static final int test_button=0x7f060032;
+        public static final int test_string_city_hint=0x7f060038;
+        public static final int test_string_details_hint=0x7f060039;
+        public static final int time_text=0x7f06005a;
+        public static final int time_text_hint=0x7f06005b;
+        public static final int title_activity_category=0x7f060062;
+        public static final int title_activity_city=0x7f06004a;
+        public static final int title_activity_custom_window=0x7f060052;
+        public static final int title_activity_disaster=0x7f06004b;
+        public static final int title_activity_location=0x7f06003f;
+        public static final int title_activity_location_and_map=0x7f06001b;
+        public static final int title_activity_map=0x7f060061;
+        public static final int title_activity_map_display=0x7f06001a;
+        public static final int title_activity_other=0x7f060064;
+        public static final int title_activity_photo=0x7f060074;
+        public static final int title_activity_previous_location=0x7f060071;
+        public static final int title_activity_review=0x7f060049;
+        public static final int title_activity_review_tweet=0x7f06005f;
+        public static final int title_activity_test_string_builder=0x7f060035;
+        public static final int title_activity_test_string_builder_add_details=0x7f060073;
+        public static final int title_activity_test_string_builder_category=0x7f060036;
+        public static final int title_activity_test_string_builder_confirm=0x7f06006b;
+        public static final int title_activity_test_string_builder_disaster_list=0x7f060072;
         /**  MapActivities 
          */
-        public static final int title_activity_test_string_builder_location=0x7f070054;
-        public static final int title_activity_test_string_builder_map=0x7f070055;
-        public static final int title_activity_test_string_builder_tweet_sent=0x7f070065;
+        public static final int title_activity_test_string_builder_location=0x7f060069;
+        public static final int title_activity_test_string_builder_map=0x7f06006a;
+        public static final int title_activity_test_string_builder_tweet_sent=0x7f06007a;
         /**  ComposeActivity 
          */
-        public static final int tweet_confirm_text=0x7f07001b;
-        public static final int tweet_name=0x7f070002;
-        public static final int tweet_placeholder_text=0x7f070043;
-        public static final int tweet_text=0x7f070040;
-        public static final int webview_name=0x7f070009;
-        public static final int welcome=0x7f07000f;
+        public static final int tweet_confirm_text=0x7f060030;
+        public static final int tweet_name=0x7f060017;
+        public static final int tweet_placeholder_text=0x7f060058;
+        public static final int tweet_text=0x7f060055;
+        public static final int webview_name=0x7f06001e;
+        public static final int welcome=0x7f060024;
     }
     public static final class style {
         /** 
@@ -284,13 +521,259 @@ public final class R {
     
  API 14 theme customizations can go here. 
          */
-        public static final int AppBaseTheme=0x7f050001;
+        public static final int AppBaseTheme=0x7f070001;
         /**  Application theme. 
  All customizations that are NOT specific to a particular API-level can go here. 
          */
-        public static final int AppTheme=0x7f050002;
-        public static final int CustomTheme=0x7f050004;
-        public static final int WindowTitleBackground=0x7f050003;
-        public static final int customTheme=0x7f050000;
+        public static final int AppTheme=0x7f070002;
+        public static final int CustomTheme=0x7f070004;
+        public static final int WindowTitleBackground=0x7f070003;
+        public static final int customTheme=0x7f070000;
     }
+    public static final class styleable {
+        /** Attributes that can be used with a MapAttrs.
+           <p>Includes the following attributes:</p>
+           <table>
+           <colgroup align="left" />
+           <colgroup align="left" />
+           <tr><th>Attribute</th><th>Description</th></tr>
+           <tr><td><code>{@link #MapAttrs_cameraBearing uw.changecapstone.tweakthetweet:cameraBearing}</code></td><td></td></tr>
+           <tr><td><code>{@link #MapAttrs_cameraTargetLat uw.changecapstone.tweakthetweet:cameraTargetLat}</code></td><td></td></tr>
+           <tr><td><code>{@link #MapAttrs_cameraTargetLng uw.changecapstone.tweakthetweet:cameraTargetLng}</code></td><td></td></tr>
+           <tr><td><code>{@link #MapAttrs_cameraTilt uw.changecapstone.tweakthetweet:cameraTilt}</code></td><td></td></tr>
+           <tr><td><code>{@link #MapAttrs_cameraZoom uw.changecapstone.tweakthetweet:cameraZoom}</code></td><td></td></tr>
+           <tr><td><code>{@link #MapAttrs_mapType uw.changecapstone.tweakthetweet:mapType}</code></td><td></td></tr>
+           <tr><td><code>{@link #MapAttrs_uiCompass uw.changecapstone.tweakthetweet:uiCompass}</code></td><td></td></tr>
+           <tr><td><code>{@link #MapAttrs_uiRotateGestures uw.changecapstone.tweakthetweet:uiRotateGestures}</code></td><td></td></tr>
+           <tr><td><code>{@link #MapAttrs_uiScrollGestures uw.changecapstone.tweakthetweet:uiScrollGestures}</code></td><td></td></tr>
+           <tr><td><code>{@link #MapAttrs_uiTiltGestures uw.changecapstone.tweakthetweet:uiTiltGestures}</code></td><td></td></tr>
+           <tr><td><code>{@link #MapAttrs_uiZoomControls uw.changecapstone.tweakthetweet:uiZoomControls}</code></td><td></td></tr>
+           <tr><td><code>{@link #MapAttrs_uiZoomGestures uw.changecapstone.tweakthetweet:uiZoomGestures}</code></td><td></td></tr>
+           <tr><td><code>{@link #MapAttrs_useViewLifecycle uw.changecapstone.tweakthetweet:useViewLifecycle}</code></td><td></td></tr>
+           <tr><td><code>{@link #MapAttrs_zOrderOnTop uw.changecapstone.tweakthetweet:zOrderOnTop}</code></td><td></td></tr>
+           </table>
+           @see #MapAttrs_cameraBearing
+           @see #MapAttrs_cameraTargetLat
+           @see #MapAttrs_cameraTargetLng
+           @see #MapAttrs_cameraTilt
+           @see #MapAttrs_cameraZoom
+           @see #MapAttrs_mapType
+           @see #MapAttrs_uiCompass
+           @see #MapAttrs_uiRotateGestures
+           @see #MapAttrs_uiScrollGestures
+           @see #MapAttrs_uiTiltGestures
+           @see #MapAttrs_uiZoomControls
+           @see #MapAttrs_uiZoomGestures
+           @see #MapAttrs_useViewLifecycle
+           @see #MapAttrs_zOrderOnTop
+         */
+        public static final int[] MapAttrs = {
+            0x7f010000, 0x7f010001, 0x7f010002, 0x7f010003,
+            0x7f010004, 0x7f010005, 0x7f010006, 0x7f010007,
+            0x7f010008, 0x7f010009, 0x7f01000a, 0x7f01000b,
+            0x7f01000c, 0x7f01000d
+        };
+        /**
+          <p>This symbol is the offset where the {@link uw.changecapstone.tweakthetweet.R.attr#cameraBearing}
+          attribute's value can be found in the {@link #MapAttrs} array.
+
+
+          <p>Must be a floating point value, such as "<code>1.2</code>".
+<p>This may also be a reference to a resource (in the form
+"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
+theme attribute (in the form
+"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
+containing a value of this type.
+          @attr name android:cameraBearing
+        */
+        public static final int MapAttrs_cameraBearing = 1;
+        /**
+          <p>This symbol is the offset where the {@link uw.changecapstone.tweakthetweet.R.attr#cameraTargetLat}
+          attribute's value can be found in the {@link #MapAttrs} array.
+
+
+          <p>Must be a floating point value, such as "<code>1.2</code>".
+<p>This may also be a reference to a resource (in the form
+"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
+theme attribute (in the form
+"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
+containing a value of this type.
+          @attr name android:cameraTargetLat
+        */
+        public static final int MapAttrs_cameraTargetLat = 2;
+        /**
+          <p>This symbol is the offset where the {@link uw.changecapstone.tweakthetweet.R.attr#cameraTargetLng}
+          attribute's value can be found in the {@link #MapAttrs} array.
+
+
+          <p>Must be a floating point value, such as "<code>1.2</code>".
+<p>This may also be a reference to a resource (in the form
+"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
+theme attribute (in the form
+"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
+containing a value of this type.
+          @attr name android:cameraTargetLng
+        */
+        public static final int MapAttrs_cameraTargetLng = 3;
+        /**
+          <p>This symbol is the offset where the {@link uw.changecapstone.tweakthetweet.R.attr#cameraTilt}
+          attribute's value can be found in the {@link #MapAttrs} array.
+
+
+          <p>Must be a floating point value, such as "<code>1.2</code>".
+<p>This may also be a reference to a resource (in the form
+"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
+theme attribute (in the form
+"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
+containing a value of this type.
+          @attr name android:cameraTilt
+        */
+        public static final int MapAttrs_cameraTilt = 4;
+        /**
+          <p>This symbol is the offset where the {@link uw.changecapstone.tweakthetweet.R.attr#cameraZoom}
+          attribute's value can be found in the {@link #MapAttrs} array.
+
+
+          <p>Must be a floating point value, such as "<code>1.2</code>".
+<p>This may also be a reference to a resource (in the form
+"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
+theme attribute (in the form
+"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
+containing a value of this type.
+          @attr name android:cameraZoom
+        */
+        public static final int MapAttrs_cameraZoom = 5;
+        /**
+          <p>This symbol is the offset where the {@link uw.changecapstone.tweakthetweet.R.attr#mapType}
+          attribute's value can be found in the {@link #MapAttrs} array.
+
+
+          <p>Must be one of the following constant values.</p>
+<table>
+<colgroup align="left" />
+<colgroup align="left" />
+<colgroup align="left" />
+<tr><th>Constant</th><th>Value</th><th>Description</th></tr>
+<tr><td><code>none</code></td><td>0</td><td></td></tr>
+<tr><td><code>normal</code></td><td>1</td><td></td></tr>
+<tr><td><code>satellite</code></td><td>2</td><td></td></tr>
+<tr><td><code>terrain</code></td><td>3</td><td></td></tr>
+<tr><td><code>hybrid</code></td><td>4</td><td></td></tr>
+</table>
+          @attr name android:mapType
+        */
+        public static final int MapAttrs_mapType = 0;
+        /**
+          <p>This symbol is the offset where the {@link uw.changecapstone.tweakthetweet.R.attr#uiCompass}
+          attribute's value can be found in the {@link #MapAttrs} array.
+
+
+          <p>Must be a boolean value, either "<code>true</code>" or "<code>false</code>".
+<p>This may also be a reference to a resource (in the form
+"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
+theme attribute (in the form
+"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
+containing a value of this type.
+          @attr name android:uiCompass
+        */
+        public static final int MapAttrs_uiCompass = 6;
+        /**
+          <p>This symbol is the offset where the {@link uw.changecapstone.tweakthetweet.R.attr#uiRotateGestures}
+          attribute's value can be found in the {@link #MapAttrs} array.
+
+
+          <p>Must be a boolean value, either "<code>true</code>" or "<code>false</code>".
+<p>This may also be a reference to a resource (in the form
+"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
+theme attribute (in the form
+"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
+containing a value of this type.
+          @attr name android:uiRotateGestures
+        */
+        public static final int MapAttrs_uiRotateGestures = 7;
+        /**
+          <p>This symbol is the offset where the {@link uw.changecapstone.tweakthetweet.R.attr#uiScrollGestures}
+          attribute's value can be found in the {@link #MapAttrs} array.
+
+
+          <p>Must be a boolean value, either "<code>true</code>" or "<code>false</code>".
+<p>This may also be a reference to a resource (in the form
+"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
+theme attribute (in the form
+"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
+containing a value of this type.
+          @attr name android:uiScrollGestures
+        */
+        public static final int MapAttrs_uiScrollGestures = 8;
+        /**
+          <p>This symbol is the offset where the {@link uw.changecapstone.tweakthetweet.R.attr#uiTiltGestures}
+          attribute's value can be found in the {@link #MapAttrs} array.
+
+
+          <p>Must be a boolean value, either "<code>true</code>" or "<code>false</code>".
+<p>This may also be a reference to a resource (in the form
+"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
+theme attribute (in the form
+"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
+containing a value of this type.
+          @attr name android:uiTiltGestures
+        */
+        public static final int MapAttrs_uiTiltGestures = 9;
+        /**
+          <p>This symbol is the offset where the {@link uw.changecapstone.tweakthetweet.R.attr#uiZoomControls}
+          attribute's value can be found in the {@link #MapAttrs} array.
+
+
+          <p>Must be a boolean value, either "<code>true</code>" or "<code>false</code>".
+<p>This may also be a reference to a resource (in the form
+"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
+theme attribute (in the form
+"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
+containing a value of this type.
+          @attr name android:uiZoomControls
+        */
+        public static final int MapAttrs_uiZoomControls = 10;
+        /**
+          <p>This symbol is the offset where the {@link uw.changecapstone.tweakthetweet.R.attr#uiZoomGestures}
+          attribute's value can be found in the {@link #MapAttrs} array.
+
+
+          <p>Must be a boolean value, either "<code>true</code>" or "<code>false</code>".
+<p>This may also be a reference to a resource (in the form
+"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
+theme attribute (in the form
+"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
+containing a value of this type.
+          @attr name android:uiZoomGestures
+        */
+        public static final int MapAttrs_uiZoomGestures = 11;
+        /**
+          <p>This symbol is the offset where the {@link uw.changecapstone.tweakthetweet.R.attr#useViewLifecycle}
+          attribute's value can be found in the {@link #MapAttrs} array.
+
+
+          <p>Must be a boolean value, either "<code>true</code>" or "<code>false</code>".
+<p>This may also be a reference to a resource (in the form
+"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
+theme attribute (in the form
+"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
+containing a value of this type.
+          @attr name android:useViewLifecycle
+        */
+        public static final int MapAttrs_useViewLifecycle = 12;
+        /**
+          <p>This symbol is the offset where the {@link uw.changecapstone.tweakthetweet.R.attr#zOrderOnTop}
+          attribute's value can be found in the {@link #MapAttrs} array.
+
+
+          <p>Must be a boolean value, either "<code>true</code>" or "<code>false</code>".
+<p>This may also be a reference to a resource (in the form
+"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
+theme attribute (in the form
+"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
+containing a value of this type.
+          @attr name android:zOrderOnTop
+        */
+        public static final int MapAttrs_zOrderOnTop = 13;
+    };
 }
