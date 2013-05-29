@@ -29,10 +29,9 @@ import android.widget.AdapterView.OnItemClickListener;
 public class TestStringBuilderDisasterList extends CustomWindow {
 
 	private ListView disaster_list;
-	private String tweet;
-	private String custom_disaster_tag;
+	private String tweet, custom_disaster_tag;
 	private TextView char_count;
-	private EditText crnt_tweet, disaster_tag;
+	private EditText crnt_tweet;
 	private ImageButton proceed_custom_disaster_tag;
 	
 	private final TextWatcher createNewDisasterTag = new TextWatcher() {
@@ -110,12 +109,11 @@ public class TestStringBuilderDisasterList extends CustomWindow {
 		footerLabel.setText("or enter your own #disaster");
 		
 		//Set the hint in the text box to match the disaster page
-		EditText stateTextBox = (EditText) findViewById(R.id.disaster_text_box);
+		EditText stateTextBox = (EditText) findViewById(R.id.custom_text_box);
 		stateTextBox.setHint("i.e. #northhurricane");
 		
 		//Set up disaster text box
-		disaster_tag = (EditText) findViewById(R.id.disaster_text_box);
-		disaster_tag.addTextChangedListener(createNewDisasterTag);
+		stateTextBox.addTextChangedListener(createNewDisasterTag);
 				
 		//Set up char count
 		char_count = (TextView) findViewById(R.id.footer_character_count);
@@ -125,7 +123,7 @@ public class TestStringBuilderDisasterList extends CustomWindow {
 		crnt_tweet = (EditText) findViewById(R.id.tweet_display);
 		
 		//Set up "next" button for custom hash tag
-		proceed_custom_disaster_tag = (ImageButton) findViewById(R.id.proceed_disaster);
+		proceed_custom_disaster_tag = (ImageButton) findViewById(R.id.proceed_with_custom);
 		proceed_custom_disaster_tag.setOnClickListener(new OnClickListener() {
 
 		    @Override
@@ -188,39 +186,6 @@ public class TestStringBuilderDisasterList extends CustomWindow {
 
 		return new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, testData);
     }
-	
-	private final TextWatcher charCountWatcher = new TextWatcher() {
-		public void beforeTextChanged(CharSequence s, int start, int count, int after) {
-			int crntLength = 140 - tweet.length();
-			if(crntLength != 1){
-				char_count.setText(String.valueOf(140 - tweet.length()) + " characters left in tweet");
-			}else{
-				char_count.setText(String.valueOf(140 - tweet.length()) + " character left in tweet");
-			}
-		}
-	
-		public void onTextChanged(CharSequence s, int start, int before, int count) {
-			tweet = tweet + " " + s;
-			int crntLength = 140 - tweet.length();
-			if(crntLength < 0){
-				char_count.setTextColor(Color.RED);
-			}else{
-				char_count.setTextColor(Color.BLACK);
-			}
-			
-			if(crntLength != 1){
-				char_count.setText(String.valueOf(crntLength) + " characters left");
-			}else{
-				char_count.setText(String.valueOf(crntLength) + " character left");
-			}
-		}
-	
-		@Override
-		public void afterTextChanged(Editable arg0) {
-			// TODO Auto-generated method stub
-		}
-	
-	};
 	
 	public void nextViewLocation(View view){
 		Intent i = new Intent(this, TestStringBuilderMap.class);

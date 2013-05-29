@@ -75,8 +75,8 @@ public class LocationWithGPS extends CustomWindow {
 		String longitude = ((Double)intent.getDoubleExtra(TestStringBuilderDisasterList.LONG, 0.0)).toString();
 		System.out.println("m1u"+latitude +" "+longitude);*/
 		
-		latitude = TestStringBuilderDisasterList.latitude;
-		longitude = TestStringBuilderDisasterList.longitude;
+		//*************** latitude = TestStringBuilderDisasterList.latitude;
+		//*************** longitude = TestStringBuilderDisasterList.longitude;
 		System.out.println("m1u"+latitude +" "+longitude);
 		mMap = ((MapFragment) getFragmentManager().findFragmentById(R.id.loc_map)).getMap();
 		LatLng gpslatLng = new LatLng(latitude, longitude);

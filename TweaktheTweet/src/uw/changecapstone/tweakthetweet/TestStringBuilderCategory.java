@@ -4,28 +4,35 @@ import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.View;
+import android.view.View.OnClickListener;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.ListAdapter;
 import android.widget.ListView;
 import android.widget.Spinner;
 import android.widget.TextView;
+import android.widget.Toast;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.AdapterView.OnItemSelectedListener;
 
 public class TestStringBuilderCategory extends CustomWindow {
 
-	private String tweet, category;
 	//private TextView char_count;
 	//private EditText add_details;
 	private ListView category_list;
+	private String tweet, category_tag, custom_category_tag;
+	private TextView char_count;
+	private EditText crnt_tweet;
+	private ImageButton proceed_custom_category_tag;
 	
 //	private final TextWatcher charCountWatcher = new TextWatcher() {
 //		public void beforeTextChanged(CharSequence s, int start, int count, int after) {
@@ -42,6 +49,42 @@ public class TestStringBuilderCategory extends CustomWindow {
 //		}
 //
 //	};
+	
+	private final TextWatcher createNewCategoryTag = new TextWatcher() {
+		public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+		}
+	
+		public void onTextChanged(CharSequence s, int start, int before, int count) {
+			
+			//Handle tag creation and display in footer box
+			custom_category_tag = s.toString();
+			
+			//Add "#" character to hash tag if the user did not already enter it
+			if(!custom_category_tag.contains("#")){
+				custom_category_tag = "#" + custom_category_tag;
+			}
+			crnt_tweet.setText(tweet + " " + custom_category_tag);
+			
+			//Handle character count display
+			int crntLength = 140 - tweet.length() - custom_category_tag.length();
+			if(crntLength < 0){
+				char_count.setTextColor(Color.RED);
+			}else{
+				char_count.setTextColor(Color.BLACK);
+			}
+			
+			if(crntLength != 1){
+				char_count.setText(String.valueOf(crntLength) + " characters left");
+			}else{
+				char_count.setText(String.valueOf(crntLength) + " character left");
+			}
+		}
+	
+		@Override
+		public void afterTextChanged(Editable arg0) {
+		}
+	
+	};
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -60,11 +103,12 @@ public class TestStringBuilderCategory extends CustomWindow {
 			public void onItemClick(AdapterView<?> adapter, View v, int position,
 					long id) {
 				
-				category = (String) adapter.getItemAtPosition(position);
+				category_tag = (String) adapter.getItemAtPosition(position);
 				nextViewDetails(v);
 			}
 		
 		});
+		
 		
 		//Add footer for entering your own hashtag and displaying tweet
 		View footerView = ((LayoutInflater)getSystemService(LAYOUT_INFLATER_SERVICE)).inflate(R.layout.listview_footer, null, false);
@@ -73,6 +117,34 @@ public class TestStringBuilderCategory extends CustomWindow {
 		//Set the enter your own label to match the category page
 		TextView footerLabel = (TextView) findViewById(R.id.enter_your_own_text);
 		footerLabel.setText("or enter your own #category");
+		
+		//Set up category text box
+		EditText categoryTextBox = (EditText) findViewById(R.id.custom_text_box);
+		categoryTextBox.addTextChangedListener(createNewCategoryTag);
+				
+		//Set up char count
+		char_count = (TextView) findViewById(R.id.footer_character_count);
+		char_count.setText("140 characters left");
+		
+		//Set up tweet text box
+		crnt_tweet = (EditText) findViewById(R.id.tweet_display);
+		crnt_tweet.setText(tweet);
+		
+		//Set up "next" button for custom hash tag
+		proceed_custom_category_tag = (ImageButton) findViewById(R.id.proceed_with_custom);
+		proceed_custom_category_tag.setOnClickListener(new OnClickListener() {
+
+		    @Override
+		    public void onClick(View v) {
+				if(custom_category_tag != null){
+					category_tag = custom_category_tag;
+					nextViewDetails(v);
+				}else{
+					Toast.makeText(getApplicationContext(), "Please enter a custom category tag", Toast.LENGTH_SHORT).show();
+					
+				}
+		    }
+		});
 		
 		//Create adapter
 		ListAdapter adapter = createAdapter(disaster);
@@ -129,11 +201,11 @@ public class TestStringBuilderCategory extends CustomWindow {
 		// In case the user backed, we don't want to accidentally duplicate strings, so we pull from the bundle again
 		Bundle bundle = getIntent().getExtras();
 		tweet = bundle.getString("tweet");
-		tweet += " " + category;
+		tweet += " " + category_tag;
 		//tweet += " " + add_details.getText().toString();
 		Intent i = new Intent(this, TestStringBuilderConfirm.class);
 		i.putExtra("tweet", tweet);
-		i.putExtra("category", category);
+		i.putExtra("category", category_tag);
 		startActivity(i);
 	}
 }

@@ -21,7 +21,7 @@
         android:orientation="horizontal" >
 
         <ImageButton
-            android:id="@+id/proceed_disaster"
+            android:id="@+id/proceed_with_custom"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentRight="true"
@@ -29,15 +29,15 @@
             android:background="@drawable/next" />
 
         <FrameLayout
-            android:id="@+id/disaster_text_box_border"
+            android:id="@+id/custom_text_box_border"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
-            android:layout_toLeftOf="@id/proceed_disaster"
+            android:layout_toLeftOf="@id/proceed_with_custom"
             android:background="#a1a1a1"
             android:padding="1dp" >
 
             <EditText
-                android:id="@+id/disaster_text_box"
+                android:id="@+id/custom_text_box"
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
                 android:singleLine="true"

@@ -23,6 +23,7 @@ public class TestStringBuilderConfirm extends CustomWindow {
 	private EditText test_tweet, add_details, add_time, add_source, add_contact;
 	private TextView char_count;
 	private String category, tweet, final_tweet;
+	int crntLength;
 	private final String TIME_TAG = "#time";
 	private final String SOURCE_TAG = "#src";
 	private final String CONTACT_TAG = "#cont";		
@@ -57,7 +58,7 @@ public class TestStringBuilderConfirm extends CustomWindow {
 	
 		public void onTextChanged(CharSequence s, int start, int before, int count) {
 			final_tweet = tweet + " " + s;
-			int crntLength = 140 - final_tweet.length();
+			crntLength = 140 - final_tweet.length();
 			if(crntLength < 0){
 				char_count.setTextColor(Color.RED);
 			}else{
@@ -218,6 +219,16 @@ public class TestStringBuilderConfirm extends CustomWindow {
 		test_tweet.setHorizontallyScrolling(false);
 		test_tweet.setMaxLines(Integer.MAX_VALUE);		
 		test_tweet.addTextChangedListener(charCountWatcher);
+		test_tweet.setOnEditorActionListener(new OnEditorActionListener() {        
+		    @Override
+		    public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
+		        if(actionId==EditorInfo.IME_ACTION_DONE){
+		            //Clear focus when the done button is clicked 
+		            test_tweet.clearFocus();
+		        }
+		    return false;
+		    }
+		});
 		
 		//Set up char count
 		char_count = (TextView) findViewById(R.id.char_count);
@@ -252,9 +263,13 @@ public class TestStringBuilderConfirm extends CustomWindow {
 	}
 	
 	public void nextViewSent(View view) {
-		Intent i = new Intent(this, TestStringBuilderTweetSent.class);
-		startActivity(i);
-		i.putExtra("tweet", tweet);
+		if(crntLength<0){
+			Toast.makeText(getApplicationContext(), "Your tweet is longer than 140 characters, please shorten it.", Toast.LENGTH_SHORT).show();
+		}else{
+			Intent i = new Intent(this, TestStringBuilderTweetSent.class);
+			startActivity(i);
+			i.putExtra("tweet", tweet);
+		}
 	}
 
 }
