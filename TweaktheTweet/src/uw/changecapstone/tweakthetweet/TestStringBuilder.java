@@ -45,6 +45,10 @@ public class TestStringBuilder extends CustomWindow{
 	Context context = this;
 	public final static String LAT = "uw.changecapstone.tweakthetweet.latitude";
 	public final static String LONG = "uw.changecapstone.tweakthetweet.longitude";
+	public final static String CITY_LAT = "uw.changecapstone.tweakthetweet.latitude";
+	public final static String CITY_LONG = "uw.changecapstone.tweakthetweet.longitude";
+	static boolean isGpsUsed = false;
+	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -76,6 +80,7 @@ public class TestStringBuilder extends CustomWindow{
 	public void nextViewCurrentGPS(View view){
 		// TODO: Mussie needs to pull the GPS coordinates and pass it on
 		// (check that it exists on google maps?)
+		isGpsUsed = true;
 		LocationManager lm = (LocationManager) getSystemService(Context.LOCATION_SERVICE); 	
 		LocationListener locationListener = new GPSListener();
 		if (lm.isProviderEnabled(LocationManager.GPS_PROVIDER)){
@@ -243,8 +248,8 @@ public class TestStringBuilder extends CustomWindow{
 				Intent i = new Intent(context, TestStringBuilderDisasterList.class);
 				// TODO: we don't need to save the city location but just passing it
 				i.putExtra("loc", location_text_box.getText().toString());
-				i.putExtra("CITY_LAT", lat);
-				i.putExtra("CITY_LONG", lng);
+				i.putExtra(CITY_LAT, lat);
+				i.putExtra(CITY_LONG, lng);
 				startActivity(i);
 				Toast.makeText(getBaseContext(), "Tweet City: "+address.getAddressLine(0), Toast.LENGTH_SHORT).show();
 			}

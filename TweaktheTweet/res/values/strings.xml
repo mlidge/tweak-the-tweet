@@ -160,7 +160,7 @@
 	<string name="continue_without_loc">I do not know the location.Continue with out a location. </string>
 	<string name="btn_gps_loc">Use my GPS location</string>
 	<string name="btn_tapped_loc">Use my tapped location</string>
-	
+	<string name="btn_geo_loc">Use the address</string>
     <string-array name="disaster_tags">
         
         <item>Flood</item>

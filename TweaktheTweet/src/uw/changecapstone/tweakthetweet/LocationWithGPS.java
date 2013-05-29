@@ -17,11 +17,13 @@ import android.provider.Settings;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.util.Log;
+import android.view.KeyEvent;
 import android.view.Menu;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
+import android.widget.TextView.OnEditorActionListener;
 
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
@@ -29,32 +31,32 @@ import com.google.android.gms.maps.GoogleMap.OnMapClickListener;
 import com.google.android.gms.maps.MapFragment;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
-import com.google.android.maps.GeoPoint;
 
 @SuppressLint("NewApi")
 
 public class LocationWithGPS extends CustomWindow {
 	private GoogleMap mMap;
-	private LatLng latLng;
-	GeoPoint p;
-	Context context = this;
-	public final static String LAT = "uw.changecapstone.tweakthetweet.latitude";
-	public final static String LONG = "uw.changecapstone.tweakthetweet.longitude";
-	public final static double MAX_DISTANCE_OFFSET = 2000.0;
-	
+	private LatLng geoLatLng;
+	private LatLng tappedLatLng;
+	public final static String GPSLAT = "uw.changecapstone.tweakthetweet.gpslat";
+	public final static String GPSLONG = "uw.changecapstone.tweakthetweet.gpslong";
+	public final static String TAPPEDLAT = "uw.changecapstone.tweakthetweet.tappedlat";
+	public final static String TAPPEDLONG = "uw.changecapstone.tweakthetweet.tappedlong";
 	private String tweet, disaster;
 	private TextView char_count;
 	private EditText location_text, test_tweet;
 	public final static String LOCATION_TEXT = "uw.changecapstone.tweakthetweet.MESSAGE";
-	double latitude; 
-	double longitude;
+	double gps_lat; 
+	double gps_long;
 	private final TextWatcher charCountWatcher = new TextWatcher() {
 		public void beforeTextChanged(CharSequence s, int start, int count, int after) {
-			char_count.setText(String.valueOf(140 - tweet.length() - " #loc ".length()) + " characters left in tweet");
+			//TODO: to put this back
+			//char_count.setText(String.valueOf(140 - tweet.length() - " #loc ".length()) + " characters left in tweet");
 		}
 
 		public void onTextChanged(CharSequence s, int start, int before, int count) {
-			char_count.setText(String.valueOf(140 - tweet.length() - " #loc ".length() - s.length()) + " characters left in tweet");
+			//TODO: to put this back
+			//char_count.setText(String.valueOf(140 - tweet.length() - " #loc ".length() - s.length()) + " characters left in tweet");
 		}
 
 		@Override
@@ -75,25 +77,15 @@ public class LocationWithGPS extends CustomWindow {
 		String longitude = ((Double)intent.getDoubleExtra(TestStringBuilderDisasterList.LONG, 0.0)).toString();
 		System.out.println("m1u"+latitude +" "+longitude);*/
 		
-		//*************** latitude = TestStringBuilderDisasterList.latitude;
-		//*************** longitude = TestStringBuilderDisasterList.longitude;
-		System.out.println("m1u"+latitude +" "+longitude);
+		gps_lat = TestStringBuilderDisasterList.latitude;
+		gps_long = TestStringBuilderDisasterList.longitude;
+		System.out.println("m1u"+gps_lat +" "+gps_long);
 		mMap = ((MapFragment) getFragmentManager().findFragmentById(R.id.loc_map)).getMap();
-		LatLng gpslatLng = new LatLng(latitude, longitude);
+		LatLng gpslatLng = new LatLng(gps_lat, gps_long);
 		mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(gpslatLng, 14));
 		mMap.addMarker(new MarkerOptions().position(gpslatLng).title("your gps location."));
 		mMap.setMyLocationEnabled(true);
-		/*if (location == null || location.equals("")){
-			mMap.addMarker(new MarkerOptions()
-	        .position(new LatLng(47.6561359, -122.3042217))
-	        .title("test marker . This is where I take my bus home"));
-			mMap.setMyLocationEnabled(true);
-			mMap.setMapType(GoogleMap.MAP_TYPE_NORMAL);
-			LatLng latLng = new LatLng(getMidLat(46.6561359,48.6561359), getMidLng(-121.3042217,-123.3042217));
-			//mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(latLng, 14));
-		} else	if (location !=null && !location.equals("")){
-			new GeocoderTask().execute(location);
-		} */
+		
 		mMap.setOnMapClickListener(getOnMapClickListener());
 		this.title.setText("#location");
 		
@@ -111,9 +103,21 @@ public class LocationWithGPS extends CustomWindow {
 		// TODO: Display map of event area with user's location
 		
 		char_count = (TextView) findViewById(R.id.char_count);
-		char_count.setText(String.valueOf(140 - tweet.length() - " #loc ".length()) + " characters left in tweet");
+		//TODO: to put this back
+		//char_count.setText(String.valueOf(140 - tweet.length() - " #loc ".length()) + " characters left in tweet");
 		location_text = (EditText) findViewById(R.id.location_text_box);
 		location_text.addTextChangedListener(charCountWatcher);
+		location_text.setOnEditorActionListener(new OnEditorActionListener(){
+
+			@Override
+			public boolean onEditorAction(TextView v, int actionId,
+					KeyEvent event) {
+				// TODO Auto-generated method stub
+				readLocationMessage();
+				return true;
+			}
+			
+		});
 	}
 	/*Gets the lat/long location that was touched.*/
 	private OnMapClickListener getOnMapClickListener() {
@@ -121,12 +125,8 @@ public class LocationWithGPS extends CustomWindow {
 		public void onMapClick(LatLng point) {
 			double lat = point.latitude;
 			double lng = point.longitude;
-			latLng = new LatLng(lat, lng);
-			/*Intent intent = new Intent(this, TweetActivity.class);
-		    intent.putExtra(LAT, latLng.latitude);
-		    intent.putExtra(LONG, latLng.latitude);
-		    startActivity(intent);*/
-			Toast.makeText(getBaseContext(), "Location: "+lat + "," + 
+			tappedLatLng = new LatLng(lat, lng);
+			Toast.makeText(getBaseContext(), "Tapped Location: "+lat + "," + 
 					lng, Toast.LENGTH_SHORT).show();
 		}
 		
@@ -157,13 +157,11 @@ public class LocationWithGPS extends CustomWindow {
 				Address address = addresses.get(0);
 				double lat = address.getLatitude();
 				double lng = address.getLongitude();
-				latLng = new LatLng(lat, lng);
-				/*Intent i = new Intent(this, TweetActivity.class);
-				i.putExtra("LAT", latLng.latitude);
-				i.putExtra("LONG", latLng.longitude);
-				startActivity(i);*/
-				mMap.animateCamera(CameraUpdateFactory.newLatLngZoom(latLng, 14));
-				mMap.addMarker(new MarkerOptions().position(latLng).title("geolocation of your address."));
+				geoLatLng = new LatLng(lat, lng);
+				//unfortunately the latest design does not make use of this geo lat and long, 
+				//but I have left here if needed in the future.
+				mMap.animateCamera(CameraUpdateFactory.newLatLngZoom(geoLatLng, 14));
+				mMap.addMarker(new MarkerOptions().position(geoLatLng).title("geolocation of your address."));
 				Toast.makeText(getBaseContext(), "Tweet Address: "+address.getAddressLine(0), Toast.LENGTH_SHORT).show();
 			}
 		}
@@ -189,11 +187,7 @@ public class LocationWithGPS extends CustomWindow {
 	/*when the user clicks the "Enter" button, 
 	 * we are going to read the textfield content and 
 	 * do some validity checks before we show/zoom map*/
-	public void readLocationMessage(View view){
-		/*Intent intent = new Intent(this, LocationAndMapActivity.class);
-	    String message = location_text.getText().toString();
-	    intent.putExtra(LOCATION_TEXT, message);
-	    startActivity(intent);*/
+	public void readLocationMessage(){
 		String location = location_text.getText().toString();
 		if (location !=null && !location.equals(""))
 			new GeocoderTask().execute(location);
@@ -230,8 +224,8 @@ public class LocationWithGPS extends CustomWindow {
 		i.putExtra("tweet", tweet);
 		i.putExtra("disaster", disaster);
 		//TODO: send position to TestStringBuilderCategory from which to send lat/long to tweetActivity
-		i.putExtra("GPSLAT", latitude);
-		i.putExtra("GPSLONG", longitude);
+		i.putExtra(GPSLAT, gps_lat);
+		i.putExtra(GPSLONG, gps_long);
 		startActivity(i);
 	}
 	public void useTappedLocation(View view){
@@ -249,8 +243,12 @@ public class LocationWithGPS extends CustomWindow {
 		i.putExtra("tweet", tweet);
 		i.putExtra("disaster", disaster);
 		//TODO: send position to TestStringBuilderCategory from which to send lat/long to tweetActivity
-		i.putExtra("TAPPEDLAT", latLng.latitude);
-		i.putExtra("TAPPEDLONG", latLng.longitude);
-		startActivity(i);
+		if(tappedLatLng==null)
+			Toast.makeText(getBaseContext(), "Please Touch the map first: ", Toast.LENGTH_SHORT).show();
+		else {
+			i.putExtra(TAPPEDLAT, tappedLatLng.latitude);
+			i.putExtra(TAPPEDLONG, tappedLatLng.longitude);
+			startActivity(i);
+		}
 	}
 }

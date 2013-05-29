@@ -30,6 +30,14 @@ public class TestStringBuilderDisasterList extends CustomWindow {
 
 	private ListView disaster_list;
 	private String tweet, custom_disaster_tag;
+	public final static String LAT = "uw.changecapstone.tweakthetweet.latitude";
+	public final static String LONG = "uw.changecapstone.tweakthetweet.longitude";
+	public final static String CITY_LAT = "uw.changecapstone.tweakthetweet.latitude";
+	public final static String CITY_LONG = "uw.changecapstone.tweakthetweet.longitude";
+	static double latitude ;
+	static double longitude;
+	static double city_lat ;
+	static double city_long;
 	private TextView char_count;
 	private EditText crnt_tweet;
 	private ImageButton proceed_custom_disaster_tag;
@@ -73,6 +81,14 @@ public class TestStringBuilderDisasterList extends CustomWindow {
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
+		//added by mussie. changed the string to double because intent was not used.
+		Intent intent = getIntent();
+		latitude = ((Double)intent.getDoubleExtra(TestStringBuilder.LAT, 0.0));
+		longitude = ((Double)intent.getDoubleExtra(TestStringBuilder.LONG, 0.0));
+		System.out.println("test: "+latitude+" "+longitude);
+		
+		city_lat = ((Double)intent.getDoubleExtra(TestStringBuilder.CITY_LAT, 0.0));
+		city_long = ((Double)intent.getDoubleExtra(TestStringBuilder.CITY_LONG, 0.0));
 		setContentView(R.layout.activity_test_string_builder_disaster_list);
 		this.title.setText("#disaster");
 		
@@ -94,7 +110,10 @@ public class TestStringBuilderDisasterList extends CustomWindow {
 					long id) {
 				
 				tweet = (String) adapter.getItemAtPosition(position);
-				nextViewLocation(v);
+				if(TestStringBuilder.isGpsUsed)
+					nextViewLocation(v);
+				else
+					nextNonGPSLocation(v);
 			}
 		
 		});
@@ -130,7 +149,10 @@ public class TestStringBuilderDisasterList extends CustomWindow {
 		    public void onClick(View v) {
 				if(custom_disaster_tag != null){
 					tweet = custom_disaster_tag;
-					nextViewLocation(v);
+					if(TestStringBuilder.isGpsUsed)
+						nextViewLocation(v);
+					else
+						nextNonGPSLocation(v);
 				}else{
 					Toast.makeText(getApplicationContext(), "Please enter a custom disaster tag", Toast.LENGTH_SHORT).show();
 					
@@ -188,10 +210,24 @@ public class TestStringBuilderDisasterList extends CustomWindow {
     }
 	
 	public void nextViewLocation(View view){
-		Intent i = new Intent(this, TestStringBuilderMap.class);
+		//TODO: the intent is not used to get the LAT/LONG
+		Intent i = new Intent(this, LocationWithGPS.class);
 		i.putExtra("tweet", tweet);
 		i.putExtra("disaster", tweet);
+		i.putExtra(LAT, latitude);
+		i.putExtra(LONG, longitude);
+		System.out.println("going out of disaster list: "+latitude+" "+longitude);
 		startActivity(i);
 	}
-
+	public void nextNonGPSLocation(View view){
+		//TODO: the intent is not used to get the LAT/LONG
+		System.out.println("inside non-gps");
+		Intent i = new Intent(this, PreviousLocationActivity.class);
+		i.putExtra("tweet", tweet);
+		i.putExtra("disaster", tweet);
+		i.putExtra(CITY_LAT, city_lat);
+		i.putExtra(CITY_LONG, city_long);
+		System.out.println("going out of disaster list: "+city_lat+" "+city_lat);
+		startActivity(i);
+	}
 }
