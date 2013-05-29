@@ -267,8 +267,8 @@ public class TestStringBuilderConfirm extends CustomWindow {
 			Toast.makeText(getApplicationContext(), "Your tweet is longer than 140 characters, please shorten it.", Toast.LENGTH_SHORT).show();
 		}else{
 			Intent i = new Intent(this, TestStringBuilderTweetSent.class);
-			startActivity(i);
 			i.putExtra("tweet", tweet);
+			startActivity(i);
 		}
 	}
 
