@@ -21,7 +21,7 @@
     <uses-permission android:name="com.google.android.providers.gsf.permission.READ_GSERVICES" />
     <!--
     The following two permissions are not required to use
-	Google Maps Android API v2, but are recommended.
+	Google Maps Android API v2, but are recommended.
     -->
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
@@ -39,7 +39,7 @@
         android:label="@string/app_name"
         android:theme="@android:style/Theme.Light" >
         <activity
-            android:name="uw.changecapstone.tweakthetweet.MainActivity"
+            android:name="uw.changecapstone.tweakthetweet.LoadingScreen"
             android:label="@string/app_name"
             android:theme="@style/CustomTheme" >
             <intent-filter>
@@ -133,8 +133,8 @@
         <activity
             android:name="uw.changecapstone.tweakthetweet.TestStringBuilderDisasterList"
             android:label="@string/title_activity_test_string_builder_disaster_list"
-            android:theme="@style/CustomTheme"
-            android:launchMode="singleTask" >
+            android:launchMode="singleTask"
+            android:theme="@style/CustomTheme" >
         </activity>
         <activity
             android:name="uw.changecapstone.tweakthetweet.TestStringBuilderAddDetails"
@@ -155,6 +155,14 @@
             android:label="@string/title_activity_location_with_gps"
             android:theme="@style/CustomTheme" >
         </activity>
+        <activity
+            android:name="uw.changecapstone.tweakthetweet.EmergencyNotification"
+            android:label="@string/title_activity_emergency_notification" >
+        </activity>
+        <!--  <activity
+            android:name="uw.changecapstone.tweakthetweet.LoadingScreen"
+            android:label="@string/title_activity_loading_screen" >
+        </activity> -->
     </application>
 
 </manifest>
