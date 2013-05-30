@@ -1,22 +1,23 @@
 package uw.changecapstone.tweakthetweet;
 
-import android.os.Bundle;
-import android.app.Activity;
-import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
+import android.content.pm.ApplicationInfo;
+import android.content.pm.PackageManager;
+import android.content.pm.PackageManager.NameNotFoundException;
 import android.graphics.Color;
+import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.view.KeyEvent;
 import android.view.Menu;
 import android.view.View;
-import android.view.View.OnKeyListener;
 import android.view.inputmethod.EditorInfo;
-import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
 import android.widget.TextView;
-import android.widget.Toast;
 import android.widget.TextView.OnEditorActionListener;
+import android.widget.Toast;
 
 public class TestStringBuilderConfirm extends CustomWindow {
 
@@ -26,7 +27,17 @@ public class TestStringBuilderConfirm extends CustomWindow {
 	int crntLength;
 	private final String TIME_TAG = "#time";
 	private final String SOURCE_TAG = "#src";
-	private final String CONTACT_TAG = "#cont";		
+	private final String CONTACT_TAG = "#cont";	
+	
+	private final static String TWEET_STRING = "TWEET_STRING";
+	private static final String PREF_KEY_TWITTER_LOGIN = "isTwitterLoggedIn";
+	private static final String LOGIN_DIALOG_TAG = "logindialog";
+	private static final String NETWORK_DIALOG_TAG = "networkdialog";
+	private static final String PHOTO_PATH = "photopath";
+	private static final String GEO_LOC = "geolocation";
+	private static final String HAS_PHOTO = "hasphoto";
+	private static final String LAT = "uw.changecapstone.tweakthetweet.latitude";
+	private static final String LONG = "uw.changecapstone.tweakthetweet.longitude";
 	
 	/*private final TextWatcher charCountWatcher = new TextWatcher() {
 		public void beforeTextChanged(CharSequence s, int start, int count, int after) {
@@ -293,12 +304,24 @@ public class TestStringBuilderConfirm extends CustomWindow {
 		return true;
 	}
 	
-	public void nextViewSent(View view) {
+	public void nextViewSent(View view) throws NameNotFoundException {
 		if(crntLength<0){
 			Toast.makeText(getApplicationContext(), "Your tweet is longer than 140 characters, please shorten it.", Toast.LENGTH_SHORT).show();
 		}else{
-			Intent i = new Intent(this, TestStringBuilderTweetSent.class);
-			i.putExtra("tweet", tweet);
+			
+			Intent i = new Intent(this, TweetActivity.class);
+			// the tweet
+			// the latitude to be embedded
+			// the longitude to be embedded
+			// if there are coordinates to embed
+			// if there is a photo to embed
+			// the photo path
+			i.putExtra(TWEET_STRING, tweet);
+			i.putExtra(LAT, 0.0);
+			i.putExtra(LONG, 0.0);
+			i.putExtra(GEO_LOC, true);
+			i.putExtra(HAS_PHOTO, false);
+			i.putExtra(PHOTO_PATH, "");
 			startActivity(i);
 		}
 	}
