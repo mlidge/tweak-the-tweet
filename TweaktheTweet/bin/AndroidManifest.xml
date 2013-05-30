@@ -127,7 +127,8 @@
         </activity>
         <activity
             android:name="uw.changecapstone.tweakthetweet.PreviousLocationActivity"
-            android:label="@string/title_activity_previous_location" >
+            android:label="@string/title_activity_previous_location"
+            android:theme="@style/CustomTheme" >
         </activity>
         <activity
             android:name="uw.changecapstone.tweakthetweet.TestStringBuilderDisasterList"
@@ -150,7 +151,8 @@
         </activity>
         <activity
             android:name="uw.changecapstone.tweakthetweet.LocationWithGPS"
-            android:label="@string/title_activity_location_with_gps" >
+            android:label="@string/title_activity_location_with_gps"
+            android:theme="@style/CustomTheme" >
         </activity>
     </application>
 

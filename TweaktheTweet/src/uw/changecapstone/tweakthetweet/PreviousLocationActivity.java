@@ -18,12 +18,17 @@ import android.location.Geocoder;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
 import android.text.Editable;
 import android.text.TextWatcher;
+import android.util.Log;
 import android.view.KeyEvent;
 import android.view.Menu;
+import android.view.MotionEvent;
 import android.view.View;
+import android.view.inputmethod.EditorInfo;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -59,6 +64,7 @@ public class PreviousLocationActivity extends CustomWindow {
 			// TODO Auto-generated method stub
 		}
 	};
+	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -78,6 +84,21 @@ public class PreviousLocationActivity extends CustomWindow {
 		tweet = bundle.getString("tweet");
 		disaster = bundle.getString("disaster");
 		
+		
+		//*************************************************************
+		final EditText location_text_box = (EditText) findViewById(R.id.location_text_box);
+		location_text_box.setOnEditorActionListener(new TextView.OnEditorActionListener() {
+	        public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
+	            if (actionId == EditorInfo.IME_ACTION_GO) {
+	                // hide virtual keyboard
+	                InputMethodManager imm = (InputMethodManager)getSystemService(Context.INPUT_METHOD_SERVICE);
+	                imm.hideSoftInputFromWindow(location_text_box.getWindowToken(), 0);
+	                return true;
+	            }
+	            return false;
+	        }
+	    });
+		
 		char_count = (TextView) findViewById(R.id.char_count);
 		//TODO: to put this back
 		//char_count.setText(String.valueOf(140 - tweet.length() - " #loc ".length()) + " characters left in tweet");
@@ -94,6 +115,7 @@ public class PreviousLocationActivity extends CustomWindow {
 			}		
 		});
 	}
+	
 	/*Gets the lat/long location that was touched.*/
 	private OnMapClickListener getOnMapClickListener() {
 		return new OnMapClickListener() {			
@@ -106,6 +128,7 @@ public class PreviousLocationActivity extends CustomWindow {
 		}		
 	};
 	}
+	
 	/* reference: http://wptrafficanalyzer.in/blog */
 	private class GeocoderTask extends AsyncTask<String, Void, List <Address> >{
 
@@ -138,12 +161,15 @@ public class PreviousLocationActivity extends CustomWindow {
 			}
 		}
 	}
+	
 	public float getMidLat(double minLat, double maxLat){
 		return (float) ((minLat+maxLat)/2);
 	}
+	
 	public float getMidLng(double minLng, double maxLng){
 		return (float) ((minLng+maxLng)/2);
 	}
+	
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
 		// Inflate the menu; this adds items to the action bar if it is present.
@@ -225,4 +251,5 @@ public class PreviousLocationActivity extends CustomWindow {
 			startActivity(i);
 		}
 	}
+	
 }
