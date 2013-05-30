@@ -48,6 +48,7 @@ public class PreviousLocationActivity extends CustomWindow {
 	public final static String LOCATION_TEXT = "uw.changecapstone.tweakthetweet.MESSAGE";
 	double city_lat; 
 	double city_long;
+	
 	private final TextWatcher charCountWatcher = new TextWatcher() {
 		public void beforeTextChanged(CharSequence s, int start, int count, int after) {
 			//TODO: to put this back
@@ -84,34 +85,23 @@ public class PreviousLocationActivity extends CustomWindow {
 		tweet = bundle.getString("tweet");
 		disaster = bundle.getString("disaster");
 		
-		
-		//*************************************************************
-		final EditText location_text_box = (EditText) findViewById(R.id.location_text_box);
-		location_text_box.setOnEditorActionListener(new TextView.OnEditorActionListener() {
-	        public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
-	            if (actionId == EditorInfo.IME_ACTION_GO) {
-	                // hide virtual keyboard
-	                InputMethodManager imm = (InputMethodManager)getSystemService(Context.INPUT_METHOD_SERVICE);
-	                imm.hideSoftInputFromWindow(location_text_box.getWindowToken(), 0);
-	                return true;
-	            }
-	            return false;
-	        }
-	    });
-		
 		char_count = (TextView) findViewById(R.id.char_count);
 		//TODO: to put this back
 		//char_count.setText(String.valueOf(140 - tweet.length() - " #loc ".length()) + " characters left in tweet");
 		location_text = (EditText) findViewById(R.id.location_text_box);
 		location_text.addTextChangedListener(charCountWatcher);
 		location_text.setOnEditorActionListener(new OnEditorActionListener(){
-
 			@Override
 			public boolean onEditorAction(TextView v, int actionId,
 					KeyEvent event) {
-				// TODO Auto-generated method stub
-				readLocationMessage();
-				return true;
+				if (actionId == EditorInfo.IME_ACTION_DONE) {
+		            // hide virtual keyboard
+		            InputMethodManager imm = (InputMethodManager)getSystemService(Context.INPUT_METHOD_SERVICE);
+		            imm.hideSoftInputFromWindow(location_text.getWindowToken(), 0);
+		            readLocationMessage();
+		            return true;
+		        }
+		        return false;
 			}		
 		});
 	}
@@ -181,6 +171,7 @@ public class PreviousLocationActivity extends CustomWindow {
 		Intent intent = new Intent(this, MapDisplayActivity.class);
 		startActivity(intent);
 	}
+	
 	/*when the user clicks the "Enter" button, 
 	 * we are going to read the textfield content and 
 	 * do some validity checks before we show/zoom map*/
@@ -189,6 +180,7 @@ public class PreviousLocationActivity extends CustomWindow {
 		if (location !=null && !location.equals(""))
 			new GeocoderTask().execute(location);
 	}
+	
 	// this method is going to be used to implement "I don't know my location" button
 	public void nextViewCategory(View view){
 		//TODO: to factor out with private method later

@@ -15,31 +15,30 @@
 	    android:orientation="vertical"
 	    android:background="@color/background_color" >
 	
-	    <TextView
+	   <TextView
 	        android:layout_width="match_parent"
 	        android:layout_height="wrap_content"
 	        android:text="If you know the location, enter an address to place it in your tweet"
 	        android:textSize="20sp"
 	        android:paddingBottom="10dp" />
-	            
-		<FrameLayout
+	   
+	    <FrameLayout
 		    android:layout_width="fill_parent"
 		    android:layout_height="wrap_content"
 		    android:padding="1dp"
-		    android:background="@color/border_color"
-		    android:layout_marginBottom="10dp" >
+		    android:background="@color/border_color" >
 		    
 		            <EditText
 		                android:id="@+id/location_text_box"
 		                android:layout_width="fill_parent"
 		                android:layout_height="wrap_content"
+		                android:background="@color/background_color"
 		                android:ems="9"
 		                android:hint="i.e. address, intersection, name of place, etc."
-		                android:background="@color/background_color"
-		                android:inputType="none"
+		                android:inputType="text"
 		                android:imeOptions="actionDone"
-	               		android:singleLine="true" >
-		            </EditText>
+		                android:singleLine="true" />
+	
 		            
 		</FrameLayout>
 		
