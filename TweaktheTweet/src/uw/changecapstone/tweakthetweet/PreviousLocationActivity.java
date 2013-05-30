@@ -236,6 +236,8 @@ public class PreviousLocationActivity extends CustomWindow {
 	    String message = editText.getText().toString();
 	    if (!message.isEmpty()) {
 	    	tweet += " #loc " + message;
+	    }else{
+	    	tweet += " #loc none";
 	    }
 	    
 		Intent i = new Intent(this, TestStringBuilderCategory.class);
