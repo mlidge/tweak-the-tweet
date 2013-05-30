@@ -303,4 +303,8 @@ public class TestStringBuilderConfirm extends CustomWindow {
 		}
 	}
 
+	public void nextViewPhoto(View view) {
+		Intent i = new Intent(this, PhotoActivity.class);
+		startActivity(i);
+	}
 }
