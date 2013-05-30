@@ -67,7 +67,8 @@
 	                android:layout_width="wrap_content"
 	                android:layout_height="wrap_content"
 	                android:contentDescription="@string/camera_description"
-	                android:background="@drawable/camera_button" />
+	                android:background="@drawable/camera_button"
+	                android:onClick="nextViewPhoto" />
 	        </LinearLayout>
 	        
 	        <View

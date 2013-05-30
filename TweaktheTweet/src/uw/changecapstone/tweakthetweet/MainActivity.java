@@ -51,7 +51,7 @@ public class MainActivity extends Activity implements DialogListener{
 		setContentView(R.layout.activity_main);
 		pref = PreferenceManager.getDefaultSharedPreferences(this);
 		checkNetworkStatus();
-		//checkLogInStatus();
+		checkLogInStatus();
 	}
 	
 	private void checkLogInStatus() {
@@ -119,7 +119,9 @@ public class MainActivity extends Activity implements DialogListener{
 	}
 		
 	public void testComposeString(View view) {
-		Intent i = new Intent(this, TestStringBuilder.class);
+		//Intent i = new Intent(this, TestStringBuilder.class);
+		
+		Intent i = new Intent(this, LoadingScreen.class);
 		startActivity(i);
 		
 	}

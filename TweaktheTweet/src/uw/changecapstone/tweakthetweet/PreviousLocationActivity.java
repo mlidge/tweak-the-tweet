@@ -18,18 +18,25 @@ import android.location.Geocoder;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
+import android.graphics.Color;
 import android.text.Editable;
 import android.text.TextWatcher;
+import android.util.Log;
 import android.view.KeyEvent;
 import android.view.Menu;
+import android.view.MotionEvent;
 import android.view.View;
+import android.view.inputmethod.EditorInfo;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
 import android.widget.TextView.OnEditorActionListener;
 
-public class PreviousLocationActivity extends Activity {
+public class PreviousLocationActivity extends CustomWindow {
 	private GoogleMap mMap;
 	private LatLng geoLatLng;
 	private LatLng tappedLatLng;
@@ -43,7 +50,10 @@ public class PreviousLocationActivity extends Activity {
 	public final static String LOCATION_TEXT = "uw.changecapstone.tweakthetweet.MESSAGE";
 	double city_lat; 
 	double city_long;
-	private final TextWatcher charCountWatcher = new TextWatcher() {
+	String message;
+	ImageButton doNotAddLoc;
+	
+	private final TextWatcher addLocationTag = new TextWatcher() {
 		public void beforeTextChanged(CharSequence s, int start, int count, int after) {
 			//TODO: to put this back
 			//char_count.setText(String.valueOf(140 - tweet.length() - " #loc ".length()) + " characters left in tweet");
@@ -52,17 +62,40 @@ public class PreviousLocationActivity extends Activity {
 		public void onTextChanged(CharSequence s, int start, int before, int count) {
 			//TODO: to put this back
 			//char_count.setText(String.valueOf(140 - tweet.length() - " #loc ".length() - s.length()) + " characters left in tweet");
+			
+			//Handle tag creation and display in footer box
+			message = s.toString();
+			
+			test_tweet.setText(tweet + " " + "#loc " + message);
+			
+			//Handle character count display
+			int crntLength = 140 - tweet.length() - message.length();
+			
+			if(crntLength < 0){
+				char_count.setTextColor(Color.RED);
+			}else{
+				char_count.setTextColor(Color.BLACK);
+			}
+			
+			if(crntLength != 1){
+				char_count.setText(String.valueOf(crntLength) + " characters left");
+			}else{
+				char_count.setText(String.valueOf(crntLength) + " character left");
+			}
 		}
 
 		@Override
 		public void afterTextChanged(Editable arg0) {
 			// TODO Auto-generated method stub
 		}
+
 	};
+	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_previous_location);
+		this.title.setText("#location");
 		
 		city_lat = TestStringBuilderDisasterList.city_lat;
 		city_long = TestStringBuilderDisasterList.city_long;
@@ -77,22 +110,34 @@ public class PreviousLocationActivity extends Activity {
 		tweet = bundle.getString("tweet");
 		disaster = bundle.getString("disaster");
 		
-		char_count = (TextView) findViewById(R.id.char_count);
+		//Set char count
+		char_count = (TextView) findViewById(R.id.character_count_prev_location);
+		char_count.setText(String.valueOf(140 - tweet.length()) + " characters left");
+		
+		//Set tweet box
+		test_tweet = (EditText) findViewById(R.id.tweet_display_prev);
+		test_tweet.setText(tweet);
+		
 		//TODO: to put this back
 		//char_count.setText(String.valueOf(140 - tweet.length() - " #loc ".length()) + " characters left in tweet");
 		location_text = (EditText) findViewById(R.id.location_text_box);
-		location_text.addTextChangedListener(charCountWatcher);
+		location_text.addTextChangedListener(addLocationTag);
 		location_text.setOnEditorActionListener(new OnEditorActionListener(){
-
 			@Override
 			public boolean onEditorAction(TextView v, int actionId,
 					KeyEvent event) {
-				// TODO Auto-generated method stub
-				readLocationMessage();
-				return true;
+				if (actionId == EditorInfo.IME_ACTION_DONE) {
+		            // hide virtual keyboard
+		            InputMethodManager imm = (InputMethodManager)getSystemService(Context.INPUT_METHOD_SERVICE);
+		            imm.hideSoftInputFromWindow(location_text.getWindowToken(), 0);
+		            readLocationMessage();
+		            return true;
+		        }
+		        return false;
 			}		
 		});
 	}
+	
 	/*Gets the lat/long location that was touched.*/
 	private OnMapClickListener getOnMapClickListener() {
 		return new OnMapClickListener() {			
@@ -105,6 +150,7 @@ public class PreviousLocationActivity extends Activity {
 		}		
 	};
 	}
+	
 	/* reference: http://wptrafficanalyzer.in/blog */
 	private class GeocoderTask extends AsyncTask<String, Void, List <Address> >{
 
@@ -137,12 +183,15 @@ public class PreviousLocationActivity extends Activity {
 			}
 		}
 	}
+	
 	public float getMidLat(double minLat, double maxLat){
 		return (float) ((minLat+maxLat)/2);
 	}
+	
 	public float getMidLng(double minLng, double maxLng){
 		return (float) ((minLng+maxLng)/2);
 	}
+	
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
 		// Inflate the menu; this adds items to the action bar if it is present.
@@ -154,6 +203,7 @@ public class PreviousLocationActivity extends Activity {
 		Intent intent = new Intent(this, MapDisplayActivity.class);
 		startActivity(intent);
 	}
+	
 	/*when the user clicks the "Enter" button, 
 	 * we are going to read the textfield content and 
 	 * do some validity checks before we show/zoom map*/
@@ -162,6 +212,7 @@ public class PreviousLocationActivity extends Activity {
 		if (location !=null && !location.equals(""))
 			new GeocoderTask().execute(location);
 	}
+	
 	// this method is going to be used to implement "I don't know my location" button
 	public void nextViewCategory(View view){
 		//TODO: to factor out with private method later
@@ -169,10 +220,8 @@ public class PreviousLocationActivity extends Activity {
 		tweet = bundle.getString("tweet");
 		
 		EditText editText = (EditText) findViewById(R.id.location_text_box);
-	    String message = editText.getText().toString();
-	    if (!message.isEmpty()) {
-	    	tweet += " #loc " + message;
-	    }
+	    message = editText.getText().toString();
+	    tweet += " #loc none";
 	    
 		Intent i = new Intent(this, TestStringBuilderCategory.class);
 		i.putExtra("tweet", tweet);
@@ -187,6 +236,8 @@ public class PreviousLocationActivity extends Activity {
 	    String message = editText.getText().toString();
 	    if (!message.isEmpty()) {
 	    	tweet += " #loc " + message;
+	    }else{
+	    	tweet += " #loc none";
 	    }
 	    
 		Intent i = new Intent(this, TestStringBuilderCategory.class);
@@ -224,4 +275,5 @@ public class PreviousLocationActivity extends Activity {
 			startActivity(i);
 		}
 	}
-}
+	
+	}

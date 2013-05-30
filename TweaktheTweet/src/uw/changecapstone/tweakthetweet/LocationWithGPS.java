@@ -8,6 +8,7 @@ import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.graphics.Color;
 import android.location.Address;
 import android.location.Geocoder;
 import android.location.Location;
@@ -20,7 +21,10 @@ import android.util.Log;
 import android.view.KeyEvent;
 import android.view.Menu;
 import android.view.View;
+import android.view.inputmethod.EditorInfo;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
 import android.widget.TextView.OnEditorActionListener;
@@ -48,7 +52,10 @@ public class LocationWithGPS extends CustomWindow {
 	public final static String LOCATION_TEXT = "uw.changecapstone.tweakthetweet.MESSAGE";
 	double gps_lat; 
 	double gps_long;
-	private final TextWatcher charCountWatcher = new TextWatcher() {
+	String message;
+	ImageButton doNotAddLoc;
+	
+	private final TextWatcher addLocationTag = new TextWatcher() {
 		public void beforeTextChanged(CharSequence s, int start, int count, int after) {
 			//TODO: to put this back
 			//char_count.setText(String.valueOf(140 - tweet.length() - " #loc ".length()) + " characters left in tweet");
@@ -57,6 +64,26 @@ public class LocationWithGPS extends CustomWindow {
 		public void onTextChanged(CharSequence s, int start, int before, int count) {
 			//TODO: to put this back
 			//char_count.setText(String.valueOf(140 - tweet.length() - " #loc ".length() - s.length()) + " characters left in tweet");
+			
+			//Handle tag creation and display in footer box
+			message = s.toString();
+			
+			test_tweet.setText(tweet + " " + "#loc " + message);
+			
+			//Handle character count display
+			int crntLength = 140 - tweet.length() - message.length();
+			
+			if(crntLength < 0){
+				char_count.setTextColor(Color.RED);
+			}else{
+				char_count.setTextColor(Color.BLACK);
+			}
+			
+			if(crntLength != 1){
+				char_count.setText(String.valueOf(crntLength) + " characters left");
+			}else{
+				char_count.setText(String.valueOf(crntLength) + " character left");
+			}
 		}
 
 		@Override
@@ -65,10 +92,13 @@ public class LocationWithGPS extends CustomWindow {
 		}
 
 	};
+	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_location_with_gps);
+		this.title.setText("#location");
+		
 		// Get the message from the intent
 		/*Intent intent = getIntent();
 		String location = intent.getStringExtra(TestStringBuilderMap.LOCATION_TEXT);*/
@@ -100,24 +130,36 @@ public class LocationWithGPS extends CustomWindow {
 //		test_tweet.setEnabled(false);
 //		test_tweet.setFocusable(false);
 		
+		//Set char count
+		char_count = (TextView) findViewById(R.id.character_count_gps_location);
+		char_count.setText(String.valueOf(140 - tweet.length()) + " characters left");
+		
+		//Set tweet box
+		test_tweet = (EditText) findViewById(R.id.tweet_display_gps);
+		test_tweet.setText(tweet);
+		
 		// TODO: Display map of event area with user's location
 		
-		char_count = (TextView) findViewById(R.id.char_count);
+		//char_count = (TextView) findViewById(R.id.char_count);
 		//TODO: to put this back
 		//char_count.setText(String.valueOf(140 - tweet.length() - " #loc ".length()) + " characters left in tweet");
 		location_text = (EditText) findViewById(R.id.location_text_box);
-		location_text.addTextChangedListener(charCountWatcher);
+		location_text.addTextChangedListener(addLocationTag);
 		location_text.setOnEditorActionListener(new OnEditorActionListener(){
-
 			@Override
 			public boolean onEditorAction(TextView v, int actionId,
 					KeyEvent event) {
-				// TODO Auto-generated method stub
-				readLocationMessage();
-				return true;
-			}
-			
+				if (actionId == EditorInfo.IME_ACTION_DONE) {
+		            // hide virtual keyboard
+		            InputMethodManager imm = (InputMethodManager)getSystemService(Context.INPUT_METHOD_SERVICE);
+		            imm.hideSoftInputFromWindow(location_text.getWindowToken(), 0);
+		            readLocationMessage();
+		            return true;
+		        }
+		        return false;
+			}		
 		});
+
 	}
 	/*Gets the lat/long location that was touched.*/
 	private OnMapClickListener getOnMapClickListener() {
@@ -200,10 +242,8 @@ public class LocationWithGPS extends CustomWindow {
 		tweet = bundle.getString("tweet");
 		
 		EditText editText = (EditText) findViewById(R.id.location_text_box);
-	    String message = editText.getText().toString();
-	    if (!message.isEmpty()) {
-	    	tweet += " #loc " + message;
-	    }
+	    message = editText.getText().toString();
+	    tweet += " #loc none";
 	    
 		Intent i = new Intent(this, TestStringBuilderCategory.class);
 		i.putExtra("tweet", tweet);
@@ -218,6 +258,8 @@ public class LocationWithGPS extends CustomWindow {
 	    String message = editText.getText().toString();
 	    if (!message.isEmpty()) {
 	    	tweet += " #loc " + message;
+	    }else{
+	    	tweet += " #loc none";
 	    }
 	    
 		Intent i = new Intent(this, TestStringBuilderCategory.class);
@@ -234,7 +276,7 @@ public class LocationWithGPS extends CustomWindow {
 		tweet = bundle.getString("tweet");
 		
 		EditText editText = (EditText) findViewById(R.id.location_text_box);
-	    String message = editText.getText().toString();
+	    message = editText.getText().toString();
 	    if (!message.isEmpty()) {
 	    	tweet += " #loc " + message;
 	    }
