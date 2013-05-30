@@ -95,10 +95,19 @@ public class TestStringBuilderConfirm extends CustomWindow {
 					tweet = tweet + " " + s;
 				}else{
 					if(splitTweet[1].contains("#")){
-						//If the tweet contains another hash tag, replace the current category text
-						int indexOfNextTag = splitTweet[1].indexOf("#");
+						//If the tweet contains another hash tag, replace the current category text with the predefined tag that comes first
+						int indexOfTime = splitTweet[1].indexOf(TIME_TAG);
+						int indexOfSource = splitTweet[1].indexOf(SOURCE_TAG);
+						int indexOfContact = splitTweet[1].indexOf(CONTACT_TAG);
+						int indexOfNextTag = Math.min(indexOfTime, Math.min(indexOfSource, indexOfContact));
+						
 						//Toast.makeText(getBaseContext(), splitTweet[1].substring(indexOfNextTag), Toast.LENGTH_SHORT).show();
-						tweet = splitTweet[0] + category + " " + s + " " + splitTweet[1].substring(indexOfNextTag);
+						if(indexOfNextTag != -1){
+							tweet = splitTweet[0] + category + " " + s + " " + splitTweet[1].substring(indexOfNextTag);
+						}else{
+							//If the tweet contains another # character but not any of the predefined tags, still replace the string after the category tag
+							tweet = splitTweet[0] + category + " " + s;
+						}
 					}else{
 						//If it does not contain another hash tag, just replace the string after category tag
 						tweet = splitTweet[0] + category + " " + s;
@@ -126,10 +135,17 @@ public class TestStringBuilderConfirm extends CustomWindow {
 					tweet = tweet + " " + TIME_TAG + " " + s;
 				}else{
 					if(splitTweet[1].contains("#")){
-						//If the tweet contains another hash tag, replace the current time text
-						int indexOfNextTag = splitTweet[1].indexOf("#");
+						//If the tweet contains another hash tag, replace the current time text with the predefined tag that comes first
+						int indexOfSource = splitTweet[1].indexOf(SOURCE_TAG);
+						int indexOfContact = splitTweet[1].indexOf(CONTACT_TAG);
+						int indexOfNextTag = Math.min(indexOfSource, indexOfContact);
+						//int indexOfNextTag = splitTweet[1].indexOf("#");
 						//Toast.makeText(getBaseContext(), splitTweet[1].substring(indexOfNextTag), Toast.LENGTH_SHORT).show();
-						tweet = splitTweet[0] + TIME_TAG + " " + s + " " +splitTweet[1].substring(indexOfNextTag);
+						if(indexOfNextTag != -1){
+							tweet = splitTweet[0] + TIME_TAG + " " + s + " " +splitTweet[1].substring(indexOfNextTag);
+						}else{
+							tweet = splitTweet[0] + TIME_TAG + " " + s;
+						}
 					}else{
 						//If it does not contain another hash tag, just replace the string after time tag
 						tweet = splitTweet[0] + TIME_TAG + " " + s;
@@ -156,9 +172,16 @@ public class TestStringBuilderConfirm extends CustomWindow {
 				}else{
 					if(splitTweet[1].contains("#")){
 						//If the tweet contains another hash tag, replace the current time text
-						int indexOfNextTag = splitTweet[1].indexOf("#");
+						int indexOfTime = splitTweet[1].indexOf(TIME_TAG);
+						int indexOfContact = splitTweet[1].indexOf(CONTACT_TAG);
+						int indexOfNextTag = Math.min(indexOfTime, indexOfContact);
+						//int indexOfNextTag = splitTweet[1].indexOf("#");
 						//Toast.makeText(getBaseContext(), splitTweet[1].substring(indexOfNextTag), Toast.LENGTH_SHORT).show();
-						tweet = splitTweet[0] + SOURCE_TAG + " " + s + " " + splitTweet[1].substring(indexOfNextTag);
+						if(indexOfNextTag != -1){
+							tweet = splitTweet[0] + SOURCE_TAG + " " + s + " " + splitTweet[1].substring(indexOfNextTag);
+						}else{
+							tweet = splitTweet[0] + SOURCE_TAG + " " + s;
+						}
 					}else{
 						//If it does not contain another hash tag, just replace the string after time tag
 						tweet = splitTweet[0] + SOURCE_TAG + " " + s;
@@ -180,16 +203,24 @@ public class TestStringBuilderConfirm extends CustomWindow {
 		public void onTextChanged(CharSequence s, int start, int before, int count) {
 				String[] splitTweet = tweet.split(CONTACT_TAG);
 				if(!tweet.contains(CONTACT_TAG)){
-					//if the tweet does not contain the source tag, just append it to the end of the string
+					//if the tweet does not contain the contact tag, just append it to the end of the string
 					tweet = tweet + " " + CONTACT_TAG + " " + s;
 				}else{
 					if(splitTweet[1].contains("#")){
-						//If the tweet contains another hash tag, replace the current time text
-						int indexOfNextTag = splitTweet[1].indexOf("#");
+						//If the tweet contains another hash tag, replace the current contact text
+						//int indexOfNextTag = splitTweet[1].indexOf("#");
+						int indexOfSource = splitTweet[1].indexOf(SOURCE_TAG);
+						int indexOfContact = splitTweet[1].indexOf(CONTACT_TAG);
+						int indexOfNextTag = Math.min(indexOfSource, indexOfContact);
+						
 						//Toast.makeText(getBaseContext(), splitTweet[1].substring(indexOfNextTag), Toast.LENGTH_SHORT).show();
-						tweet = splitTweet[0] + CONTACT_TAG + " " + s + " " + splitTweet[1].substring(indexOfNextTag);
+						if(indexOfNextTag != -1){
+							tweet = splitTweet[0] + CONTACT_TAG + " " + s + " " + splitTweet[1].substring(indexOfNextTag);
+						}else{
+							tweet = splitTweet[0] + CONTACT_TAG + " " + s;
+						}
 					}else{
-						//If it does not contain another hash tag, just replace the string after time tag
+						//If it does not contain another hash tag, just replace the string after the contact tag
 						tweet = splitTweet[0] + CONTACT_TAG + " " + s;
 					}
 					test_tweet.setText(tweet);
