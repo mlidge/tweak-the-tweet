@@ -196,9 +196,11 @@ containing a value of this type.
         public static final int common_signin_btn_text_pressed_light=0x7f020018;
         public static final int ic_launcher=0x7f020019;
         public static final int loading_screen=0x7f02001a;
-        public static final int logo_and_mascot=0x7f02001b;
-        public static final int logo_title=0x7f02001c;
-        public static final int next=0x7f02001d;
+        public static final int login_button=0x7f02001b;
+        public static final int logo_and_mascot=0x7f02001c;
+        public static final int logo_title=0x7f02001d;
+        public static final int next=0x7f02001e;
+        public static final int sign_up_button=0x7f02001f;
     }
     public static final class id {
         public static final int action_settings=0x7f05004a;
@@ -284,39 +286,41 @@ containing a value of this type.
         public static final int activity_loading_screen=0x7f030003;
         public static final int activity_location_and_map=0x7f030004;
         public static final int activity_location_with_gps=0x7f030005;
-        public static final int activity_main=0x7f030006;
-        public static final int activity_map_display=0x7f030007;
-        public static final int activity_oauthtwitter=0x7f030008;
-        public static final int activity_photo=0x7f030009;
-        public static final int activity_previous_location=0x7f03000a;
-        public static final int activity_settings=0x7f03000b;
-        public static final int activity_test_string_builder=0x7f03000c;
-        public static final int activity_test_string_builder_add_details=0x7f03000d;
-        public static final int activity_test_string_builder_category=0x7f03000e;
-        public static final int activity_test_string_builder_confirm=0x7f03000f;
-        public static final int activity_test_string_builder_disaster_list=0x7f030010;
-        public static final int activity_test_string_builder_map=0x7f030011;
-        public static final int activity_test_string_builder_tweet_sent=0x7f030012;
-        public static final int activity_tweet=0x7f030013;
-        public static final int custom_header=0x7f030014;
-        public static final int listview_footer=0x7f030015;
+        public static final int activity_login_screen=0x7f030006;
+        public static final int activity_main=0x7f030007;
+        public static final int activity_map_display=0x7f030008;
+        public static final int activity_oauthtwitter=0x7f030009;
+        public static final int activity_photo=0x7f03000a;
+        public static final int activity_previous_location=0x7f03000b;
+        public static final int activity_settings=0x7f03000c;
+        public static final int activity_test_string_builder=0x7f03000d;
+        public static final int activity_test_string_builder_add_details=0x7f03000e;
+        public static final int activity_test_string_builder_category=0x7f03000f;
+        public static final int activity_test_string_builder_confirm=0x7f030010;
+        public static final int activity_test_string_builder_disaster_list=0x7f030011;
+        public static final int activity_test_string_builder_map=0x7f030012;
+        public static final int activity_test_string_builder_tweet_sent=0x7f030013;
+        public static final int activity_tweet=0x7f030014;
+        public static final int custom_header=0x7f030015;
+        public static final int listview_footer=0x7f030016;
     }
     public static final class menu {
         public static final int emergency_notification=0x7f0a0000;
         public static final int loading_screen=0x7f0a0001;
         public static final int location_and_map=0x7f0a0002;
         public static final int location_with_g=0x7f0a0003;
-        public static final int main=0x7f0a0004;
-        public static final int map_display=0x7f0a0005;
-        public static final int photo=0x7f0a0006;
-        public static final int previous_location=0x7f0a0007;
-        public static final int test_string_builder=0x7f0a0008;
-        public static final int test_string_builder_add_details=0x7f0a0009;
-        public static final int test_string_builder_confirm=0x7f0a000a;
-        public static final int test_string_builder_disaster_list=0x7f0a000b;
-        public static final int test_string_builder_location=0x7f0a000c;
-        public static final int test_string_builder_map=0x7f0a000d;
-        public static final int test_string_builder_tweet_sent=0x7f0a000e;
+        public static final int login_screen=0x7f0a0004;
+        public static final int main=0x7f0a0005;
+        public static final int map_display=0x7f0a0006;
+        public static final int photo=0x7f0a0007;
+        public static final int previous_location=0x7f0a0008;
+        public static final int test_string_builder=0x7f0a0009;
+        public static final int test_string_builder_add_details=0x7f0a000a;
+        public static final int test_string_builder_confirm=0x7f0a000b;
+        public static final int test_string_builder_disaster_list=0x7f0a000c;
+        public static final int test_string_builder_location=0x7f0a000d;
+        public static final int test_string_builder_map=0x7f0a000e;
+        public static final int test_string_builder_tweet_sent=0x7f0a000f;
     }
     public static final class string {
         public static final int action_settings=0x7f060025;
@@ -363,6 +367,7 @@ containing a value of this type.
     <string name="signup_name">Sign up for Twitter</string>
     <string name="webview_name">Sign in to Twitter</string>
 
+
     
          */
         public static final int button_settings_text=0x7f06001f;
@@ -376,6 +381,7 @@ containing a value of this type.
     commented (Mussie) <string name="address_hint_text">4504 16th Ave. NE 8206</string>
     <string name="enter_location_text">Enter Location</string>
     <string name="map_placeholder_text">Insert Map Here!</string>
+
 
     
          */
@@ -528,6 +534,7 @@ containing a value of this type.
         public static final int title_activity_location=0x7f06003f;
         public static final int title_activity_location_and_map=0x7f06001b;
         public static final int title_activity_location_with_gps=0x7f06007f;
+        public static final int title_activity_login_screen=0x7f060082;
         public static final int title_activity_map=0x7f060065;
         public static final int title_activity_map_display=0x7f06001a;
         public static final int title_activity_other=0x7f060068;

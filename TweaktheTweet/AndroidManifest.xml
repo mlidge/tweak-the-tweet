@@ -21,7 +21,7 @@
     <uses-permission android:name="com.google.android.providers.gsf.permission.READ_GSERVICES" />
     <!--
     The following two permissions are not required to use
-	Google Maps Android API v2, but are recommended.
+	Google Maps Android API v2, but are recommended.
     -->
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
@@ -91,19 +91,19 @@
         <activity
             android:name="uw.changecapstone.tweakthetweet.TestStringBuilder"
             android:label="@string/title_activity_test_string_builder"
-            android:theme="@style/CustomTheme"
-            android:launchMode="singleTask" >
+            android:launchMode="singleTask"
+            android:theme="@style/CustomTheme" >
         </activity>
         <activity
             android:name="uw.changecapstone.tweakthetweet.TestStringBuilderCategory"
             android:label="@string/title_activity_test_string_builder"
-            android:theme="@style/CustomTheme"
-            android:launchMode="singleTask" />
+            android:launchMode="singleTask"
+            android:theme="@style/CustomTheme" />
         <activity
             android:name="uw.changecapstone.tweakthetweet.MapDisplayActivity"
             android:label="@string/title_activity_map_display"
-            android:theme="@style/CustomTheme"
-            android:launchMode="singleTask" >
+            android:launchMode="singleTask"
+            android:theme="@style/CustomTheme" >
         </activity>
         <activity
             android:name="uw.changecapstone.tweakthetweet.LocationAndMapActivity"
@@ -121,32 +121,32 @@
         <activity
             android:name="uw.changecapstone.tweakthetweet.TestStringBuilderMap"
             android:label="@string/title_activity_test_string_builder_map"
-            android:theme="@style/CustomTheme"
-            android:launchMode="singleTask" >
+            android:launchMode="singleTask"
+            android:theme="@style/CustomTheme" >
         </activity>
         <activity
             android:name="uw.changecapstone.tweakthetweet.TestStringBuilderConfirm"
             android:label="@string/title_activity_test_string_builder_confirm"
-            android:theme="@style/CustomTheme"
-            android:launchMode="singleTask" >
+            android:launchMode="singleTask"
+            android:theme="@style/CustomTheme" >
         </activity>
         <activity
             android:name="uw.changecapstone.tweakthetweet.PreviousLocationActivity"
             android:label="@string/title_activity_previous_location"
-            android:theme="@style/CustomTheme"
-            android:launchMode="singleTask" >
+            android:launchMode="singleTask"
+            android:theme="@style/CustomTheme" >
         </activity>
         <activity
             android:name="uw.changecapstone.tweakthetweet.TestStringBuilderDisasterList"
             android:label="@string/title_activity_test_string_builder_disaster_list"
-            android:theme="@style/CustomTheme"
-            android:launchMode="singleTask" >
+            android:launchMode="singleTask"
+            android:theme="@style/CustomTheme" >
         </activity>
         <activity
             android:name="uw.changecapstone.tweakthetweet.TestStringBuilderAddDetails"
             android:label="@string/title_activity_test_string_builder_add_details"
-            android:theme="@style/CustomTheme"
-            android:launchMode="singleTask" >
+            android:launchMode="singleTask"
+            android:theme="@style/CustomTheme" >
         </activity>
         <activity
             android:name="uw.changecapstone.tweakthetweet.PhotoActivity"
@@ -156,14 +156,14 @@
         <activity
             android:name="uw.changecapstone.tweakthetweet.TestStringBuilderTweetSent"
             android:label="@string/title_activity_test_string_builder_tweet_sent"
-            android:theme="@style/CustomTheme"
-            android:launchMode="singleTask" >
+            android:launchMode="singleTask"
+            android:theme="@style/CustomTheme" >
         </activity>
         <activity
             android:name="uw.changecapstone.tweakthetweet.LocationWithGPS"
             android:label="@string/title_activity_location_with_gps"
-            android:theme="@style/CustomTheme"
-            android:launchMode="singleTask" >
+            android:launchMode="singleTask"
+            android:theme="@style/CustomTheme" >
         </activity>
         <activity
             android:name="uw.changecapstone.tweakthetweet.EmergencyNotification"
@@ -174,6 +174,10 @@
             android:name="uw.changecapstone.tweakthetweet.LoadingScreen"
             android:label="@string/title_activity_loading_screen"
             android:launchMode="singleTask" >
+        </activity>
+        <activity
+            android:name="uw.changecapstone.tweakthetweet.LoginScreen"
+            android:label="@string/title_activity_login_screen" >
         </activity>
     </application>
 

@@ -119,7 +119,7 @@
     <string name="title_activity_location_and_map"> Map and Info</string>
     <string name="oauth_name">Sign in to Twitter</string>
     <string name="signup_name">Sign up for Twitter</string>
-    <string name="webview_name">Sign in to Twitter</string>
+    <string name="webview_name">Sign in to Twitter</string>
     -->
     <string name="button_settings_text">Edit Settings</string>
     <string name="button_logout_text">Log Out</string>
@@ -221,7 +221,7 @@
 >>>>>>> 6c6c3a0d12922f45471c63853709d0df424c7784
     commented (Mussie) <string name="address_hint_text">4504 16th Ave. NE 8206</string>
     <string name="enter_location_text">Enter Location</string>
-    <string name="map_placeholder_text">Insert Map Here!</string>
+    <string name="map_placeholder_text">Insert Map Here!</string>
     -->
     <string name="button_use_trail_log">Use Trail Log</string>
     <string name="title_activity_map">Map Location</string>
@@ -259,5 +259,6 @@
     <string name="title_activity_location_with_gps">LocationWithGPS</string>
     <string name="title_activity_emergency_notification">EmergencyNotification</string>
     <string name="title_activity_loading_screen">LoadingScreen</string>
+    <string name="title_activity_login_screen">LoginScreen</string>
 
 </resources>
