@@ -102,6 +102,9 @@ public class LocationWithGPS extends CustomWindow {
 //		test_tweet.setEnabled(false);
 //		test_tweet.setFocusable(false);
 		
+		char_count = (TextView) findViewById(R.id.character_count_location);
+		char_count.setText(String.valueOf(140 - tweet.length()) + " characters left");
+		
 		// TODO: Display map of event area with user's location
 		
 		char_count = (TextView) findViewById(R.id.char_count);

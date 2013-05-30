@@ -130,7 +130,7 @@
         android:background="@color/background_box_color" >
 
             <TextView
-                android:id="@+id/your_tweet"
+                android:id="@+id/your_tweet_location"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignParentLeft="true"
@@ -140,7 +140,7 @@
                 android:textSize="20sp" />
 
             <TextView
-                android:id="@+id/character_count"
+                android:id="@+id/character_count_location"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignParentRight="true"
