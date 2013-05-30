@@ -29,7 +29,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 import android.widget.TextView.OnEditorActionListener;
 
-public class PreviousLocationActivity extends Activity {
+public class PreviousLocationActivity extends CustomWindow {
 	private GoogleMap mMap;
 	private LatLng geoLatLng;
 	private LatLng tappedLatLng;
@@ -63,6 +63,7 @@ public class PreviousLocationActivity extends Activity {
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_previous_location);
+		this.title.setText("#location");
 		
 		city_lat = TestStringBuilderDisasterList.city_lat;
 		city_long = TestStringBuilderDisasterList.city_long;

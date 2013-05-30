@@ -69,6 +69,8 @@ public class LocationWithGPS extends CustomWindow {
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_location_with_gps);
+		this.title.setText("#location");
+		
 		// Get the message from the intent
 		/*Intent intent = getIntent();
 		String location = intent.getStringExtra(TestStringBuilderMap.LOCATION_TEXT);*/
