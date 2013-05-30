@@ -99,7 +99,7 @@
 	            android:paddingTop="10dp" >
 	
 	            <ImageButton
-	                android:id="@+id/proceed_state"
+	                android:id="@+id/skip_loc_gps"
 	                android:layout_width="wrap_content"
 	                android:layout_height="wrap_content"
 	                android:layout_alignParentRight="true"
@@ -110,8 +110,7 @@
 				<FrameLayout
 				    android:layout_width="fill_parent"
 				    android:layout_height="wrap_content"
-				    android:padding="1dp"
-				    android:layout_toLeftOf="@id/proceed_state" >
+				    android:layout_toLeftOf="@id/skip_loc_gps" >
 				    		
 				    		<TextView
 		    					android:layout_width="wrap_content"
@@ -130,7 +129,7 @@
         android:background="@color/background_box_color" >
 
             <TextView
-                android:id="@+id/your_tweet_location"
+                android:id="@+id/your_tweet_gps_location"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignParentLeft="true"
@@ -140,7 +139,7 @@
                 android:textSize="20sp" />
 
             <TextView
-                android:id="@+id/character_count_location"
+                android:id="@+id/character_count_gps_location"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignParentRight="true"
@@ -152,7 +151,7 @@
     </RelativeLayout>
 
     <EditText
-        android:id="@+id/tweet_display"
+        android:id="@+id/tweet_display_gps"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:background="@color/tweet_box_color"

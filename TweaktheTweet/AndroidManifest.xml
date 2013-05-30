@@ -91,16 +91,19 @@
         <activity
             android:name="uw.changecapstone.tweakthetweet.TestStringBuilder"
             android:label="@string/title_activity_test_string_builder"
-            android:theme="@style/CustomTheme" >
+            android:theme="@style/CustomTheme"
+            android:launchMode="singleTask" >
         </activity>
         <activity
             android:name="uw.changecapstone.tweakthetweet.TestStringBuilderCategory"
             android:label="@string/title_activity_test_string_builder"
-            android:theme="@style/CustomTheme" />
+            android:theme="@style/CustomTheme"
+            android:launchMode="singleTask" />
         <activity
             android:name="uw.changecapstone.tweakthetweet.MapDisplayActivity"
             android:label="@string/title_activity_map_display"
-            android:theme="@style/CustomTheme" >
+            android:theme="@style/CustomTheme"
+            android:launchMode="singleTask" >
         </activity>
         <activity
             android:name="uw.changecapstone.tweakthetweet.LocationAndMapActivity"
@@ -118,50 +121,59 @@
         <activity
             android:name="uw.changecapstone.tweakthetweet.TestStringBuilderMap"
             android:label="@string/title_activity_test_string_builder_map"
-            android:theme="@style/CustomTheme" >
+            android:theme="@style/CustomTheme"
+            android:launchMode="singleTask" >
         </activity>
         <activity
             android:name="uw.changecapstone.tweakthetweet.TestStringBuilderConfirm"
             android:label="@string/title_activity_test_string_builder_confirm"
-            android:theme="@style/CustomTheme" >
+            android:theme="@style/CustomTheme"
+            android:launchMode="singleTask" >
         </activity>
         <activity
             android:name="uw.changecapstone.tweakthetweet.PreviousLocationActivity"
             android:label="@string/title_activity_previous_location"
-            android:theme="@style/CustomTheme" >
+            android:theme="@style/CustomTheme"
+            android:launchMode="singleTask" >
         </activity>
         <activity
             android:name="uw.changecapstone.tweakthetweet.TestStringBuilderDisasterList"
             android:label="@string/title_activity_test_string_builder_disaster_list"
-            android:launchMode="singleTask"
-            android:theme="@style/CustomTheme" >
+            android:theme="@style/CustomTheme"
+            android:launchMode="singleTask" >
         </activity>
         <activity
             android:name="uw.changecapstone.tweakthetweet.TestStringBuilderAddDetails"
             android:label="@string/title_activity_test_string_builder_add_details"
-            android:theme="@style/CustomTheme" >
+            android:theme="@style/CustomTheme"
+            android:launchMode="singleTask" >
         </activity>
         <activity
             android:name="uw.changecapstone.tweakthetweet.PhotoActivity"
-            android:label="@string/title_activity_photo" >
+            android:label="@string/title_activity_photo"
+            android:launchMode="singleTask" >
         </activity>
         <activity
             android:name="uw.changecapstone.tweakthetweet.TestStringBuilderTweetSent"
             android:label="@string/title_activity_test_string_builder_tweet_sent"
-            android:theme="@style/CustomTheme" >
+            android:theme="@style/CustomTheme"
+            android:launchMode="singleTask" >
         </activity>
         <activity
             android:name="uw.changecapstone.tweakthetweet.LocationWithGPS"
             android:label="@string/title_activity_location_with_gps"
-            android:theme="@style/CustomTheme" >
+            android:theme="@style/CustomTheme"
+            android:launchMode="singleTask" >
         </activity>
         <activity
             android:name="uw.changecapstone.tweakthetweet.EmergencyNotification"
-            android:label="@string/title_activity_emergency_notification" >
+            android:label="@string/title_activity_emergency_notification"
+            android:launchMode="singleTask" >
         </activity>
         <activity
             android:name="uw.changecapstone.tweakthetweet.LoadingScreen"
-            android:label="@string/title_activity_loading_screen" >
+            android:label="@string/title_activity_loading_screen"
+            android:launchMode="singleTask" >
         </activity>
     </application>
 

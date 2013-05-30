@@ -122,7 +122,7 @@
         android:background="@color/background_box_color" >
 
             <TextView
-                android:id="@+id/your_tweet"
+                android:id="@+id/your_tweet_prev_location"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignParentLeft="true"
@@ -132,7 +132,7 @@
                 android:textSize="20sp" />
 
             <TextView
-                android:id="@+id/character_count"
+                android:id="@+id/character_count_prev_location"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignParentRight="true"
@@ -144,7 +144,7 @@
     </RelativeLayout>
 
     <EditText
-        android:id="@+id/tweet_display"
+        android:id="@+id/tweet_display_prev"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:background="@color/tweet_box_color"
