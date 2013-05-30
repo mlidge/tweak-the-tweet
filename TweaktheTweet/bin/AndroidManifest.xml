@@ -133,7 +133,8 @@
         <activity
             android:name="uw.changecapstone.tweakthetweet.TestStringBuilderDisasterList"
             android:label="@string/title_activity_test_string_builder_disaster_list"
-            android:theme="@style/CustomTheme" >
+            android:theme="@style/CustomTheme"
+            android:launchMode="singleTask" >
         </activity>
         <activity
             android:name="uw.changecapstone.tweakthetweet.TestStringBuilderAddDetails"
