@@ -21,17 +21,23 @@ import twitter4j.internal.http.HttpResponse;
 //import uw.changecapstone.tweakthetweet.LocationAndMapActivity.GeocoderTask;
 import android.app.Activity;
 import android.app.AlertDialog;
+import android.app.DialogFragment;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.SharedPreferences;
+import android.content.SharedPreferences.Editor;
 import android.database.SQLException;
 import android.location.Address;
 import android.location.Geocoder;
 import android.location.Location;
 import android.location.LocationListener;
 import android.location.LocationManager;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.provider.Settings;
 import android.util.Log;
 import android.view.Menu;
@@ -39,7 +45,7 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.Toast;
 
-public class TestStringBuilder extends CustomWindow{
+public class TestStringBuilder extends CustomWindow implements DialogListener{
 
 	private EditText location_text_box;
 	Context context = this;
@@ -49,6 +55,15 @@ public class TestStringBuilder extends CustomWindow{
 	public final static String CITY_LONG = "uw.changecapstone.tweakthetweet.longitude";
 	static boolean isGpsUsed = false;
 	
+	final static String TWEET_STRING = "TWEET_STRING";
+
+	private static final String PREF_KEY_TWITTER_LOGIN = "isTwitterLoggedIn";
+	private static final String LOGIN_DIALOG_TAG = "logindialog";
+	private static final String NETWORK_DIALOG_TAG = "networkdialog";
+	private final static String DATA_ON = "data";
+	
+	private SharedPreferences pref; 
+	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -56,6 +71,10 @@ public class TestStringBuilder extends CustomWindow{
 		this.title.setText("Let's start tweaking");
 		
 		location_text_box = (EditText) findViewById(R.id.location_text_box);
+		
+		pref = PreferenceManager.getDefaultSharedPreferences(this);
+		checkNetworkStatus();
+		checkLogInStatus();
 	}
 
 	@Override
@@ -254,5 +273,63 @@ public class TestStringBuilder extends CustomWindow{
 				Toast.makeText(getBaseContext(), "Tweet City: "+address.getAddressLine(0), Toast.LENGTH_SHORT).show();
 			}
 		}
+	}
+	@Override
+	public void onDialogPositiveClick(DialogFragment dialog) {
+		String tag = dialog.getTag();
+		if (tag.equals(LOGIN_DIALOG_TAG)) {
+			Intent i = new Intent(this, OAuthTwitterActivity.class);
+			startActivity(i);
+		} else if (tag.equals(NETWORK_DIALOG_TAG)) {
+			setUseSMS();
+		}
+		
+	}
+
+	@Override
+	public void onDialogNegativeClick(DialogFragment dialog) {
+		String tag = dialog.getTag();
+		if (tag.equals(LOGIN_DIALOG_TAG)) {
+			/*
+			Intent i = new Intent(this, SignUpTwitterActivity.class);
+			startActivity(i);
+			*/
+		}
+		
+	}
+	
+	public void setUseSMS() {
+		Editor e = pref.edit();
+		e.putBoolean(DATA_ON, false);
+		e.commit();
+	}
+	
+	private void checkLogInStatus() {
+		  if (!pref.getBoolean(PREF_KEY_TWITTER_LOGIN, false)) {
+			  DialogFragment logIn = new LoginDialogFragment();
+			  logIn.show(getFragmentManager(), LOGIN_DIALOG_TAG);
+		  }
+		}
+		
+	private void checkNetworkStatus() {
+		ConnectivityManager cm =
+		        (ConnectivityManager)getSystemService(Context.CONNECTIVITY_SERVICE);
+		//boolean noConnection = cm==null;
+		
+		
+				NetworkInfo activeNetwork = cm.getActiveNetworkInfo();
+		
+				boolean isConnected = (activeNetwork != null) && (activeNetwork.isConnectedOrConnecting());
+		
+	
+		if (!isConnected) {
+			DialogFragment network = new NetworkDialogFragment();
+			network.show(getFragmentManager(), NETWORK_DIALOG_TAG);
+		} else {
+			Editor e = pref.edit();
+			e.putBoolean(DATA_ON, true);
+			e.commit();
+		}
+		
 	}
 }
