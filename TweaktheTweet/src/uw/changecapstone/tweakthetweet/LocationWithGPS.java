@@ -279,6 +279,8 @@ public class LocationWithGPS extends CustomWindow {
 	    message = editText.getText().toString();
 	    if (!message.isEmpty()) {
 	    	tweet += " #loc " + message;
+	    } else {
+	    	tweet += " #loc none";
 	    }
 	    
 		Intent i = new Intent(this, TestStringBuilderCategory.class);
@@ -288,8 +290,8 @@ public class LocationWithGPS extends CustomWindow {
 		if(tappedLatLng==null)
 			Toast.makeText(getBaseContext(), "Please Touch the map first: ", Toast.LENGTH_SHORT).show();
 		else {
-			i.putExtra(TAPPEDLAT, tappedLatLng.latitude);
-			i.putExtra(TAPPEDLONG, tappedLatLng.longitude);
+			i.putExtra(GPSLAT, tappedLatLng.latitude);
+			i.putExtra(GPSLONG, tappedLatLng.longitude);
 			startActivity(i);
 		}
 	}

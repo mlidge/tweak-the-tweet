@@ -38,6 +38,10 @@ public class TestStringBuilderConfirm extends CustomWindow {
 	private static final String HAS_PHOTO = "hasphoto";
 	private static final String LAT = "uw.changecapstone.tweakthetweet.latitude";
 	private static final String LONG = "uw.changecapstone.tweakthetweet.longitude";
+	private double lat;
+	private double longitude;
+	public final static String GPSLAT = "uw.changecapstone.tweakthetweet.gpslat";
+	public final static String GPSLONG = "uw.changecapstone.tweakthetweet.gpslong";
 	
 	/*private final TextWatcher charCountWatcher = new TextWatcher() {
 		public void beforeTextChanged(CharSequence s, int start, int count, int after) {
@@ -254,7 +258,8 @@ public class TestStringBuilderConfirm extends CustomWindow {
 		category = bundle.getString("category");
 		tweet = bundle.getString("tweet");
 		final_tweet = tweet;
-		
+		lat = bundle.getDouble(GPSLAT);
+		longitude = bundle.getDouble(GPSLONG);
 		//Set up main tweet text box
 		test_tweet = (EditText) findViewById(R.id.test_tweet);
 		test_tweet.setText(tweet);
@@ -317,9 +322,10 @@ public class TestStringBuilderConfirm extends CustomWindow {
 			// if there is a photo to embed
 			// the photo path
 			i.putExtra(TWEET_STRING, tweet);
-			i.putExtra(LAT, 0.0);
-			i.putExtra(LONG, 0.0);
-			i.putExtra(GEO_LOC, true);
+			i.putExtra(LAT, lat);
+			i.putExtra(LONG, longitude);
+			boolean hasGeoloc = (lat == 0.0) && (longitude == 0.0);
+			i.putExtra(GEO_LOC, hasGeoloc);
 			i.putExtra(HAS_PHOTO, false);
 			i.putExtra(PHOTO_PATH, "");
 			startActivity(i);

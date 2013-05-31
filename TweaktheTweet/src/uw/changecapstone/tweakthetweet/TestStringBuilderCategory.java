@@ -33,6 +33,11 @@ public class TestStringBuilderCategory extends CustomWindow {
 	private TextView char_count;
 	private EditText crnt_tweet;
 	private ImageButton proceed_custom_category_tag;
+	private double lat;
+	private double longitude;
+	public final static String GPSLAT = "uw.changecapstone.tweakthetweet.gpslat";
+	public final static String GPSLONG = "uw.changecapstone.tweakthetweet.gpslong";
+	
 	
 //	private final TextWatcher charCountWatcher = new TextWatcher() {
 //		public void beforeTextChanged(CharSequence s, int start, int count, int after) {
@@ -95,7 +100,8 @@ public class TestStringBuilderCategory extends CustomWindow {
 		Bundle bundle = getIntent().getExtras();
 		tweet = bundle.getString("tweet");
 		String disaster = bundle.getString("disaster");
-		
+		lat = bundle.getDouble(GPSLAT);
+		longitude = bundle.getDouble(GPSLONG);
 		category_list = (ListView) findViewById(R.id.list);
 		category_list.setOnItemClickListener(new OnItemClickListener() {
 
@@ -206,6 +212,8 @@ public class TestStringBuilderCategory extends CustomWindow {
 		Intent i = new Intent(this, TestStringBuilderConfirm.class);
 		i.putExtra("tweet", tweet);
 		i.putExtra("category", category_tag);
+		i.putExtra(GPSLAT, lat);
+		i.putExtra(GPSLONG, longitude);
 		startActivity(i);
 	}
 }

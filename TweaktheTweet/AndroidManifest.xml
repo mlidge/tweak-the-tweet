@@ -39,7 +39,7 @@
         android:label="@string/app_name"
         android:theme="@android:style/Theme.Light" >
         <activity
-            android:name="uw.changecapstone.tweakthetweet.MainActivity"
+            android:name="uw.changecapstone.tweakthetweet.LoadingScreen"
             android:label="@string/app_name"
             android:theme="@style/CustomTheme" >
             <intent-filter>
@@ -170,11 +170,11 @@
             android:label="@string/title_activity_emergency_notification"
             android:launchMode="singleTask" >
         </activity>
-        <activity
+       <!-- <activity
             android:name="uw.changecapstone.tweakthetweet.LoadingScreen"
             android:label="@string/title_activity_loading_screen"
             android:launchMode="singleTask" >
-        </activity>
+        </activity> -->
         <activity
             android:name="uw.changecapstone.tweakthetweet.LoginScreen"
             android:label="@string/title_activity_login_screen" >

@@ -40,8 +40,8 @@ public class PreviousLocationActivity extends CustomWindow {
 	private GoogleMap mMap;
 	private LatLng geoLatLng;
 	private LatLng tappedLatLng;
-	public final static String GEOLAT = "uw.changecapstone.tweakthetweet.geolat";
-	public final static String GEOLONG = "uw.changecapstone.tweakthetweet.geolong";
+	public final static String GPSLAT = "uw.changecapstone.tweakthetweet.geolat";
+	public final static String GPSLONG = "uw.changecapstone.tweakthetweet.geolong";
 	public final static String TAPPEDLAT = "uw.changecapstone.tweakthetweet.tappedlat";
 	public final static String TAPPEDLONG = "uw.changecapstone.tweakthetweet.tappedlong";
 	private String tweet, disaster;
@@ -247,8 +247,8 @@ public class PreviousLocationActivity extends CustomWindow {
 		if(geoLatLng == null)
 			Toast.makeText(getBaseContext(), "Please enter address and press enter first: ", Toast.LENGTH_SHORT).show();
 		else {
-			i.putExtra(GEOLAT, geoLatLng.latitude);
-			i.putExtra(GEOLONG, geoLatLng.longitude);
+			i.putExtra(GPSLAT, geoLatLng.latitude);
+			i.putExtra(GPSLONG, geoLatLng.longitude);
 			startActivity(i);
 		}
 	}
@@ -261,6 +261,8 @@ public class PreviousLocationActivity extends CustomWindow {
 	    String message = editText.getText().toString();
 	    if (!message.isEmpty()) {
 	    	tweet += " #loc " + message;
+	    }else{
+	    	tweet += " #loc none";
 	    }
 	    
 		Intent i = new Intent(this, TestStringBuilderCategory.class);
@@ -270,8 +272,8 @@ public class PreviousLocationActivity extends CustomWindow {
 		if(tappedLatLng==null)
 			Toast.makeText(getBaseContext(), "Please Touch the map first: ", Toast.LENGTH_SHORT).show();
 		else {
-			i.putExtra(TAPPEDLAT, tappedLatLng.latitude);
-			i.putExtra(TAPPEDLONG, tappedLatLng.longitude);
+			i.putExtra(GPSLAT, tappedLatLng.latitude);
+			i.putExtra(GPSLONG, tappedLatLng.longitude);
 			startActivity(i);
 		}
 	}

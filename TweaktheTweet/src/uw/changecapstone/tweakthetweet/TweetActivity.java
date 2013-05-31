@@ -61,9 +61,9 @@ public class TweetActivity extends Activity {
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		context = this;
-		setContentView(R.layout.activity_tweet);
+		//setContentView(R.layout.activity_tweet);
 		
-		TextView t = (TextView) findViewById(R.id.tweet_string);
+		//TextView t = (TextView) findViewById(R.id.tweet_string);
 		
 		Intent intent = getIntent();
 		tweet = intent.getStringExtra(TWEET_STRING);
@@ -73,19 +73,18 @@ public class TweetActivity extends Activity {
 		longitude = ((Double)intent.getDoubleExtra(LONG, 0.0)).toString();
 		hasPhoto = intent.getBooleanExtra(HAS_PHOTO, false);
 		photoPath = (hasPhoto) ? intent.getStringExtra(PHOTO_PATH) : "";
-		t.setText(tweet);
+		//t.setText(tweet);
 		pref = PreferenceManager.getDefaultSharedPreferences(this);
 		data = pref.getBoolean("data", true);
-
-		
-	}
-	
-	public void sendTweet(View view) {
 		if (data) {
 			dataTweet();
 		} else {
 			smsTweet();
 		}
+	}
+
+	
+	public void sendTweet(View view) {
 	}
 	
 	private void dataTweet() {
