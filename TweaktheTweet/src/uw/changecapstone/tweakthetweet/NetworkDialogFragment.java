@@ -7,6 +7,11 @@ import android.app.DialogFragment;
 import android.content.DialogInterface;
 import android.os.Bundle;
 
+/*
+ * The NetworkDialogFragment creates a dialogbox informing 
+ * the user no data is available and prompts them
+ * to respond.
+ */
 public class NetworkDialogFragment extends DialogFragment {
 
 	
@@ -33,6 +38,8 @@ public class NetworkDialogFragment extends DialogFragment {
     public Dialog onCreateDialog(Bundle savedInstanceState) {
         // Use the Builder class for convenient dialog construction
         AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
+        // positive button: use sms
+        // negative button: ignore
         builder.setMessage(R.string.network_message)
                .setPositiveButton(R.string.network_yes, new DialogInterface.OnClickListener() {
                    public void onClick(DialogInterface dialog, int id) {

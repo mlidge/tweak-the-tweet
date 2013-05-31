@@ -1,15 +1,28 @@
 package uw.changecapstone.tweakthetweet;
 
+import java.io.File;
+
+import twitter4j.GeoLocation;
+import twitter4j.StatusUpdate;
+import twitter4j.Twitter;
+import twitter4j.TwitterException;
+import twitter4j.TwitterFactory;
+import twitter4j.auth.AccessToken;
+import twitter4j.conf.ConfigurationBuilder;
+import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.pm.ApplicationInfo;
 import android.content.pm.PackageManager;
 import android.content.pm.PackageManager.NameNotFoundException;
 import android.graphics.Color;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
+import android.telephony.SmsManager;
 import android.text.Editable;
 import android.text.TextWatcher;
+import android.util.Log;
 import android.view.KeyEvent;
 import android.view.Menu;
 import android.view.View;
@@ -29,19 +42,29 @@ public class TestStringBuilderConfirm extends CustomWindow {
 	private final String SOURCE_TAG = "#src";
 	private final String CONTACT_TAG = "#cont";	
 	
-	private final static String TWEET_STRING = "TWEET_STRING";
-	private static final String PREF_KEY_TWITTER_LOGIN = "isTwitterLoggedIn";
-	private static final String LOGIN_DIALOG_TAG = "logindialog";
-	private static final String NETWORK_DIALOG_TAG = "networkdialog";
-	private static final String PHOTO_PATH = "photopath";
-	private static final String GEO_LOC = "geolocation";
-	private static final String HAS_PHOTO = "hasphoto";
-	private static final String LAT = "uw.changecapstone.tweakthetweet.latitude";
-	private static final String LONG = "uw.changecapstone.tweakthetweet.longitude";
+	// Constants for accessing the consumer key
+	private static String TWITTER_CONSUMER_KEY = "twitterconsumerkey"; 
+	private static String TWITTER_CONSUMER_SECRET = "twitterconsumersecret"; 
+	
+	// Constants for accessing preference
+	private static final String PREF_KEY_OAUTH_TOKEN = "oauth_token";
+	private static final String PREF_KEY_OAUTH_SECRET = "oauth_token_secret";
+	
+	// short code to sms tweet to
+	private static final String SHORT_CODE = "40404";
+
+	// Fields for use in composing tweet object to sent
+	private SharedPreferences pref;
+	private boolean geoLocation;
+	private String twitterConsumerKey;
+	private String twitterConsumerSecret;
+	private String photoPath;
+	private boolean hasPhoto;
 	private double lat;
 	private double longitude;
 	public final static String GPSLAT = "uw.changecapstone.tweakthetweet.gpslat";
 	public final static String GPSLONG = "uw.changecapstone.tweakthetweet.gpslong";
+	private Context context;
 	
 	/*private final TextWatcher charCountWatcher = new TextWatcher() {
 		public void beforeTextChanged(CharSequence s, int start, int count, int after) {
@@ -174,7 +197,7 @@ public class TestStringBuilderConfirm extends CustomWindow {
 		}
 	
 	};
-	
+	 	
 	private final TextWatcher addSourceText = new TextWatcher() {
 		public void beforeTextChanged(CharSequence s, int start, int count, int after) {
 		}
@@ -253,7 +276,9 @@ public class TestStringBuilderConfirm extends CustomWindow {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_test_string_builder_confirm);
 		this.title.setText("#more info");
-		
+		context = this;
+		// get information (tweet,  lat, long, category) for 
+		// building tweet
 		Bundle bundle = getIntent().getExtras();
 		category = bundle.getString("category");
 		tweet = bundle.getString("tweet");
@@ -313,27 +338,120 @@ public class TestStringBuilderConfirm extends CustomWindow {
 		if(crntLength<0){
 			Toast.makeText(getApplicationContext(), "Your tweet is longer than 140 characters, please shorten it.", Toast.LENGTH_SHORT).show();
 		}else{
+			// determine if there are gps coordinates to add to a tweet
+			geoLocation = (lat == 0.0) && (longitude == 0.0);
+			hasPhoto = false;
+			photoPath = "";
 			
-			Intent i = new Intent(this, TweetActivity.class);
-			// the tweet
-			// the latitude to be embedded
-			// the longitude to be embedded
-			// if there are coordinates to embed
-			// if there is a photo to embed
-			// the photo path
-			i.putExtra(TWEET_STRING, tweet);
-			i.putExtra(LAT, lat);
-			i.putExtra(LONG, longitude);
-			boolean hasGeoloc = (lat == 0.0) && (longitude == 0.0);
-			i.putExtra(GEO_LOC, hasGeoloc);
-			i.putExtra(HAS_PHOTO, false);
-			i.putExtra(PHOTO_PATH, "");
-			startActivity(i);
+			// See if data access is available
+			SharedPreferences pref = PreferenceManager.getDefaultSharedPreferences(this);
+			boolean data = pref.getBoolean("data", true);
+			if (data) {
+				dataTweet();
+			} else {
+				smsTweet();
+			}
 		}
 	}
 
 	public void nextViewPhoto(View view) {
 		Intent i = new Intent(this, PhotoActivity.class);
 		startActivity(i);
+	}
+	
+	private void dataTweet() {
+
+		try {
+			// get the consumer keys from metadate
+			ApplicationInfo ai = getPackageManager().getApplicationInfo(this.getPackageName(), PackageManager.GET_META_DATA);
+			Bundle metadata = ai.metaData;
+			twitterConsumerKey = metadata.getString(TWITTER_CONSUMER_KEY);
+			twitterConsumerSecret = metadata.getString(TWITTER_CONSUMER_SECRET);
+		} catch (NameNotFoundException e) {
+			e.printStackTrace();
+		}
+		// Send the tweet in a new thread
+		UpdateTwitterStatus updateTask = new UpdateTwitterStatus();
+ 		updateTask.execute(new String[] {tweet, ((Double)lat).toString(), ((Double)longitude).toString(), photoPath});
+	}
+	
+	private void smsTweet() {
+		// send a text message of just the tweet text if 
+		// only sms is available
+		SmsManager smsManager = SmsManager.getDefault();
+		smsManager.sendTextMessage(SHORT_CODE, null, tweet, null, null);
+
+	}
+	
+	
+	
+	/*
+	 * Http requests must be done on separate thread 
+	 */
+	
+	private class UpdateTwitterStatus extends AsyncTask<String, String, String> {
+
+		
+		protected String doInBackground(String... args) {
+			// retrieve the informatio to build the tweet
+			String status = args[0];
+			double lat = Double.parseDouble(args[1]);
+			double longitude = Double.parseDouble(args[2]);
+			try	{
+				ConfigurationBuilder builder = new ConfigurationBuilder();
+				builder.setOAuthConsumerKey(twitterConsumerKey);
+				builder.setOAuthConsumerSecret(twitterConsumerSecret);
+				
+				// make a twitter instance// Get the access credentials 
+				String access_token = pref.getString(PREF_KEY_OAUTH_TOKEN, "");
+				String access_token_secret = pref.getString(PREF_KEY_OAUTH_SECRET, "");
+				
+				
+				StatusUpdate newStatus = new StatusUpdate(status);
+				
+				// add geolocation if it is present
+				if (geoLocation) {
+					GeoLocation location = new GeoLocation(lat, longitude);
+					newStatus.setLocation(location);
+				}
+				
+				// add a photo if it is present
+				if (hasPhoto) {
+					String filePath = args[3];
+					File photo = new File(filePath);
+					newStatus.setMedia(photo);
+				}
+				// create an access token object based on credentials
+				AccessToken accessToken = new AccessToken(access_token, access_token_secret);
+				Twitter twitter = new TwitterFactory(builder.build()).getInstance(accessToken);
+				
+				// Update status
+				twitter4j.Status response = twitter.updateStatus(newStatus);
+				
+				
+			} catch (TwitterException e) {
+				// Error in updating status
+				Log.d("Twitter Update Error", e.getMessage());
+				runOnUiThread(new Runnable() {
+					@Override
+					public void run() {
+						Toast.makeText(getApplicationContext(),
+								"Tweet Failed", Toast.LENGTH_SHORT)
+								.show();
+						
+					}
+				});
+			}
+			return null;
+		}
+		
+		protected void onPostExecute(String file_url) {
+			// Redirect to the tweet complete page
+			Intent i = new Intent(context, TestStringBuilderTweetSent.class);
+			i.putExtra("tweet", tweet);
+			startActivity(i);
+			
+			
+		}
 	}
 }

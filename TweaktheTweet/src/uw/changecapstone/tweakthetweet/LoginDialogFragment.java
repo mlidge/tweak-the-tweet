@@ -7,6 +7,11 @@ import android.app.DialogFragment;
 import android.content.DialogInterface;
 import android.os.Bundle;
 
+/*
+ * The LoginDialogFragment creates a dialogbox informing 
+ * the user that they are not logged in and prompts them
+ * to respond.
+ */
 public class LoginDialogFragment extends DialogFragment {
 
 	
@@ -33,6 +38,8 @@ public class LoginDialogFragment extends DialogFragment {
     public Dialog onCreateDialog(Bundle savedInstanceState) {
         // Use the Builder class for convenient dialog construction
         AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
+        // Positive button - log in
+        // Negative button - sign up
         builder.setMessage(R.string.login_message)
                .setPositiveButton(R.string.login_yes, new DialogInterface.OnClickListener() {
                    public void onClick(DialogInterface dialog, int id) {

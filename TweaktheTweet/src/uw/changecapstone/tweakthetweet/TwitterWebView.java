@@ -22,6 +22,7 @@ public class TwitterWebView extends Activity {
 	static final String PREF_KEY_OAUTH_SECRET = "oauth_token_secret";
 	static final String PREF_KEY_TWITTER_LOGIN = "isTwitterLoggewedIn";
 
+	// Twitter URL Constants
 	static final String TWITTER_CALLBACK_URL = "tttcallback://connect";
 	private static final String TWITTER_URL = "http://mobile.twitter.com";
 	private static final String TWITTER_URL_S = "https://mobile.twitter.com";
@@ -37,21 +38,22 @@ ProgressDialog _dialog;
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_oauthtwitter);
-       mIntent=getIntent();
+        mIntent=getIntent();
         Bundle extras = mIntent.getExtras();
+        
+        // Get the url and uri of the url for login
         url = extras.getString("url");
         uri = Uri.parse(url);
         url = uri.toString();
-        
-        Log.d("WEB", url);
-        Log.d("WEB", "starting webview setup");
-        
+
         try {
             webview = (WebView) findViewById(R.id.webview);
             webview.setVisibility(View.VISIBLE);
 
             setContentView(webview);
             
+            // The custom webview client provides the ability to capture the
+            // redirect url and return to the application
             webview.setWebViewClient(new WebViewClient(){
             	
             	@Override
@@ -62,9 +64,11 @@ ProgressDialog _dialog;
                 }
             	
             	public boolean shouldOverrideUrlLoading(WebView view, String url) {
+            		// load the url
             		view.loadUrl(url);
-            		 Uri uri = Uri.parse(url);
-            		 Log.d("WEB", "in override");
+            		Uri uri = Uri.parse(url);
+            		// if the url is the callback url (loaded after a successful login)
+            		// redirect back to the application
             		if (uri.toString().contains(TWITTER_CALLBACK_URL)) {
             			Log.d("WEB", "in if");
             			_dialog.dismiss();

@@ -273,8 +273,13 @@ public class TestStringBuilder extends CustomWindow implements DialogListener{
 				Toast.makeText(getBaseContext(), "Tweet City: "+address.getAddressLine(0), Toast.LENGTH_SHORT).show();
 			}
 		}
-	}
-	@Override
+	} 
+	
+	/*
+	 * Respond to any positive clicks on a dialog box.
+	 * LOGIN_DIALOG_TAG takes user to log in page
+	 * NETWORK_DIALOG_TAG indicates the tweet should send via sms
+	 */
 	public void onDialogPositiveClick(DialogFragment dialog) {
 		String tag = dialog.getTag();
 		if (tag.equals(LOGIN_DIALOG_TAG)) {
@@ -286,6 +291,10 @@ public class TestStringBuilder extends CustomWindow implements DialogListener{
 		
 	}
 
+	/*
+	 * Respond to any positive clicks on a dialog box.
+	 * LOGIN_DIALOG_TAG takes user to signup page
+	 */
 	@Override
 	public void onDialogNegativeClick(DialogFragment dialog) {
 		String tag = dialog.getTag();
@@ -298,12 +307,20 @@ public class TestStringBuilder extends CustomWindow implements DialogListener{
 		
 	}
 	
+	/*
+	 * Indicate that the tweet should be sent via sms because
+	 * no data connection is available
+	 */
 	public void setUseSMS() {
 		Editor e = pref.edit();
 		e.putBoolean(DATA_ON, false);
 		e.commit();
 	}
 	
+	/*
+	 * Check login status by checking for shared credentials.
+	 * Used to determine whether or not to prompt for login.
+	 */
 	private void checkLogInStatus() {
 		  if (!pref.getBoolean(PREF_KEY_TWITTER_LOGIN, false)) {
 			  DialogFragment logIn = new LoginDialogFragment();
@@ -311,17 +328,19 @@ public class TestStringBuilder extends CustomWindow implements DialogListener{
 		  }
 		}
 		
+	/*
+	 * Check to see if a data network (wifi or cellular data) is 
+	 * available
+	 */
 	private void checkNetworkStatus() {
 		ConnectivityManager cm =
 		        (ConnectivityManager)getSystemService(Context.CONNECTIVITY_SERVICE);
-		//boolean noConnection = cm==null;
+				
+		NetworkInfo activeNetwork = cm.getActiveNetworkInfo();
+		boolean isConnected = (activeNetwork != null) && (activeNetwork.isConnectedOrConnecting());
 		
-		
-				NetworkInfo activeNetwork = cm.getActiveNetworkInfo();
-		
-				boolean isConnected = (activeNetwork != null) && (activeNetwork.isConnectedOrConnecting());
-		
-	
+		// If not connected, inform user
+		// If connected, store that data is available.
 		if (!isConnected) {
 			DialogFragment network = new NetworkDialogFragment();
 			network.show(getFragmentManager(), NETWORK_DIALOG_TAG);
