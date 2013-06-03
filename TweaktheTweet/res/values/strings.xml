@@ -121,39 +121,6 @@
     <string name="signup_name">Sign up for Twitter</string>
     <string name="webview_name">Sign in to Twitter</string>
     -->
-    <string name="button_settings_text">Edit Settings</string>
-    <string name="button_logout_text">Log Out</string>
-    <string name="button_setup_text">Setup Application</string>
-    <string name="button_debug_text">View Debug Info</string>
-    <string name="button_compose_text">Compose</string>
-    <string name="welcome">WELCOME TO TWEAK THE TWEET!!</string>
-    <string name="action_settings">Settings</string>
-    <string name="button_use_gps_loc">Use GPS Location</string>
-    <string name="edit_message">Enter a Location</string>
-    <string name="button_show_map">Show Map</string>
-    <string name="cancel">Cancel</string>
-
-    <!-- SettingsActivity -->
-    <string name="radiodata">Use Data</string>
-    <string name="radiosms">Use SMS</string>
-    <string name="buttonsave">Save</string>
-    <string name="hello_world">Hello World</string>
-
-    <!-- DebugActivity -->
-    <string name="debug_button_finish_text">End Debug</string>
-    <!-- TweetActivity -->
-    <string name="button_send_tweet_text">Send</string>
-
-    <!-- ComposeActivity -->
-    <string name="tweet_confirm_text">Confirm</string>
-    <string name="compose_name">Compose</string>
-
-    <!-- TestStringBuilder -->
-    <string name="test_button">Test</string>
-    <string name="test_build_next">Next</string>
-    <string name="test_build_send">Send</string>
-    <string name="title_activity_test_string_builder">TestStringBuilder</string>
-    <string name="title_activity_test_string_builder_category">TestStringBuilderCategory</string>
 
     <!-- LocationWithGPS -->
     <string name="continue_without_loc">Continue without a location </string>
@@ -161,62 +128,6 @@
     <string name="btn_tapped_loc">Use my tapped location</string>
     <string name="btn_geo_loc">Use the address</string>
 
-    <string-array name="disaster_tags">
-        <item>Flood</item>
-        <item>Earthquake</item>
-        <item>Tornado</item>
-        <item>Tsunami</item>
-        <item>Storm</item>
-    </string-array>
-    <string-array name="category_tags">
-        <item>#shelter</item>
-        <item>#medical</item>
-        <item>#food</item>
-        <item>#water</item>
-        <item>#stuck</item>
-    </string-array>
-
-    <string name="disaster_tag_prompt">Choose a Disaster…</string>
-    <string name="test_string_city_hint">Enter current city name</string>
-    <string name="test_string_details_hint">Additional details</string>
-    <string name="location_title_text">Do you want us to use</string>
-    <string name="current_location_button_text">Current Location</string>
-    <string name="location_divider_text">or</string>
-    <string name="previous_location_button_text">Previous Location</string>
-    <string name="button_user_tag_entry">Enter Your Own Tag</string>
-    <string name="title_activity_location">Location Tag</string>
-    <string name="location_question_text">Where exactly are you reporting about?</string>
-    <string name="location_question_subtext">Tell Twitter viewers the location</string>
-    <string name="map_instruction_text">Locate and tap on the map the exact place you are reporting about</string>
-    <string name="continue_without_location_text">continue without a location</string>
-    <string name="address_hint_text">42 Wallaby Way, Sydney</string>
-    <string name="enter_location_text">Enter Location</string>
-    <string name="map_placeholder_text">Insert Map Here!</string>
-    <string name="review_text">Review Tweet</string>
-    <string name="do_not_remind_text">Do not remind me again</string>
-    <string name="title_activity_review">ReviewActivity</string>
-    <string name="title_activity_city">CityActivity</string>
-    <string name="title_activity_disaster">DisasterActivity</string>
-    <string name="location_reporting_text">What location are you reporting about?</string>
-    <string name="gps_text">Get my GPS Location</string>
-    <string name="enter_text">Enter a city /state/ region</string>
-    <string name="or_text">or</string>
-    <string name="proceed_description">Proceed</string>
-    <string name="camera_description">Use Camera</string>
-    <string name="title_activity_custom_window">CustomWindow</string>
-    <string name="disaster_reporting_text">What disaster are you reporting about?</string>
-    <string name="enter_your_own_hint">i.e. #northhurricane</string>
-    <string name="tweet_text">your tweet</string>
-    <string name="character_count_text">140 left</string>
-    <string name="category_question_text">What are you reporting about?</string>
-    <string name="tweet_placeholder_text">Your tweet should show up here!</string>
-    <string name="other_instruction_hint">i.e. I need food, water, and shelter</string>
-    <string name="time_text">Time</string>
-    <string name="time_text_hint">i.e. 5/8 - 6:00 pm</string>
-    <string name="source_text">Source</string>
-    <string name="source_text_hint">i.e. US News</string>
-    <string name="contact_text_hint">i.e. 2061234567</string>
-    <string name="title_activity_review_tweet">ReviewTweetActivity</string>
     <!--
 >>>>>>> 6c6c3a0d12922f45471c63853709d0df424c7784
     commented (Mussie) <string name="address_hint_text">4504 16th Ave. NE 8206</string>
