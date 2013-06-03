@@ -1,16 +1,32 @@
 package uw.changecapstone.tweakthetweet;
 
+import java.io.BufferedReader;
+import java.io.InputStream;
+import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import org.apache.http.HttpEntity;
+import org.apache.http.HttpResponse;
+import org.apache.http.NameValuePair;
+import org.apache.http.client.HttpClient;
+import org.apache.http.client.methods.HttpGet;
+import org.apache.http.impl.client.DefaultHttpClient;
+import org.apache.http.message.BasicNameValuePair;
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.app.Activity;
 import android.content.Intent;
 import android.graphics.Color;
 import android.text.Editable;
 import android.text.TextWatcher;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.View;
@@ -41,6 +57,9 @@ public class TestStringBuilderDisasterList extends CustomWindow {
 	private TextView char_count;
 	private EditText crnt_tweet;
 	private ImageButton proceed_custom_disaster_tag;
+	private Map<String, Map<String, Double>> testMap;
+	private double current_lat;
+	private double current_lon;
 	
 	private final TextWatcher createNewDisasterTag = new TextWatcher() {
 		public void beforeTextChanged(CharSequence s, int start, int count, int after) {
@@ -99,8 +118,8 @@ public class TestStringBuilderDisasterList extends CustomWindow {
 //		Bundle bundle = getIntent().getExtras();
 //		int coord_x = bundle.getString("coord_x");
 //		int coord_y = bundle.getString("coord_y");
-		int coord_x = 0;
-		int coord_y = 0;
+		current_lat = 0;
+		current_lon = 0;
 		
 		disaster_list = (ListView) findViewById(R.id.list);
 		disaster_list.setOnItemClickListener(new OnItemClickListener() {
@@ -160,9 +179,11 @@ public class TestStringBuilderDisasterList extends CustomWindow {
 		    }
 		});
 		
+		updateHashTagData();
+		
 		//Create adapter
-		ListAdapter adapter = createAdapter(coord_x, coord_y);
-		disaster_list.setAdapter(adapter);
+//		ListAdapter adapter = createAdapter();
+//		disaster_list.setAdapter(adapter);
 		
 		
 		// Create adapter
@@ -177,31 +198,102 @@ public class TestStringBuilderDisasterList extends CustomWindow {
 		return true;
 	}
 	
+	private void updateHashTagData(){
+		testMap = new HashMap<String, Map<String, Double>>();
+		
+		new AsyncTask<String, Void, String>() {
+
+			@Override
+			protected String doInBackground(String... params) {
+				String result = "";
+	        	ArrayList<NameValuePair> nameValuePairs = new ArrayList<NameValuePair>();
+	        	nameValuePairs.add(new BasicNameValuePair("id","message"));
+	    		InputStream is = null;
+	    		// http get
+	    		try{
+			        HttpClient httpclient = new DefaultHttpClient();
+			        HttpGet httpget = new HttpGet("http://homes.cs.washington.edu/~yaluen/main2.php?id=*");
+			        HttpResponse response = (HttpResponse) httpclient.execute(httpget);
+			        HttpEntity entity = ((org.apache.http.HttpResponse) response).getEntity();
+			        is = entity.getContent();
+	    		} catch(Exception e) {
+			        Log.e("log_tag", "Error in http connection "+e.toString());
+	    		}
+	    		//convert response to string
+	    		try {
+			        BufferedReader reader = new BufferedReader(new InputStreamReader(is,"iso-8859-1"),8);
+			        StringBuilder sb = new StringBuilder();
+			        String line = null;
+			        while ((line = reader.readLine()) != null) {
+		                sb.append(line + "\n");
+			        }
+			        is.close();
+			 
+			        result=sb.toString();
+			        Log.i("output", result);
+			        System.out.println(result);
+	    		} catch (Exception e) {
+			        Log.e("log_tag", "Error converting result "+e.toString());
+	    		}
+	    		 
+	    		String returnResult = "";
+	    		
+	    		//parse json data
+	    		try {
+			        JSONArray jArray = new JSONArray(result);
+			        for(int i=0;i<jArray.length();i++){
+		                JSONObject json_data = jArray.getJSONObject(i);
+		                testMap.put(json_data.getString("event_id"), new HashMap<String, Double>());
+		                testMap.get(json_data.getString("event_id")).put("lat_top_right", Double.parseDouble(json_data.getString("latitude_top_right")));
+		        		testMap.get(json_data.getString("event_id")).put("lon_top_right", Double.parseDouble(json_data.getString("longitude_top_right")));
+		        		testMap.get(json_data.getString("event_id")).put("lat_bot_left", Double.parseDouble(json_data.getString("latitude_bottom_left")));
+		        		testMap.get(json_data.getString("event_id")).put("lat_bot_left", Double.parseDouble(json_data.getString("longitude_bottom_left")));
+		        		Log.i(json_data.getString("event_id"), json_data.getString("latitude_top_right") + "," + json_data.getString("longitude_top_right")
+		        				+ "   " + json_data.getString("latitude_bottom_left") + json_data.getString("longitude_bottom_left"));
+			        }
+			        
+	    		} catch(JSONException e) {
+			        Log.e("log_tag", "Error parsing data "+e.toString());
+	    		}
+	    		
+	    		System.out.println(returnResult);
+	    		return returnResult;
+	    	}
+
+	    	@Override
+	        protected void onPostExecute(String result) {
+	    		ListAdapter adapter = createAdapter();
+	    		disaster_list.setAdapter(adapter);
+	        }
+			
+		}.execute("");
+	}
 	
-	protected ListAdapter createAdapter(int curr_x, int curr_y)
+	
+	protected ListAdapter createAdapter()
     {
-		Map<String, Map<String, Integer>> testMap = new HashMap<String, Map<String, Integer>>();
-		testMap.put("#TestEvent1", new HashMap<String, Integer>());
-		testMap.get("#TestEvent1").put("max_x", 10);
-		testMap.get("#TestEvent1").put("max_y", 10);
-		testMap.get("#TestEvent1").put("min_x", 0);
-		testMap.get("#TestEvent1").put("min_y", 0);
-		testMap.put("#TestEvent2", new HashMap<String, Integer>());
-		testMap.get("#TestEvent2").put("max_x", 20);
-		testMap.get("#TestEvent2").put("max_y", 20);
-		testMap.get("#TestEvent2").put("min_x", 10);
-		testMap.get("#TestEvent2").put("min_y", 10);
-		testMap.put("#TestEvent3", new HashMap<String, Integer>());
-		testMap.get("#TestEvent3").put("max_x", 5);
-		testMap.get("#TestEvent3").put("max_y", 5);
-		testMap.get("#TestEvent3").put("min_x", 0);
-		testMap.get("#TestEvent3").put("min_y", 0);
+//		Map<String, Map<String, Integer>> testMap = new HashMap<String, Map<String, Integer>>();
+//		testMap.put("#TestEvent1", new HashMap<String, Integer>());
+//		testMap.get("#TestEvent1").put("max_x", 10);
+//		testMap.get("#TestEvent1").put("max_y", 10);
+//		testMap.get("#TestEvent1").put("min_x", 0);
+//		testMap.get("#TestEvent1").put("min_y", 0);
+//		testMap.put("#TestEvent2", new HashMap<String, Integer>());
+//		testMap.get("#TestEvent2").put("max_x", 20);
+//		testMap.get("#TestEvent2").put("max_y", 20);
+//		testMap.get("#TestEvent2").put("min_x", 10);
+//		testMap.get("#TestEvent2").put("min_y", 10);
+//		testMap.put("#TestEvent3", new HashMap<String, Integer>());
+//		testMap.get("#TestEvent3").put("max_x", 5);
+//		testMap.get("#TestEvent3").put("max_y", 5);
+//		testMap.get("#TestEvent3").put("min_x", 0);
+//		testMap.get("#TestEvent3").put("min_y", 0);
 
 		
 		List<String> testData = new ArrayList<String>();
 		for(String event_tag : testMap.keySet()) {
-			if (curr_x <= testMap.get(event_tag).get("max_x") && curr_x >= testMap.get(event_tag).get("min_x") &&
-					curr_y <= testMap.get(event_tag).get("max_y") && curr_y >= testMap.get(event_tag).get("min_y")){
+			if (current_lat <= testMap.get(event_tag).get("lat_top_right") && current_lat >= testMap.get(event_tag).get("lat_bot_left") &&
+					current_lon <= testMap.get(event_tag).get("lon_top_right") && current_lon >= testMap.get(event_tag).get("lon_bot_left")){
 				testData.add(event_tag);
 			}
 		}
