@@ -346,29 +346,9 @@ containing a value of this type.
         public static final int button_debug_text=0x7f060022;
         public static final int button_logout_text=0x7f060020;
         /**  TweetActivity 
- TweetActivity 
          */
         public static final int button_send_tweet_text=0x7f06002f;
         /**  MainActivity 
-
-=======
-<?xml version="1.0" encoding="utf-8"?>
-<resources>
-
-     activity names(titles)
-    <string name="app_name">TweaktheTweet</string>
-    <string name="settings_name">Settings</string>
-    <string name="tweet_name">Twitter</string>
-    <string name="setup_name">Setup</string>
-    <string name="debug_name">Debug</string>
-    <string name="title_activity_map_display">Event Map</string>
-    <string name="title_activity_location_and_map"> Map and Info</string>
-    <string name="oauth_name">Sign in to Twitter</string>
-    <string name="signup_name">Sign up for Twitter</string>
-    <string name="webview_name">Sign in to Twitter</string>
-
-
-    
          */
         public static final int button_settings_text=0x7f06001f;
         public static final int button_setup_text=0x7f060021;
@@ -452,13 +432,31 @@ containing a value of this type.
         public static final int compose_name=0x7f060031;
         public static final int contact_text=0x7f060069;
         public static final int contact_text_hint=0x7f06005e;
-        /**  LocationWithGPS 
+        /** 
+=======
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+     activity names(titles)
+    <string name="app_name">TweaktheTweet</string>
+    <string name="settings_name">Settings</string>
+    <string name="tweet_name">Twitter</string>
+    <string name="setup_name">Setup</string>
+    <string name="debug_name">Debug</string>
+    <string name="title_activity_map_display">Event Map</string>
+    <string name="title_activity_location_and_map"> Map and Info</string>
+    <string name="oauth_name">Sign in to Twitter</string>
+    <string name="signup_name">Sign up for Twitter</string>
+    <string name="webview_name">Sign in to Twitter</string>
+
+
+    
+ LocationWithGPS 
          */
         public static final int continue_without_loc=0x7f060060;
         public static final int continue_without_location_text=0x7f060043;
         public static final int current_location_button_text=0x7f06003b;
         /**  DebugActivity 
- DebugActivity 
          */
         public static final int debug_button_finish_text=0x7f06002e;
         public static final int debug_name=0x7f060019;
@@ -505,7 +503,6 @@ containing a value of this type.
         public static final int previous_location_button_text=0x7f06003d;
         public static final int proceed_description=0x7f060050;
         /**  SettingsActivity 
- SettingsActivity 
          */
         public static final int radiodata=0x7f06002a;
         public static final int radiosms=0x7f06002b;
@@ -518,7 +515,6 @@ containing a value of this type.
         public static final int test_build_next=0x7f060033;
         public static final int test_build_send=0x7f060034;
         /**  TestStringBuilder 
- TestStringBuilder 
          */
         public static final int test_button=0x7f060032;
         public static final int test_string_city_hint=0x7f060038;
@@ -553,7 +549,6 @@ containing a value of this type.
         public static final int title_activity_test_string_builder_map=0x7f06006e;
         public static final int title_activity_test_string_builder_tweet_sent=0x7f06007e;
         /**  ComposeActivity 
- ComposeActivity 
          */
         public static final int tweet_confirm_text=0x7f060030;
         public static final int tweet_name=0x7f060017;

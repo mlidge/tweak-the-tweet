@@ -156,7 +156,7 @@
     <string name="network_yes">Use SMS</string>
     <string name="network_message">        TweaktheTweet has detected you are not connected to a network. 
         Would you like to send your tweets via text message? Note: you will not be able to use our
-        dynaming mapping feature.</string>
+        dynamic mapping feature.</string>
     <string name="title_activity_previous_location">PreviousLocationActivity</string>
     <string name="title_activity_test_string_builder_disaster_list">TestStringBuilderDisasterList</string>
     <string name="title_activity_test_string_builder_add_details">TestStringBuilderAddDetails</string>
