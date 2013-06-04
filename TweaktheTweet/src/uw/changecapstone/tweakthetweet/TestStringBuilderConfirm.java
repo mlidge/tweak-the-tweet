@@ -108,6 +108,8 @@ public class TestStringBuilderConfirm extends CustomWindow {
 			}else{
 				char_count.setText(String.valueOf(crntLength) + " character left");
 			}
+			
+			tweet = test_tweet.getText().toString();
 		}
 	
 		@Override
@@ -130,26 +132,61 @@ public class TestStringBuilderConfirm extends CustomWindow {
 				}
 				
 				if(splitTweet.length==1){
-					tweet = tweet + " " + s;
+					//If the tweet does not contain a category tag (like if the user deleted/edited it),
+					//append it and the details to the end of the string
+					tweet = tweet + category + " " + s;
 				}else{
 					if(splitTweet[1].contains("#")){
 						//If the tweet contains another hash tag, replace the current category text with the predefined tag that comes first
 						int indexOfTime = splitTweet[1].indexOf(TIME_TAG);
 						int indexOfSource = splitTweet[1].indexOf(SOURCE_TAG);
 						int indexOfContact = splitTweet[1].indexOf(CONTACT_TAG);
-						int indexOfNextTag = Math.min(indexOfTime, Math.min(indexOfSource, indexOfContact));
+						int indexOfNextTag = 0;
 						
+						//Find the index of the next predefined tag (or -1 if none)
+						if((indexOfTime * indexOfSource * indexOfContact) == -1){
+							//If you multiply all indices together and -1 is the result, all indices are -1 (since 2 indices can't both be at 1)
+							indexOfNextTag = -1;
+						}else if((indexOfTime * indexOfSource * indexOfContact)<0){
+							//If you multiply all indices together and a negative number is the result, you know only 1 index is -1
+							if(indexOfTime==-1){
+								indexOfNextTag = Math.min(indexOfSource, indexOfContact);
+							}else if(indexOfSource==-1){
+								indexOfNextTag = Math.min(indexOfTime, indexOfContact);
+							}else if(indexOfContact==-1){
+								indexOfNextTag = Math.min(indexOfTime, indexOfSource);
+							}
+						}else{
+							//If you multiply all indices together and a positive number is the result, you know that 2 indices are -1 or all 3 indices are positive
+							if(indexOfTime==-1){
+								indexOfNextTag = Math.max(indexOfSource, indexOfContact);
+							}else if(indexOfSource==-1){
+								indexOfNextTag = Math.max(indexOfTime, indexOfContact);
+							}else if(indexOfContact==-1){
+								indexOfNextTag = Math.max(indexOfTime, indexOfSource);
+							}else{
+								indexOfNextTag = Math.min(indexOfTime, Math.min(indexOfSource, indexOfContact));
+							}
+						}
+						
+						System.out.println("CATEGORY " + category);
+						System.out.println("TWEET " + splitTweet[1]);
+						System.out.println("INDEX " + indexOfNextTag);
 						//Toast.makeText(getBaseContext(), splitTweet[1].substring(indexOfNextTag), Toast.LENGTH_SHORT).show();
 						if(indexOfNextTag != -1){
 							tweet = splitTweet[0] + category + " " + s + " " + splitTweet[1].substring(indexOfNextTag);
+							System.out.println("went here");
 						}else{
 							//If the tweet contains another # character but not any of the predefined tags, still replace the string after the category tag
-							tweet = splitTweet[0] + category + " " + s;
+							tweet = splitTweet[0] + category + " " + s + splitTweet[1];
 						}
 					}else{
-						//If it does not contain another hash tag, just replace the string after category tag
+						//If it does not contain another actual hash tag, just replace the string after category tag
 						tweet = splitTweet[0] + category + " " + s;
+						System.out.println("CRNT TWEET0: " + splitTweet[0]);
+						
 					}
+					//tweet = tweet.replace('a', '*');
 					test_tweet.setText(tweet);
 				}
 		}
@@ -285,6 +322,7 @@ public class TestStringBuilderConfirm extends CustomWindow {
 		final_tweet = tweet;
 		lat = bundle.getDouble(GPSLAT);
 		longitude = bundle.getDouble(GPSLONG);
+		
 		//Set up main tweet text box
 		test_tweet = (EditText) findViewById(R.id.test_tweet);
 		test_tweet.setText(tweet);
@@ -393,7 +431,7 @@ public class TestStringBuilderConfirm extends CustomWindow {
 
 		
 		protected String doInBackground(String... args) {
-			// retrieve the informatio to build the tweet
+			// retrieve the information to build the tweet
 			String status = args[0];
 			double lat = Double.parseDouble(args[1]);
 			double longitude = Double.parseDouble(args[2]);
