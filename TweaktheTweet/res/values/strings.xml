@@ -98,12 +98,28 @@
     <string name="category_question_text">What are you reporting about?</string>
     <string name="tweet_placeholder_text">Your tweet should show up here!</string>
     <string name="other_instruction_hint">i.e. I need food, water, and shelter</string>
+    <string name="title_activity_review_tweet">ReviewTweetActivity</string>
+    
+    <!-- Location Page -->
+    <string name="location_prompt">If you know the location, enter an address to place it in your tweet</string>
+    <string name="location_prompt_hint">i.e. address, intersection, name of place, etc.</string>
+    <string name="gps_text_1">Your GPS shows you are here.</string>
+    <string name="gps_text_2">Locate and tap on the map to get an accurate location or use GPS.</string>
+    <string name="prev_text_1">Locate and tap on the map to get an accurate location</string>
+    <string name="prev_text_2"></string>
+    
+    <!-- More Details/Confirmation Page -->
     <string name="time_text">Time</string>
     <string name="time_text_hint">i.e. 5/8 - 6:00 pm</string>
     <string name="source_text">Source</string>
     <string name="source_text_hint">i.e. US News</string>
     <string name="contact_text_hint">i.e. 2061234567</string>
-    <string name="title_activity_review_tweet">ReviewTweetActivity</string>
+    <string name="submit_text">Submit</string>
+    
+    <!-- Tweet Sent Page -->
+    <string name="tweet_sent_text">You just finished Tweaking the Tweet! Your tweet has been sent.</string>
+    <string name="new_report_text">New Report</string>
+    <string name="logo_content_description">tweak the tweet logo</string>
     <!--
 =======
 <?xml version="1.0" encoding="utf-8"?>

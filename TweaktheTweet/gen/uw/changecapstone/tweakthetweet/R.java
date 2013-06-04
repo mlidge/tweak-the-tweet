@@ -325,7 +325,7 @@ containing a value of this type.
     public static final class string {
         public static final int action_settings=0x7f060025;
         public static final int address_hint_text=0x7f060044;
-        public static final int album_name=0x7f06007c;
+        public static final int album_name=0x7f060086;
         /**  activity names(titles) 
          */
         public static final int app_name=0x7f060015;
@@ -338,10 +338,10 @@ containing a value of this type.
         /**   Requested by string saying which app requested the notification. [CHAR LIMIT=42] 
          */
         public static final int auth_client_requested_by_msg=0x7f060011;
-        public static final int btn_geo_loc=0x7f060063;
-        public static final int btn_gps_loc=0x7f060061;
-        public static final int btn_tapped_loc=0x7f060062;
-        public static final int button_choose_pic=0x7f06007b;
+        public static final int btn_geo_loc=0x7f06006d;
+        public static final int btn_gps_loc=0x7f06006b;
+        public static final int btn_tapped_loc=0x7f06006c;
+        public static final int button_choose_pic=0x7f060085;
         public static final int button_compose_text=0x7f060023;
         public static final int button_debug_text=0x7f060022;
         public static final int button_logout_text=0x7f060020;
@@ -353,8 +353,8 @@ containing a value of this type.
         public static final int button_settings_text=0x7f06001f;
         public static final int button_setup_text=0x7f060021;
         public static final int button_show_map=0x7f060028;
-        public static final int button_take_pic=0x7f06007a;
-        public static final int button_to_photo_activity=0x7f060079;
+        public static final int button_take_pic=0x7f060084;
+        public static final int button_to_photo_activity=0x7f060083;
         public static final int button_use_gps_loc=0x7f060026;
         /** 
 >>>>>>> 6c6c3a0d12922f45471c63853709d0df424c7784
@@ -365,13 +365,13 @@ containing a value of this type.
 
     
          */
-        public static final int button_use_trail_log=0x7f060064;
+        public static final int button_use_trail_log=0x7f06006e;
         public static final int button_user_tag_entry=0x7f06003e;
         public static final int buttonsave=0x7f06002c;
         public static final int camera_description=0x7f060051;
         public static final int cancel=0x7f060029;
-        public static final int cannot=0x7f06007d;
-        public static final int category_placeholder_text=0x7f060067;
+        public static final int cannot=0x7f060087;
+        public static final int category_placeholder_text=0x7f060071;
         public static final int category_question_text=0x7f060057;
         public static final int character_count_text=0x7f060056;
         /**  Button in confirmation dialog to enable Google Play services.  Clicking it
@@ -430,8 +430,8 @@ containing a value of this type.
          */
         public static final int common_signin_button_text_long=0x7f06000e;
         public static final int compose_name=0x7f060031;
-        public static final int contact_text=0x7f060069;
-        public static final int contact_text_hint=0x7f06005e;
+        public static final int contact_text=0x7f060073;
+        public static final int contact_text_hint=0x7f060065;
         /** 
 =======
 <?xml version="1.0" encoding="utf-8"?>
@@ -453,14 +453,14 @@ containing a value of this type.
     
  LocationWithGPS 
          */
-        public static final int continue_without_loc=0x7f060060;
+        public static final int continue_without_loc=0x7f06006a;
         public static final int continue_without_location_text=0x7f060043;
         public static final int current_location_button_text=0x7f06003b;
         /**  DebugActivity 
          */
         public static final int debug_button_finish_text=0x7f06002e;
         public static final int debug_name=0x7f060019;
-        public static final int details_text=0x7f06006c;
+        public static final int details_text=0x7f060076;
         public static final int disaster_reporting_text=0x7f060053;
         public static final int disaster_tag_prompt=0x7f060037;
         public static final int do_not_remind_text=0x7f060048;
@@ -469,6 +469,8 @@ containing a value of this type.
         public static final int enter_text=0x7f06004e;
         public static final int enter_your_own_hint=0x7f060054;
         public static final int gps_text=0x7f06004d;
+        public static final int gps_text_1=0x7f06005d;
+        public static final int gps_text_2=0x7f06005e;
         public static final int hello_world=0x7f06002d;
         /**  Location client code resources (prefix with location_client) 
 
@@ -482,24 +484,32 @@ containing a value of this type.
         public static final int location_client_ulr_inactive_age_unknown=0x7f060013;
         public static final int location_client_ulr_inactive_unknown_restriction=0x7f060014;
         public static final int location_divider_text=0x7f06003c;
+        /**  Location Page 
+         */
+        public static final int location_prompt=0x7f06005b;
+        public static final int location_prompt_hint=0x7f06005c;
         public static final int location_question_subtext=0x7f060041;
         public static final int location_question_text=0x7f060040;
         public static final int location_reporting_text=0x7f06004c;
         public static final int location_title_text=0x7f06003a;
-        public static final int login_message=0x7f060072;
-        public static final int login_no=0x7f060071;
+        public static final int login_message=0x7f06007c;
+        public static final int login_no=0x7f06007b;
         /**  DialogFragments 
          */
-        public static final int login_yes=0x7f060070;
+        public static final int login_yes=0x7f06007a;
+        public static final int logo_content_description=0x7f060069;
         public static final int map_instruction_text=0x7f060042;
         public static final int map_placeholder_text=0x7f060046;
-        public static final int network_message=0x7f060074;
-        public static final int network_yes=0x7f060073;
+        public static final int network_message=0x7f06007e;
+        public static final int network_yes=0x7f06007d;
+        public static final int new_report_text=0x7f060068;
         public static final int oauth_name=0x7f06001c;
         public static final int or_text=0x7f06004f;
         public static final int other_instruction_hint=0x7f060059;
-        public static final int phone_hint_text=0x7f06006a;
-        public static final int photo_text=0x7f06006b;
+        public static final int phone_hint_text=0x7f060074;
+        public static final int photo_text=0x7f060075;
+        public static final int prev_text_1=0x7f06005f;
+        public static final int prev_text_2=0x7f060060;
         public static final int previous_location_button_text=0x7f06003d;
         public static final int proceed_description=0x7f060050;
         /**  SettingsActivity 
@@ -510,8 +520,9 @@ containing a value of this type.
         public static final int settings_name=0x7f060016;
         public static final int setup_name=0x7f060018;
         public static final int signup_name=0x7f06001d;
-        public static final int source_text=0x7f06005c;
-        public static final int source_text_hint=0x7f06005d;
+        public static final int source_text=0x7f060063;
+        public static final int source_text_hint=0x7f060064;
+        public static final int submit_text=0x7f060066;
         public static final int test_build_next=0x7f060033;
         public static final int test_build_send=0x7f060034;
         /**  TestStringBuilder 
@@ -519,40 +530,45 @@ containing a value of this type.
         public static final int test_button=0x7f060032;
         public static final int test_string_city_hint=0x7f060038;
         public static final int test_string_details_hint=0x7f060039;
-        public static final int time_text=0x7f06005a;
-        public static final int time_text_hint=0x7f06005b;
-        public static final int title_activity_category=0x7f060066;
+        /**  More Details/Confirmation Page 
+         */
+        public static final int time_text=0x7f060061;
+        public static final int time_text_hint=0x7f060062;
+        public static final int title_activity_category=0x7f060070;
         public static final int title_activity_city=0x7f06004a;
         public static final int title_activity_custom_window=0x7f060052;
         public static final int title_activity_disaster=0x7f06004b;
-        public static final int title_activity_emergency_notification=0x7f060080;
-        public static final int title_activity_loading_screen=0x7f060081;
+        public static final int title_activity_emergency_notification=0x7f06008a;
+        public static final int title_activity_loading_screen=0x7f06008b;
         public static final int title_activity_location=0x7f06003f;
         public static final int title_activity_location_and_map=0x7f06001b;
-        public static final int title_activity_location_with_gps=0x7f06007f;
-        public static final int title_activity_login_screen=0x7f060082;
-        public static final int title_activity_map=0x7f060065;
+        public static final int title_activity_location_with_gps=0x7f060089;
+        public static final int title_activity_login_screen=0x7f06008c;
+        public static final int title_activity_map=0x7f06006f;
         public static final int title_activity_map_display=0x7f06001a;
-        public static final int title_activity_other=0x7f060068;
-        public static final int title_activity_photo=0x7f060078;
-        public static final int title_activity_previous_location=0x7f060075;
+        public static final int title_activity_other=0x7f060072;
+        public static final int title_activity_photo=0x7f060082;
+        public static final int title_activity_previous_location=0x7f06007f;
         public static final int title_activity_review=0x7f060049;
-        public static final int title_activity_review_tweet=0x7f06005f;
+        public static final int title_activity_review_tweet=0x7f06005a;
         public static final int title_activity_test_string_builder=0x7f060035;
-        public static final int title_activity_test_string_builder_add_details=0x7f060077;
+        public static final int title_activity_test_string_builder_add_details=0x7f060081;
         public static final int title_activity_test_string_builder_category=0x7f060036;
-        public static final int title_activity_test_string_builder_confirm=0x7f06006f;
-        public static final int title_activity_test_string_builder_disaster_list=0x7f060076;
+        public static final int title_activity_test_string_builder_confirm=0x7f060079;
+        public static final int title_activity_test_string_builder_disaster_list=0x7f060080;
         /**  MapActivities 
          */
-        public static final int title_activity_test_string_builder_location=0x7f06006d;
-        public static final int title_activity_test_string_builder_map=0x7f06006e;
-        public static final int title_activity_test_string_builder_tweet_sent=0x7f06007e;
+        public static final int title_activity_test_string_builder_location=0x7f060077;
+        public static final int title_activity_test_string_builder_map=0x7f060078;
+        public static final int title_activity_test_string_builder_tweet_sent=0x7f060088;
         /**  ComposeActivity 
          */
         public static final int tweet_confirm_text=0x7f060030;
         public static final int tweet_name=0x7f060017;
         public static final int tweet_placeholder_text=0x7f060058;
+        /**  Tweet Sent Page 
+         */
+        public static final int tweet_sent_text=0x7f060067;
         public static final int tweet_text=0x7f060055;
         public static final int webview_name=0x7f06001e;
         public static final int welcome=0x7f060024;
