@@ -36,7 +36,7 @@ public class TestStringBuilderConfirm extends CustomWindow {
 
 	private EditText test_tweet, add_details, add_time, add_source, add_contact;
 	private TextView char_count;
-	private String category, tweet, final_tweet;
+	private String category, tweet;
 	int crntLength;
 	private final String TIME_TAG = "#time";
 	private final String SOURCE_TAG = "#src";
@@ -86,17 +86,18 @@ public class TestStringBuilderConfirm extends CustomWindow {
 	
 	private final TextWatcher charCountWatcher = new TextWatcher() {
 		public void beforeTextChanged(CharSequence s, int start, int count, int after) {
-			int crntLength = 140 - final_tweet.length();
+			/*
 			if(crntLength != 1){
 				char_count.setText(String.valueOf(140 - tweet.length()) + " characters left in tweet");
 			}else{
 				char_count.setText(String.valueOf(140 - tweet.length()) + " character left in tweet");
 			}
+			*/
 		}
 	
 		public void onTextChanged(CharSequence s, int start, int before, int count) {
-			final_tweet = tweet + " " + s;
-			crntLength = 140 - final_tweet.length();
+			String crntTweet = test_tweet.getText().toString();
+			crntLength = 140 - crntTweet.length();
 			if(crntLength < 0){
 				char_count.setTextColor(Color.RED);
 			}else{
@@ -293,7 +294,6 @@ public class TestStringBuilderConfirm extends CustomWindow {
 		Bundle bundle = getIntent().getExtras();
 		category = bundle.getString("category");
 		tweet = bundle.getString("tweet");
-		final_tweet = tweet;
 		lat = bundle.getDouble(GPSLAT);
 		longitude = bundle.getDouble(GPSLONG);
 		
@@ -316,7 +316,8 @@ public class TestStringBuilderConfirm extends CustomWindow {
 		
 		//Set up char count
 		char_count = (TextView) findViewById(R.id.char_count);
-		char_count.setText(String.valueOf(140 - tweet.length()) + " characters left in tweet");
+		crntLength = 140 - tweet.length();
+		char_count.setText(String.valueOf(crntLength) + " characters left in tweet");
 		
 		//Set up add details text box
 		add_details = (EditText) findViewById(R.id.additional_details);	
@@ -354,6 +355,9 @@ public class TestStringBuilderConfirm extends CustomWindow {
 			geoLocation = (lat == 0.0) && (longitude == 0.0);
 			hasPhoto = false;
 			photoPath = "";
+			
+			//Set the tweet value to what is in the final tweet text box
+			tweet = test_tweet.getText().toString();
 			
 			// See if data access is available
 			SharedPreferences pref = PreferenceManager.getDefaultSharedPreferences(this);
