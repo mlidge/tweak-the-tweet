@@ -153,7 +153,7 @@ containing a value of this type.
         public static final int default_button_color=0x7f04000c;
         public static final int default_text_color=0x7f040012;
         public static final int important_button_color=0x7f04000f;
-        public static final int location_button_color=0x7f040013;
+        public static final int inactive_button_color=0x7f040013;
         public static final int subtext_color=0x7f04000a;
         public static final int title_color=0x7f04000b;
         public static final int tweet_box_color=0x7f040011;

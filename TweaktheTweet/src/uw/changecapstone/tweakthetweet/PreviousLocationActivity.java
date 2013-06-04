@@ -30,8 +30,10 @@ import android.view.KeyEvent;
 import android.view.Menu;
 import android.view.MotionEvent;
 import android.view.View;
+import android.view.View.OnClickListener;
 import android.view.inputmethod.EditorInfo;
 import android.view.inputmethod.InputMethodManager;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.TextView;
@@ -55,6 +57,7 @@ public class PreviousLocationActivity extends CustomWindow {
 	String message;
 	ImageButton doNotAddLoc;
 	Marker tappedMarker;
+	Button tappedLocBtn;
 	
 	private final TextWatcher addLocationTag = new TextWatcher() {
 		public void beforeTextChanged(CharSequence s, int start, int count, int after) {
@@ -121,6 +124,9 @@ public class PreviousLocationActivity extends CustomWindow {
 		test_tweet = (EditText) findViewById(R.id.tweet_display_prev);
 		test_tweet.setText(tweet);
 		
+		//Set location button
+		tappedLocBtn = (Button) findViewById(R.id.tapped_location_btn);
+		
 		//TODO: to put this back
 		//char_count.setText(String.valueOf(140 - tweet.length() - " #loc ".length()) + " characters left in tweet");
 		location_text = (EditText) findViewById(R.id.location_text_box);
@@ -152,6 +158,14 @@ public class PreviousLocationActivity extends CustomWindow {
 			double lng = point.longitude;
 			tappedLatLng = new LatLng(lat, lng);
 			tappedMarker = mMap.addMarker(new MarkerOptions().position(tappedLatLng).title("Your tapped location"));
+			tappedLocBtn.setBackgroundColor(getResources().getColor(R.color.default_button_color));
+			tappedLocBtn.setOnClickListener(new OnClickListener() {
+
+			    @Override
+			    public void onClick(View v) {
+			        useTappedLocation(v);
+			    }
+			});
 			Toast.makeText(getBaseContext(), "Tapped Location: "+lat + "," + 
 					lng, Toast.LENGTH_SHORT).show();
 		}		

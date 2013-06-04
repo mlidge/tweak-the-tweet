@@ -67,12 +67,11 @@
 			
 			<Button
 			    android:id="@+id/tapped_location_btn"
-			    android:background="@color/location_button_color"
+			    android:background="@color/inactive_button_color"
 			    android:layout_width="100dp"
 			    android:layout_height="60dp"
 			    android:text="@string/btn_tapped_loc"
-			    android:textColor="@color/background_color" 
-			    android:onClick="useTappedLocation" />
+			    android:textColor="@color/background_color" />
 		
 		</LinearLayout>
 		

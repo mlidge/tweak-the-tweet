@@ -21,8 +21,10 @@ import android.util.Log;
 import android.view.KeyEvent;
 import android.view.Menu;
 import android.view.View;
+import android.view.View.OnClickListener;
 import android.view.inputmethod.EditorInfo;
 import android.view.inputmethod.InputMethodManager;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.TextView;
@@ -56,6 +58,7 @@ public class LocationWithGPS extends CustomWindow {
 	String message;
 	ImageButton doNotAddLoc;
 	Marker tappedMarker;
+	Button tappedLocBtn;
 	
 	private final TextWatcher addLocationTag = new TextWatcher() {
 		public void beforeTextChanged(CharSequence s, int start, int count, int after) {
@@ -140,6 +143,9 @@ public class LocationWithGPS extends CustomWindow {
 		test_tweet = (EditText) findViewById(R.id.tweet_display_gps);
 		test_tweet.setText(tweet);
 		
+		//Set location button
+		tappedLocBtn = (Button) findViewById(R.id.tapped_location_btn);
+		
 		// TODO: Display map of event area with user's location
 		
 		//char_count = (TextView) findViewById(R.id.char_count);
@@ -174,6 +180,15 @@ public class LocationWithGPS extends CustomWindow {
 			double lng = point.longitude;
 			tappedLatLng = new LatLng(lat, lng);
 			tappedMarker = mMap.addMarker(new MarkerOptions().position(tappedLatLng).title("Your tapped location"));
+			tappedLocBtn.setBackgroundColor(getResources().getColor(R.color.default_button_color));
+			tappedLocBtn.setOnClickListener(new OnClickListener() {
+
+			    @Override
+			    public void onClick(View v) {
+			        useTappedLocation(v);
+			    }
+			});
+			
 			Toast.makeText(getBaseContext(), "Tapped Location: "+lat + "," + 
 					lng, Toast.LENGTH_SHORT).show();
 		}
@@ -232,6 +247,7 @@ public class LocationWithGPS extends CustomWindow {
 		Intent intent = new Intent(this, MapDisplayActivity.class);
 		startActivity(intent);
 	}
+	
 	/*when the user clicks the "Enter" button, 
 	 * we are going to read the textfield content and 
 	 * do some validity checks before we show/zoom map*/
