@@ -11,10 +11,12 @@ import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.MapFragment;
 import com.google.android.gms.maps.GoogleMap.OnMapClickListener;
 import com.google.android.gms.maps.model.LatLng;
+import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
 
 import android.location.Address;
 import android.location.Geocoder;
+import android.location.Location;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.app.Activity;
@@ -52,6 +54,7 @@ public class PreviousLocationActivity extends CustomWindow {
 	double city_long;
 	String message;
 	ImageButton doNotAddLoc;
+	Marker tappedMarker;
 	
 	private final TextWatcher addLocationTag = new TextWatcher() {
 		public void beforeTextChanged(CharSequence s, int start, int count, int after) {
@@ -103,7 +106,7 @@ public class PreviousLocationActivity extends CustomWindow {
 		mMap = ((MapFragment) getFragmentManager().findFragmentById(R.id.loc_map)).getMap();
 		LatLng cityGeoLatLng = new LatLng(city_lat, city_long);
 		mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(cityGeoLatLng, 14));
-		mMap.addMarker(new MarkerOptions().position(cityGeoLatLng).title("your geo location."));
+		mMap.addMarker(new MarkerOptions().position(cityGeoLatLng).title("Your address location"));
 		mMap.setOnMapClickListener(getOnMapClickListener());
 		
 		Bundle bundle = getIntent().getExtras();
@@ -138,13 +141,17 @@ public class PreviousLocationActivity extends CustomWindow {
 		});
 	}
 	
-	/*Gets the lat/long location that was touched.*/
+	/*Gets the lat/long location that was touched and add a marker.*/
 	private OnMapClickListener getOnMapClickListener() {
 		return new OnMapClickListener() {			
 		public void onMapClick(LatLng point) {
+			if(tappedMarker != null){
+				tappedMarker.remove();
+			}
 			double lat = point.latitude;
 			double lng = point.longitude;
 			tappedLatLng = new LatLng(lat, lng);
+			tappedMarker = mMap.addMarker(new MarkerOptions().position(tappedLatLng).title("Your tapped location"));
 			Toast.makeText(getBaseContext(), "Tapped Location: "+lat + "," + 
 					lng, Toast.LENGTH_SHORT).show();
 		}		

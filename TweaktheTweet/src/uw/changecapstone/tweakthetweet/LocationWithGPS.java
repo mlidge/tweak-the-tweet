@@ -34,6 +34,7 @@ import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.GoogleMap.OnMapClickListener;
 import com.google.android.gms.maps.MapFragment;
 import com.google.android.gms.maps.model.LatLng;
+import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
 
 @SuppressLint("NewApi")
@@ -54,6 +55,7 @@ public class LocationWithGPS extends CustomWindow {
 	double gps_long;
 	String message;
 	ImageButton doNotAddLoc;
+	Marker tappedMarker;
 	
 	private final TextWatcher addLocationTag = new TextWatcher() {
 		public void beforeTextChanged(CharSequence s, int start, int count, int after) {
@@ -113,7 +115,7 @@ public class LocationWithGPS extends CustomWindow {
 		mMap = ((MapFragment) getFragmentManager().findFragmentById(R.id.loc_map)).getMap();
 		LatLng gpslatLng = new LatLng(gps_lat, gps_long);
 		mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(gpslatLng, 14));
-		mMap.addMarker(new MarkerOptions().position(gpslatLng).title("your gps location."));
+		mMap.addMarker(new MarkerOptions().position(gpslatLng).title("Your GPS location"));
 		mMap.setMyLocationEnabled(true);
 		
 		mMap.setOnMapClickListener(getOnMapClickListener());
@@ -161,13 +163,17 @@ public class LocationWithGPS extends CustomWindow {
 		});
 
 	}
-	/*Gets the lat/long location that was touched.*/
+	/*Gets the lat/long location that was touched and set a marker.*/
 	private OnMapClickListener getOnMapClickListener() {
 		return new OnMapClickListener() {			
 		public void onMapClick(LatLng point) {
+			if(tappedMarker != null){
+				tappedMarker.remove();
+			}
 			double lat = point.latitude;
 			double lng = point.longitude;
 			tappedLatLng = new LatLng(lat, lng);
+			tappedMarker = mMap.addMarker(new MarkerOptions().position(tappedLatLng).title("Your tapped location"));
 			Toast.makeText(getBaseContext(), "Tapped Location: "+lat + "," + 
 					lng, Toast.LENGTH_SHORT).show();
 		}
