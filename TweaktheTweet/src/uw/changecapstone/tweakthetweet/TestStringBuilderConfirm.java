@@ -169,24 +169,16 @@ public class TestStringBuilderConfirm extends CustomWindow {
 							}
 						}
 						
-						System.out.println("CATEGORY " + category);
-						System.out.println("TWEET " + splitTweet[1]);
-						System.out.println("INDEX " + indexOfNextTag);
-						//Toast.makeText(getBaseContext(), splitTweet[1].substring(indexOfNextTag), Toast.LENGTH_SHORT).show();
 						if(indexOfNextTag != -1){
 							tweet = splitTweet[0] + category + " " + s + " " + splitTweet[1].substring(indexOfNextTag);
-							System.out.println("went here");
 						}else{
 							//If the tweet contains another # character but not any of the predefined tags, still replace the string after the category tag
 							tweet = splitTweet[0] + category + " " + s + splitTweet[1];
 						}
 					}else{
 						//If it does not contain another actual hash tag, just replace the string after category tag
-						tweet = splitTweet[0] + category + " " + s;
-						System.out.println("CRNT TWEET0: " + splitTweet[0]);
-						
+						tweet = splitTweet[0] + category + " " + s;					
 					}
-					//tweet = tweet.replace('a', '*');
 					test_tweet.setText(tweet);
 				}
 		}
