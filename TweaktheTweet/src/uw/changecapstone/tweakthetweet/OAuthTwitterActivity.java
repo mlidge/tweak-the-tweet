@@ -55,7 +55,7 @@ public class OAuthTwitterActivity extends Activity {
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		pref = PreferenceManager.getDefaultSharedPreferences(this);
-
+		setContentView(R.layout.activity_oauthtwitter);
 		// Ensure twitter is not logged in before trying to authenticate
 		if (!isTwitterLoggedInAlready()) {
 			ApplicationInfo ai;
@@ -72,7 +72,6 @@ public class OAuthTwitterActivity extends Activity {
 			// Begin a loading dialog and authenticate to Twitter
 			// in an asynchronous task (web requests cannot be on the 
 			// UI thread)
-			dialog = ProgressDialog.show(this, "", "Loading");
 			TwitterAuthenticate task = new TwitterAuthenticate();
 			task.execute(new String[] {null});
 

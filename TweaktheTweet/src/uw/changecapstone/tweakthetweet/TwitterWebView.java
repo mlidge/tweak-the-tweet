@@ -47,10 +47,12 @@ ProgressDialog _dialog;
         url = uri.toString();
 
         try {
-            webview = (WebView) findViewById(R.id.webview);
-            webview.setVisibility(View.VISIBLE);
-
-            setContentView(webview);
+        	WebView webview = (WebView)findViewById(R.id.webview);
+            webview.getSettings().setJavaScriptEnabled(true);
+            webview.getSettings().setDomStorageEnabled(true);
+            webview.getSettings().setSavePassword(false);
+            webview.getSettings().setSaveFormData(false);
+            webview.getSettings().setSupportZoom(false);
             
             // The custom webview client provides the ability to capture the
             // redirect url and return to the application
@@ -71,7 +73,7 @@ ProgressDialog _dialog;
             		// redirect back to the application
             		if (uri.toString().contains(TWITTER_CALLBACK_URL)) {
             			Log.d("WEB", "in if");
-            			_dialog.dismiss();
+            			
             			String oauthVerifier = uri.getQueryParameter( "oauth_verifier" );
             			mIntent.putExtra( "oauth_verifier", oauthVerifier );
             			setResult( RESULT_OK, mIntent );
@@ -85,18 +87,14 @@ ProgressDialog _dialog;
                 public void onPageFinished(WebView view, String url) {
                  // TODO Auto-generated method stub
                  super.onPageFinished(view, url);
-                 _dialog.dismiss();
+                 findViewById(R.id.webload).setVisibility(View.GONE);
+                 findViewById(R.id.webview).setVisibility(View.VISIBLE);
                 }
 
             }
             	
             );
-            webview.getSettings().setJavaScriptEnabled(true);
-            webview.getSettings().setDomStorageEnabled(true);
-            webview.getSettings().setSavePassword(false);
-            webview.getSettings().setSaveFormData(false);
-            webview.getSettings().setSupportZoom(false);
-            _dialog = ProgressDialog.show(TwitterWebView.this, "", "Loading");
+
             Log.d("WEB", "about to load url");
             webview.loadUrl(url);
             
