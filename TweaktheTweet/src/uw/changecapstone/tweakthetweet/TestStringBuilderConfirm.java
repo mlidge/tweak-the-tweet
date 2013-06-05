@@ -296,7 +296,7 @@ public class TestStringBuilderConfirm extends CustomWindow {
 		tweet = bundle.getString("tweet");
 		lat = bundle.getDouble(GPSLAT);
 		longitude = bundle.getDouble(GPSLONG);
-		
+		pref = PreferenceManager.getDefaultSharedPreferences(this);
 		//Set up main tweet text box
 		test_tweet = (EditText) findViewById(R.id.test_tweet);
 		test_tweet.setText(tweet);
