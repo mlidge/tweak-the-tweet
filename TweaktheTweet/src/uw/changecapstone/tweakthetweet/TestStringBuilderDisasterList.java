@@ -58,8 +58,6 @@ public class TestStringBuilderDisasterList extends CustomWindow {
 	private EditText crnt_tweet;
 	private ImageButton proceed_custom_disaster_tag;
 	private Map<String, Map<String, Double>> testMap;
-	private double current_lat;
-	private double current_lon;
 	
 	private final TextWatcher createNewDisasterTag = new TextWatcher() {
 		public void beforeTextChanged(CharSequence s, int start, int count, int after) {
@@ -115,11 +113,6 @@ public class TestStringBuilderDisasterList extends CustomWindow {
 		// We compare it with all the parameter coordinates of events
 		// We build a list of events that the coordinates fall within
 		
-//		Bundle bundle = getIntent().getExtras();
-//		int coord_x = bundle.getString("coord_x");
-//		int coord_y = bundle.getString("coord_y");
-		current_lat = 0;
-		current_lon = 0;
 		
 		disaster_list = (ListView) findViewById(R.id.list);
 		disaster_list.setOnItemClickListener(new OnItemClickListener() {
@@ -212,7 +205,7 @@ public class TestStringBuilderDisasterList extends CustomWindow {
 	    		// http get
 	    		try{
 			        HttpClient httpclient = new DefaultHttpClient();
-			        HttpGet httpget = new HttpGet("http://homes.cs.washington.edu/~yaluen/main2.php?id=*");
+			        HttpGet httpget = new HttpGet("http://homes.cs.washington.edu/~yaluen/main.php?id=*");
 			        HttpResponse response = (HttpResponse) httpclient.execute(httpget);
 			        HttpEntity entity = ((org.apache.http.HttpResponse) response).getEntity();
 			        is = entity.getContent();
@@ -231,7 +224,6 @@ public class TestStringBuilderDisasterList extends CustomWindow {
 			 
 			        result=sb.toString();
 			        Log.i("output", result);
-			        System.out.println(result);
 	    		} catch (Exception e) {
 			        Log.e("log_tag", "Error converting result "+e.toString());
 	    		}
@@ -247,9 +239,9 @@ public class TestStringBuilderDisasterList extends CustomWindow {
 		                testMap.get(json_data.getString("event_id")).put("lat_top_right", Double.parseDouble(json_data.getString("latitude_top_right")));
 		        		testMap.get(json_data.getString("event_id")).put("lon_top_right", Double.parseDouble(json_data.getString("longitude_top_right")));
 		        		testMap.get(json_data.getString("event_id")).put("lat_bot_left", Double.parseDouble(json_data.getString("latitude_bottom_left")));
-		        		testMap.get(json_data.getString("event_id")).put("lat_bot_left", Double.parseDouble(json_data.getString("longitude_bottom_left")));
+		        		testMap.get(json_data.getString("event_id")).put("lon_bot_left", Double.parseDouble(json_data.getString("longitude_bottom_left")));
 		        		Log.i(json_data.getString("event_id"), json_data.getString("latitude_top_right") + "," + json_data.getString("longitude_top_right")
-		        				+ "   " + json_data.getString("latitude_bottom_left") + json_data.getString("longitude_bottom_left"));
+		        				+ "   " + json_data.getString("latitude_bottom_left") + "," + json_data.getString("longitude_bottom_left"));
 			        }
 			        
 	    		} catch(JSONException e) {
@@ -292,9 +284,17 @@ public class TestStringBuilderDisasterList extends CustomWindow {
 		
 		List<String> testData = new ArrayList<String>();
 		for(String event_tag : testMap.keySet()) {
-			if (current_lat <= testMap.get(event_tag).get("lat_top_right") && current_lat >= testMap.get(event_tag).get("lat_bot_left") &&
-					current_lon <= testMap.get(event_tag).get("lon_top_right") && current_lon >= testMap.get(event_tag).get("lon_bot_left")){
+			Log.i("looking at", event_tag);
+			Log.i("city_lat", Double.toString(city_lat));
+			Log.i("city_long", Double.toString(city_long));
+			Log.i("lat_top_right", Double.toString(testMap.get(event_tag).get("lat_top_right")));
+			Log.i("lon_top_right", Double.toString(testMap.get(event_tag).get("lon_top_right")));
+			Log.i("lat_bot_left", Double.toString(testMap.get(event_tag).get("lat_bot_left")));
+			Log.i("lon_bot_left", Double.toString(testMap.get(event_tag).get("lon_bot_left")));
+			if (city_lat <= testMap.get(event_tag).get("lat_top_right") && city_lat >= testMap.get(event_tag).get("lat_bot_left") &&
+					city_long <= testMap.get(event_tag).get("lon_top_right") && city_long >= testMap.get(event_tag).get("lon_bot_left")){
 				testData.add(event_tag);
+				Log.i("added", event_tag);
 			}
 		}
 
