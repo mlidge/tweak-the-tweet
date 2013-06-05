@@ -36,7 +36,7 @@ public class TestStringBuilderConfirm extends CustomWindow {
 
 	private EditText test_tweet, add_details, add_time, add_source, add_contact;
 	private TextView char_count;
-	private String category, tweet, final_tweet;
+	private String category, tweet;
 	int crntLength;
 	private final String TIME_TAG = "#time";
 	private final String SOURCE_TAG = "#src";
@@ -86,17 +86,18 @@ public class TestStringBuilderConfirm extends CustomWindow {
 	
 	private final TextWatcher charCountWatcher = new TextWatcher() {
 		public void beforeTextChanged(CharSequence s, int start, int count, int after) {
-			int crntLength = 140 - final_tweet.length();
+			/*
 			if(crntLength != 1){
 				char_count.setText(String.valueOf(140 - tweet.length()) + " characters left in tweet");
 			}else{
 				char_count.setText(String.valueOf(140 - tweet.length()) + " character left in tweet");
 			}
+			*/
 		}
 	
 		public void onTextChanged(CharSequence s, int start, int before, int count) {
-			final_tweet = tweet + " " + s;
-			crntLength = 140 - final_tweet.length();
+			String crntTweet = test_tweet.getText().toString();
+			crntLength = 140 - crntTweet.length();
 			if(crntLength < 0){
 				char_count.setTextColor(Color.RED);
 			}else{
@@ -108,6 +109,8 @@ public class TestStringBuilderConfirm extends CustomWindow {
 			}else{
 				char_count.setText(String.valueOf(crntLength) + " character left");
 			}
+			
+			//tweet = test_tweet.getText().toString();
 		}
 	
 		@Override
@@ -130,25 +133,52 @@ public class TestStringBuilderConfirm extends CustomWindow {
 				}
 				
 				if(splitTweet.length==1){
-					tweet = tweet + " " + s;
+					//If the tweet does not contain a category tag (like if the user deleted/edited it),
+					//append it and the details to the end of the string
+					tweet = tweet + category + " " + s;
 				}else{
 					if(splitTweet[1].contains("#")){
 						//If the tweet contains another hash tag, replace the current category text with the predefined tag that comes first
 						int indexOfTime = splitTweet[1].indexOf(TIME_TAG);
 						int indexOfSource = splitTweet[1].indexOf(SOURCE_TAG);
 						int indexOfContact = splitTweet[1].indexOf(CONTACT_TAG);
-						int indexOfNextTag = Math.min(indexOfTime, Math.min(indexOfSource, indexOfContact));
+						int indexOfNextTag = 0;
 						
-						//Toast.makeText(getBaseContext(), splitTweet[1].substring(indexOfNextTag), Toast.LENGTH_SHORT).show();
+						//Find the index of the next predefined tag (or -1 if none)
+						if((indexOfTime * indexOfSource * indexOfContact) == -1){
+							//If you multiply all indices together and -1 is the result, all indices are -1 (since 2 indices can't both be at 1)
+							indexOfNextTag = -1;
+						}else if((indexOfTime * indexOfSource * indexOfContact)<-1){
+							//If you multiply all indices together and a negative number less than -1 is the result, you know only 1 index is -1
+							if(indexOfTime==-1){
+								indexOfNextTag = Math.min(indexOfSource, indexOfContact);
+							}else if(indexOfSource==-1){
+								indexOfNextTag = Math.min(indexOfTime, indexOfContact);
+							}else if(indexOfContact==-1){
+								indexOfNextTag = Math.min(indexOfTime, indexOfSource);
+							}
+						}else{
+							//If you multiply all indices together and a positive number is the result, you know that 2 indices are -1 or all 3 indices are positive
+							if(indexOfTime==-1){
+								indexOfNextTag = Math.max(indexOfSource, indexOfContact);
+							}else if(indexOfSource==-1){
+								indexOfNextTag = Math.max(indexOfTime, indexOfContact);
+							}else if(indexOfContact==-1){
+								indexOfNextTag = Math.max(indexOfTime, indexOfSource);
+							}else{
+								indexOfNextTag = Math.min(indexOfTime, Math.min(indexOfSource, indexOfContact));
+							}
+						}
+						
 						if(indexOfNextTag != -1){
 							tweet = splitTweet[0] + category + " " + s + " " + splitTweet[1].substring(indexOfNextTag);
 						}else{
 							//If the tweet contains another # character but not any of the predefined tags, still replace the string after the category tag
-							tweet = splitTweet[0] + category + " " + s;
+							tweet = splitTweet[0] + category + " " + s + splitTweet[1];
 						}
 					}else{
-						//If it does not contain another hash tag, just replace the string after category tag
-						tweet = splitTweet[0] + category + " " + s;
+						//If it does not contain another actual hash tag, just replace the string after category tag
+						tweet = splitTweet[0] + category + " " + s;					
 					}
 					test_tweet.setText(tweet);
 				}
@@ -161,35 +191,62 @@ public class TestStringBuilderConfirm extends CustomWindow {
 	
 	};
 	
+	/**
+	 * A method that handles changes in detail boxes for optional tags
+	 * @param startTag a String that equals the main tag whose details are being replaced
+	 * @param secondTag a String that equals the second out of 3 required tags
+	 * @param thirdTag a String that equals the third out of 3 required tags
+	 * @param s a CharSequence (from onTextChanged)
+	 */
+	private void changeTextBasedOnOptTag(String startTag, String secondTag, String thirdTag, CharSequence s){
+		String[] splitTweet = tweet.split(startTag);
+		
+		if(!tweet.contains(startTag)){
+			//if the tweet does not contain the category tag, just append it to the end of the string
+			tweet = tweet + " " + startTag + " " + s;
+		}else{
+			if(splitTweet[1].contains("#")){
+				//If the tweet contains another hash tag, replace the current category text with the predefined tag that comes first
+				int indexOfSecond = splitTweet[1].indexOf(secondTag);
+				int indexOfThird = splitTweet[1].indexOf(thirdTag);
+				int indexOfNextTag = 0;
+				
+				//Find the index of the next predefined tag (or -1 if none)
+				if((indexOfSecond * indexOfThird) == 1){
+					//If you multiply all indices together and -1 is the result, all indices are -1 (since 2 indices can't both be at 1)
+					indexOfNextTag = -1;
+				}else if((indexOfSecond * indexOfThird)<-1){
+					//If you multiply all indices together and a negative number less than -1 is the result, you know only 1 index is -1
+					if(indexOfSecond==-1){
+						indexOfNextTag = indexOfThird;
+					}else{
+						indexOfNextTag = indexOfSecond;
+					}
+				}else{
+					//If you multiply all indices together and a positive number (not 1) is the result, you know that 2 indices are both present		
+					indexOfNextTag = Math.min(indexOfSecond, indexOfThird);
+				}
+				
+				if(indexOfNextTag != -1){
+					tweet = splitTweet[0] + startTag + " " + s + " " + splitTweet[1].substring(indexOfNextTag);
+				}else{
+					//If the tweet contains another # character but not any of the predefined tags, still replace the string after the category tag
+					tweet = splitTweet[0] + startTag + " " + s + splitTweet[1];
+				}
+			}else{
+				//If it does not contain another actual hash tag, just replace the string after category tag
+				tweet = splitTweet[0] + startTag + " " + s;					
+			}
+		}
+		test_tweet.setText(tweet);
+	}
 	
 	private final TextWatcher addTimeText = new TextWatcher() {
 		public void beforeTextChanged(CharSequence s, int start, int count, int after) {
 		}
 	
 		public void onTextChanged(CharSequence s, int start, int before, int count) {
-				String[] splitTweet = tweet.split(TIME_TAG);
-				if(!tweet.contains(TIME_TAG)){
-					//if the tweet does not contain the time tag, just append it to the end of the string
-					tweet = tweet + " " + TIME_TAG + " " + s;
-				}else{
-					if(splitTweet[1].contains("#")){
-						//If the tweet contains another hash tag, replace the current time text with the predefined tag that comes first
-						int indexOfSource = splitTweet[1].indexOf(SOURCE_TAG);
-						int indexOfContact = splitTweet[1].indexOf(CONTACT_TAG);
-						int indexOfNextTag = Math.min(indexOfSource, indexOfContact);
-						//int indexOfNextTag = splitTweet[1].indexOf("#");
-						//Toast.makeText(getBaseContext(), splitTweet[1].substring(indexOfNextTag), Toast.LENGTH_SHORT).show();
-						if(indexOfNextTag != -1){
-							tweet = splitTweet[0] + TIME_TAG + " " + s + " " +splitTweet[1].substring(indexOfNextTag);
-						}else{
-							tweet = splitTweet[0] + TIME_TAG + " " + s;
-						}
-					}else{
-						//If it does not contain another hash tag, just replace the string after time tag
-						tweet = splitTweet[0] + TIME_TAG + " " + s;
-					}
-					test_tweet.setText(tweet);
-				}
+			changeTextBasedOnOptTag(TIME_TAG, SOURCE_TAG, CONTACT_TAG, s);			
 		}
 	
 		@Override
@@ -203,29 +260,7 @@ public class TestStringBuilderConfirm extends CustomWindow {
 		}
 	
 		public void onTextChanged(CharSequence s, int start, int before, int count) {
-				String[] splitTweet = tweet.split(SOURCE_TAG);
-				if(!tweet.contains(SOURCE_TAG)){
-					//if the tweet does not contain the source tag, just append it to the end of the string
-					tweet = tweet + " " + SOURCE_TAG + " " + s;
-				}else{
-					if(splitTweet[1].contains("#")){
-						//If the tweet contains another hash tag, replace the current time text
-						int indexOfTime = splitTweet[1].indexOf(TIME_TAG);
-						int indexOfContact = splitTweet[1].indexOf(CONTACT_TAG);
-						int indexOfNextTag = Math.min(indexOfTime, indexOfContact);
-						//int indexOfNextTag = splitTweet[1].indexOf("#");
-						//Toast.makeText(getBaseContext(), splitTweet[1].substring(indexOfNextTag), Toast.LENGTH_SHORT).show();
-						if(indexOfNextTag != -1){
-							tweet = splitTweet[0] + SOURCE_TAG + " " + s + " " + splitTweet[1].substring(indexOfNextTag);
-						}else{
-							tweet = splitTweet[0] + SOURCE_TAG + " " + s;
-						}
-					}else{
-						//If it does not contain another hash tag, just replace the string after time tag
-						tweet = splitTweet[0] + SOURCE_TAG + " " + s;
-					}
-					test_tweet.setText(tweet);
-				}
+			changeTextBasedOnOptTag(SOURCE_TAG, TIME_TAG, CONTACT_TAG, s);	
 		}
 	
 		@Override
@@ -239,30 +274,7 @@ public class TestStringBuilderConfirm extends CustomWindow {
 		}
 	
 		public void onTextChanged(CharSequence s, int start, int before, int count) {
-				String[] splitTweet = tweet.split(CONTACT_TAG);
-				if(!tweet.contains(CONTACT_TAG)){
-					//if the tweet does not contain the contact tag, just append it to the end of the string
-					tweet = tweet + " " + CONTACT_TAG + " " + s;
-				}else{
-					if(splitTweet[1].contains("#")){
-						//If the tweet contains another hash tag, replace the current contact text
-						//int indexOfNextTag = splitTweet[1].indexOf("#");
-						int indexOfSource = splitTweet[1].indexOf(SOURCE_TAG);
-						int indexOfContact = splitTweet[1].indexOf(CONTACT_TAG);
-						int indexOfNextTag = Math.min(indexOfSource, indexOfContact);
-						
-						//Toast.makeText(getBaseContext(), splitTweet[1].substring(indexOfNextTag), Toast.LENGTH_SHORT).show();
-						if(indexOfNextTag != -1){
-							tweet = splitTweet[0] + CONTACT_TAG + " " + s + " " + splitTweet[1].substring(indexOfNextTag);
-						}else{
-							tweet = splitTweet[0] + CONTACT_TAG + " " + s;
-						}
-					}else{
-						//If it does not contain another hash tag, just replace the string after the contact tag
-						tweet = splitTweet[0] + CONTACT_TAG + " " + s;
-					}
-					test_tweet.setText(tweet);
-				}
+			changeTextBasedOnOptTag(CONTACT_TAG, TIME_TAG, SOURCE_TAG, s);	
 		}
 	
 		@Override
@@ -282,9 +294,9 @@ public class TestStringBuilderConfirm extends CustomWindow {
 		Bundle bundle = getIntent().getExtras();
 		category = bundle.getString("category");
 		tweet = bundle.getString("tweet");
-		final_tweet = tweet;
 		lat = bundle.getDouble(GPSLAT);
 		longitude = bundle.getDouble(GPSLONG);
+		
 		//Set up main tweet text box
 		test_tweet = (EditText) findViewById(R.id.test_tweet);
 		test_tweet.setText(tweet);
@@ -304,7 +316,8 @@ public class TestStringBuilderConfirm extends CustomWindow {
 		
 		//Set up char count
 		char_count = (TextView) findViewById(R.id.char_count);
-		char_count.setText(String.valueOf(140 - tweet.length()) + " characters left in tweet");
+		crntLength = 140 - tweet.length();
+		char_count.setText(String.valueOf(crntLength) + " characters left in tweet");
 		
 		//Set up add details text box
 		add_details = (EditText) findViewById(R.id.additional_details);	
@@ -342,6 +355,9 @@ public class TestStringBuilderConfirm extends CustomWindow {
 			geoLocation = (lat == 0.0) && (longitude == 0.0);
 			hasPhoto = false;
 			photoPath = "";
+			
+			//Set the tweet value to what is in the final tweet text box
+			tweet = test_tweet.getText().toString();
 			
 			// See if data access is available
 			SharedPreferences pref = PreferenceManager.getDefaultSharedPreferences(this);
@@ -393,7 +409,7 @@ public class TestStringBuilderConfirm extends CustomWindow {
 
 		
 		protected String doInBackground(String... args) {
-			// retrieve the informatio to build the tweet
+			// retrieve the information to build the tweet
 			String status = args[0];
 			double lat = Double.parseDouble(args[1]);
 			double longitude = Double.parseDouble(args[2]);

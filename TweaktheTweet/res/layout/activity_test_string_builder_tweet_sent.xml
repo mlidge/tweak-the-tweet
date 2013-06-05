@@ -17,7 +17,7 @@
         android:layout_height="wrap_content"
         android:textSize="20sp"
         android:paddingBottom="10dp"
-        android:text="You just finished Tweaking the Tweet! Your tweet has been sent."/>
+        android:text="@string/tweet_sent_text"/>
     
     <EditText
         android:id="@+id/final_tweet_box"
@@ -26,6 +26,7 @@
         android:layout_marginBottom="10dp"
         android:ems="10"
         android:background="@color/tweet_box_color"
+        android:inputType="none"
         android:focusable="false" />
     
     <Button
@@ -34,7 +35,7 @@
        android:layout_height="wrap_content"
        android:background="@color/important_button_color"
        android:padding="5dp"
-       android:text="New Report"
+       android:text="@string/new_report_text"
        android:textColor="@color/background_color"
        android:textSize="20sp"
        android:onClick="nextViewHome" />
@@ -42,7 +43,7 @@
     <ImageView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:contentDescription="tweak the tweet logo"
+        android:contentDescription="@string/logo_content_description"
         android:src="@drawable/logo_and_mascot" />
    
 </LinearLayout>

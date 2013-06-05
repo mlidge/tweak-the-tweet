@@ -21,8 +21,10 @@ import android.util.Log;
 import android.view.KeyEvent;
 import android.view.Menu;
 import android.view.View;
+import android.view.View.OnClickListener;
 import android.view.inputmethod.EditorInfo;
 import android.view.inputmethod.InputMethodManager;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.TextView;
@@ -34,6 +36,7 @@ import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.GoogleMap.OnMapClickListener;
 import com.google.android.gms.maps.MapFragment;
 import com.google.android.gms.maps.model.LatLng;
+import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
 
 @SuppressLint("NewApi")
@@ -54,6 +57,8 @@ public class LocationWithGPS extends CustomWindow {
 	double gps_long;
 	String message;
 	ImageButton doNotAddLoc;
+	Marker tappedMarker;
+	Button tappedLocBtn;
 	
 	private final TextWatcher addLocationTag = new TextWatcher() {
 		public void beforeTextChanged(CharSequence s, int start, int count, int after) {
@@ -113,7 +118,7 @@ public class LocationWithGPS extends CustomWindow {
 		mMap = ((MapFragment) getFragmentManager().findFragmentById(R.id.loc_map)).getMap();
 		LatLng gpslatLng = new LatLng(gps_lat, gps_long);
 		mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(gpslatLng, 14));
-		mMap.addMarker(new MarkerOptions().position(gpslatLng).title("your gps location."));
+		mMap.addMarker(new MarkerOptions().position(gpslatLng).title("Your GPS location"));
 		mMap.setMyLocationEnabled(true);
 		
 		mMap.setOnMapClickListener(getOnMapClickListener());
@@ -138,6 +143,9 @@ public class LocationWithGPS extends CustomWindow {
 		test_tweet = (EditText) findViewById(R.id.tweet_display_gps);
 		test_tweet.setText(tweet);
 		
+		//Set location button
+		tappedLocBtn = (Button) findViewById(R.id.tapped_location_btn);
+		
 		// TODO: Display map of event area with user's location
 		
 		//char_count = (TextView) findViewById(R.id.char_count);
@@ -161,13 +169,26 @@ public class LocationWithGPS extends CustomWindow {
 		});
 
 	}
-	/*Gets the lat/long location that was touched.*/
+	/*Gets the lat/long location that was touched and set a marker.*/
 	private OnMapClickListener getOnMapClickListener() {
 		return new OnMapClickListener() {			
 		public void onMapClick(LatLng point) {
+			if(tappedMarker != null){
+				tappedMarker.remove();
+			}
 			double lat = point.latitude;
 			double lng = point.longitude;
 			tappedLatLng = new LatLng(lat, lng);
+			tappedMarker = mMap.addMarker(new MarkerOptions().position(tappedLatLng).title("Your tapped location"));
+			tappedLocBtn.setBackgroundColor(getResources().getColor(R.color.default_button_color));
+			tappedLocBtn.setOnClickListener(new OnClickListener() {
+
+			    @Override
+			    public void onClick(View v) {
+			        useTappedLocation(v);
+			    }
+			});
+			
 			Toast.makeText(getBaseContext(), "Tapped Location: "+lat + "," + 
 					lng, Toast.LENGTH_SHORT).show();
 		}
@@ -226,6 +247,7 @@ public class LocationWithGPS extends CustomWindow {
 		Intent intent = new Intent(this, MapDisplayActivity.class);
 		startActivity(intent);
 	}
+	
 	/*when the user clicks the "Enter" button, 
 	 * we are going to read the textfield content and 
 	 * do some validity checks before we show/zoom map*/

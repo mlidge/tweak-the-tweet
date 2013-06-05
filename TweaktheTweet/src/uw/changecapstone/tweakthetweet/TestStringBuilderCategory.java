@@ -130,7 +130,8 @@ public class TestStringBuilderCategory extends CustomWindow {
 				
 		//Set up char count
 		char_count = (TextView) findViewById(R.id.footer_character_count);
-		char_count.setText("140 characters left");
+		int initCharCount = 140 - tweet.length();
+		char_count.setText(initCharCount + " characters left");
 		
 		//Set up tweet text box
 		crnt_tweet = (EditText) findViewById(R.id.tweet_display);

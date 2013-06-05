@@ -8,7 +8,7 @@
 
 	<LinearLayout
 	    android:layout_width="match_parent"
-	    android:layout_height="match_parent"
+	    android:layout_height="wrap_content"
 	    android:orientation="vertical"
 	    android:paddingBottom="@dimen/activity_vertical_margin"
 	    android:paddingLeft="@dimen/activity_horizontal_margin"
@@ -18,7 +18,7 @@
 	    <TextView
 	        android:layout_width="match_parent"
 	        android:layout_height="wrap_content"
-	        android:text="If you know the location, enter an address to place it in your tweet"
+	        android:text="@string/location_prompt"
 	        android:textSize="20sp"
 	        android:paddingBottom="10dp" />
 	            
@@ -34,7 +34,7 @@
 		                android:layout_width="fill_parent"
 		                android:layout_height="wrap_content"
 		                android:ems="9"
-		                android:hint="i.e. address, intersection, name of place, etc."
+		                android:hint="@string/location_prompt_hint"
 		                android:background="@color/background_color"
 		                android:inputType="none"
 		                android:imeOptions="actionDone"
@@ -48,12 +48,12 @@
 		    android:layout_height="wrap_content"
 		    android:textColor="@color/subtext_color"
 		    android:paddingBottom="2dp"
-		    android:text="Your GPS shows you are here." />
+		    android:text="@string/gps_text_1" />
 		
 		<TextView
 		   android:layout_width="wrap_content"
 		   android:layout_height="wrap_content"
-		   android:text="Locate and tap on the map to get an accurate location or use GPS." />
+		   android:text="@string/gps_text_2" />
 		
 		<LinearLayout
 		    android:layout_width="match_parent"
@@ -65,7 +65,7 @@
 	    
 			<Button 
 			    android:id="@+id/gps_location_btn"
-			    android:background="@color/location_button_color"
+			    android:background="@color/default_button_color"
 			    android:layout_width="100dp"
 			    android:layout_height="60dp"
 		        android:layout_marginRight="20dp"
@@ -75,12 +75,11 @@
 			
 			<Button
 			    android:id="@+id/tapped_location_btn"
-			    android:background="@color/location_button_color"
+			    android:background="@color/inactive_button_color"
 			    android:layout_width="100dp"
 			    android:layout_height="60dp"
 			    android:text="@string/btn_tapped_loc"
-			    android:textColor="@color/background_color" 
-			    android:onClick="useTappedLocation" />
+			    android:textColor="@color/background_color" />
 		
 		</LinearLayout>
 		

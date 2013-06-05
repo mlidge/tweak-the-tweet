@@ -96,7 +96,7 @@
 				        android:layout_height="wrap_content"
 				        android:layout_gravity="center_vertical"
 				        android:textColor="@color/subtext_color"
-				        android:text="Time:" />
+				        android:text="@string/time_text" />
 				
 				    <EditText
 				        android:id="@+id/time_text"
@@ -108,7 +108,7 @@
 				        android:textSize="12sp"
 				        android:imeOptions="actionDone"
 		                android:singleLine="true"
-		                android:hint="i.e. 5/8 - 6:00 pm" />
+		                android:hint="@string/time_text_hint" />
 				</LinearLayout>
 				
 	            <LinearLayout
@@ -121,7 +121,7 @@
 				        android:layout_height="wrap_content"
 				        android:layout_gravity="center_vertical"
 				        android:textColor="@color/subtext_color"
-				        android:text="Source:" />
+				        android:text="@string/source_text" />
 				
 				    <EditText
 				        android:id="@+id/source_text"
@@ -130,7 +130,7 @@
 				        android:layout_gravity="center_vertical"
 				        android:layout_marginLeft="3dp"
 				        android:background="@null"
-				        android:hint="i.e. US News"
+				        android:hint="@string/source_text_hint"
 				        android:textSize="12sp"
 				        android:imeOptions="actionDone"
 		                android:singleLine="true" />
@@ -147,7 +147,7 @@
 				        android:layout_height="wrap_content"
 				        android:layout_gravity="center_vertical"
 				        android:textColor="@color/subtext_color"
-				        android:text="Contact #:" />
+				        android:text="@string/contact_text" />
 				
 				    <EditText
 				        android:id="@+id/contact_text"
@@ -156,7 +156,7 @@
 				        android:layout_gravity="center_vertical"
 				        android:layout_marginLeft="3dp"
 				        android:background="@null"
-				        android:hint="i.e. 2061234567"
+				        android:hint="@string/contact_text_hint"
 				        android:textSize="12sp"
 				        android:imeOptions="actionDone"
 		                android:singleLine="true"/>
@@ -194,7 +194,6 @@
 	                android:layout_alignBaseline="@+id/textView4"
 	                android:layout_alignBottom="@+id/textView4"
 	                android:layout_alignParentRight="true"
-	                android:text="TEST"
 	                android:textAppearance="?android:attr/textAppearanceSmall" />
 	
 	        </RelativeLayout>
@@ -218,9 +217,9 @@
 	            android:paddingLeft="5dp"
 	            android:paddingRight="5dp"
 	            android:paddingTop="5dp"
-	            android:text="Submit"
+	            android:text="@string/submit_text"
 	            android:textColor="@color/background_color"
-	            android:textSize="20dp" />
+	            android:textSize="20sp" />
 	        
 	    </LinearLayout>
 	
