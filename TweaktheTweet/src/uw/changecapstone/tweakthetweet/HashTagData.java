@@ -31,6 +31,7 @@ public class HashTagData implements Parcelable{
 		this.lattopright = lattopright;
 		this.longtopright = longtopright;
 		this.latbotleft = latbotleft;
+		this.longbotleft = longbotleft;
 	}
 	
 	
