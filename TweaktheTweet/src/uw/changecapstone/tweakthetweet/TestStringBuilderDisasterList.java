@@ -57,7 +57,7 @@ public class TestStringBuilderDisasterList extends CustomWindow {
 	private TextView char_count;
 	private EditText crnt_tweet;
 	private ImageButton proceed_custom_disaster_tag;
-	private Map<String, Map<String, Double>> testMap;
+	private Map<String, HashTagData> eventMap;
 	
 	private final TextWatcher createNewDisasterTag = new TextWatcher() {
 		public void beforeTextChanged(CharSequence s, int start, int count, int after) {
@@ -108,10 +108,6 @@ public class TestStringBuilderDisasterList extends CustomWindow {
 		city_long = ((Double)intent.getDoubleExtra(TestStringBuilder.CITY_LONG, 0.0));
 		setContentView(R.layout.activity_test_string_builder_disaster_list);
 		this.title.setText("#disaster");
-		
-		// TODO: We get coordinates of location from Google Maps
-		// We compare it with all the parameter coordinates of events
-		// We build a list of events that the coordinates fall within
 		
 		
 		disaster_list = (ListView) findViewById(R.id.list);
@@ -167,22 +163,15 @@ public class TestStringBuilderDisasterList extends CustomWindow {
 						nextNonGPSLocation(v);
 				}else{
 					Toast.makeText(getApplicationContext(), "Please enter a custom disaster tag", Toast.LENGTH_SHORT).show();
-					
 				}
 		    }
 		});
 		
+		// Finally, update our local hash tags database
 		updateHashTagData();
-		
-		//Create adapter
-//		ListAdapter adapter = createAdapter();
-//		disaster_list.setAdapter(adapter);
-		
-		
-		// Create adapter
-		//disaster_list.setAdapter(createAdapter(coord_x, coord_y));
 	}
 
+	
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
 		// Inflate the menu; this adds items to the action bar if it is present.
@@ -191,8 +180,9 @@ public class TestStringBuilderDisasterList extends CustomWindow {
 		return true;
 	}
 	
+	
 	private void updateHashTagData(){
-		testMap = new HashMap<String, Map<String, Double>>();
+		eventMap = new HashMap<String, HashTagData>();
 		
 		new AsyncTask<String, Void, String>() {
 
@@ -235,13 +225,13 @@ public class TestStringBuilderDisasterList extends CustomWindow {
 			        JSONArray jArray = new JSONArray(result);
 			        for(int i=0;i<jArray.length();i++){
 		                JSONObject json_data = jArray.getJSONObject(i);
-		                testMap.put(json_data.getString("event_id"), new HashMap<String, Double>());
-		                testMap.get(json_data.getString("event_id")).put("lat_top_right", Double.parseDouble(json_data.getString("latitude_top_right")));
-		        		testMap.get(json_data.getString("event_id")).put("lon_top_right", Double.parseDouble(json_data.getString("longitude_top_right")));
-		        		testMap.get(json_data.getString("event_id")).put("lat_bot_left", Double.parseDouble(json_data.getString("latitude_bottom_left")));
-		        		testMap.get(json_data.getString("event_id")).put("lon_bot_left", Double.parseDouble(json_data.getString("longitude_bottom_left")));
-		        		Log.i(json_data.getString("event_id"), json_data.getString("latitude_top_right") + "," + json_data.getString("longitude_top_right")
-		        				+ "   " + json_data.getString("latitude_bottom_left") + "," + json_data.getString("longitude_bottom_left"));
+		                HashTagData currentEvent = new HashTagData(json_data.getString("event_id"), json_data.getString("description"),
+		                		json_data.getString("category"), json_data.getString("latitude_top_right"), json_data.getString("longitude_top_right"),
+		                		json_data.getString("latitude_bottom_left"), json_data.getString("longitude_bottom_left"));
+		                eventMap.put(json_data.getString("event_id"), currentEvent);
+		        		
+		        		Log.i(currentEvent.getName(), currentEvent.getLatTopRight() + "," + currentEvent.getLongTopRight()
+		        				+ "   " + currentEvent.getLatBotLeft() + "," + currentEvent.getLongBotLeft());
 			        }
 			        
 	    		} catch(JSONException e) {
@@ -263,36 +253,20 @@ public class TestStringBuilderDisasterList extends CustomWindow {
 	
 	
 	protected ListAdapter createAdapter()
-    {
-//		Map<String, Map<String, Integer>> testMap = new HashMap<String, Map<String, Integer>>();
-//		testMap.put("#TestEvent1", new HashMap<String, Integer>());
-//		testMap.get("#TestEvent1").put("max_x", 10);
-//		testMap.get("#TestEvent1").put("max_y", 10);
-//		testMap.get("#TestEvent1").put("min_x", 0);
-//		testMap.get("#TestEvent1").put("min_y", 0);
-//		testMap.put("#TestEvent2", new HashMap<String, Integer>());
-//		testMap.get("#TestEvent2").put("max_x", 20);
-//		testMap.get("#TestEvent2").put("max_y", 20);
-//		testMap.get("#TestEvent2").put("min_x", 10);
-//		testMap.get("#TestEvent2").put("min_y", 10);
-//		testMap.put("#TestEvent3", new HashMap<String, Integer>());
-//		testMap.get("#TestEvent3").put("max_x", 5);
-//		testMap.get("#TestEvent3").put("max_y", 5);
-//		testMap.get("#TestEvent3").put("min_x", 0);
-//		testMap.get("#TestEvent3").put("min_y", 0);
-
-		
+    {		
 		List<String> testData = new ArrayList<String>();
-		for(String event_tag : testMap.keySet()) {
+		for(String event_tag : eventMap.keySet()) {
 			Log.i("looking at", event_tag);
 			Log.i("city_lat", Double.toString(city_lat));
 			Log.i("city_long", Double.toString(city_long));
-			Log.i("lat_top_right", Double.toString(testMap.get(event_tag).get("lat_top_right")));
-			Log.i("lon_top_right", Double.toString(testMap.get(event_tag).get("lon_top_right")));
-			Log.i("lat_bot_left", Double.toString(testMap.get(event_tag).get("lat_bot_left")));
-			Log.i("lon_bot_left", Double.toString(testMap.get(event_tag).get("lon_bot_left")));
-			if (city_lat <= testMap.get(event_tag).get("lat_top_right") && city_lat >= testMap.get(event_tag).get("lat_bot_left") &&
-					city_long <= testMap.get(event_tag).get("lon_top_right") && city_long >= testMap.get(event_tag).get("lon_bot_left")){
+			Log.i("lat_top_right", eventMap.get(event_tag).getLatTopRight());
+			Log.i("lon_top_right", eventMap.get(event_tag).getLongTopRight());
+			Log.i("lat_bot_left", eventMap.get(event_tag).getLatBotLeft());
+			Log.i("lon_bot_left", eventMap.get(event_tag).getLongBotLeft());
+			if (city_lat <= Double.parseDouble(eventMap.get(event_tag).getLatTopRight()) && 
+					city_lat >= Double.parseDouble(eventMap.get(event_tag).getLatBotLeft()) &&
+					city_long <= Double.parseDouble(eventMap.get(event_tag).getLongTopRight()) &&
+					city_long >= Double.parseDouble(eventMap.get(event_tag).getLongBotLeft())) {
 				testData.add(event_tag);
 				Log.i("added", event_tag);
 			}
@@ -301,6 +275,7 @@ public class TestStringBuilderDisasterList extends CustomWindow {
 		return new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, testData);
     }
 	
+	
 	public void nextViewLocation(View view){
 		//TODO: the intent is not used to get the LAT/LONG
 		Intent i = new Intent(this, LocationWithGPS.class);
@@ -308,9 +283,12 @@ public class TestStringBuilderDisasterList extends CustomWindow {
 		i.putExtra("disaster", tweet);
 		i.putExtra(LAT, latitude);
 		i.putExtra(LONG, longitude);
+		i.putExtra("event_data", eventMap.get(tweet));
 		System.out.println("going out of disaster list: "+latitude+" "+longitude);
 		startActivity(i);
 	}
+	
+	
 	public void nextNonGPSLocation(View view){
 		//TODO: the intent is not used to get the LAT/LONG
 		System.out.println("inside non-gps");
@@ -319,6 +297,7 @@ public class TestStringBuilderDisasterList extends CustomWindow {
 		i.putExtra("disaster", tweet);
 		i.putExtra(CITY_LAT, city_lat);
 		i.putExtra(CITY_LONG, city_long);
+		i.putExtra("event_data", eventMap.get(tweet));
 		System.out.println("going out of disaster list: "+city_lat+" "+city_lat);
 		startActivity(i);
 	}

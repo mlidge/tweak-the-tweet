@@ -33,6 +33,35 @@ public class HashTagData implements Parcelable{
 		this.latbotleft = latbotleft;
 	}
 	
+	
+	public String getName() {
+		return this.name;
+	}
+	
+	public String getDescription() {
+		return this.description;
+	}
+	
+	public String getCategory() {
+		return this.category;
+	}
+	
+	public String getLatTopRight() {
+		return this.lattopright;
+	}
+	
+	public String getLongTopRight() {
+		return this.longtopright;
+	}
+	
+	public String getLatBotLeft() {
+		return this.latbotleft;
+	}
+	
+	public String getLongBotLeft() {
+		return this.longbotleft;
+	}
+	
 	public HashTagData(Parcel in){
 		String[] data = new String[7];
 		
