@@ -40,11 +40,12 @@ public class PhotoActivity extends Activity {
 	final static String PHOTO_PATH = "PHOTO_PATH";
 	private static int TAKE_PICTURE = 0;
 	private static int CHOOSE_PICTURE =1;
+	private static boolean hasPhoto = false;
+	final static String HAS_PHOTO = "HAS_PHOTO";
 	/* Photo album for this application */
 	private String getAlbumName() {
 		return getString(R.string.album_name);
 	}
-
 	
 	private File getAlbumDir() {
 		File storageDir = null;
@@ -85,8 +86,7 @@ public class PhotoActivity extends Activity {
 	private File setUpPhotoFile() throws IOException {
 		
 		File f = createImageFile();
-		mCurrentPhotoPath = f.getAbsolutePath();
-		
+		mCurrentPhotoPath = f.getAbsolutePath();		
 		return f;
 	}
 
@@ -136,9 +136,7 @@ public class PhotoActivity extends Activity {
 	private void dispatchTakePictureIntent() {
 
 		Intent takePictureIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
-
-		File f = null;
-		
+		File f = null;		
 		try {
 			f = setUpPhotoFile();
 			mCurrentPhotoPath = f.getAbsolutePath();
@@ -148,7 +146,6 @@ public class PhotoActivity extends Activity {
 			f = null;
 			mCurrentPhotoPath = null;
 		}
-
 		startActivityForResult(takePictureIntent, TAKE_PICTURE);
 	}
 
@@ -157,9 +154,8 @@ public class PhotoActivity extends Activity {
 		if (mCurrentPhotoPath != null) {
 			setPic();
 			galleryAddPic();
-			mCurrentPhotoPath = null;
+			//mCurrentPhotoPath = null;
 		}
-
 	}
 
 	Button.OnClickListener mTakePicOnClickListener = 
@@ -197,29 +193,23 @@ public class PhotoActivity extends Activity {
 			}
 		});
 	}
-
+	/* note: used mCurrentPhotoPath for intent instead of 
+     * String photoPath = data.get("PHOTO_PATH"); because the later gives null.
+     * also moved mCurrentPhotoPath = null; here because
+     * if done in handleBigCameraPhoto intent will have null value*/
 	@Override
 	protected void onActivityResult(int requestCode, int resultCode, Intent data) {
 		if (requestCode == TAKE_PICTURE && resultCode == RESULT_OK) {
 			Toast.makeText(this, "Image saved to:\n" +
 	                mCurrentPhotoPath, Toast.LENGTH_LONG).show();
-			/* use raw mCurrentPhotoPath.
-			 * This has to be done before handleBigCameraPhoto() call
-			 * because, this method resets current photo path to null 
-			 * The photo may need formatting as in setPic, though.
-			 * */
-			Intent intent = new Intent(this, TweetActivity.class);
-			intent.putExtra(PHOTO_PATH, mCurrentPhotoPath);
-			startActivity(intent);
-			
 			handleBigCameraPhoto();
-			
-			/*if possible to get the photo path value using getExtras or something similar from data, 
-			then we can put the formatted photo after the handle call
-			String photoPath = data.get("PHOTO_PATH");
-			Intent intent = new Intent(this, TweetActivity.class);
-			intent.putExtra(PHOTO_PATH, photoPath);
-			startActivity(intent);*/
+			hasPhoto = true;			
+			Intent intent = new Intent(this, TestStringBuilderConfirm.class);
+			intent.putExtra(HAS_PHOTO, hasPhoto);
+			intent.putExtra(PHOTO_PATH, mCurrentPhotoPath);
+			startActivity(intent);			
+			if (mCurrentPhotoPath != null)
+				mCurrentPhotoPath = null;
 		}
 		else if (requestCode == CHOOSE_PICTURE && resultCode == RESULT_OK){
 			Uri selectedImageUri = data.getData();
@@ -235,6 +225,11 @@ public class PhotoActivity extends Activity {
             mImageView.setImageURI(selectedImageUri);
             System.out.println("Image Path: "+picturePath);
             mImageView.setImageBitmap(BitmapFactory.decodeFile(picturePath));
+            hasPhoto = true;
+            Intent intent = new Intent(this, TestStringBuilderConfirm.class);
+            intent.putExtra(HAS_PHOTO, hasPhoto);
+			intent.putExtra(PHOTO_PATH, picturePath);
+			startActivity(intent);
 		}
 	}
 

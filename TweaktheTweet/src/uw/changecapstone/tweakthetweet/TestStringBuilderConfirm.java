@@ -59,11 +59,13 @@ public class TestStringBuilderConfirm extends CustomWindow {
 	private String twitterConsumerKey;
 	private String twitterConsumerSecret;
 	private String photoPath;
+	private String picPath;
 	private boolean hasPhoto;
 	private double lat;
 	private double longitude;
-	public final static String LAT = "geolat";
-	public final static String LONG = "geolong";
+	public final static String LAT = "latitude";
+	public final static String LONG = "longitude";
+	public final static String PHOTO_PATH = "photo_path";
 	private Context context;
 	
 	private final TextWatcher charCountWatcher = new TextWatcher() {
@@ -278,7 +280,8 @@ public class TestStringBuilderConfirm extends CustomWindow {
 		tweet = bundle.getString("tweet");
 		lat = bundle.getDouble(LAT);
 		longitude = bundle.getDouble(LONG);
-		
+		picPath = bundle.getString(PHOTO_PATH);
+		hasPhoto = bundle.getBoolean("HAS_PHOTO");
 		pref = PreferenceManager.getDefaultSharedPreferences(this);
 		//Set up main tweet text box
 		test_tweet = (EditText) findViewById(R.id.test_tweet);
@@ -336,8 +339,13 @@ public class TestStringBuilderConfirm extends CustomWindow {
 		}else{
 			// determine if there are gps coordinates to add to a tweet
 			//geoLocation = (lat == 0.0) && (longitude == 0.0);
-			hasPhoto = false;
-			photoPath = "";
+			
+			//Bundle bundle = getIntent().getExtras();
+			if (hasPhoto)
+				photoPath = picPath;
+			//hasPhoto = false;
+			else
+				photoPath = "";
 			
 			//Set the tweet value to what is in the final tweet text box
 			tweet = test_tweet.getText().toString();

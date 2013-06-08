@@ -30,8 +30,8 @@ public class TestStringBuilderCategory extends CustomWindow {
 	private ImageButton proceed_custom_category_tag;
 	private double lat;
 	private double longitude;
-	public final static String LAT = "geolat";
-	public final static String LONG = "geolong";
+	public final static String LAT = "latitude";
+	public final static String LONG = "longitude";
 	
 	private final TextWatcher createNewCategoryTag = new TextWatcher() {
 		public void beforeTextChanged(CharSequence s, int start, int count, int after) {

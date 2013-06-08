@@ -39,8 +39,8 @@ public class LocationWithGPS extends CustomWindow {
 	private GoogleMap mMap;
 	private LatLng geoLatLng;
 	private LatLng tappedLatLng;
-	public final static String LAT = "geolat";
-	public final static String LONG = "geolong";
+	public final static String LAT = "gpslat";
+	public final static String LONG = "gpslong";
 	public final static String GPS_LAT = "uw.changecapstone.tweakthetweet.latitude";
 	public final static String GPS_LONG = "uw.changecapstone.tweakthetweet.longitude";
 	private String tweet, disaster;
