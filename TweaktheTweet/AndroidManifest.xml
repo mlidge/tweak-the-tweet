@@ -133,12 +133,6 @@
             android:theme="@style/CustomTheme" >
         </activity>
         <activity
-            android:name="uw.changecapstone.tweakthetweet.TestStringBuilderAddDetails"
-            android:label="@string/title_activity_test_string_builder_add_details"
-            android:launchMode="singleTask"
-            android:theme="@style/CustomTheme" >
-        </activity>
-        <activity
             android:name="uw.changecapstone.tweakthetweet.PhotoActivity"
             android:label="@string/title_activity_photo"
             android:launchMode="singleTask" >
@@ -160,11 +154,6 @@
             android:label="@string/title_activity_emergency_notification"
             android:launchMode="singleTask" >
         </activity>
-       <!-- <activity
-            android:name="uw.changecapstone.tweakthetweet.LoadingScreen"
-            android:label="@string/title_activity_loading_screen"
-            android:launchMode="singleTask" >
-        </activity> -->
         <activity
             android:name="uw.changecapstone.tweakthetweet.LoginScreen"
             android:label="@string/title_activity_login_screen" >

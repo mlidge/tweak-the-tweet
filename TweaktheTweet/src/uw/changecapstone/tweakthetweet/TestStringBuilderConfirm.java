@@ -37,7 +37,9 @@ public class TestStringBuilderConfirm extends CustomWindow {
 	private EditText test_tweet, add_details, add_time, add_source, add_contact;
 	private TextView char_count;
 	private String category, tweet;
-	int crntLength;
+	int crntLength; //holds current length of tweet
+	
+	//Predefined additional tags
 	private final String TIME_TAG = "#time";
 	private final String SOURCE_TAG = "#src";
 	private final String CONTACT_TAG = "#cont";	
@@ -68,20 +70,18 @@ public class TestStringBuilderConfirm extends CustomWindow {
 	public final static String PHOTO_PATH = "photo_path";
 	private Context context;
 	
+	/*
+	 * Text watcher for the "your tweet" box
+	 * Updates the current number of characters every time the text in the "your tweet" box changes 
+	 */
 	private final TextWatcher charCountWatcher = new TextWatcher() {
 		public void beforeTextChanged(CharSequence s, int start, int count, int after) {
-			/*
-			if(crntLength != 1){
-				char_count.setText(String.valueOf(140 - tweet.length()) + " characters left in tweet");
-			}else{
-				char_count.setText(String.valueOf(140 - tweet.length()) + " character left in tweet");
-			}
-			*/
 		}
 	
 		public void onTextChanged(CharSequence s, int start, int before, int count) {
 			String crntTweet = test_tweet.getText().toString();
 			crntLength = 140 - crntTweet.length();
+			
 			if(crntLength < 0){
 				char_count.setTextColor(Color.RED);
 			}else{
@@ -93,13 +93,10 @@ public class TestStringBuilderConfirm extends CustomWindow {
 			}else{
 				char_count.setText(String.valueOf(crntLength) + " character left");
 			}
-			
-			//tweet = test_tweet.getText().toString();
 		}
 	
 		@Override
 		public void afterTextChanged(Editable arg0) {
-			// TODO Auto-generated method stub
 		}
 	
 	};
@@ -114,12 +111,6 @@ public class TestStringBuilderConfirm extends CustomWindow {
 				if(!tweet.contains(category)){
 					//if the tweet does not contain the category tag, just append it to the end of the string
 					tweet = tweet + " " + category + " " + s;
-				}
-				
-				if(splitTweet.length==1){
-					//If the tweet does not contain a category tag (like if the user deleted/edited it),
-					//append it and the details to the end of the string
-					tweet = tweet + category + " " + s;
 				}else{
 					if(splitTweet[1].contains("#")){
 						//If the tweet contains another hash tag, replace the current category text with the predefined tag that comes first
@@ -170,7 +161,6 @@ public class TestStringBuilderConfirm extends CustomWindow {
 	
 		@Override
 		public void afterTextChanged(Editable arg0) {		
-			
 		}
 	
 	};
@@ -283,6 +273,7 @@ public class TestStringBuilderConfirm extends CustomWindow {
 		picPath = bundle.getString(PHOTO_PATH);
 		hasPhoto = bundle.getBoolean("HAS_PHOTO");
 		pref = PreferenceManager.getDefaultSharedPreferences(this);
+		
 		//Set up main tweet text box
 		test_tweet = (EditText) findViewById(R.id.test_tweet);
 		test_tweet.setText(tweet);
