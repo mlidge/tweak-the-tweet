@@ -46,12 +46,12 @@ public class TestStringBuilderDisasterList extends CustomWindow {
 
 	private ListView disaster_list;
 	private String tweet, custom_disaster_tag;
-	public final static String LAT = "uw.changecapstone.tweakthetweet.latitude";
-	public final static String LONG = "uw.changecapstone.tweakthetweet.longitude";
+	public final static String GPS_LAT = "uw.changecapstone.tweakthetweet.latitude";
+	public final static String GPS_LONG = "uw.changecapstone.tweakthetweet.longitude";
 	public final static String CITY_LAT = "uw.changecapstone.tweakthetweet.latitude";
 	public final static String CITY_LONG = "uw.changecapstone.tweakthetweet.longitude";
-	static double latitude ;
-	static double longitude;
+	static double gps_lat ;
+	static double gps_long;
 	static double city_lat ;
 	static double city_long;
 	private TextView char_count;
@@ -98,14 +98,13 @@ public class TestStringBuilderDisasterList extends CustomWindow {
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		//added by mussie. changed the string to double because intent was not used.
-		Intent intent = getIntent();
-		latitude = ((Double)intent.getDoubleExtra(TestStringBuilder.LAT, 0.0));
-		longitude = ((Double)intent.getDoubleExtra(TestStringBuilder.LONG, 0.0));
-		System.out.println("test: "+latitude+" "+longitude);
 		
-		city_lat = ((Double)intent.getDoubleExtra(TestStringBuilder.CITY_LAT, 0.0));
-		city_long = ((Double)intent.getDoubleExtra(TestStringBuilder.CITY_LONG, 0.0));
+		Intent intent = getIntent();
+		gps_lat = ((Double)intent.getDoubleExtra(GPS_LAT, 0.0));
+		gps_long = ((Double)intent.getDoubleExtra(GPS_LONG, 0.0));
+		
+		city_lat = ((Double)intent.getDoubleExtra(CITY_LAT, 0.0));
+		city_long = ((Double)intent.getDoubleExtra(CITY_LONG, 0.0));
 		setContentView(R.layout.activity_test_string_builder_disaster_list);
 		this.title.setText("#disaster");
 		
@@ -281,10 +280,10 @@ public class TestStringBuilderDisasterList extends CustomWindow {
 		Intent i = new Intent(this, LocationWithGPS.class);
 		i.putExtra("tweet", tweet);
 		i.putExtra("disaster", tweet);
-		i.putExtra(LAT, latitude);
-		i.putExtra(LONG, longitude);
+		i.putExtra(GPS_LAT, gps_lat);
+		i.putExtra(GPS_LONG, gps_long);
 		i.putExtra("event_data", eventMap.get(tweet));
-		System.out.println("going out of disaster list: "+latitude+" "+longitude);
+		System.out.println("going out of disaster list-gps: "+gps_lat+" "+gps_long);
 		startActivity(i);
 	}
 	
@@ -298,7 +297,7 @@ public class TestStringBuilderDisasterList extends CustomWindow {
 		i.putExtra(CITY_LAT, city_lat);
 		i.putExtra(CITY_LONG, city_long);
 		i.putExtra("event_data", eventMap.get(tweet));
-		System.out.println("going out of disaster list: "+city_lat+" "+city_lat);
+		System.out.println("going out of disaster list-city: "+city_lat+" "+city_long);
 		startActivity(i);
 	}
 }

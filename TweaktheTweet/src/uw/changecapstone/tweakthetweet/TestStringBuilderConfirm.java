@@ -62,8 +62,8 @@ public class TestStringBuilderConfirm extends CustomWindow {
 	private boolean hasPhoto;
 	private double lat;
 	private double longitude;
-	public final static String GPSLAT = "uw.changecapstone.tweakthetweet.gpslat";
-	public final static String GPSLONG = "uw.changecapstone.tweakthetweet.gpslong";
+	public final static String LAT = "geolat";
+	public final static String LONG = "geolong";
 	private Context context;
 	
 	/*private final TextWatcher charCountWatcher = new TextWatcher() {
@@ -294,8 +294,9 @@ public class TestStringBuilderConfirm extends CustomWindow {
 		Bundle bundle = getIntent().getExtras();
 		category = bundle.getString("category");
 		tweet = bundle.getString("tweet");
-		lat = bundle.getDouble(GPSLAT);
-		longitude = bundle.getDouble(GPSLONG);
+		lat = bundle.getDouble(LAT);
+		longitude = bundle.getDouble(LONG);
+		System.out.println("lat: "+lat + " long: " + longitude);
 		pref = PreferenceManager.getDefaultSharedPreferences(this);
 		//Set up main tweet text box
 		test_tweet = (EditText) findViewById(R.id.test_tweet);
@@ -352,7 +353,7 @@ public class TestStringBuilderConfirm extends CustomWindow {
 			Toast.makeText(getApplicationContext(), "Your tweet is longer than 140 characters, please shorten it.", Toast.LENGTH_SHORT).show();
 		}else{
 			// determine if there are gps coordinates to add to a tweet
-			geoLocation = (lat == 0.0) && (longitude == 0.0);
+			//geoLocation = (lat == 0.0) && (longitude == 0.0);
 			hasPhoto = false;
 			photoPath = "";
 			
@@ -426,10 +427,10 @@ public class TestStringBuilderConfirm extends CustomWindow {
 				StatusUpdate newStatus = new StatusUpdate(status);
 				
 				// add geolocation if it is present
-				if (geoLocation) {
+				//if (geoLocation) {
 					GeoLocation location = new GeoLocation(lat, longitude);
 					newStatus.setLocation(location);
-				}
+				//}
 				
 				// add a photo if it is present
 				if (hasPhoto) {

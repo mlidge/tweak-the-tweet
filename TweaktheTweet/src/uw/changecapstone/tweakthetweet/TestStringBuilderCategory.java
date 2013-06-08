@@ -35,8 +35,8 @@ public class TestStringBuilderCategory extends CustomWindow {
 	private ImageButton proceed_custom_category_tag;
 	private double lat;
 	private double longitude;
-	public final static String GPSLAT = "uw.changecapstone.tweakthetweet.gpslat";
-	public final static String GPSLONG = "uw.changecapstone.tweakthetweet.gpslong";
+	public final static String LAT = "geolat";
+	public final static String LONG = "geolong";
 	
 	
 //	private final TextWatcher charCountWatcher = new TextWatcher() {
@@ -100,8 +100,10 @@ public class TestStringBuilderCategory extends CustomWindow {
 		Bundle bundle = getIntent().getExtras();
 		tweet = bundle.getString("tweet");
 		String disaster = bundle.getString("disaster");
-		lat = bundle.getDouble(GPSLAT);
-		longitude = bundle.getDouble(GPSLONG);
+		lat = bundle.getDouble(LAT);
+		longitude = bundle.getDouble(LONG);
+		
+		System.out.println("TESTING INTENT inside category: "+lat);
 		category_list = (ListView) findViewById(R.id.list);
 		category_list.setOnItemClickListener(new OnItemClickListener() {
 
@@ -213,8 +215,8 @@ public class TestStringBuilderCategory extends CustomWindow {
 		Intent i = new Intent(this, TestStringBuilderConfirm.class);
 		i.putExtra("tweet", tweet);
 		i.putExtra("category", category_tag);
-		i.putExtra(GPSLAT, lat);
-		i.putExtra(GPSLONG, longitude);
+		i.putExtra(LAT, lat);
+		i.putExtra(LONG, longitude);
 		startActivity(i);
 	}
 }

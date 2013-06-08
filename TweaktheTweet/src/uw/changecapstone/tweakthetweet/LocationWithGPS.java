@@ -45,10 +45,10 @@ public class LocationWithGPS extends CustomWindow {
 	private GoogleMap mMap;
 	private LatLng geoLatLng;
 	private LatLng tappedLatLng;
-	public final static String GPSLAT = "uw.changecapstone.tweakthetweet.gpslat";
-	public final static String GPSLONG = "uw.changecapstone.tweakthetweet.gpslong";
-	public final static String TAPPEDLAT = "uw.changecapstone.tweakthetweet.tappedlat";
-	public final static String TAPPEDLONG = "uw.changecapstone.tweakthetweet.tappedlong";
+	public final static String LAT = "geolat";
+	public final static String LONG = "geolong";
+	public final static String GPS_LAT = "uw.changecapstone.tweakthetweet.latitude";
+	public final static String GPS_LONG = "uw.changecapstone.tweakthetweet.longitude";
 	private String tweet, disaster;
 	private TextView char_count;
 	private EditText location_text, test_tweet;
@@ -104,17 +104,10 @@ public class LocationWithGPS extends CustomWindow {
 		setContentView(R.layout.activity_location_with_gps);
 		this.title.setText("#location");
 		
-		// Get the message from the intent
-		/*Intent intent = getIntent();
-		String location = intent.getStringExtra(TestStringBuilderMap.LOCATION_TEXT);*/
-		
-		/*String latitude = ((Double)intent.getDoubleExtra(TestStringBuilderDisasterList.LAT, 0.0)).toString();
-		String longitude = ((Double)intent.getDoubleExtra(TestStringBuilderDisasterList.LONG, 0.0)).toString();
-		System.out.println("m1u"+latitude +" "+longitude);*/
-		
-		gps_lat = TestStringBuilderDisasterList.latitude;
-		gps_long = TestStringBuilderDisasterList.longitude;
-		System.out.println("m1u"+gps_lat +" "+gps_long);
+		Bundle bundle = getIntent().getExtras();	
+		gps_lat = bundle.getDouble(GPS_LAT, 0.0);
+		gps_long = bundle.getDouble(GPS_LONG);
+		System.out.println("Inside WithGPS: "+gps_lat +" "+gps_long);
 		mMap = ((MapFragment) getFragmentManager().findFragmentById(R.id.loc_map)).getMap();
 		LatLng gpslatLng = new LatLng(gps_lat, gps_long);
 		mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(gpslatLng, 14));
@@ -124,7 +117,7 @@ public class LocationWithGPS extends CustomWindow {
 		mMap.setOnMapClickListener(getOnMapClickListener());
 		this.title.setText("#location");
 		
-		Bundle bundle = getIntent().getExtras();
+		
 		tweet = bundle.getString("tweet");
 		disaster = bundle.getString("disaster");
 		
@@ -288,8 +281,8 @@ public class LocationWithGPS extends CustomWindow {
 		i.putExtra("tweet", tweet);
 		i.putExtra("disaster", disaster);
 		//TODO: send position to TestStringBuilderCategory from which to send lat/long to tweetActivity
-		i.putExtra(GPSLAT, gps_lat);
-		i.putExtra(GPSLONG, gps_long);
+		i.putExtra(LAT, gps_lat);
+		i.putExtra(LONG, gps_long);
 		startActivity(i);
 	}
 	public void useTappedLocation(View view){
@@ -312,8 +305,8 @@ public class LocationWithGPS extends CustomWindow {
 		if(tappedLatLng==null)
 			Toast.makeText(getBaseContext(), "Please Touch the map first: ", Toast.LENGTH_SHORT).show();
 		else {
-			i.putExtra(GPSLAT, tappedLatLng.latitude);
-			i.putExtra(GPSLONG, tappedLatLng.longitude);
+			i.putExtra(LAT, tappedLatLng.latitude);
+			i.putExtra(LONG, tappedLatLng.longitude);
 			startActivity(i);
 		}
 	}

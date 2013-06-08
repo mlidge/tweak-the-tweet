@@ -77,10 +77,10 @@ public class EmergencyNotification extends Activity implements OnTouchListener, 
 	}
 	
 	private void checkLogInStatus() {
-		  //if (!pref.getBoolean(PREF_KEY_TWITTER_LOGIN, false)) {
+		  if (!pref.getBoolean(PREF_KEY_TWITTER_LOGIN, false)) {
 			  DialogFragment logIn = new LoginDialogFragment();
 			  logIn.show(getFragmentManager(), LOGIN_DIALOG_TAG);
-		  //}
+		  }
 		}
 		
 	private void checkNetworkStatus() {

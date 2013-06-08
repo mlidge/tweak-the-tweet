@@ -49,8 +49,8 @@ public class TestStringBuilder extends CustomWindow implements DialogListener{
 
 	private EditText location_text_box;
 	Context context = this;
-	public final static String LAT = "uw.changecapstone.tweakthetweet.latitude";
-	public final static String LONG = "uw.changecapstone.tweakthetweet.longitude";
+	public final static String GPS_LAT = "uw.changecapstone.tweakthetweet.latitude";
+	public final static String GPS_LONG = "uw.changecapstone.tweakthetweet.longitude";
 	public final static String CITY_LAT = "uw.changecapstone.tweakthetweet.latitude";
 	public final static String CITY_LONG = "uw.changecapstone.tweakthetweet.longitude";
 	static boolean isGpsUsed = false;
@@ -109,8 +109,8 @@ public class TestStringBuilder extends CustomWindow implements DialogListener{
 				double lat = location.getLatitude();
 				double lng = location.getLongitude();
 				Intent i = new Intent(this, TestStringBuilderDisasterList.class);
-				i.putExtra(LAT, lat);
-			    i.putExtra(LONG, lng);
+				i.putExtra(GPS_LAT, lat);
+			    i.putExtra(GPS_LONG, lng);
 				startActivity(i);
 				//Toast.makeText(getBaseContext(), "Current Location: "+lat + "," + lng, Toast.LENGTH_SHORT).show();
 			}
@@ -132,8 +132,8 @@ public class TestStringBuilder extends CustomWindow implements DialogListener{
 				double lng = location.getLongitude();
 				//TODO: "this" was not being accepted. investigate later. 
 				Intent i = new Intent(context, TestStringBuilderDisasterList.class);
-				i.putExtra(LAT, lat);
-			    i.putExtra(LONG, lng);
+				i.putExtra(GPS_LAT, lat);
+			    i.putExtra(GPS_LONG, lng);
 				startActivity(i);
 				//Toast.makeText(getBaseContext(), "Current Location: "+lat + "," + lng, Toast.LENGTH_SHORT).show();
 			}			

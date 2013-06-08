@@ -133,7 +133,7 @@ public class OAuthTwitterActivity extends Activity {
 		// Dismiss the progess dialog
 		@Override
 		protected void onPostExecute(String result) {
-			dialog.dismiss();
+		
 			finish();
 		}
 	}

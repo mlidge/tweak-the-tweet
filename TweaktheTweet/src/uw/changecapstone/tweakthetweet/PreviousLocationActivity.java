@@ -44,10 +44,10 @@ public class PreviousLocationActivity extends CustomWindow {
 	private GoogleMap mMap;
 	private LatLng geoLatLng;
 	private LatLng tappedLatLng;
-	public final static String GPSLAT = "uw.changecapstone.tweakthetweet.geolat";
-	public final static String GPSLONG = "uw.changecapstone.tweakthetweet.geolong";
-	public final static String TAPPEDLAT = "uw.changecapstone.tweakthetweet.tappedlat";
-	public final static String TAPPEDLONG = "uw.changecapstone.tweakthetweet.tappedlong";
+	public final static String LAT = "geolat";
+	public final static String LONG = "geolong";
+	public final static String CITY_LAT = "uw.changecapstone.tweakthetweet.latitude";
+	public final static String CITY_LONG = "uw.changecapstone.tweakthetweet.longitude";
 	private String tweet, disaster;
 	private TextView char_count;
 	private EditText location_text, test_tweet;
@@ -103,8 +103,7 @@ public class PreviousLocationActivity extends CustomWindow {
 		setContentView(R.layout.activity_previous_location);
 		this.title.setText("#location");
 		
-		city_lat = TestStringBuilderDisasterList.city_lat;
-		city_long = TestStringBuilderDisasterList.city_long;
+		
 		System.out.println("non-gps-city"+city_lat +" "+city_long);
 		mMap = ((MapFragment) getFragmentManager().findFragmentById(R.id.loc_map)).getMap();
 		LatLng cityGeoLatLng = new LatLng(city_lat, city_long);
@@ -115,6 +114,8 @@ public class PreviousLocationActivity extends CustomWindow {
 		Bundle bundle = getIntent().getExtras();
 		tweet = bundle.getString("tweet");
 		disaster = bundle.getString("disaster");
+		city_lat = bundle.getDouble(CITY_LAT);
+		city_long = bundle.getDouble(CITY_LONG);
 		
 		//Set char count
 		char_count = (TextView) findViewById(R.id.character_count_prev_location);
@@ -268,8 +269,8 @@ public class PreviousLocationActivity extends CustomWindow {
 		if(geoLatLng == null)
 			Toast.makeText(getBaseContext(), "Please enter address and press enter first: ", Toast.LENGTH_SHORT).show();
 		else {
-			i.putExtra(GPSLAT, geoLatLng.latitude);
-			i.putExtra(GPSLONG, geoLatLng.longitude);
+			i.putExtra(LAT, geoLatLng.latitude);
+			i.putExtra(LONG, geoLatLng.longitude);
 			startActivity(i);
 		}
 	}
@@ -293,8 +294,8 @@ public class PreviousLocationActivity extends CustomWindow {
 		if(tappedLatLng==null)
 			Toast.makeText(getBaseContext(), "Please Touch the map first: ", Toast.LENGTH_SHORT).show();
 		else {
-			i.putExtra(GPSLAT, tappedLatLng.latitude);
-			i.putExtra(GPSLONG, tappedLatLng.longitude);
+			i.putExtra(LAT, tappedLatLng.latitude);
+			i.putExtra(LONG, tappedLatLng.longitude);
 			startActivity(i);
 		}
 	}
