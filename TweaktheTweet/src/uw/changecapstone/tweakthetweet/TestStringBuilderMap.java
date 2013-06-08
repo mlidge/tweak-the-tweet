@@ -66,11 +66,6 @@ public class TestStringBuilderMap extends CustomWindow {
 		return true;
 	}
 	
-	
-	public void showMap(View view){
-		Intent intent = new Intent(this, MapDisplayActivity.class);
-		startActivity(intent);
-	}
 	/*when the user clicks the "Enter" button, 
 	 * we are going to read the textfield content and 
 	 * do some validity checks before we show/zoom map*/
