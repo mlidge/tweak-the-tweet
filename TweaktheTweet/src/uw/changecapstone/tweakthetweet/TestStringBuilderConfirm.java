@@ -66,24 +66,6 @@ public class TestStringBuilderConfirm extends CustomWindow {
 	public final static String LONG = "geolong";
 	private Context context;
 	
-	/*private final TextWatcher charCountWatcher = new TextWatcher() {
-		public void beforeTextChanged(CharSequence s, int start, int count, int after) {
-			char_count.setText(String.valueOf(140 - tweet.length()) + " characters left in tweet");
-		}
-	
-		public void onTextChanged(CharSequence s, int start, int before, int count) {
-			final_tweet = tweet + " " + s;
-			char_count.setText(String.valueOf(140 - final_tweet.length()) + " characters left");
-			test_tweet.setText(final_tweet);
-		}
-	
-		@Override
-		public void afterTextChanged(Editable arg0) {
-			// TODO Auto-generated method stub
-		}
-	
-	}; */
-	
 	private final TextWatcher charCountWatcher = new TextWatcher() {
 		public void beforeTextChanged(CharSequence s, int start, int count, int after) {
 			/*
@@ -296,7 +278,7 @@ public class TestStringBuilderConfirm extends CustomWindow {
 		tweet = bundle.getString("tweet");
 		lat = bundle.getDouble(LAT);
 		longitude = bundle.getDouble(LONG);
-		System.out.println("lat: "+lat + " long: " + longitude);
+		
 		pref = PreferenceManager.getDefaultSharedPreferences(this);
 		//Set up main tweet text box
 		test_tweet = (EditText) findViewById(R.id.test_tweet);

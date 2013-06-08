@@ -1,25 +1,8 @@
 package uw.changecapstone.tweakthetweet;
 
-import java.io.BufferedReader;
 import java.io.IOException;
-import java.io.InputStream;
-import java.io.InputStreamReader;
-import java.util.ArrayList;
 import java.util.List;
 
-import org.apache.http.HttpEntity;
-import org.apache.http.NameValuePair;
-import org.apache.http.client.HttpClient;
-import org.apache.http.client.methods.HttpGet;
-import org.apache.http.impl.client.DefaultHttpClient;
-import org.apache.http.message.BasicNameValuePair;
-import org.json.JSONArray;
-import org.json.JSONException;
-import org.json.JSONObject;
-
-import twitter4j.internal.http.HttpResponse;
-//import uw.changecapstone.tweakthetweet.LocationAndMapActivity.GeocoderTask;
-import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.DialogFragment;
 import android.content.Context;
@@ -27,7 +10,6 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.SharedPreferences.Editor;
-import android.database.SQLException;
 import android.location.Address;
 import android.location.Geocoder;
 import android.location.Location;
@@ -39,7 +21,6 @@ import android.os.AsyncTask;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.provider.Settings;
-import android.util.Log;
 import android.view.Menu;
 import android.view.View;
 import android.widget.EditText;
@@ -83,10 +64,9 @@ public class TestStringBuilder extends CustomWindow implements DialogListener{
 		getMenuInflater().inflate(R.menu.test_string_builder, menu);
 		return true;
 	}
-	
-	
+		
 	public void nextViewLocText(View view){
-		// TODO: Mussie needs to pull the text location, find it on google maps,
+		// Pull the text location, find it on google maps,
 		// and pass the coordinates on
 		String location = location_text_box.getText().toString();
 		if (location == null || location.equals("")){
@@ -97,22 +77,20 @@ public class TestStringBuilder extends CustomWindow implements DialogListener{
 	}
 	
 	public void nextViewCurrentGPS(View view){
-		// TODO: Mussie needs to pull the GPS coordinates and pass it on
-		// (check that it exists on google maps?)
+		// Pull the GPS coordinates and pass it on
 		isGpsUsed = true;
 		LocationManager lm = (LocationManager) getSystemService(Context.LOCATION_SERVICE); 	
 		LocationListener locationListener = new GPSListener();
 		if (lm.isProviderEnabled(LocationManager.GPS_PROVIDER)){
 			Location location = lm.getLastKnownLocation(LocationManager.GPS_PROVIDER);
 			if (location != null){
-				//Get lat/long, show using toast, and animate to the location
+				//Get GPS lat/long and animate to the location
 				double lat = location.getLatitude();
 				double lng = location.getLongitude();
 				Intent i = new Intent(this, TestStringBuilderDisasterList.class);
 				i.putExtra(GPS_LAT, lat);
 			    i.putExtra(GPS_LONG, lng);
 				startActivity(i);
-				//Toast.makeText(getBaseContext(), "Current Location: "+lat + "," + lng, Toast.LENGTH_SHORT).show();
 			}
 			lm.requestLocationUpdates(LocationManager.GPS_PROVIDER, 2000, 10, locationListener);
 		}
@@ -120,22 +98,18 @@ public class TestStringBuilder extends CustomWindow implements DialogListener{
 			showSettingsAlert();
 		}
 	}
-	
-	
-    	
+	   	
 	private class GPSListener implements LocationListener {
 		@Override
 		public void onLocationChanged(Location location) {
 			if (location != null){
-				//Get Lat/long, show using toast, and animate to the location
+				//Get GPS Lat/long and animate to the location
 				double lat = location.getLatitude();
 				double lng = location.getLongitude();
-				//TODO: "this" was not being accepted. investigate later. 
 				Intent i = new Intent(context, TestStringBuilderDisasterList.class);
 				i.putExtra(GPS_LAT, lat);
 			    i.putExtra(GPS_LONG, lng);
 				startActivity(i);
-				//Toast.makeText(getBaseContext(), "Current Location: "+lat + "," + lng, Toast.LENGTH_SHORT).show();
 			}			
 		}
 		@Override
@@ -174,7 +148,7 @@ public class TestStringBuilder extends CustomWindow implements DialogListener{
         // Show it
         alertDialogBuilder.show();
     }
-	/* reference: http://wptrafficanalyzer.in/blog */
+	/* Reference: http://wptrafficanalyzer.in/blog */
 	private class GeocoderTask extends AsyncTask<String, Void, List <Address> >{
 
 		@Override
@@ -199,9 +173,7 @@ public class TestStringBuilder extends CustomWindow implements DialogListener{
 				Address address = addresses.get(0);
 				double lat = address.getLatitude();
 				double lng = address.getLongitude();
-				//TODO: context -- this
 				Intent i = new Intent(context, TestStringBuilderDisasterList.class);
-				// TODO: we don't need to save the city location but just passing it
 				i.putExtra("loc", location_text_box.getText().toString());
 				i.putExtra(CITY_LAT, lat);
 				i.putExtra(CITY_LONG, lng);
@@ -223,8 +195,7 @@ public class TestStringBuilder extends CustomWindow implements DialogListener{
 			startActivity(i);
 		} else if (tag.equals(NETWORK_DIALOG_TAG)) {
 			setUseSMS();
-		}
-		
+		}		
 	}
 
 	/*
@@ -239,8 +210,7 @@ public class TestStringBuilder extends CustomWindow implements DialogListener{
 			Intent i = new Intent(this, SignUpTwitterActivity.class);
 			startActivity(i);
 			*/
-		}
-		
+		}		
 	}
 	
 	/*

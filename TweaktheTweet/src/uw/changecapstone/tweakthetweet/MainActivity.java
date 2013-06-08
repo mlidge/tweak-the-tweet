@@ -64,8 +64,7 @@ public class MainActivity extends Activity implements DialogListener{
 	private void checkNetworkStatus() {
 		ConnectivityManager cm =
 		        (ConnectivityManager)getSystemService(Context.CONNECTIVITY_SERVICE);
-		//boolean noConnection = cm==null;
-		
+		//boolean noConnection = cm==null;		
 		
 				NetworkInfo activeNetwork = cm.getActiveNetworkInfo();
 		
@@ -119,24 +118,11 @@ public class MainActivity extends Activity implements DialogListener{
 	}
 		
 	public void testComposeString(View view) {
-		//Intent i = new Intent(this, TestStringBuilder.class);
-		
+		//Intent i = new Intent(this, TestStringBuilder.class);		
 		Intent i = new Intent(this, LoadingScreen.class);
 		startActivity(i);
 		
-	}
-
-	/*when the user clicks the "Enter" button, 
-	 * we are going to read the textfield content and 
-	 * do some validity checks before we show/zoom map*/
-	public void readLocationMessage(View view){
-		Intent intent = new Intent(this, LocationAndMapActivity.class);
-	    EditText editText = (EditText) findViewById(R.id.edit_message);
-	    String message = editText.getText().toString();
-	    intent.putExtra(TestStringBuilderMap.LOCATION_TEXT, message);
-	    startActivity(intent);
-	}
-	
+	}	
 	public void twitterLogout(View view) {
 		if (pref.getBoolean(PREF_KEY_TWITTER_LOGIN, false)) {
 			Editor e = pref.edit();
@@ -145,9 +131,7 @@ public class MainActivity extends Activity implements DialogListener{
 			e.remove(PREF_KEY_TWITTER_LOGIN);
 			e.remove("USERNAME");
 			e.commit();
-		}
-	
-		
+		}	
 	}
 	
 	public void setUseSMS() {
@@ -155,7 +139,6 @@ public class MainActivity extends Activity implements DialogListener{
 		e.putBoolean(DATA_ON, false);
 		e.commit();
 	}
-
 
 	@Override
 	public void onDialogPositiveClick(DialogFragment dialog) {
@@ -165,8 +148,7 @@ public class MainActivity extends Activity implements DialogListener{
 			startActivity(i);
 		} else if (tag.equals(NETWORK_DIALOG_TAG)) {
 			setUseSMS();
-		}
-		
+		}		
 	}
 
 	@Override
@@ -177,13 +159,10 @@ public class MainActivity extends Activity implements DialogListener{
 			Intent i = new Intent(this, SignUpTwitterActivity.class);
 			startActivity(i);
 			*/
-		}
-		
+		}		
 	}
-
 	public void testPhoto(View view) {
 		Intent i = new Intent(this, PhotoActivity.class);
 		startActivity(i);
 	}
-
 }

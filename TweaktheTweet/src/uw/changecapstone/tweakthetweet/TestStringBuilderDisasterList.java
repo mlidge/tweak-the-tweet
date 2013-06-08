@@ -21,7 +21,6 @@ import org.json.JSONObject;
 
 import android.os.AsyncTask;
 import android.os.Bundle;
-import android.app.Activity;
 import android.content.Intent;
 import android.graphics.Color;
 import android.text.Editable;
@@ -33,7 +32,6 @@ import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
-import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ListAdapter;
@@ -170,7 +168,6 @@ public class TestStringBuilderDisasterList extends CustomWindow {
 		updateHashTagData();
 	}
 
-	
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
 		// Inflate the menu; this adds items to the action bar if it is present.
@@ -178,7 +175,6 @@ public class TestStringBuilderDisasterList extends CustomWindow {
 				menu);
 		return true;
 	}
-	
 	
 	private void updateHashTagData(){
 		eventMap = new HashMap<String, HashTagData>();
@@ -249,8 +245,6 @@ public class TestStringBuilderDisasterList extends CustomWindow {
 			
 		}.execute("");
 	}
-	
-	
 	protected ListAdapter createAdapter()
     {		
 		List<String> testData = new ArrayList<String>();
@@ -272,32 +266,23 @@ public class TestStringBuilderDisasterList extends CustomWindow {
 		}
 
 		return new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, testData);
-    }
-	
-	
+    }	
 	public void nextViewLocation(View view){
-		//TODO: the intent is not used to get the LAT/LONG
 		Intent i = new Intent(this, LocationWithGPS.class);
 		i.putExtra("tweet", tweet);
 		i.putExtra("disaster", tweet);
 		i.putExtra(GPS_LAT, gps_lat);
 		i.putExtra(GPS_LONG, gps_long);
 		i.putExtra("event_data", eventMap.get(tweet));
-		System.out.println("going out of disaster list-gps: "+gps_lat+" "+gps_long);
 		startActivity(i);
-	}
-	
-	
+	}	
 	public void nextNonGPSLocation(View view){
-		//TODO: the intent is not used to get the LAT/LONG
-		System.out.println("inside non-gps");
 		Intent i = new Intent(this, PreviousLocationActivity.class);
 		i.putExtra("tweet", tweet);
 		i.putExtra("disaster", tweet);
 		i.putExtra(CITY_LAT, city_lat);
 		i.putExtra(CITY_LONG, city_long);
 		i.putExtra("event_data", eventMap.get(tweet));
-		System.out.println("going out of disaster list-city: "+city_lat+" "+city_long);
 		startActivity(i);
 	}
 }

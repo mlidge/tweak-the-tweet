@@ -38,23 +38,6 @@ public class TestStringBuilderCategory extends CustomWindow {
 	public final static String LAT = "geolat";
 	public final static String LONG = "geolong";
 	
-	
-//	private final TextWatcher charCountWatcher = new TextWatcher() {
-//		public void beforeTextChanged(CharSequence s, int start, int count, int after) {
-//			char_count.setText(String.valueOf(140 - tweet.length()) + " characters left in tweet");
-//		}
-//
-//		public void onTextChanged(CharSequence s, int start, int before, int count) {
-//			char_count.setText(String.valueOf(140 - tweet.length() - " #loc ".length() - s.length()) + " characters left in tweet");
-//		}
-//
-//		@Override
-//		public void afterTextChanged(Editable arg0) {
-//			// TODO Auto-generated method stub
-//		}
-//
-//	};
-	
 	private final TextWatcher createNewCategoryTag = new TextWatcher() {
 		public void beforeTextChanged(CharSequence s, int start, int count, int after) {
 		}
@@ -103,7 +86,6 @@ public class TestStringBuilderCategory extends CustomWindow {
 		lat = bundle.getDouble(LAT);
 		longitude = bundle.getDouble(LONG);
 		
-		System.out.println("TESTING INTENT inside category: "+lat);
 		category_list = (ListView) findViewById(R.id.list);
 		category_list.setOnItemClickListener(new OnItemClickListener() {
 
@@ -211,7 +193,6 @@ public class TestStringBuilderCategory extends CustomWindow {
 		Bundle bundle = getIntent().getExtras();
 		tweet = bundle.getString("tweet");
 		tweet += " " + category_tag;
-		//tweet += " " + add_details.getText().toString();
 		Intent i = new Intent(this, TestStringBuilderConfirm.class);
 		i.putExtra("tweet", tweet);
 		i.putExtra("category", category_tag);

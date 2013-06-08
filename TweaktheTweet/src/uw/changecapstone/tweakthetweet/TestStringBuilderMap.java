@@ -65,18 +65,6 @@ public class TestStringBuilderMap extends CustomWindow {
 		getMenuInflater().inflate(R.menu.test_string_builder_map, menu);
 		return true;
 	}
-	
-	/*when the user clicks the "Enter" button, 
-	 * we are going to read the textfield content and 
-	 * do some validity checks before we show/zoom map*/
-	public void readLocationMessage(View view){
-		Intent intent = new Intent(this, LocationAndMapActivity.class);
-	    String message = location_text.getText().toString();
-	    intent.putExtra(LOCATION_TEXT, message);
-	    startActivity(intent);
-	}
-
-	
 	public void nextViewCategory(View view){
 		// In case the user backed, we don't want to accidentally duplicate strings, so we pull from the bundle again
 		Bundle bundle = getIntent().getExtras();

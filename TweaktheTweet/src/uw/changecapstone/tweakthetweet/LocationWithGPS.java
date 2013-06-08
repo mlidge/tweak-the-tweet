@@ -62,14 +62,9 @@ public class LocationWithGPS extends CustomWindow {
 	
 	private final TextWatcher addLocationTag = new TextWatcher() {
 		public void beforeTextChanged(CharSequence s, int start, int count, int after) {
-			//TODO: to put this back
-			//char_count.setText(String.valueOf(140 - tweet.length() - " #loc ".length()) + " characters left in tweet");
 		}
 
 		public void onTextChanged(CharSequence s, int start, int before, int count) {
-			//TODO: to put this back
-			//char_count.setText(String.valueOf(140 - tweet.length() - " #loc ".length() - s.length()) + " characters left in tweet");
-			
 			//Handle tag creation and display in footer box
 			message = s.toString();
 			
@@ -107,26 +102,16 @@ public class LocationWithGPS extends CustomWindow {
 		Bundle bundle = getIntent().getExtras();	
 		gps_lat = bundle.getDouble(GPS_LAT, 0.0);
 		gps_long = bundle.getDouble(GPS_LONG);
-		System.out.println("Inside WithGPS: "+gps_lat +" "+gps_long);
+
 		mMap = ((MapFragment) getFragmentManager().findFragmentById(R.id.loc_map)).getMap();
 		LatLng gpslatLng = new LatLng(gps_lat, gps_long);
 		mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(gpslatLng, 14));
 		mMap.addMarker(new MarkerOptions().position(gpslatLng).title("Your GPS location"));
-		mMap.setMyLocationEnabled(true);
-		
+		mMap.setMyLocationEnabled(true);		
 		mMap.setOnMapClickListener(getOnMapClickListener());
-		this.title.setText("#location");
-		
-		
+				
 		tweet = bundle.getString("tweet");
 		disaster = bundle.getString("disaster");
-		
-//		test_tweet = (EditText) findViewById(R.id.test_tweet);
-//		test_tweet.setText(tweet);
-//		
-//		// Disable input for test_tweet: It's only there to display the current tweet
-//		test_tweet.setEnabled(false);
-//		test_tweet.setFocusable(false);
 		
 		//Set char count
 		char_count = (TextView) findViewById(R.id.character_count_gps_location);
@@ -138,12 +123,6 @@ public class LocationWithGPS extends CustomWindow {
 		
 		//Set location button
 		tappedLocBtn = (Button) findViewById(R.id.tapped_location_btn);
-		
-		// TODO: Display map of event area with user's location
-		
-		//char_count = (TextView) findViewById(R.id.char_count);
-		//TODO: to put this back
-		//char_count.setText(String.valueOf(140 - tweet.length() - " #loc ".length()) + " characters left in tweet");
 		location_text = (EditText) findViewById(R.id.location_text_box);
 		location_text.addTextChangedListener(addLocationTag);
 		location_text.setOnEditorActionListener(new OnEditorActionListener(){
@@ -162,7 +141,7 @@ public class LocationWithGPS extends CustomWindow {
 		});
 
 	}
-	/*Gets the lat/long location that was touched and set a marker.*/
+	/*Gets the lat/long location that was touched and adds a marker.*/
 	private OnMapClickListener getOnMapClickListener() {
 		return new OnMapClickListener() {			
 		public void onMapClick(LatLng point) {
@@ -188,7 +167,7 @@ public class LocationWithGPS extends CustomWindow {
 		
 	};
 	}
-	/* reference: http://wptrafficanalyzer.in/blog */
+	/* Reference: http://wptrafficanalyzer.in/blog */
 	private class GeocoderTask extends AsyncTask<String, Void, List <Address> >{
 
 		@Override
@@ -222,12 +201,6 @@ public class LocationWithGPS extends CustomWindow {
 			}
 		}
 	}
-	public float getMidLat(double minLat, double maxLat){
-		return (float) ((minLat+maxLat)/2);
-	}
-	public float getMidLng(double minLng, double maxLng){
-		return (float) ((minLng+maxLng)/2);
-	}
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
 		// Inflate the menu; this adds items to the action bar if it is present.
@@ -235,7 +208,7 @@ public class LocationWithGPS extends CustomWindow {
 		return true;
 	}
 
-	/*when the user clicks the "Enter" button, 
+	/*when the user clicks the "Done" button, 
 	 * we are going to read the textfield content and 
 	 * do some validity checks before we show/zoom map*/
 	public void readLocationMessage(){
@@ -244,7 +217,7 @@ public class LocationWithGPS extends CustomWindow {
 			new GeocoderTask().execute(location);
 	}
 
-	// this method is going to be used to implement "I don't know my location" button
+	// This method is going to be used to implement "I don't know my location" button
 	public void nextViewCategory(View view){
 		//TODO: to factor out with private method later
 		Bundle bundle = getIntent().getExtras();
@@ -274,7 +247,6 @@ public class LocationWithGPS extends CustomWindow {
 		Intent i = new Intent(this, TestStringBuilderCategory.class);
 		i.putExtra("tweet", tweet);
 		i.putExtra("disaster", disaster);
-		//TODO: send position to TestStringBuilderCategory from which to send lat/long to tweetActivity
 		i.putExtra(LAT, gps_lat);
 		i.putExtra(LONG, gps_long);
 		startActivity(i);
@@ -295,7 +267,6 @@ public class LocationWithGPS extends CustomWindow {
 		Intent i = new Intent(this, TestStringBuilderCategory.class);
 		i.putExtra("tweet", tweet);
 		i.putExtra("disaster", disaster);
-		//TODO: send position to TestStringBuilderCategory from which to send lat/long to tweetActivity
 		if(tappedLatLng==null)
 			Toast.makeText(getBaseContext(), "Please Touch the map first: ", Toast.LENGTH_SHORT).show();
 		else {
