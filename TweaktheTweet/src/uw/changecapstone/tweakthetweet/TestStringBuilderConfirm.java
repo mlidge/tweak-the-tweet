@@ -364,9 +364,11 @@ public class TestStringBuilderConfirm extends CustomWindow {
 		startActivityForResult(i, PHOTO_OK);
 	}
 	
-	protected void onActivityResult(int result, int returnVal, Intent i) {
-		picPath = i.getStringExtra(PHOTO_PATH);
-		hasPhoto = i.getBooleanExtra(HAS_PHOTO, true);
+	protected void onActivityResult(int request, int result, Intent i) {
+		if (request == PHOTO_OK && result == RESULT_OK) {
+			picPath = i.getExtras().getString(PHOTO_PATH);
+			hasPhoto = i.getExtras().getBoolean(HAS_PHOTO, true);
+		}
 		
 	}
 	

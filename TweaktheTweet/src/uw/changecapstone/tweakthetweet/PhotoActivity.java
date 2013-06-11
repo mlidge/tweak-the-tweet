@@ -230,7 +230,7 @@ public class PhotoActivity extends Activity {
             System.out.println("Image Path: "+picturePath);
             mImageView.setImageBitmap(BitmapFactory.decodeFile(picturePath));
             hasPhoto = true;
-            Intent intent = new Intent(this, TestStringBuilderConfirm.class);
+            //Intent intent = new Intent(this, TestStringBuilderConfirm.class);
             mIntent.putExtra(HAS_PHOTO, hasPhoto);
 			mIntent.putExtra(PHOTO_PATH, mCurrentPhotoPath);
 			setResult(RESULT_OK, mIntent);
