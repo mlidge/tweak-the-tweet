@@ -333,7 +333,7 @@ public class TestStringBuilderConfirm extends CustomWindow {
 	
 	public void nextViewSent(View view) throws NameNotFoundException {
 		if(crntLength<0){
-			Toast.makeText(getApplicationContext(), "Your tweet is longer than 140 characters, please shorten it.", Toast.LENGTH_SHORT).show();
+			Toast.makeText(getApplicationContext(), "Your tweet is longer than 140 characters. Please shorten it.", Toast.LENGTH_SHORT).show();
 		}else{
 			// determine if there are gps coordinates to add to a tweet
 			//geoLocation = (lat == 0.0) && (longitude == 0.0);
@@ -362,7 +362,6 @@ public class TestStringBuilderConfirm extends CustomWindow {
 	public void nextViewPhoto(View view) {
 		Intent i = new Intent(this, PhotoActivity.class);
 		startActivityForResult(i, PHOTO_OK);
-<<<<<<< HEAD
 	}
 	
 	@Override
@@ -374,18 +373,7 @@ public class TestStringBuilderConfirm extends CustomWindow {
 			}
 		}
 		
-=======
->>>>>>> 04af723bccc0c0fd647bb26fe952032e488f57a8
 	}
-	
-	protected void onActivityResult(int request, int result, Intent i) {
-		if (request == PHOTO_OK && result == RESULT_OK) {
-			picPath = i.getExtras().getString(PHOTO_PATH);
-			hasPhoto = i.getExtras().getBoolean(HAS_PHOTO, true);
-		}
-		
-	}
-	
 	
 	private void dataTweet() {
 
@@ -421,6 +409,7 @@ public class TestStringBuilderConfirm extends CustomWindow {
 
 		
 		protected String doInBackground(String... args) {
+			System.out.println("WENT HERE AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA1 " + hasPhoto);
 			// retrieve the information to build the tweet
 			String status = args[0];
 			double lat = Double.parseDouble(args[1]);
