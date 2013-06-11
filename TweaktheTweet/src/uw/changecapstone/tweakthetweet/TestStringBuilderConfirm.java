@@ -277,7 +277,8 @@ public class TestStringBuilderConfirm extends CustomWindow {
 		tweet = bundle.getString("tweet");
 		lat = bundle.getDouble(LAT);
 		longitude = bundle.getDouble(LONG);
-		
+		hasPhoto = false;
+		picPath = "";
 		pref = PreferenceManager.getDefaultSharedPreferences(this);
 		
 		//Set up main tweet text box

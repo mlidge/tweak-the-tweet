@@ -35,6 +35,7 @@ public class PhotoActivity extends Activity {
 	private ImageView mImageView;
 	private Bitmap mImageBitmap;
 	private String mCurrentPhotoPath;
+	private Intent mIntent;
 	private static final String JPEG_FILE_PREFIX = "IMG_";
 	private static final String JPEG_FILE_SUFFIX = ".jpg";	
 	final static String PHOTO_PATH = "PHOTO_PATH";
@@ -172,7 +173,7 @@ public class PhotoActivity extends Activity {
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_photo);
-		
+		mIntent = getIntent();
 		mImageView = (ImageView) findViewById(R.id.imageView1);
 		mImageBitmap = null;
 
@@ -205,13 +206,13 @@ public class PhotoActivity extends Activity {
 	                mCurrentPhotoPath, Toast.LENGTH_LONG).show();
 			handleBigCameraPhoto();
 			hasPhoto = true;			
-			Intent intent = new Intent(this, TestStringBuilderConfirm.class);
-			intent.putExtra(HAS_PHOTO, hasPhoto);
-			intent.putExtra(PHOTO_PATH, mCurrentPhotoPath);
+			//Intent intent = new Intent(this, TestStringBuilderConfirm.class);
+			mIntent.putExtra(HAS_PHOTO, hasPhoto);
+			mIntent.putExtra(PHOTO_PATH, mCurrentPhotoPath);
 						
 			if (mCurrentPhotoPath != null)
 				mCurrentPhotoPath = null;
-			setResult(PHOTO_OK, intent);
+			setResult(RESULT_OK, mIntent);
 			finish();
 		}
 		else if (requestCode == CHOOSE_PICTURE && resultCode == RESULT_OK){
@@ -230,9 +231,9 @@ public class PhotoActivity extends Activity {
             mImageView.setImageBitmap(BitmapFactory.decodeFile(picturePath));
             hasPhoto = true;
             Intent intent = new Intent(this, TestStringBuilderConfirm.class);
-            intent.putExtra(HAS_PHOTO, hasPhoto);
-			intent.putExtra(PHOTO_PATH, picturePath);
-			setResult(PHOTO_OK, intent);
+            mIntent.putExtra(HAS_PHOTO, hasPhoto);
+			mIntent.putExtra(PHOTO_PATH, mCurrentPhotoPath);
+			setResult(RESULT_OK, mIntent);
 			finish();
 		}
 	}
