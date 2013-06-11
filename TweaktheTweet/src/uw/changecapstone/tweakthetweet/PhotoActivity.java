@@ -9,10 +9,6 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
 
-import twitter4j.StatusUpdate;
-import twitter4j.Twitter;
-import twitter4j.TwitterException;
-
 import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.content.Context;
@@ -28,11 +24,12 @@ import android.os.Environment;
 import android.provider.MediaStore;
 import android.util.Log;
 import android.view.View;
+import android.view.Window;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.Toast;
 
-public class PhotoActivity extends Activity {
+public class PhotoActivity extends CustomWindow {
 
 	private static final String BITMAP_STORAGE_KEY = "viewbitmap";
 	private static final String IMAGEVIEW_VISIBILITY_STORAGE_KEY = "imageviewvisibility";
@@ -47,7 +44,6 @@ public class PhotoActivity extends Activity {
 	private static int CHOOSE_PICTURE =1;
 	private static boolean hasPhoto = false;
 	final static String HAS_PHOTO = "HAS_PHOTO";
-	private final static int PHOTO_OK = 6;
 	
 	/* Photo album for this application */
 	private String getAlbumName() {
@@ -178,6 +174,8 @@ public class PhotoActivity extends Activity {
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_photo);
+		this.title.setText("Add a photo");
+		
 		mIntent = getIntent();
 		mImageView = (ImageView) findViewById(R.id.imageView1);
 		mImageBitmap = null;
@@ -208,8 +206,6 @@ public class PhotoActivity extends Activity {
 	@Override
 	protected void onActivityResult(int requestCode, int resultCode, Intent data) {
 		if (requestCode == TAKE_PICTURE && resultCode == RESULT_OK) {
-			Toast.makeText(this, "Image saved to:\n" +
-	                mCurrentPhotoPath, Toast.LENGTH_LONG).show();
 			handleBigCameraPhoto();
 			hasPhoto = true;			
 			//Intent intent = new Intent(this, TestStringBuilderConfirm.class);
@@ -234,6 +230,7 @@ public class PhotoActivity extends Activity {
             cursor.close();
             mImageView.setImageURI(selectedImageUri);
             mImageView.setImageBitmap(BitmapFactory.decodeFile(picturePath));
+            
             hasPhoto = true;
             mCurrentPhotoPath = picturePath;
             //Intent intent = new Intent(this, TestStringBuilderConfirm.class);
