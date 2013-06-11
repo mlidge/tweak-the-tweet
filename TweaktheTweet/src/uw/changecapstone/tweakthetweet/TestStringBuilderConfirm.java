@@ -70,6 +70,7 @@ public class TestStringBuilderConfirm extends CustomWindow {
 	public final static String PHOTO_PATH = "PHOTO_PATH";
 	final static String HAS_PHOTO = "HAS_PHOTO";
 	private Context context;
+	private final static int PHOTO_OK = 6;
 	
 	/*
 	 * Text watcher for the "your tweet" box
@@ -276,8 +277,7 @@ public class TestStringBuilderConfirm extends CustomWindow {
 		tweet = bundle.getString("tweet");
 		lat = bundle.getDouble(LAT);
 		longitude = bundle.getDouble(LONG);
-		picPath = bundle.getString(PHOTO_PATH);
-		hasPhoto = bundle.getBoolean(HAS_PHOTO);
+		
 		pref = PreferenceManager.getDefaultSharedPreferences(this);
 		
 		//Set up main tweet text box
@@ -360,8 +360,15 @@ public class TestStringBuilderConfirm extends CustomWindow {
 
 	public void nextViewPhoto(View view) {
 		Intent i = new Intent(this, PhotoActivity.class);
-		startActivity(i);
+		startActivityForResult(i, PHOTO_OK);
 	}
+	
+	protected void onActivityResult(int result, int returnVal, Intent i) {
+		picPath = i.getStringExtra(PHOTO_PATH);
+		hasPhoto = i.getBooleanExtra(HAS_PHOTO, true);
+		
+	}
+	
 	
 	private void dataTweet() {
 
@@ -422,7 +429,7 @@ public class TestStringBuilderConfirm extends CustomWindow {
 				// add a photo if it is present
 				if (hasPhoto) {
 					String filePath = args[3];
-					File photo = new File(filePath);
+					File photo = new File(picPath);
 					newStatus.setMedia(photo);
 				}
 				// create an access token object based on credentials

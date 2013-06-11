@@ -42,6 +42,7 @@ public class PhotoActivity extends Activity {
 	private static int CHOOSE_PICTURE =1;
 	private static boolean hasPhoto = false;
 	final static String HAS_PHOTO = "HAS_PHOTO";
+	private final static int PHOTO_OK = 6;
 	/* Photo album for this application */
 	private String getAlbumName() {
 		return getString(R.string.album_name);
@@ -207,9 +208,11 @@ public class PhotoActivity extends Activity {
 			Intent intent = new Intent(this, TestStringBuilderConfirm.class);
 			intent.putExtra(HAS_PHOTO, hasPhoto);
 			intent.putExtra(PHOTO_PATH, mCurrentPhotoPath);
-			startActivity(intent);			
+						
 			if (mCurrentPhotoPath != null)
 				mCurrentPhotoPath = null;
+			setResult(PHOTO_OK, intent);
+			finish();
 		}
 		else if (requestCode == CHOOSE_PICTURE && resultCode == RESULT_OK){
 			Uri selectedImageUri = data.getData();
@@ -229,7 +232,8 @@ public class PhotoActivity extends Activity {
             Intent intent = new Intent(this, TestStringBuilderConfirm.class);
             intent.putExtra(HAS_PHOTO, hasPhoto);
 			intent.putExtra(PHOTO_PATH, picturePath);
-			startActivity(intent);
+			setResult(PHOTO_OK, intent);
+			finish();
 		}
 	}
 
