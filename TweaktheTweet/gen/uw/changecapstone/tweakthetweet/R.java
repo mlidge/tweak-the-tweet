@@ -294,22 +294,23 @@ containing a value of this type.
         public static final int listview_footer=0x7f030012;
     }
     public static final class menu {
-        public static final int emergency_notification=0x7f0a0000;
-        public static final int loading_screen=0x7f0a0001;
-        public static final int location_and_map=0x7f0a0002;
-        public static final int location_with_g=0x7f0a0003;
-        public static final int login_screen=0x7f0a0004;
-        public static final int main=0x7f0a0005;
-        public static final int map_display=0x7f0a0006;
-        public static final int photo=0x7f0a0007;
-        public static final int previous_location=0x7f0a0008;
-        public static final int test_string_builder=0x7f0a0009;
-        public static final int test_string_builder_add_details=0x7f0a000a;
-        public static final int test_string_builder_confirm=0x7f0a000b;
-        public static final int test_string_builder_disaster_list=0x7f0a000c;
-        public static final int test_string_builder_location=0x7f0a000d;
-        public static final int test_string_builder_map=0x7f0a000e;
-        public static final int test_string_builder_tweet_sent=0x7f0a000f;
+        public static final int custom_map=0x7f0a0000;
+        public static final int emergency_notification=0x7f0a0001;
+        public static final int loading_screen=0x7f0a0002;
+        public static final int location_and_map=0x7f0a0003;
+        public static final int location_with_g=0x7f0a0004;
+        public static final int login_screen=0x7f0a0005;
+        public static final int main=0x7f0a0006;
+        public static final int map_display=0x7f0a0007;
+        public static final int photo=0x7f0a0008;
+        public static final int previous_location=0x7f0a0009;
+        public static final int test_string_builder=0x7f0a000a;
+        public static final int test_string_builder_add_details=0x7f0a000b;
+        public static final int test_string_builder_confirm=0x7f0a000c;
+        public static final int test_string_builder_disaster_list=0x7f0a000d;
+        public static final int test_string_builder_location=0x7f0a000e;
+        public static final int test_string_builder_map=0x7f0a000f;
+        public static final int test_string_builder_tweet_sent=0x7f0a0010;
     }
     public static final class string {
         public static final int action_settings=0x7f060023;
@@ -349,6 +350,7 @@ containing a value of this type.
     commented (Mussie) <string name="address_hint_text">4504 16th Ave. NE 8206</string>
     <string name="enter_location_text">Enter Location</string>
     <string name="map_placeholder_text">Insert Map Here!</string>
+
 
 
     
@@ -440,6 +442,7 @@ containing a value of this type.
     <string name="webview_name">Sign in to Twitter</string>
 
 
+
     
  LocationWithGPS 
          */
@@ -492,8 +495,10 @@ containing a value of this type.
         public static final int network_message=0x7f06007a;
         public static final int network_yes=0x7f060079;
         public static final int new_report_text=0x7f060064;
-        /**  <string name="title_activity_map_display">Event Map</string>
-    <string name="title_activity_location_and_map"> Map and Info</string> 
+        /** 
+    <string name="title_activity_map_display">Event Map</string>
+    <string name="title_activity_location_and_map"> Map and Info</string>
+    
          */
         public static final int oauth_name=0x7f06001a;
         public static final int or_text=0x7f06004b;
@@ -530,6 +535,7 @@ containing a value of this type.
         public static final int time_text_hint=0x7f06005e;
         public static final int title_activity_category=0x7f06006c;
         public static final int title_activity_city=0x7f060046;
+        public static final int title_activity_custom_map_fragment=0x7f060089;
         public static final int title_activity_custom_window=0x7f06004e;
         public static final int title_activity_disaster=0x7f060047;
         public static final int title_activity_emergency_notification=0x7f060086;

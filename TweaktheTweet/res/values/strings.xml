@@ -7,8 +7,10 @@
     <string name="tweet_name">Twitter</string>
     <string name="setup_name">Setup</string>
     <string name="debug_name">Debug</string>
-    <!-- <string name="title_activity_map_display">Event Map</string>
-    <string name="title_activity_location_and_map"> Map and Info</string> -->
+    <!--
+    <string name="title_activity_map_display">Event Map</string>
+    <string name="title_activity_location_and_map"> Map and Info</string>
+    -->
     <string name="oauth_name">Sign in to Twitter</string>
     <string name="signup_name">Sign up for Twitter</string>
     <string name="webview_name">Sign in to Twitter</string>
@@ -99,7 +101,7 @@
     <string name="tweet_placeholder_text">Your tweet should show up here!</string>
     <string name="other_instruction_hint">i.e. I need food, water, and shelter</string>
     <string name="title_activity_review_tweet">ReviewTweetActivity</string>
-    
+
     <!-- Location Page -->
     <string name="location_prompt">If you know the location, enter an address to place it in your tweet</string>
     <string name="location_prompt_hint">i.e. address, intersection, name of place, etc.</string>
@@ -107,7 +109,7 @@
     <string name="gps_text_2">Locate and tap on the map to get an accurate location or use GPS.</string>
     <string name="prev_text_1">Locate and tap on the map to get an accurate location</string>
     <string name="prev_text_2"></string>
-    
+
     <!-- More Details/Confirmation Page -->
     <string name="time_text">Time</string>
     <string name="time_text_hint">i.e. 5/8 - 6:00 pm</string>
@@ -115,7 +117,7 @@
     <string name="source_text_hint">i.e. US News</string>
     <string name="contact_text_hint">i.e. 2061234567</string>
     <string name="submit_text">Submit</string>
-    
+
     <!-- Tweet Sent Page -->
     <string name="tweet_sent_text">You just finished Tweaking the Tweet! Your tweet has been sent.</string>
     <string name="new_report_text">New Report</string>
@@ -135,8 +137,9 @@
     <string name="title_activity_location_and_map"> Map and Info</string>
     <string name="oauth_name">Sign in to Twitter</string>
     <string name="signup_name">Sign up for Twitter</string>
-    <string name="webview_name">Sign in to Twitter</string>
+    <string name="webview_name">Sign in to Twitter</string>
     -->
+
 
     <!-- LocationWithGPS -->
     <string name="continue_without_loc">Continue without a location </string>
@@ -148,7 +151,7 @@
 >>>>>>> 6c6c3a0d12922f45471c63853709d0df424c7784
     commented (Mussie) <string name="address_hint_text">4504 16th Ave. NE 8206</string>
     <string name="enter_location_text">Enter Location</string>
-    <string name="map_placeholder_text">Insert Map Here!</string>
+    <string name="map_placeholder_text">Insert Map Here!</string>
     -->
     <string name="button_use_trail_log">Use Trail Log</string>
     <string name="title_activity_map">Map Location</string>
@@ -187,5 +190,6 @@
     <string name="title_activity_emergency_notification">EmergencyNotification</string>
     <string name="title_activity_loading_screen">LoadingScreen</string>
     <string name="title_activity_login_screen">LoginScreen</string>
+    <string name="title_activity_custom_map_fragment">CustomMapFragment</string>
 
 </resources>

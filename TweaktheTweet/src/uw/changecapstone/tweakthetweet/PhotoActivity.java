@@ -9,6 +9,10 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
 
+import twitter4j.StatusUpdate;
+import twitter4j.Twitter;
+import twitter4j.TwitterException;
+
 import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.content.Context;
@@ -35,6 +39,7 @@ public class PhotoActivity extends Activity {
 	private ImageView mImageView;
 	private Bitmap mImageBitmap;
 	private String mCurrentPhotoPath;
+	private Intent mIntent;
 	private static final String JPEG_FILE_PREFIX = "IMG_";
 	private static final String JPEG_FILE_SUFFIX = ".jpg";	
 	final static String PHOTO_PATH = "PHOTO_PATH";
@@ -42,6 +47,8 @@ public class PhotoActivity extends Activity {
 	private static int CHOOSE_PICTURE =1;
 	private static boolean hasPhoto = false;
 	final static String HAS_PHOTO = "HAS_PHOTO";
+	private final static int PHOTO_OK = 6;
+	
 	/* Photo album for this application */
 	private String getAlbumName() {
 		return getString(R.string.album_name);
@@ -132,7 +139,7 @@ public class PhotoActivity extends Activity {
 		    mediaScanIntent.setData(contentUri);
 		    this.sendBroadcast(mediaScanIntent);
 	}
-
+	
 	private void dispatchTakePictureIntent() {
 
 		Intent takePictureIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
@@ -171,7 +178,7 @@ public class PhotoActivity extends Activity {
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_photo);
-		
+		mIntent = getIntent();
 		mImageView = (ImageView) findViewById(R.id.imageView1);
 		mImageBitmap = null;
 
@@ -193,23 +200,27 @@ public class PhotoActivity extends Activity {
 			}
 		});
 	}
+	
 	/* note: used mCurrentPhotoPath for intent instead of 
-     * String photoPath = data.get("PHOTO_PATH"); because the later gives null.
+     * String photoPath = data.get("PHOTO_PATH"); because the latter gives null.
      * also moved mCurrentPhotoPath = null; here because
      * if done in handleBigCameraPhoto intent will have null value*/
 	@Override
 	protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+		System.out.println(requestCode + " " + TAKE_PICTURE + " " + resultCode + " " + RESULT_OK);
 		if (requestCode == TAKE_PICTURE && resultCode == RESULT_OK) {
 			Toast.makeText(this, "Image saved to:\n" +
 	                mCurrentPhotoPath, Toast.LENGTH_LONG).show();
 			handleBigCameraPhoto();
 			hasPhoto = true;			
-			Intent intent = new Intent(this, TestStringBuilderConfirm.class);
-			intent.putExtra(HAS_PHOTO, hasPhoto);
-			intent.putExtra(PHOTO_PATH, mCurrentPhotoPath);
-			startActivity(intent);			
+			//Intent intent = new Intent(this, TestStringBuilderConfirm.class);
+			mIntent.putExtra(HAS_PHOTO, hasPhoto);
+			mIntent.putExtra(PHOTO_PATH, mCurrentPhotoPath);
+						
 			if (mCurrentPhotoPath != null)
 				mCurrentPhotoPath = null;
+			setResult(RESULT_OK, mIntent);
+			finish();
 		}
 		else if (requestCode == CHOOSE_PICTURE && resultCode == RESULT_OK){
 			Uri selectedImageUri = data.getData();
@@ -226,10 +237,11 @@ public class PhotoActivity extends Activity {
             System.out.println("Image Path: "+picturePath);
             mImageView.setImageBitmap(BitmapFactory.decodeFile(picturePath));
             hasPhoto = true;
-            Intent intent = new Intent(this, TestStringBuilderConfirm.class);
-            intent.putExtra(HAS_PHOTO, hasPhoto);
-			intent.putExtra(PHOTO_PATH, picturePath);
-			startActivity(intent);
+            //Intent intent = new Intent(this, TestStringBuilderConfirm.class);
+            mIntent.putExtra(HAS_PHOTO, hasPhoto);
+			mIntent.putExtra(PHOTO_PATH, mCurrentPhotoPath);
+			setResult(RESULT_OK, mIntent);
+			finish();
 		}
 	}
 

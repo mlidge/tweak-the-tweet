@@ -74,13 +74,12 @@
 			    android:textColor="@color/background_color" />
 		
 		</LinearLayout>
-		
+			
 		<fragment 
 	        android:id="@+id/loc_map"
 	        android:layout_width="match_parent"
 	        android:layout_height="250dp"
-	        class="com.google.android.gms.maps.MapFragment"
-	         />
+	        class="com.google.android.gms.maps.MapFragment" />
 		
 		<RelativeLayout
 	            android:layout_width="fill_parent"
