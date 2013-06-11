@@ -362,6 +362,7 @@ public class TestStringBuilderConfirm extends CustomWindow {
 	public void nextViewPhoto(View view) {
 		Intent i = new Intent(this, PhotoActivity.class);
 		startActivityForResult(i, PHOTO_OK);
+<<<<<<< HEAD
 	}
 	
 	@Override
@@ -373,7 +374,18 @@ public class TestStringBuilderConfirm extends CustomWindow {
 			}
 		}
 		
+=======
+>>>>>>> 04af723bccc0c0fd647bb26fe952032e488f57a8
 	}
+	
+	protected void onActivityResult(int request, int result, Intent i) {
+		if (request == PHOTO_OK && result == RESULT_OK) {
+			picPath = i.getExtras().getString(PHOTO_PATH);
+			hasPhoto = i.getExtras().getBoolean(HAS_PHOTO, true);
+		}
+		
+	}
+	
 	
 	private void dataTweet() {
 

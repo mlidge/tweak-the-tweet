@@ -48,7 +48,10 @@ public class PhotoActivity extends Activity {
 	private static boolean hasPhoto = false;
 	final static String HAS_PHOTO = "HAS_PHOTO";
 	private final static int PHOTO_OK = 6;
+<<<<<<< HEAD
 	
+=======
+>>>>>>> 04af723bccc0c0fd647bb26fe952032e488f57a8
 	/* Photo album for this application */
 	private String getAlbumName() {
 		return getString(R.string.album_name);
