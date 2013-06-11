@@ -111,6 +111,9 @@ public class TestStringBuilderConfirm extends CustomWindow {
 				if(!tweet.contains(category)){
 					//if the tweet does not contain the category tag, just append it to the end of the string
 					tweet = tweet + " " + category + " " + s;
+				}else if(splitTweet.length == 1){
+					//if the category tag comes at the very end of the tweet, just append s to the end of the string
+					tweet += " " + s;
 				}else{
 					if(splitTweet[1].contains("#")){
 						//If the tweet contains another hash tag, replace the current category text with the predefined tag that comes first
@@ -178,6 +181,8 @@ public class TestStringBuilderConfirm extends CustomWindow {
 		if(!tweet.contains(startTag)){
 			//if the tweet does not contain the category tag, just append it to the end of the string
 			tweet = tweet + " " + startTag + " " + s;
+		}else if(splitTweet.length == 1){
+			
 		}else{
 			if(splitTweet[1].contains("#")){
 				//If the tweet contains another hash tag, replace the current category text with the predefined tag that comes first
