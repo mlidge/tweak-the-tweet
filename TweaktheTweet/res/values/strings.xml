@@ -161,6 +161,7 @@
     <string name="contact_text">Contact</string>
     <string name="phone_hint_text">(XXX) XXX - XXXX</string>
     <string name="photo_text">Add Photo</string>
+    <string name="remove_photo_text">Remove Photo</string>
     <string name="details_text">Enter Details...</string>
     <!-- MapActivities -->
 

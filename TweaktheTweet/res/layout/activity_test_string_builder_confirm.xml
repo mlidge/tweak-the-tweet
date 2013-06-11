@@ -83,7 +83,7 @@
 		            android:paddingLeft="5dp"
 		            android:paddingRight="5dp"
 		            android:paddingTop="5dp"
-		            android:text="Remove Photo"
+		            android:text="@string/remove_photo_text"
 		            android:textColor="@color/background_color" />
 	            
 	        </LinearLayout>
