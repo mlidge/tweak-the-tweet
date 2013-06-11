@@ -409,7 +409,6 @@ public class TestStringBuilderConfirm extends CustomWindow {
 
 		
 		protected String doInBackground(String... args) {
-			System.out.println("WENT HERE AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA1 " + hasPhoto);
 			// retrieve the information to build the tweet
 			String status = args[0];
 			double lat = Double.parseDouble(args[1]);
@@ -467,7 +466,6 @@ public class TestStringBuilderConfirm extends CustomWindow {
 			Intent i = new Intent(context, TestStringBuilderTweetSent.class);
 			i.putExtra("tweet", tweet);
 			startActivity(i);
-			
 			
 		}
 	}

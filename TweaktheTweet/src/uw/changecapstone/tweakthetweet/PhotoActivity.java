@@ -207,7 +207,6 @@ public class PhotoActivity extends Activity {
      * if done in handleBigCameraPhoto intent will have null value*/
 	@Override
 	protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-		System.out.println(requestCode + " " + TAKE_PICTURE + " " + resultCode + " " + RESULT_OK);
 		if (requestCode == TAKE_PICTURE && resultCode == RESULT_OK) {
 			Toast.makeText(this, "Image saved to:\n" +
 	                mCurrentPhotoPath, Toast.LENGTH_LONG).show();
@@ -234,9 +233,9 @@ public class PhotoActivity extends Activity {
             String picturePath = cursor.getString(columnIndex);
             cursor.close();
             mImageView.setImageURI(selectedImageUri);
-            System.out.println("Image Path: "+picturePath);
             mImageView.setImageBitmap(BitmapFactory.decodeFile(picturePath));
             hasPhoto = true;
+            mCurrentPhotoPath = picturePath;
             //Intent intent = new Intent(this, TestStringBuilderConfirm.class);
             mIntent.putExtra(HAS_PHOTO, hasPhoto);
 			mIntent.putExtra(PHOTO_PATH, mCurrentPhotoPath);
