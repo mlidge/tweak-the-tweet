@@ -65,9 +65,10 @@ public class TestStringBuilderConfirm extends CustomWindow {
 	private boolean hasPhoto;
 	private double lat;
 	private double longitude;
-	public final static String LAT = "latitude";
-	public final static String LONG = "longitude";
-	public final static String PHOTO_PATH = "photo_path";
+	public final static String LAT = "geolat";
+	public final static String LONG = "geolongs";
+	public final static String PHOTO_PATH = "PHOTO_PATH";
+	final static String HAS_PHOTO = "HAS_PHOTO";
 	private Context context;
 	
 	/*
@@ -276,7 +277,7 @@ public class TestStringBuilderConfirm extends CustomWindow {
 		lat = bundle.getDouble(LAT);
 		longitude = bundle.getDouble(LONG);
 		picPath = bundle.getString(PHOTO_PATH);
-		hasPhoto = bundle.getBoolean("HAS_PHOTO");
+		hasPhoto = bundle.getBoolean(HAS_PHOTO);
 		pref = PreferenceManager.getDefaultSharedPreferences(this);
 		
 		//Set up main tweet text box
