@@ -72,6 +72,7 @@ public class TestStringBuilder extends CustomWindow implements DialogListener{
 		if (location == null || location.equals("")){
 			Toast.makeText(getBaseContext(), "Please enter city or region", Toast.LENGTH_SHORT).show();
 		} else	if (location !=null && !location.equals("")){
+			isGpsUsed = false;
 			new GeocoderTask().execute(location);
 		} 
 	}

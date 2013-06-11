@@ -66,7 +66,7 @@ public class TestStringBuilderConfirm extends CustomWindow {
 	private double lat;
 	private double longitude;
 	public final static String LAT = "geolat";
-	public final static String LONG = "geolongs";
+	public final static String LONG = "geolong";
 	public final static String PHOTO_PATH = "PHOTO_PATH";
 	final static String HAS_PHOTO = "HAS_PHOTO";
 	private Context context;
