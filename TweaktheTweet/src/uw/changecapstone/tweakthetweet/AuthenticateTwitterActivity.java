@@ -1,5 +1,7 @@
 package uw.changecapstone.tweakthetweet;
 
+import java.util.concurrent.ExecutionException;
+
 import twitter4j.Twitter;
 import twitter4j.TwitterException;
 import twitter4j.TwitterFactory;
@@ -7,24 +9,28 @@ import twitter4j.auth.AccessToken;
 import twitter4j.auth.RequestToken;
 import android.app.Activity;
 import android.app.ProgressDialog;
-import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.SharedPreferences.Editor;
 import android.content.pm.ApplicationInfo;
 import android.content.pm.PackageManager;
 import android.content.pm.PackageManager.NameNotFoundException;
+import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
+import android.view.View;
+import android.view.Window;
+import android.webkit.WebView;
+import android.webkit.WebViewClient;
 
 /*
- * OAuthTwitterActivity handles authenticating twitter with
- * so that tweets can be sent. This is started by the 
- * login dialog
+ * AuthenticateTwitterActivity handles authenticating with twitter with
+ * so that tweets can be sent in the main application. 
+ * @author Mary Jones
  */
-public class OAuthTwitterActivity extends Activity {
+public class AuthenticateTwitterActivity extends Activity {
 
-	// Constants to access consumer keys from metadata
+	// Constants to access consumer keys from metadat
 	static String TWITTER_CONSUMER_KEY = "twitterconsumerkey"; 
 	static String TWITTER_CONSUMER_SECRET = "twitterconsumersecret"; 
 
@@ -47,13 +53,15 @@ public class OAuthTwitterActivity extends Activity {
 	private static SharedPreferences pref;
 	private String twitterConsumerKey;
 	private String twitterConsumerSecret;
-	private ProgressDialog dialog;
-
+	private String verifier;
+	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
+		this.requestWindowFeature(Window.FEATURE_NO_TITLE);
 		super.onCreate(savedInstanceState);
+		
 		pref = PreferenceManager.getDefaultSharedPreferences(this);
-		setContentView(R.layout.activity_oauthtwitter);
+		setContentView(R.layout.activity_authtwitter);
 		// Ensure twitter is not logged in before trying to authenticate
 		if (!isTwitterLoggedInAlready()) {
 			ApplicationInfo ai;
@@ -71,33 +79,78 @@ public class OAuthTwitterActivity extends Activity {
 			// in an asynchronous task (web requests cannot be on the 
 			// UI thread)
 			TwitterAuthenticate task = new TwitterAuthenticate();
-			task.execute(new String[] {null});
+			try {
+				// Wait for the authentication task to complete so that we can
+				// use the authentication url
+				String resultUrl = task.execute(new String[] {null}).get();
+				
+				WebView webview = (WebView)findViewById(R.id.webview);
+				webview.getSettings().setJavaScriptEnabled(true);
+	            webview.getSettings().setDomStorageEnabled(true);
+	            webview.getSettings().setSavePassword(false);
+	            webview.getSettings().setSaveFormData(false);
+	            webview.getSettings().setSupportZoom(false);
+	            
+	            // The custom webview client provides the ability to capture the
+	            // redirect url and return to the application
+	            webview.setWebViewClient(new WebViewClient(){
+
+	            	
+	            	public boolean shouldOverrideUrlLoading(WebView view, String url) {
+	            		
+	            		findViewById(R.id.webview).setVisibility(View.GONE);
+            			findViewById(R.id.webload).setVisibility(View.VISIBLE);
+	            		
+            			
+	            		Uri uri = Uri.parse(url);
+	            		// if the url is the callback url (loaded after a successful login)
+	            		// parse out the verification string, and store the 
+	            		// authentication credentials
+	            		if (uri.toString().contains(TWITTER_CALLBACK_URL)) {
+	            			verifier = uri.getQueryParameter( "oauth_verifier" );
+	            			StorePreferences storeTask = new StorePreferences();
+	        				storeTask.execute(new String[] {verifier});
+	            		}
+	                    
+	                    return true;
+	            	}	
+	            	
+	            	@Override
+	                public void onPageFinished(WebView view, String url) {
+	                 
+	                 super.onPageFinished(view, url);
+	                 // Hide the loading page and let the webpage be seen.
+	                 findViewById(R.id.webload).setVisibility(View.GONE);
+	                 findViewById(R.id.webview).setVisibility(View.VISIBLE);
+	                }
+
+	            }
+	            	
+	            );
+
+	            webview.loadUrl(resultUrl);
+				
+				
+			} catch (InterruptedException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			} catch (ExecutionException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 
 		} else {
 			finish();
 		}
-
-		// Get the access token
-
-
-
-
 	}
-
-	// onActivityResult starts the process of storing credentials
-	// after the signin finishes and the user is redirected to the 
-	// application
-	protected void onActivityResult(int result, int returnVal, Intent i) {
-		String verifier = (String) i.getExtras().get("oauth_verifier");
-		StorePreferences storeTask = new StorePreferences();
-		storeTask.execute(new String[] {verifier});
-	}
-
+	
 	private boolean isTwitterLoggedInAlready() {
 		// return twitter login status from Shared Preferences
 		return pref.getBoolean(PREF_KEY_TWITTER_LOGIN, false);
 	}
 
+	// Store authentications credentials for a user in the application.
+	// This accesses twitter and so must be done in a separate thread.
 	private class StorePreferences extends AsyncTask<String, String, String> {
 		@Override
 		protected String doInBackground(String... params) {
@@ -119,7 +172,6 @@ public class OAuthTwitterActivity extends Activity {
 						accessToken.getTokenSecret());
 				// Store login status - true
 				e.putBoolean(PREF_KEY_TWITTER_LOGIN, true);
-				long userID = accessToken.getUserId();
 				e.commit();
 			}catch (Exception e) {
 				e.printStackTrace();
@@ -136,16 +188,13 @@ public class OAuthTwitterActivity extends Activity {
 		}
 	}
 
-	// TwitterAuthenticate handles the intial authentication and 
-	// redirecting to hte login page
+	// TwitterAuthenticate handles the initial authentication and 
+	// redirecting to the login page
 	private class TwitterAuthenticate extends AsyncTask<String, String, String> {
-
-		String resultUrl;
 
 		@Override
 		protected String doInBackground(String... urls) {
 			
-
 			try {
 				// make a twitter instance
 				twitter = new TwitterFactory().getInstance();
@@ -158,35 +207,17 @@ public class OAuthTwitterActivity extends Activity {
 				// direct to
 				requestToken = twitter.getOAuthRequestToken(
 						TWITTER_CALLBACK_URL);
-				resultUrl =requestToken.getAuthenticationURL();
+				String resultUrl =requestToken.getAuthenticationURL();
+				
+				return resultUrl;
 
 			}catch (TwitterException e) {
 				e.printStackTrace();
 			} 
-
 			return null;
-		}
-
-		@Override
-		protected void onPostExecute(String result) {
 			
-			super.onPostExecute(result);
-			// TwitterWebView handles loading the login url and redirection 
-			// back to the application
-			Intent i = new Intent(OAuthTwitterActivity.this, TwitterWebView.class);
-			i.putExtra("url", resultUrl);
-
-			startActivityForResult(i, 1);
-
-
 		}
+
 	}
-
-
-
-
-
-
-
 
 }
