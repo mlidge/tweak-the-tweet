@@ -3,27 +3,17 @@ package uw.changecapstone.tweakthetweet;
 import java.io.IOException;
 import java.util.List;
 
-import com.google.android.gms.maps.CameraUpdateFactory;
-import com.google.android.gms.maps.GoogleMap;
-import com.google.android.gms.maps.MapFragment;
-import com.google.android.gms.maps.GoogleMap.OnMapClickListener;
-import com.google.android.gms.maps.model.LatLng;
-import com.google.android.gms.maps.model.Marker;
-import com.google.android.gms.maps.model.MarkerOptions;
-
+import android.annotation.SuppressLint;
+import android.content.Context;
+import android.content.Intent;
+import android.graphics.Color;
 import android.location.Address;
 import android.location.Geocoder;
 import android.os.AsyncTask;
 import android.os.Bundle;
-import android.annotation.SuppressLint;
-import android.app.Activity;
-import android.content.Context;
-import android.content.Intent;
-import android.graphics.Color;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.view.KeyEvent;
-import android.view.Menu;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -35,9 +25,24 @@ import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ScrollView;
 import android.widget.TextView;
-import android.widget.Toast;
 import android.widget.TextView.OnEditorActionListener;
+import android.widget.Toast;
 
+import com.google.android.gms.maps.CameraUpdateFactory;
+import com.google.android.gms.maps.GoogleMap;
+import com.google.android.gms.maps.GoogleMap.OnMapClickListener;
+import com.google.android.gms.maps.MapFragment;
+import com.google.android.gms.maps.model.LatLng;
+import com.google.android.gms.maps.model.Marker;
+import com.google.android.gms.maps.model.MarkerOptions;
+/* LocationActivity file implements different functionalities on the 
+ * location page of the application. It takes care of the mapping of both 
+ * current location and other locations. It also uses either GPS or Google 
+ * Maps API server to geo-code a given text address and allows users to 
+ * use send text address or send none as part of the tweet. It also lets users
+ * to send GPS latitude longitude, geo-latitude and geo-longitude, tapped 
+ * latitude and longitude as part of tweet metadata or lets them say, continute
+ * without location */
 @SuppressLint("NewApi")
 
 public class LocationActivity extends CustomWindow {
@@ -74,6 +79,8 @@ public class LocationActivity extends CustomWindow {
 	private final String CITY_BUTTON_TEXT = "Use my address";
 	private final String CITY_MARKER_TEXT = "Your entered location";
 	
+	/* This counts the number of characters already used up and return 
+	 * what is left to reach the 140 character limit in twitter.*/
 	private final TextWatcher addLocationTag = new TextWatcher() {
 		public void beforeTextChanged(CharSequence s, int start, int count, int after) {
 		}
@@ -227,7 +234,10 @@ public class LocationActivity extends CustomWindow {
 	};
 	}
 	
-	/* Reference: http://wptrafficanalyzer.in/blog */
+	/* This method accepts a text address from the user and
+	 * parses (geo-codes) it, meaning, it returns the latitude and longitude
+	 * of the address to be sent as part of the metadata of tweet. 
+	 * Reference: http://wptrafficanalyzer.in/blog */
 	private class GeocoderTask extends AsyncTask<String, Void, List <Address> >{
 
 		@Override
@@ -253,8 +263,6 @@ public class LocationActivity extends CustomWindow {
 				double lat = address.getLatitude();
 				double lng = address.getLongitude();
 				geoLatLng = new LatLng(lat, lng);
-				//unfortunately the latest design does not make use of this geo lat and long, 
-				//but I have left here if needed in the future.
 				mMap.animateCamera(CameraUpdateFactory.newLatLngZoom(geoLatLng, 14));
 				mMap.addMarker(new MarkerOptions().position(geoLatLng).title("geolocation of your address."));
 				Toast.makeText(getBaseContext(), "Tweet Address: "+address.getAddressLine(0), Toast.LENGTH_SHORT).show();
@@ -263,7 +271,7 @@ public class LocationActivity extends CustomWindow {
 	}
 	
 	/*when the user clicks the "Done" button, 
-	 * we are going to read the textfield content and 
+	 * we read in the textfield content and 
 	 * do some validity checks before we show/zoom map*/
 	public void readLocationMessage(){
 		String location = location_text.getText().toString();
@@ -271,8 +279,11 @@ public class LocationActivity extends CustomWindow {
 			new GeocoderTask().execute(location);
 	}
 	
+	/* This method handles the case that if the user does not 
+	 * want to provide address or if he/she does not know the address
+	 * he/she can just say 'continue without location' and skip to the 
+	 * next tweet generation page*/
 	public void nextViewCategory(View view){
-		//TODO: to factor out with private method later
 		Bundle bundle = getIntent().getExtras();
 		tweet = bundle.getString("tweet");
 		
@@ -286,6 +297,10 @@ public class LocationActivity extends CustomWindow {
 		startActivity(i);
 	}
 	
+	/* This method handles the case of sending
+	 *  GPS or geo-coded street address as part 
+	 *  of the tweet metadata.
+	 */
 	public void useLocation(View view){
 		Bundle bundle = getIntent().getExtras();
 		tweet = bundle.getString("tweet");
@@ -317,6 +332,10 @@ public class LocationActivity extends CustomWindow {
 		}
 	}
 	
+	/* This method implements the case of sending
+	 *  tapped latitude and longitude as part 
+	 *  of the tweet metadata.
+	 */
 	public void useTappedLocation(View view){
 		
 		Bundle bundle = getIntent().getExtras();
