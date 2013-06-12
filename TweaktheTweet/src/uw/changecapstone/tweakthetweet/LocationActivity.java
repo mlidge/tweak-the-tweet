@@ -170,11 +170,14 @@ public class LocationActivity extends CustomWindow {
 
 			@Override
 			public void onMapLongClick(LatLng arg0) {
+				
 				// Disable Scrolling by setting up an OnTouchListener to do nothing
 				locationScroll.setOnTouchListener( new OnTouchListener(){ 
 					@Override
 					public boolean onTouch(View arg0, MotionEvent arg1) {
+						Toast.makeText(getBaseContext(), "The map was dragged", Toast.LENGTH_SHORT).show();
 						return true;
+						
 					}
 				}); 
 			}
