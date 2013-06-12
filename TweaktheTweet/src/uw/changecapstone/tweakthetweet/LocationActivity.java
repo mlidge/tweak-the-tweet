@@ -1,16 +1,25 @@
-
 package uw.changecapstone.tweakthetweet;
+
 import java.io.IOException;
 import java.util.List;
 
-import android.annotation.SuppressLint;
-import android.content.Context;
-import android.content.Intent;
-import android.graphics.Color;
+import com.google.android.gms.maps.CameraUpdateFactory;
+import com.google.android.gms.maps.GoogleMap;
+import com.google.android.gms.maps.MapFragment;
+import com.google.android.gms.maps.GoogleMap.OnMapClickListener;
+import com.google.android.gms.maps.model.LatLng;
+import com.google.android.gms.maps.model.Marker;
+import com.google.android.gms.maps.model.MarkerOptions;
+
 import android.location.Address;
 import android.location.Geocoder;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.annotation.SuppressLint;
+import android.app.Activity;
+import android.content.Context;
+import android.content.Intent;
+import android.graphics.Color;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.view.KeyEvent;
@@ -23,20 +32,12 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.TextView;
-import android.widget.TextView.OnEditorActionListener;
 import android.widget.Toast;
-
-import com.google.android.gms.maps.CameraUpdateFactory;
-import com.google.android.gms.maps.GoogleMap;
-import com.google.android.gms.maps.GoogleMap.OnMapClickListener;
-import com.google.android.gms.maps.MapFragment;
-import com.google.android.gms.maps.model.LatLng;
-import com.google.android.gms.maps.model.Marker;
-import com.google.android.gms.maps.model.MarkerOptions;
+import android.widget.TextView.OnEditorActionListener;
 
 @SuppressLint("NewApi")
 
-public class LocationWithGPS extends CustomWindow {
+public class LocationActivity extends CustomWindow {
 	private GoogleMap mMap;
 	private LatLng geoLatLng;
 	private LatLng tappedLatLng;
@@ -44,16 +45,26 @@ public class LocationWithGPS extends CustomWindow {
 	public final static String LONG = "geolong";
 	public final static String GPS_LAT = "uw.changecapstone.tweakthetweet.latitude";
 	public final static String GPS_LONG = "uw.changecapstone.tweakthetweet.longitude";
+	public final static String CITY_LAT = "uw.changecapstone.tweakthetweet.latitude";
+	public final static String CITY_LONG = "uw.changecapstone.tweakthetweet.longitude";
 	private String tweet, disaster;
 	private TextView char_count;
 	private EditText location_text, test_tweet;
 	public final static String LOCATION_TEXT = "uw.changecapstone.tweakthetweet.MESSAGE";
 	double gps_lat; 
 	double gps_long;
+	double city_lat; 
+	double city_long;
 	String message;
 	ImageButton doNotAddLoc;
 	Marker tappedMarker;
 	Button tappedLocBtn;
+	TextView textPrompt1;
+	TextView textPrompt2;
+	private final String GPS_TEXT_1 = "Your GPS shows you are here";
+	private final String GPS_TEXT_2 = "Locate and tap on the map to get an accurate location or use GPS";
+	private final String ENTERED_TEXT_1 = "Locate and tap on the map to get an accurate location";
+	private final String ENTERED_TEXT_2 = "";
 	
 	private final TextWatcher addLocationTag = new TextWatcher() {
 		public void beforeTextChanged(CharSequence s, int start, int count, int after) {
@@ -80,7 +91,7 @@ public class LocationWithGPS extends CustomWindow {
 				char_count.setText(String.valueOf(crntLength) + " character left");
 			}
 		}
-
+		
 		@Override
 		public void afterTextChanged(Editable arg0) {
 			// TODO Auto-generated method stub
@@ -91,30 +102,37 @@ public class LocationWithGPS extends CustomWindow {
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		setContentView(R.layout.activity_location_with_gps);
+		setContentView(R.layout.activity_location);
 		this.title.setText("#location");
-		
 		Bundle bundle = getIntent().getExtras();	
-		gps_lat = bundle.getDouble(GPS_LAT, 0.0);
-		gps_long = bundle.getDouble(GPS_LONG);
-
-		mMap = ((MapFragment) getFragmentManager().findFragmentById(R.id.loc_map)).getMap();
-		LatLng gpslatLng = new LatLng(gps_lat, gps_long);
-		mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(gpslatLng, 14));
-		mMap.addMarker(new MarkerOptions().position(gpslatLng).title("Your GPS location"));
-		mMap.setMyLocationEnabled(true);		
-		mMap.setOnMapClickListener(getOnMapClickListener());
-		
-				
 		tweet = bundle.getString("tweet");
 		disaster = bundle.getString("disaster");
+		textPrompt1 = (TextView) findViewById(R.id.text_prompt_1);
+		textPrompt2 = (TextView) findViewById(R.id.text_prompt_2);
+		
+		if(TestStringBuilder.isGpsUsed){
+			gps_lat = bundle.getDouble(GPS_LAT, 0.0);
+			gps_long = bundle.getDouble(GPS_LONG);
+			textPrompt1.setText(GPS_TEXT_1);
+			textPrompt2.setText(GPS_TEXT_2);
+			
+			setMap("Your GPS location");
+			
+		}else{
+			city_lat = bundle.getDouble(CITY_LAT);
+			city_long = bundle.getDouble(CITY_LONG);
+			textPrompt1.setText(ENTERED_TEXT_1);
+			textPrompt2.setText(ENTERED_TEXT_2);
+			setMap("Your entered location");
+			
+		}
 		
 		//Set char count
-		char_count = (TextView) findViewById(R.id.character_count_gps_location);
+		char_count = (TextView) findViewById(R.id.character_count_location);
 		char_count.setText(String.valueOf(140 - tweet.length()) + " characters left");
 		
 		//Set tweet box
-		test_tweet = (EditText) findViewById(R.id.tweet_display_gps);
+		test_tweet = (EditText) findViewById(R.id.tweet_display);
 		test_tweet.setText(tweet);
 		
 		//Set location button
@@ -135,8 +153,23 @@ public class LocationWithGPS extends CustomWindow {
 		        return false;
 			}		
 		});
-
 	}
+	
+	private void setMap(String markerTitle){
+		mMap = ((MapFragment) getFragmentManager().findFragmentById(R.id.loc_map)).getMap();
+		if(TestStringBuilder.isGpsUsed){
+			LatLng gpslatLng = new LatLng(gps_lat, gps_long);
+			mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(gpslatLng, 14));
+			mMap.addMarker(new MarkerOptions().position(gpslatLng).title("Your GPS location"));
+			mMap.setMyLocationEnabled(true);		
+		}else{
+			LatLng cityGeoLatLng = new LatLng(city_lat, city_long);
+			mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(cityGeoLatLng, 14));
+			mMap.addMarker(new MarkerOptions().position(cityGeoLatLng).title("Your address location"));
+		}
+		mMap.setOnMapClickListener(getOnMapClickListener());
+	}
+
 	/*Gets the lat/long location that was touched and adds a marker.*/
 	private OnMapClickListener getOnMapClickListener() {
 		return new OnMapClickListener() {			
@@ -150,7 +183,7 @@ public class LocationWithGPS extends CustomWindow {
 			tappedMarker = mMap.addMarker(new MarkerOptions().position(tappedLatLng).title("Your tapped location"));
 			tappedLocBtn.setBackgroundColor(getResources().getColor(R.color.default_button_color));
 			tappedLocBtn.setOnClickListener(new OnClickListener() {
-
+	
 			    @Override
 			    public void onClick(View v) {
 			        useTappedLocation(v);
@@ -163,6 +196,7 @@ public class LocationWithGPS extends CustomWindow {
 		
 	};
 	}
+	
 	/* Reference: http://wptrafficanalyzer.in/blog */
 	private class GeocoderTask extends AsyncTask<String, Void, List <Address> >{
 
@@ -197,13 +231,7 @@ public class LocationWithGPS extends CustomWindow {
 			}
 		}
 	}
-	@Override
-	public boolean onCreateOptionsMenu(Menu menu) {
-		// Inflate the menu; this adds items to the action bar if it is present.
-		getMenuInflater().inflate(R.menu.location_with_g, menu);
-		return true;
-	}
-
+	
 	/*when the user clicks the "Done" button, 
 	 * we are going to read the textfield content and 
 	 * do some validity checks before we show/zoom map*/
@@ -212,8 +240,7 @@ public class LocationWithGPS extends CustomWindow {
 		if (location !=null && !location.equals(""))
 			new GeocoderTask().execute(location);
 	}
-
-	// This method is going to be used to implement "I don't know my location" button
+	
 	public void nextViewCategory(View view){
 		//TODO: to factor out with private method later
 		Bundle bundle = getIntent().getExtras();
@@ -228,7 +255,8 @@ public class LocationWithGPS extends CustomWindow {
 		i.putExtra("disaster", disaster);
 		startActivity(i);
 	}
-	public void useGPSLocation(View view){
+	
+	public void useLocation(View view){
 		Bundle bundle = getIntent().getExtras();
 		tweet = bundle.getString("tweet");
 		
@@ -240,13 +268,24 @@ public class LocationWithGPS extends CustomWindow {
 	    	tweet += " #loc none";
 	    }
 	    
-		Intent i = new Intent(this, TestStringBuilderCategory.class);
+	    Intent i = new Intent(this, TestStringBuilderCategory.class);
 		i.putExtra("tweet", tweet);
 		i.putExtra("disaster", disaster);
-		i.putExtra(LAT, gps_lat);
-		i.putExtra(LONG, gps_long);
+		
+		if(TestStringBuilder.isGpsUsed){
+			i.putExtra(LAT, gps_lat);
+			i.putExtra(LONG, gps_long);
+		}else{
+			if(geoLatLng == null)
+				Toast.makeText(getBaseContext(), "Please enter address and press enter first: ", Toast.LENGTH_SHORT).show();
+			else {
+				i.putExtra(LAT, geoLatLng.latitude);
+				i.putExtra(LONG, geoLatLng.longitude);
+			}
+		}
 		startActivity(i);
 	}
+	
 	public void useTappedLocation(View view){
 		
 		Bundle bundle = getIntent().getExtras();
@@ -263,8 +302,9 @@ public class LocationWithGPS extends CustomWindow {
 		Intent i = new Intent(this, TestStringBuilderCategory.class);
 		i.putExtra("tweet", tweet);
 		i.putExtra("disaster", disaster);
+		
 		if(tappedLatLng==null)
-			Toast.makeText(getBaseContext(), "Please Touch the map first: ", Toast.LENGTH_SHORT).show();
+			Toast.makeText(getBaseContext(), "Please touch the map first.", Toast.LENGTH_SHORT).show();
 		else {
 			i.putExtra(LAT, tappedLatLng.latitude);
 			i.putExtra(LONG, tappedLatLng.longitude);
@@ -272,4 +312,3 @@ public class LocationWithGPS extends CustomWindow {
 		}
 	}
 }
-

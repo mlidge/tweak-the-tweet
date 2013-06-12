@@ -115,11 +115,14 @@ public class TestStringBuilderDisasterList extends CustomWindow {
 					long id) {
 				
 				tweet = (String) adapter.getItemAtPosition(position);
+				/*
 				if(TestStringBuilder.isGpsUsed)
 					nextViewLocation(v);
 				else
 					nextNonGPSLocation(v);
-			}
+				 */
+				nextViewLocation(v);
+			} 
 		
 		});
 		
@@ -154,10 +157,13 @@ public class TestStringBuilderDisasterList extends CustomWindow {
 		    public void onClick(View v) {
 				if(custom_disaster_tag != null){
 					tweet = custom_disaster_tag;
+					/*
 					if(TestStringBuilder.isGpsUsed)
 						nextViewLocation(v);
 					else
 						nextNonGPSLocation(v);
+					*/
+					nextViewLocation(v);
 				}else{
 					Toast.makeText(getApplicationContext(), "Please enter a custom disaster tag", Toast.LENGTH_SHORT).show();
 				}
@@ -267,6 +273,22 @@ public class TestStringBuilderDisasterList extends CustomWindow {
 
 		return new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, testData);
     }	
+	
+	public void nextViewLocation(View view){
+		Intent i = new Intent(this, LocationActivity.class);
+		i.putExtra("tweet", tweet);
+		i.putExtra("disaster", tweet);
+		if(TestStringBuilder.isGpsUsed){
+			i.putExtra(GPS_LAT, gps_lat);
+			i.putExtra(GPS_LONG, gps_long);
+		}else{
+			i.putExtra(CITY_LAT, city_lat);
+			i.putExtra(CITY_LONG, city_long);
+		}
+		i.putExtra("event_data", eventMap.get(tweet));
+		startActivity(i);
+	}
+	/*
 	public void nextViewLocation(View view){
 		Intent i = new Intent(this, LocationWithGPS.class);
 		i.putExtra("tweet", tweet);
@@ -285,4 +307,6 @@ public class TestStringBuilderDisasterList extends CustomWindow {
 		i.putExtra("event_data", eventMap.get(tweet));
 		startActivity(i);
 	}
+	
+	*/
 }
