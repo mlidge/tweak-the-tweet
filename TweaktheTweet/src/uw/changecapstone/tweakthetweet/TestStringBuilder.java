@@ -192,7 +192,7 @@ public class TestStringBuilder extends CustomWindow implements DialogListener{
 	public void onDialogPositiveClick(DialogFragment dialog) {
 		String tag = dialog.getTag();
 		if (tag.equals(LOGIN_DIALOG_TAG)) {
-			Intent i = new Intent(this, OAuthTwitterActivity.class);
+			Intent i = new Intent(this, AuthenticateTwitterActivity.class);
 			startActivity(i);
 		} else if (tag.equals(NETWORK_DIALOG_TAG)) {
 			setUseSMS();
@@ -207,10 +207,10 @@ public class TestStringBuilder extends CustomWindow implements DialogListener{
 	public void onDialogNegativeClick(DialogFragment dialog) {
 		String tag = dialog.getTag();
 		if (tag.equals(LOGIN_DIALOG_TAG)) {
-			/*
+			
 			Intent i = new Intent(this, SignUpTwitterActivity.class);
 			startActivity(i);
-			*/
+			
 		}		
 	}
 	

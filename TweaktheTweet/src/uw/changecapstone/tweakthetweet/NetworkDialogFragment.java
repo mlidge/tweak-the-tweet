@@ -11,6 +11,7 @@ import android.os.Bundle;
  * The NetworkDialogFragment creates a dialogbox informing 
  * the user no data is available and prompts them
  * to respond.
+ * @author Mary Jones
  */
 public class NetworkDialogFragment extends DialogFragment {
 
@@ -19,7 +20,7 @@ public class NetworkDialogFragment extends DialogFragment {
 	// Use this instance of the interface to deliver action events
     DialogListener mListener;
     
-    // Override the Fragment.onAttach() method to instantiate the LoginDialogListener
+    // Override the Fragment.onAttach() method to instantiate the NetworkDialogListener
     @Override
     public void onAttach(Activity activity) {
         super.onAttach(activity);
