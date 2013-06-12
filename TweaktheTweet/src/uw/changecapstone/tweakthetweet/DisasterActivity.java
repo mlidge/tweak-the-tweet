@@ -288,25 +288,5 @@ public class DisasterActivity extends CustomWindow {
 		i.putExtra("event_data", eventMap.get(tweet));
 		startActivity(i);
 	}
-	/*
-	public void nextViewLocation(View view){
-		Intent i = new Intent(this, LocationWithGPS.class);
-		i.putExtra("tweet", tweet);
-		i.putExtra("disaster", tweet);
-		i.putExtra(GPS_LAT, gps_lat);
-		i.putExtra(GPS_LONG, gps_long);
-		i.putExtra("event_data", eventMap.get(tweet));
-		startActivity(i);
-	}	
-	public void nextNonGPSLocation(View view){
-		Intent i = new Intent(this, PreviousLocationActivity.class);
-		i.putExtra("tweet", tweet);
-		i.putExtra("disaster", tweet);
-		i.putExtra(CITY_LAT, city_lat);
-		i.putExtra(CITY_LONG, city_long);
-		i.putExtra("event_data", eventMap.get(tweet));
-		startActivity(i);
-	}
-	
-	*/
+
 }

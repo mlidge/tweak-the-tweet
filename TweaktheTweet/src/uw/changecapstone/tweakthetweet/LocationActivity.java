@@ -45,7 +45,7 @@ import com.google.android.gms.maps.model.MarkerOptions;
  * without location */
 @SuppressLint("NewApi")
 
-public class LocationActivity extends CustomWindow {
+public class LocationActivity extends CustomWindow{
 	private GoogleMap mMap;
 	private LatLng geoLatLng;
 	private LatLng tappedLatLng;
@@ -172,7 +172,8 @@ public class LocationActivity extends CustomWindow {
 		
 		//Get scrollview
 		final ScrollView locationScroll = (ScrollView) findViewById(R.id.location_scrollview);
-		
+
+		/*
 		mMap.setOnMapLongClickListener(new GoogleMap.OnMapLongClickListener(){
 
 			@Override
@@ -190,6 +191,7 @@ public class LocationActivity extends CustomWindow {
 			}
 			
 		});
+		*/
 	}
 	
 	private void setMap(String markerTitle){

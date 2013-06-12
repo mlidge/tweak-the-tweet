@@ -203,78 +203,81 @@ containing a value of this type.
         public static final int sign_up_button=0x7f02001f;
     }
     public static final class id {
-        public static final int action_settings=0x7f050038;
-        public static final int add_more_details_text=0x7f050022;
-        public static final int additional_details=0x7f050023;
-        public static final int btnChoosePic=0x7f05001c;
-        public static final int btnTakePic=0x7f05001b;
-        public static final int button_compose=0x7f050018;
-        public static final int button_debug=0x7f050017;
-        public static final int button_logout=0x7f050016;
-        public static final int button_settings=0x7f050015;
-        public static final int button_setup=0x7f050014;
-        public static final int button_test=0x7f050019;
-        public static final int button_to_photo=0x7f05001a;
-        public static final int char_count=0x7f05002c;
-        public static final int character_count_location=0x7f050012;
-        public static final int contact_text=0x7f05002a;
-        public static final int custom_text_box=0x7f050035;
-        public static final int custom_text_box_border=0x7f050034;
-        public static final int emergency_checkbox=0x7f050008;
-        public static final int emergency_layout=0x7f050007;
-        public static final int enter_location_label_text=0x7f050020;
-        public static final int enter_your_own_text=0x7f050032;
-        public static final int final_tweet_box=0x7f05002f;
-        public static final int footer_character_count=0x7f050037;
-        public static final int gps_button=0x7f05001f;
+        public static final int action_settings=0x7f05003a;
+        public static final int add_more_details_text=0x7f050024;
+        public static final int additional_details=0x7f050025;
+        public static final int btnChoosePic=0x7f05001e;
+        public static final int btnTakePic=0x7f05001d;
+        public static final int buttonBar=0x7f050008;
+        public static final int button_compose=0x7f05001a;
+        public static final int button_debug=0x7f050019;
+        public static final int button_logout=0x7f050018;
+        public static final int button_settings=0x7f050017;
+        public static final int button_setup=0x7f050016;
+        public static final int button_test=0x7f05001b;
+        public static final int button_to_photo=0x7f05001c;
+        public static final int char_count=0x7f05002e;
+        public static final int character_count_location=0x7f050014;
+        public static final int contact_text=0x7f05002c;
+        public static final int custom_text_box=0x7f050037;
+        public static final int custom_text_box_border=0x7f050036;
+        public static final int emergency_checkbox=0x7f05000a;
+        public static final int emergency_layout=0x7f050009;
+        public static final int enter_location_label_text=0x7f050022;
+        public static final int enter_your_own_text=0x7f050034;
+        public static final int final_tweet_box=0x7f050031;
+        public static final int footer_character_count=0x7f050039;
+        public static final int gps_button=0x7f050021;
         public static final int hybrid=0x7f050004;
-        public static final int imageView1=0x7f05001d;
-        public static final int list=0x7f050021;
-        public static final int loc_map=0x7f05000f;
-        public static final int location_btn=0x7f05000d;
-        public static final int location_scrollview=0x7f050009;
-        public static final int location_text=0x7f05001e;
-        public static final int location_text_box=0x7f05000a;
-        public static final int mytitle_layout_root=0x7f050030;
+        public static final int imageView1=0x7f05001f;
+        public static final int list=0x7f050023;
+        public static final int loc_map=0x7f050011;
+        public static final int location_btn=0x7f05000f;
+        public static final int location_scrollview=0x7f05000b;
+        public static final int location_text=0x7f050020;
+        public static final int location_text_box=0x7f05000c;
+        public static final int mapFragment=0x7f050007;
+        public static final int mytitle_layout_root=0x7f050032;
         public static final int none=0x7f050000;
         public static final int normal=0x7f050001;
-        public static final int photo_layout=0x7f050024;
-        public static final int photo_text_prompt=0x7f050025;
-        public static final int proceed_state=0x7f050010;
-        public static final int proceed_with_custom=0x7f050033;
-        public static final int remove_photo_button=0x7f050026;
+        public static final int photo_layout=0x7f050026;
+        public static final int photo_text_prompt=0x7f050027;
+        public static final int proceed_state=0x7f050012;
+        public static final int proceed_with_custom=0x7f050035;
+        public static final int remove_photo_button=0x7f050028;
         public static final int satellite=0x7f050002;
-        public static final int source_text=0x7f050029;
-        public static final int submit_button=0x7f05002e;
-        public static final int tapped_location_btn=0x7f05000e;
+        public static final int source_text=0x7f05002b;
+        public static final int submit_button=0x7f050030;
+        public static final int tapped_location_btn=0x7f050010;
         public static final int terrain=0x7f050003;
-        public static final int test_tweet=0x7f05002d;
-        public static final int textView4=0x7f05002b;
-        public static final int text_prompt_1=0x7f05000b;
-        public static final int text_prompt_2=0x7f05000c;
-        public static final int time_text=0x7f050028;
-        public static final int title=0x7f050031;
-        public static final int tweet_display=0x7f050013;
-        public static final int vertical_border=0x7f050027;
+        public static final int test_tweet=0x7f05002f;
+        public static final int textView4=0x7f05002d;
+        public static final int text_prompt_1=0x7f05000d;
+        public static final int text_prompt_2=0x7f05000e;
+        public static final int time_text=0x7f05002a;
+        public static final int title=0x7f050033;
+        public static final int tweet_display=0x7f050015;
+        public static final int vertical_border=0x7f050029;
         public static final int webload=0x7f050005;
         public static final int webview=0x7f050006;
-        public static final int your_tweet=0x7f050036;
-        public static final int your_tweet_location=0x7f050011;
+        public static final int your_tweet=0x7f050038;
+        public static final int your_tweet_location=0x7f050013;
     }
     public static final class layout {
         public static final int activity_authtwitter=0x7f030000;
-        public static final int activity_emergency_notification=0x7f030001;
-        public static final int activity_loading_screen=0x7f030002;
-        public static final int activity_location=0x7f030003;
-        public static final int activity_main=0x7f030004;
-        public static final int activity_photo=0x7f030005;
-        public static final int activity_test_string_builder=0x7f030006;
-        public static final int activity_test_string_builder_category=0x7f030007;
-        public static final int activity_test_string_builder_confirm=0x7f030008;
-        public static final int activity_test_string_builder_disaster_list=0x7f030009;
-        public static final int activity_test_string_builder_tweet_sent=0x7f03000a;
-        public static final int custom_header=0x7f03000b;
-        public static final int listview_footer=0x7f03000c;
+        public static final int activity_custom_map_fragment=0x7f030001;
+        public static final int activity_emergency_notification=0x7f030002;
+        public static final int activity_loading_screen=0x7f030003;
+        public static final int activity_location=0x7f030004;
+        public static final int activity_main=0x7f030005;
+        public static final int activity_photo=0x7f030006;
+        public static final int activity_test_string_builder=0x7f030007;
+        public static final int activity_test_string_builder_category=0x7f030008;
+        public static final int activity_test_string_builder_confirm=0x7f030009;
+        public static final int activity_test_string_builder_disaster_list=0x7f03000a;
+        public static final int activity_test_string_builder_tweet_sent=0x7f03000b;
+        public static final int custom_header=0x7f03000c;
+        public static final int listview_footer=0x7f03000d;
     }
     public static final class menu {
         public static final int emergency_notification=0x7f0a0000;
@@ -331,6 +334,7 @@ containing a value of this type.
     commented (Mussie) <string name="address_hint_text">4504 16th Ave. NE 8206</string>
     <string name="enter_location_text">Enter Location</string>
     <string name="map_placeholder_text">Insert Map Here!</string>
+
 
 
 
@@ -424,6 +428,7 @@ containing a value of this type.
 
 
 
+
     
  LocationWithGPS 
          */
@@ -479,6 +484,7 @@ containing a value of this type.
         /** 
     <string name="title_activity_map_display">Event Map</string>
     <string name="title_activity_location_and_map"> Map and Info</string>
+
     
          */
         public static final int oauth_name=0x7f06001a;
@@ -518,6 +524,7 @@ containing a value of this type.
         public static final int title_activity_category=0x7f06006c;
         public static final int title_activity_city=0x7f060046;
         public static final int title_activity_custom_map_fragment=0x7f06008a;
+        public static final int title_activity_custom_scroll_view=0x7f06008b;
         public static final int title_activity_custom_window=0x7f06004e;
         public static final int title_activity_disaster=0x7f060047;
         public static final int title_activity_emergency_notification=0x7f060087;
