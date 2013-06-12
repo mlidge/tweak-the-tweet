@@ -27,6 +27,7 @@ import android.view.KeyEvent;
 import android.view.Menu;
 import android.view.View;
 import android.view.inputmethod.EditorInfo;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.TextView.OnEditorActionListener;
@@ -55,6 +56,15 @@ public class TestStringBuilderConfirm extends CustomWindow {
 	// short code to sms tweet to
 	private static final String SHORT_CODE = "40404";
 
+	//default length of twitter photo url
+	private final int PHOTO_URL_LENGTH = 23;
+	
+	//Ui elements for adding/removing/replacing photo
+	private TextView addPhotoText;
+	private Button removeButton;
+	private final String replacePhoto = "Replace Photo";
+	private final String addPhoto = "Add Photo";
+	
 	// Fields for use in composing tweet object to sent
 	private SharedPreferences pref;
 	private boolean geoLocation;
@@ -81,20 +91,7 @@ public class TestStringBuilderConfirm extends CustomWindow {
 		}
 	
 		public void onTextChanged(CharSequence s, int start, int before, int count) {
-			String crntTweet = test_tweet.getText().toString();
-			crntLength = 140 - crntTweet.length();
-			
-			if(crntLength < 0){
-				char_count.setTextColor(Color.RED);
-			}else{
-				char_count.setTextColor(Color.BLACK);
-			}
-			
-			if(crntLength != 1){
-				char_count.setText(String.valueOf(crntLength) + " characters left");
-			}else{
-				char_count.setText(String.valueOf(crntLength) + " character left");
-			}
+			updateTweetText();
 		}
 	
 		@Override
@@ -102,6 +99,28 @@ public class TestStringBuilderConfirm extends CustomWindow {
 		}
 	
 	};
+	
+	//Updates the current length and the tweet character count text
+	private void updateTweetText(){
+		String crntTweet = test_tweet.getText().toString();
+		crntLength = 140 - crntTweet.length();
+		
+		if(hasPhoto){
+			crntLength -= PHOTO_URL_LENGTH;
+		}
+		
+		if(crntLength < 0){
+			char_count.setTextColor(Color.RED);
+		}else{
+			char_count.setTextColor(Color.BLACK);
+		}
+		
+		if(crntLength != 1){
+			char_count.setText(String.valueOf(crntLength) + " characters left");
+		}else{
+			char_count.setText(String.valueOf(crntLength) + " character left");
+		}
+	}
 	
 	private final TextWatcher addCategoryText = new TextWatcher() {
 		public void beforeTextChanged(CharSequence s, int start, int count, int after) {
@@ -322,6 +341,13 @@ public class TestStringBuilderConfirm extends CustomWindow {
 		//Set instruction text based on category
 		TextView instructionText = (TextView) findViewById(R.id.add_more_details_text);
 		instructionText.setText("Add more details for your " + category + " category");
+		
+		//Initially hide "remove photo" button
+		removeButton = (Button) findViewById(R.id.remove_photo_button);
+		removeButton.setVisibility(View.GONE);
+		
+		//Get "Add Photo" text to be edited later if user adds a photo
+		addPhotoText = (TextView) findViewById(R.id.photo_text_prompt);
 	}
 
 	@Override
@@ -333,7 +359,7 @@ public class TestStringBuilderConfirm extends CustomWindow {
 	
 	public void nextViewSent(View view) throws NameNotFoundException {
 		if(crntLength<0){
-			Toast.makeText(getApplicationContext(), "Your tweet is longer than 140 characters, please shorten it.", Toast.LENGTH_SHORT).show();
+			Toast.makeText(getApplicationContext(), "Your tweet is longer than 140 characters. Please shorten it.", Toast.LENGTH_SHORT).show();
 		}else{
 			// determine if there are gps coordinates to add to a tweet
 			//geoLocation = (lat == 0.0) && (longitude == 0.0);
@@ -364,14 +390,19 @@ public class TestStringBuilderConfirm extends CustomWindow {
 		startActivityForResult(i, PHOTO_OK);
 	}
 	
+	@Override
 	protected void onActivityResult(int request, int result, Intent i) {
-		if (request == PHOTO_OK && result == RESULT_OK) {
-			picPath = i.getExtras().getString(PHOTO_PATH);
-			hasPhoto = i.getExtras().getBoolean(HAS_PHOTO, true);
+		if(request != RESULT_CANCELED){
+			if (request == PHOTO_OK && result == RESULT_OK) {
+				picPath = i.getExtras().getString(PHOTO_PATH);
+				hasPhoto = i.getExtras().getBoolean(HAS_PHOTO, true);
+				updateTweetText();
+				removeButton.setVisibility(View.VISIBLE);
+				addPhotoText.setText(replacePhoto);
+			}
 		}
 		
 	}
-	
 	
 	private void dataTweet() {
 
@@ -385,6 +416,7 @@ public class TestStringBuilderConfirm extends CustomWindow {
 			e.printStackTrace();
 		}
 		// Send the tweet in a new thread
+		Toast.makeText(this, "Sending Tweet...", Toast.LENGTH_LONG).show();
 		UpdateTwitterStatus updateTask = new UpdateTwitterStatus();
  		updateTask.execute(new String[] {tweet, ((Double)lat).toString(), ((Double)longitude).toString(), photoPath});
 	}
@@ -396,7 +428,6 @@ public class TestStringBuilderConfirm extends CustomWindow {
 		smsManager.sendTextMessage(SHORT_CODE, null, tweet, null, null);
 
 	}
-	
 	
 	
 	/*
@@ -465,7 +496,18 @@ public class TestStringBuilderConfirm extends CustomWindow {
 			i.putExtra("tweet", tweet);
 			startActivity(i);
 			
-			
 		}
+		
 	}
+	
+	//"Removes Photo" by preventing app from sending photo with tweet and clearing photo data
+	public void removePhoto(View view){
+		hasPhoto = false;
+		updateTweetText();
+		removeButton.setVisibility(View.INVISIBLE);
+		addPhotoText.setText(addPhoto);
+		picPath = "";
+		photoPath = "";
+	}
+	
 }
