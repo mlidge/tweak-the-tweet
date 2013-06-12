@@ -281,15 +281,16 @@ public class LocationActivity extends CustomWindow {
 		if(TestStringBuilder.isGpsUsed){
 			i.putExtra(LAT, gps_lat);
 			i.putExtra(LONG, gps_long);
+			startActivity(i);
 		}else{
 			if(geoLatLng == null)
 				Toast.makeText(getBaseContext(), "Please enter address and press enter first: ", Toast.LENGTH_SHORT).show();
 			else {
 				i.putExtra(LAT, geoLatLng.latitude);
 				i.putExtra(LONG, geoLatLng.longitude);
+				startActivity(i);
 			}
 		}
-		startActivity(i);
 	}
 	
 	public void useTappedLocation(View view){
