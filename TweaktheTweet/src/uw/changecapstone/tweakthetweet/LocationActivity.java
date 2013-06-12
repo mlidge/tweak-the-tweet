@@ -68,7 +68,7 @@ public class LocationActivity extends CustomWindow {
 	private final String ENTERED_TEXT_2 = "";
 	private final String GPS_BUTTON_TEXT = "Use my GPS location";
 	private final String GPS_MARKER_TEXT = "Your GPS location";
-	private final String CITY_BUTTON_TEXT = "Use my tapped location";
+	private final String CITY_BUTTON_TEXT = "Use my address";
 	private final String CITY_MARKER_TEXT = "Your entered location";
 	
 	private final TextWatcher addLocationTag = new TextWatcher() {
