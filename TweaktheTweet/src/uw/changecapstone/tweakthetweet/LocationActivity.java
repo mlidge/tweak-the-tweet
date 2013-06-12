@@ -61,10 +61,15 @@ public class LocationActivity extends CustomWindow {
 	Button tappedLocBtn;
 	TextView textPrompt1;
 	TextView textPrompt2;
+	Button firstLocBtn;
 	private final String GPS_TEXT_1 = "Your GPS shows you are here";
 	private final String GPS_TEXT_2 = "Locate and tap on the map to get an accurate location or use GPS";
 	private final String ENTERED_TEXT_1 = "Locate and tap on the map to get an accurate location";
 	private final String ENTERED_TEXT_2 = "";
+	private final String GPS_BUTTON_TEXT = "Use my GPS location";
+	private final String GPS_MARKER_TEXT = "Your GPS location";
+	private final String CITY_BUTTON_TEXT = "Use my tapped location";
+	private final String CITY_MARKER_TEXT = "Your entered location";
 	
 	private final TextWatcher addLocationTag = new TextWatcher() {
 		public void beforeTextChanged(CharSequence s, int start, int count, int after) {
@@ -109,21 +114,22 @@ public class LocationActivity extends CustomWindow {
 		disaster = bundle.getString("disaster");
 		textPrompt1 = (TextView) findViewById(R.id.text_prompt_1);
 		textPrompt2 = (TextView) findViewById(R.id.text_prompt_2);
-		
+		firstLocBtn = (Button) findViewById(R.id.location_btn);
 		if(TestStringBuilder.isGpsUsed){
 			gps_lat = bundle.getDouble(GPS_LAT, 0.0);
 			gps_long = bundle.getDouble(GPS_LONG);
 			textPrompt1.setText(GPS_TEXT_1);
 			textPrompt2.setText(GPS_TEXT_2);
-			
-			setMap("Your GPS location");
+			firstLocBtn.setText(GPS_BUTTON_TEXT);
+			setMap(GPS_MARKER_TEXT);
 			
 		}else{
 			city_lat = bundle.getDouble(CITY_LAT);
 			city_long = bundle.getDouble(CITY_LONG);
 			textPrompt1.setText(ENTERED_TEXT_1);
 			textPrompt2.setText(ENTERED_TEXT_2);
-			setMap("Your entered location");
+			firstLocBtn.setText(CITY_BUTTON_TEXT);
+			setMap(CITY_MARKER_TEXT);
 			
 		}
 		
