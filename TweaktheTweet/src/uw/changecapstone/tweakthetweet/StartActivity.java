@@ -26,7 +26,7 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.Toast;
 
-public class TestStringBuilder extends CustomWindow implements DialogListener{
+public class StartActivity extends CustomWindow implements DialogListener{
 
 	private EditText location_text_box;
 	Context context = this;
@@ -88,7 +88,7 @@ public class TestStringBuilder extends CustomWindow implements DialogListener{
 				//Get GPS lat/long and animate to the location
 				double lat = location.getLatitude();
 				double lng = location.getLongitude();
-				Intent i = new Intent(this, TestStringBuilderDisasterList.class);
+				Intent i = new Intent(this, DisasterActivity.class);
 				i.putExtra(GPS_LAT, lat);
 			    i.putExtra(GPS_LONG, lng);
 				startActivity(i);
@@ -107,7 +107,7 @@ public class TestStringBuilder extends CustomWindow implements DialogListener{
 				//Get GPS Lat/long and animate to the location
 				double lat = location.getLatitude();
 				double lng = location.getLongitude();
-				Intent i = new Intent(context, TestStringBuilderDisasterList.class);
+				Intent i = new Intent(context, DisasterActivity.class);
 				i.putExtra(GPS_LAT, lat);
 			    i.putExtra(GPS_LONG, lng);
 				startActivity(i);
@@ -174,7 +174,7 @@ public class TestStringBuilder extends CustomWindow implements DialogListener{
 				Address address = addresses.get(0);
 				double lat = address.getLatitude();
 				double lng = address.getLongitude();
-				Intent i = new Intent(context, TestStringBuilderDisasterList.class);
+				Intent i = new Intent(context, DisasterActivity.class);
 				i.putExtra("loc", location_text_box.getText().toString());
 				i.putExtra(CITY_LAT, lat);
 				i.putExtra(CITY_LONG, lng);

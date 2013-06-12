@@ -56,7 +56,7 @@ public class EmergencyNotification extends Activity implements OnTouchListener{
 		Editor editor = settings.edit();
 		editor.putBoolean("skip", boxIsChecked);
 		editor.commit();
-		Intent i = new Intent(this, TestStringBuilder.class);
+		Intent i = new Intent(this, StartActivity.class);
 		startActivity(i);
 		return true;
 	}

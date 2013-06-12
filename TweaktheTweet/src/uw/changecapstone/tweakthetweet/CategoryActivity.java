@@ -19,7 +19,7 @@ import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-public class TestStringBuilderCategory extends CustomWindow {
+public class CategoryActivity extends CustomWindow {
 
 	//private TextView char_count;
 	//private EditText add_details;
@@ -188,7 +188,7 @@ public class TestStringBuilderCategory extends CustomWindow {
 		Bundle bundle = getIntent().getExtras();
 		tweet = bundle.getString("tweet");
 		tweet += " " + category_tag;
-		Intent i = new Intent(this, TestStringBuilderConfirm.class);
+		Intent i = new Intent(this, AddDetailsActivity.class);
 		i.putExtra("tweet", tweet);
 		i.putExtra("category", category_tag);
 		i.putExtra(LAT, lat);

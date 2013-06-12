@@ -40,7 +40,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 import android.widget.AdapterView.OnItemClickListener;
 
-public class TestStringBuilderDisasterList extends CustomWindow {
+public class DisasterActivity extends CustomWindow {
 
 	private ListView disaster_list;
 	private String tweet, custom_disaster_tag;
@@ -278,7 +278,7 @@ public class TestStringBuilderDisasterList extends CustomWindow {
 		Intent i = new Intent(this, LocationActivity.class);
 		i.putExtra("tweet", tweet);
 		i.putExtra("disaster", tweet);
-		if(TestStringBuilder.isGpsUsed){
+		if(StartActivity.isGpsUsed){
 			i.putExtra(GPS_LAT, gps_lat);
 			i.putExtra(GPS_LONG, gps_long);
 		}else{

@@ -33,7 +33,7 @@ import android.widget.TextView;
 import android.widget.TextView.OnEditorActionListener;
 import android.widget.Toast;
 
-public class TestStringBuilderConfirm extends CustomWindow {
+public class AddDetailsActivity extends CustomWindow {
 
 	private EditText test_tweet, add_details, add_time, add_source, add_contact;
 	private TextView char_count;
@@ -492,7 +492,7 @@ public class TestStringBuilderConfirm extends CustomWindow {
 		
 		protected void onPostExecute(String file_url) {
 			// Redirect to the tweet complete page
-			Intent i = new Intent(context, TestStringBuilderTweetSent.class);
+			Intent i = new Intent(context, TweetSentActivity.class);
 			i.putExtra("tweet", tweet);
 			startActivity(i);
 			

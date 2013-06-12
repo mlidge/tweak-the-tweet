@@ -71,13 +71,13 @@
             android:value="FHmGqglOorKw1ArGsPJo6XvvbPqHgck360lx4zc" />
 
         <activity
-            android:name="uw.changecapstone.tweakthetweet.TestStringBuilder"
+            android:name="uw.changecapstone.tweakthetweet.StartActivity"
             android:label="@string/title_activity_test_string_builder"
             android:launchMode="singleTask"
             android:theme="@style/CustomTheme" >
         </activity>
         <activity
-            android:name="uw.changecapstone.tweakthetweet.TestStringBuilderCategory"
+            android:name="uw.changecapstone.tweakthetweet.CategoryActivity"
             android:label="@string/title_activity_test_string_builder"
             android:launchMode="singleTask"
             android:theme="@style/CustomTheme" />
@@ -87,13 +87,13 @@
             android:value="AIzaSyDpCgfyV1E09kVzwV4LBdjOqGJBhljNYo0" />
 
         <activity
-            android:name="uw.changecapstone.tweakthetweet.TestStringBuilderConfirm"
+            android:name="uw.changecapstone.tweakthetweet.AddDetailsActivity"
             android:label="@string/title_activity_test_string_builder_confirm"
             android:launchMode="singleTask"
             android:theme="@style/CustomTheme" >
         </activity>
         <activity
-            android:name="uw.changecapstone.tweakthetweet.TestStringBuilderDisasterList"
+            android:name="uw.changecapstone.tweakthetweet.DisasterActivity"
             android:label="@string/title_activity_test_string_builder_disaster_list"
             android:launchMode="singleTask"
             android:theme="@style/CustomTheme" >
@@ -104,7 +104,7 @@
             android:theme="@style/CustomTheme" >
         </activity>
         <activity
-            android:name="uw.changecapstone.tweakthetweet.TestStringBuilderTweetSent"
+            android:name="uw.changecapstone.tweakthetweet.TweetSentActivity"
             android:label="@string/title_activity_test_string_builder_tweet_sent"
             android:launchMode="singleTask"
             android:theme="@style/CustomTheme" >

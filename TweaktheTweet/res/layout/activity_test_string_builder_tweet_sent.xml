@@ -9,7 +9,7 @@
     android:orientation="vertical"
     android:gravity="center_horizontal"
     android:background="@color/background_color"
-    tools:context=".TestStringBuilderTweetSent" >
+    tools:context=".TweetSentActivity" >
 
 
     <TextView

@@ -6,7 +6,7 @@ import android.view.Menu;
 import android.view.View;
 import android.widget.EditText;
 
-public class TestStringBuilderTweetSent extends CustomWindow {
+public class TweetSentActivity extends CustomWindow {
 	String tweet;
 	
 	@Override
@@ -30,7 +30,7 @@ public class TestStringBuilderTweetSent extends CustomWindow {
 	}
 
 	public void nextViewHome(View view) {
-		Intent i = new Intent(this, TestStringBuilder.class);
+		Intent i = new Intent(this, StartActivity.class);
 		startActivity(i);
 		
 	}

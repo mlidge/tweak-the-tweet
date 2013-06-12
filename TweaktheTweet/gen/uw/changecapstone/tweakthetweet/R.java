@@ -265,16 +265,15 @@ containing a value of this type.
         public static final int activity_emergency_notification=0x7f030001;
         public static final int activity_loading_screen=0x7f030002;
         public static final int activity_location=0x7f030003;
-        public static final int activity_login_screen=0x7f030004;
-        public static final int activity_main=0x7f030005;
-        public static final int activity_photo=0x7f030006;
-        public static final int activity_test_string_builder=0x7f030007;
-        public static final int activity_test_string_builder_category=0x7f030008;
-        public static final int activity_test_string_builder_confirm=0x7f030009;
-        public static final int activity_test_string_builder_disaster_list=0x7f03000a;
-        public static final int activity_test_string_builder_tweet_sent=0x7f03000b;
-        public static final int custom_header=0x7f03000c;
-        public static final int listview_footer=0x7f03000d;
+        public static final int activity_main=0x7f030004;
+        public static final int activity_photo=0x7f030005;
+        public static final int activity_test_string_builder=0x7f030006;
+        public static final int activity_test_string_builder_category=0x7f030007;
+        public static final int activity_test_string_builder_confirm=0x7f030008;
+        public static final int activity_test_string_builder_disaster_list=0x7f030009;
+        public static final int activity_test_string_builder_tweet_sent=0x7f03000a;
+        public static final int custom_header=0x7f03000b;
+        public static final int listview_footer=0x7f03000c;
     }
     public static final class menu {
         public static final int emergency_notification=0x7f0a0000;

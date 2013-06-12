@@ -115,7 +115,7 @@ public class LocationActivity extends CustomWindow {
 		textPrompt1 = (TextView) findViewById(R.id.text_prompt_1);
 		textPrompt2 = (TextView) findViewById(R.id.text_prompt_2);
 		firstLocBtn = (Button) findViewById(R.id.location_btn);
-		if(TestStringBuilder.isGpsUsed){
+		if(StartActivity.isGpsUsed){
 			gps_lat = bundle.getDouble(GPS_LAT, 0.0);
 			gps_long = bundle.getDouble(GPS_LONG);
 			textPrompt1.setText(GPS_TEXT_1);
@@ -163,7 +163,7 @@ public class LocationActivity extends CustomWindow {
 	
 	private void setMap(String markerTitle){
 		mMap = ((MapFragment) getFragmentManager().findFragmentById(R.id.loc_map)).getMap();
-		if(TestStringBuilder.isGpsUsed){
+		if(StartActivity.isGpsUsed){
 			LatLng gpslatLng = new LatLng(gps_lat, gps_long);
 			mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(gpslatLng, 14));
 			mMap.addMarker(new MarkerOptions().position(gpslatLng).title("Your GPS location"));
@@ -256,7 +256,7 @@ public class LocationActivity extends CustomWindow {
 	    message = editText.getText().toString();
 	    tweet += " #loc none";
 	    
-		Intent i = new Intent(this, TestStringBuilderCategory.class);
+		Intent i = new Intent(this, CategoryActivity.class);
 		i.putExtra("tweet", tweet);
 		i.putExtra("disaster", disaster);
 		startActivity(i);
@@ -274,11 +274,11 @@ public class LocationActivity extends CustomWindow {
 	    	tweet += " #loc none";
 	    }
 	    
-	    Intent i = new Intent(this, TestStringBuilderCategory.class);
+	    Intent i = new Intent(this, CategoryActivity.class);
 		i.putExtra("tweet", tweet);
 		i.putExtra("disaster", disaster);
 		
-		if(TestStringBuilder.isGpsUsed){
+		if(StartActivity.isGpsUsed){
 			i.putExtra(LAT, gps_lat);
 			i.putExtra(LONG, gps_long);
 			startActivity(i);
@@ -306,7 +306,7 @@ public class LocationActivity extends CustomWindow {
 	    	tweet += " #loc none";
 	    }
 	    
-		Intent i = new Intent(this, TestStringBuilderCategory.class);
+		Intent i = new Intent(this, CategoryActivity.class);
 		i.putExtra("tweet", tweet);
 		i.putExtra("disaster", disaster);
 		
