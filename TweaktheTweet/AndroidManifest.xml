@@ -87,24 +87,8 @@
             android:value="AIzaSyDpCgfyV1E09kVzwV4LBdjOqGJBhljNYo0" />
 
         <activity
-            android:name="uw.changecapstone.tweakthetweet.TestStringBuilderLocation"
-            android:label="@string/title_activity_test_string_builder_location" >
-        </activity>
-        <activity
-            android:name="uw.changecapstone.tweakthetweet.TestStringBuilderMap"
-            android:label="@string/title_activity_test_string_builder_map"
-            android:launchMode="singleTask"
-            android:theme="@style/CustomTheme" >
-        </activity>
-        <activity
             android:name="uw.changecapstone.tweakthetweet.TestStringBuilderConfirm"
             android:label="@string/title_activity_test_string_builder_confirm"
-            android:launchMode="singleTask"
-            android:theme="@style/CustomTheme" >
-        </activity>
-        <activity
-            android:name="uw.changecapstone.tweakthetweet.PreviousLocationActivity"
-            android:label="@string/title_activity_previous_location"
             android:launchMode="singleTask"
             android:theme="@style/CustomTheme" >
         </activity>
@@ -126,12 +110,6 @@
             android:theme="@style/CustomTheme" >
         </activity>
         <activity
-            android:name="uw.changecapstone.tweakthetweet.LocationWithGPS"
-            android:label="@string/title_activity_location_with_gps"
-            android:launchMode="singleTask"
-            android:theme="@style/CustomTheme" >
-        </activity>
-        <activity
             android:name="uw.changecapstone.tweakthetweet.EmergencyNotification"
             android:label="@string/title_activity_emergency_notification"
             android:launchMode="singleTask" >
@@ -139,10 +117,6 @@
         <activity
             android:name="uw.changecapstone.tweakthetweet.LoginScreen"
             android:label="@string/title_activity_login_screen" >
-        </activity>
-        <activity
-            android:name="uw.changecapstone.tweakthetweet.CustomMapFragment"
-            android:label="@string/title_activity_custom_map_fragment" >
         </activity>
         <activity
             android:name="uw.changecapstone.tweakthetweet.LocationActivity"
