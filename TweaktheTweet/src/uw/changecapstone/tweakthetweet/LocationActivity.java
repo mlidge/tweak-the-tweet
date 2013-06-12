@@ -35,6 +35,7 @@ import com.google.android.gms.maps.MapFragment;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
+
 /* LocationActivity file implements different functionalities on the 
  * location page of the application. It takes care of the mapping of both 
  * current location and other locations. It also uses either GPS or Google 
@@ -43,6 +44,7 @@ import com.google.android.gms.maps.model.MarkerOptions;
  * to send GPS latitude longitude, geo-latitude and geo-longitude, tapped 
  * latitude and longitude as part of tweet metadata or lets them say, continute
  * without location */
+
 @SuppressLint("NewApi")
 
 public class LocationActivity extends CustomWindow{

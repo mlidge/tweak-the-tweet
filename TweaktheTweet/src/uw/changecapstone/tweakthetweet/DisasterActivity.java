@@ -57,6 +57,8 @@ public class DisasterActivity extends CustomWindow {
 	private ImageButton proceed_custom_disaster_tag;
 	private Map<String, HashTagData> eventMap;
 	
+	/* This counts the number of characters already used up and return 
+	 * what is left to reach the 140 character limit in twitter.*/
 	private final TextWatcher createNewDisasterTag = new TextWatcher() {
 		public void beforeTextChanged(CharSequence s, int start, int count, int after) {
 		}
@@ -115,12 +117,6 @@ public class DisasterActivity extends CustomWindow {
 					long id) {
 				
 				tweet = (String) adapter.getItemAtPosition(position);
-				/*
-				if(TestStringBuilder.isGpsUsed)
-					nextViewLocation(v);
-				else
-					nextNonGPSLocation(v);
-				 */
 				nextViewLocation(v);
 			} 
 		
@@ -157,12 +153,6 @@ public class DisasterActivity extends CustomWindow {
 		    public void onClick(View v) {
 				if(custom_disaster_tag != null){
 					tweet = custom_disaster_tag;
-					/*
-					if(TestStringBuilder.isGpsUsed)
-						nextViewLocation(v);
-					else
-						nextNonGPSLocation(v);
-					*/
 					nextViewLocation(v);
 				}else{
 					Toast.makeText(getApplicationContext(), "Please enter a custom disaster tag", Toast.LENGTH_SHORT).show();
@@ -274,6 +264,8 @@ public class DisasterActivity extends CustomWindow {
 		return new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, testData);
     }	
 	
+	/* This method will pass the gps or city coordinates to location
+	 * activity page. */
 	public void nextViewLocation(View view){
 		Intent i = new Intent(this, LocationActivity.class);
 		i.putExtra("tweet", tweet);

@@ -64,7 +64,10 @@ public class StartActivity extends CustomWindow implements DialogListener{
 		getMenuInflater().inflate(R.menu.test_string_builder, menu);
 		return true;
 	}
-		
+	
+	/* This takes the user to go to the next page so that 
+	 * the map will be centered at the latitude and longitude 
+	 * of the parsed street address.*/
 	public void nextViewLocText(View view){
 		// Pull the text location, find it on google maps,
 		// and pass the coordinates on
@@ -77,6 +80,7 @@ public class StartActivity extends CustomWindow implements DialogListener{
 		} 
 	}
 	
+	/* This takes the user to the GPS-enabled page. */
 	public void nextViewCurrentGPS(View view){
 		// Pull the GPS coordinates and pass it on
 		isGpsUsed = true;
@@ -126,6 +130,9 @@ public class StartActivity extends CustomWindow implements DialogListener{
 			// TODO Auto-generated method stub			
 		}
 	}
+	
+	/* This method implements the feature that allows the user 
+	 * to enable their gps or leave it disabled. */
 	public void showSettingsAlert(){
         AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(context);
       
@@ -149,7 +156,11 @@ public class StartActivity extends CustomWindow implements DialogListener{
         // Show it
         alertDialogBuilder.show();
     }
-	/* Reference: http://wptrafficanalyzer.in/blog */
+	
+	/* This method accepts a text address from the user and
+	 * parses (geo-codes) it, meaning, it returns the latitude and longitude
+	 * of the address to be sent as part of the metadata of tweet. 
+	 * Reference: http://wptrafficanalyzer.in/blog */
 	private class GeocoderTask extends AsyncTask<String, Void, List <Address> >{
 
 		@Override

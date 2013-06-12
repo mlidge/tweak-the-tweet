@@ -1,17 +1,12 @@
 package uw.changecapstone.tweakthetweet;
 
 import android.app.Activity;
-import android.app.ProgressDialog;
 import android.content.Intent;
-import android.graphics.Bitmap;
-import android.net.Uri;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.view.Window;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
-import android.widget.Toast;
 
 public class SignUpTwitterActivity extends Activity {
 	// URLs for sign up and to redirect from

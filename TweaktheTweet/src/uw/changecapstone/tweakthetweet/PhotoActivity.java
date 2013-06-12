@@ -10,7 +10,6 @@ import java.util.Date;
 import java.util.List;
 
 import android.annotation.SuppressLint;
-import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
@@ -24,10 +23,8 @@ import android.os.Environment;
 import android.provider.MediaStore;
 import android.util.Log;
 import android.view.View;
-import android.view.Window;
 import android.widget.Button;
 import android.widget.ImageView;
-import android.widget.Toast;
 
 public class PhotoActivity extends CustomWindow {
 
@@ -199,16 +196,12 @@ public class PhotoActivity extends CustomWindow {
 		});
 	}
 	
-	/* note: used mCurrentPhotoPath for intent instead of 
-     * String photoPath = data.get("PHOTO_PATH"); because the latter gives null.
-     * also moved mCurrentPhotoPath = null; here because
-     * if done in handleBigCameraPhoto intent will have null value*/
+	/* use mCurrentPhotoPath to send the image back to where it started */
 	@Override
 	protected void onActivityResult(int requestCode, int resultCode, Intent data) {
 		if (requestCode == TAKE_PICTURE && resultCode == RESULT_OK) {
 			handleBigCameraPhoto();
 			hasPhoto = true;			
-			//Intent intent = new Intent(this, TestStringBuilderConfirm.class);
 			mIntent.putExtra(HAS_PHOTO, hasPhoto);
 			mIntent.putExtra(PHOTO_PATH, mCurrentPhotoPath);
 						
@@ -233,7 +226,6 @@ public class PhotoActivity extends CustomWindow {
             
             hasPhoto = true;
             mCurrentPhotoPath = picturePath;
-            //Intent intent = new Intent(this, TestStringBuilderConfirm.class);
             mIntent.putExtra(HAS_PHOTO, hasPhoto);
 			mIntent.putExtra(PHOTO_PATH, mCurrentPhotoPath);
 			setResult(RESULT_OK, mIntent);
