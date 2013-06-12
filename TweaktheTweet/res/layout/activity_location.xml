@@ -4,7 +4,8 @@
 	    android:layout_width="match_parent"
 	    android:layout_height="wrap_content"
 	    android:background="@color/background_color"
-	    tools:context=".LocationAndMapActivity" >
+	    tools:context=".LocationAndMapActivity"
+	    android:id="@+id/location_scrollview" >
     
     <LinearLayout
 	    android:layout_width="match_parent"

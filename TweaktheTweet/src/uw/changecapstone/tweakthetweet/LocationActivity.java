@@ -24,13 +24,16 @@ import android.text.Editable;
 import android.text.TextWatcher;
 import android.view.KeyEvent;
 import android.view.Menu;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.View.OnClickListener;
+import android.view.View.OnTouchListener;
 import android.view.inputmethod.EditorInfo;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
+import android.widget.ScrollView;
 import android.widget.TextView;
 import android.widget.Toast;
 import android.widget.TextView.OnEditorActionListener;
@@ -158,6 +161,24 @@ public class LocationActivity extends CustomWindow {
 		        }
 		        return false;
 			}		
+		});
+		
+		//Get scrollview
+		final ScrollView locationScroll = (ScrollView) findViewById(R.id.location_scrollview);
+		
+		mMap.setOnMapLongClickListener(new GoogleMap.OnMapLongClickListener(){
+
+			@Override
+			public void onMapLongClick(LatLng arg0) {
+				// Disable Scrolling by setting up an OnTouchListener to do nothing
+				locationScroll.setOnTouchListener( new OnTouchListener(){ 
+					@Override
+					public boolean onTouch(View arg0, MotionEvent arg1) {
+						return true;
+					}
+				}); 
+			}
+			
 		});
 	}
 	
