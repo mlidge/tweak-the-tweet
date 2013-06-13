@@ -33,6 +33,11 @@ import android.widget.TextView;
 import android.widget.TextView.OnEditorActionListener;
 import android.widget.Toast;
 
+/**
+ * AddDetailsActivity handles adding additional details to the category tag, adding optional tags
+ * (time, source, and contact) with corresponding details, adding a photo to the tweet, and sending
+ * the final tweet.
+ */
 public class AddDetailsActivity extends CustomWindow {
 
 	private EditText test_tweet, add_details, add_time, add_source, add_contact;
@@ -67,7 +72,6 @@ public class AddDetailsActivity extends CustomWindow {
 	
 	// Fields for use in composing tweet object to sent
 	private SharedPreferences pref;
-	private boolean geoLocation;
 	private String twitterConsumerKey;
 	private String twitterConsumerSecret;
 	private String photoPath;
@@ -82,7 +86,7 @@ public class AddDetailsActivity extends CustomWindow {
 	private Context context;
 	private final static int PHOTO_OK = 6;
 	
-	/*
+	/**
 	 * Text watcher for the "your tweet" box
 	 * Updates the current number of characters every time the text in the "your tweet" box changes 
 	 */
@@ -100,7 +104,9 @@ public class AddDetailsActivity extends CustomWindow {
 	
 	};
 	
-	//Updates the current length and the tweet character count text
+	/**
+	 * Updates the current length and the tweet character count text
+	 */
 	private void updateTweetText(){
 		String crntTweet = test_tweet.getText().toString();
 		crntLength = 140 - crntTweet.length();
@@ -122,6 +128,9 @@ public class AddDetailsActivity extends CustomWindow {
 		}
 	}
 	
+	/**
+	 * Text watcher for adding additional details to the category tag.
+	 */
 	private final TextWatcher addCategoryText = new TextWatcher() {
 		public void beforeTextChanged(CharSequence s, int start, int count, int after) {
 		}
@@ -241,6 +250,9 @@ public class AddDetailsActivity extends CustomWindow {
 		test_tweet.setText(tweet);
 	}
 	
+	/**
+	 *  Text watcher for adding a Time tag and corresponding details.
+	 */
 	private final TextWatcher addTimeText = new TextWatcher() {
 		public void beforeTextChanged(CharSequence s, int start, int count, int after) {
 		}
@@ -254,7 +266,10 @@ public class AddDetailsActivity extends CustomWindow {
 		}
 	
 	};
-	 	
+	
+	/**
+	 *  Text watcher for adding a Source tag and corresponding details.
+	 */
 	private final TextWatcher addSourceText = new TextWatcher() {
 		public void beforeTextChanged(CharSequence s, int start, int count, int after) {
 		}
@@ -269,6 +284,9 @@ public class AddDetailsActivity extends CustomWindow {
 	
 	};
 	
+	/**
+	 *  Text watcher for adding a Contact tag and corresponding details.
+	 */
 	private final TextWatcher addContactText = new TextWatcher() {
 		public void beforeTextChanged(CharSequence s, int start, int count, int after) {
 		}
@@ -289,6 +307,7 @@ public class AddDetailsActivity extends CustomWindow {
 		setContentView(R.layout.activity_test_string_builder_confirm);
 		this.title.setText("#more info");
 		context = this;
+		
 		// get information (tweet,  lat, long, category) for 
 		// building tweet
 		Bundle bundle = getIntent().getExtras();
@@ -361,6 +380,7 @@ public class AddDetailsActivity extends CustomWindow {
 		if(crntLength<0){
 			Toast.makeText(getApplicationContext(), "Your tweet is longer than 140 characters. Please shorten it.", Toast.LENGTH_SHORT).show();
 		} else {
+			
 			// determine if there are gps coordinates to add to a tweet
 			if (hasPhoto)
 				photoPath = picPath;
@@ -421,14 +441,12 @@ public class AddDetailsActivity extends CustomWindow {
 		// only sms is available
 		SmsManager smsManager = SmsManager.getDefault();
 		smsManager.sendTextMessage(SHORT_CODE, null, tweet, null, null);
-
 	}
 	
 	
 	/*
 	 * Http requests must be done on separate thread 
-	 */
-	
+	 */	
 	private class UpdateTwitterStatus extends AsyncTask<String, String, String> {
 
 		

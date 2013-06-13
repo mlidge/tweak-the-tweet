@@ -8,6 +8,10 @@ import android.view.Window;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
 
+/**
+ * SignUpTwitterActivity lets users sign up for Twitter via the Tweak the Tweet app.
+ *
+ */
 public class SignUpTwitterActivity extends Activity {
 	// URLs for sign up and to redirect from
 	private static final String TWITTER_URL = "http://mobile.twitter.com/welcome/interests";

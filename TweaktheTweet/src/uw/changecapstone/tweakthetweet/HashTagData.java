@@ -2,7 +2,7 @@ package uw.changecapstone.tweakthetweet;
 import android.os.Parcel;
 import android.os.Parcelable;
 
-/*
+/**
  * Object that holds an event hashtag along with its description, category tags, and area coordinates.
  * Can be passed between activities.
  */

@@ -7,7 +7,7 @@ import android.app.DialogFragment;
 import android.content.DialogInterface;
 import android.os.Bundle;
 
-/*
+/**
  * The NetworkDialogFragment creates a dialogbox informing 
  * the user no data is available and prompts them
  * to respond.
@@ -15,8 +15,6 @@ import android.os.Bundle;
  */
 public class NetworkDialogFragment extends DialogFragment {
 
-	
-	
 	// Use this instance of the interface to deliver action events
     DialogListener mListener;
     

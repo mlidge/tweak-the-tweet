@@ -6,6 +6,13 @@ import android.view.Menu;
 import android.view.View;
 import android.widget.EditText;
 
+/**
+ * TweetSentActivity displays the sent tweet to the user and lets the user choose to create 
+ * a new report. 
+ * 
+ * @author Christina Quan
+ *
+ */
 public class TweetSentActivity extends CustomWindow {
 	String tweet;
 	

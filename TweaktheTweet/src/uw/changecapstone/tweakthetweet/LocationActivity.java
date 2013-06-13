@@ -33,14 +33,14 @@ import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
 
-/* LocationActivity file implements different functionalities on the 
- * location page of the application. It takes care of the mapping of both 
- * current location and other locations. It also uses either GPS or Google 
- * Maps API server to geo-code a given text address and allows users to 
- * use send text address or send none as part of the tweet. It also lets users
- * to send GPS latitude longitude, geo-latitude and geo-longitude, tapped 
- * latitude and longitude as part of tweet metadata or lets them say, continute
- * without location */
+/* LocationActivity implements different functionalities for the 
+ * location page. It takes care of the mapping both the current location
+ * and other locations. It also uses either GPS or Google Maps API server to 
+ * geo-code a given text address and allows users to use send a text address 
+ * or send "none" as part of the tweet. It also lets users send GPS latitude 
+ * and longitude, geo-latitude and geo-longitude, or tapped latitude and 
+ * longitude as part of tweet metadata or lets them say "continue
+ * without location" */
 
 @SuppressLint("NewApi")
 
@@ -177,6 +177,9 @@ public class LocationActivity extends CustomWindow{
 		
 	}
 	
+	/*
+	 * Sets the initial map display based on the user's location input on the LocationActivity page. 
+	 */
 	private void setMap(String markerTitle){
 		mMap = ((MapFragment) getFragmentManager().findFragmentById(R.id.loc_map)).getMap();
 		if(StartActivity.isGpsUsed){

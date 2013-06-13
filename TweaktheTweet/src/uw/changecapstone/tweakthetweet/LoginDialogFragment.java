@@ -7,15 +7,13 @@ import android.app.DialogFragment;
 import android.content.DialogInterface;
 import android.os.Bundle;
 
-/*
+/**
  * The LoginDialogFragment creates a dialogbox informing 
  * the user that they are not logged in and prompts them
  * to respond.
  * @author Mary Jones
  */
 public class LoginDialogFragment extends DialogFragment {
-
-	
 	
 	// Use this instance of the interface to deliver action events
     DialogListener mListener;

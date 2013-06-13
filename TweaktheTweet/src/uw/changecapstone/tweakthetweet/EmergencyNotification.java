@@ -15,6 +15,13 @@ import android.widget.CheckBox;
 import android.widget.CompoundButton;
 import android.widget.LinearLayout;
 
+/**
+ * EmergencyNotification is the emergency notification page that notifies users that 
+ * Tweak The Tweet is not a replacement for 911.
+ * 
+ * @author Christina Quan
+ *
+ */
 public class EmergencyNotification extends Activity implements OnTouchListener{
 	public static final String PREFS_NAME = "PrefsFile1";
 	private CheckBox dontRemindAgain;

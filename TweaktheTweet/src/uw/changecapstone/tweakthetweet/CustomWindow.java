@@ -5,6 +5,11 @@ import android.os.Bundle;
 import android.view.Window;
 import android.widget.TextView;
 
+/**
+ * This file is used to handle the customized header on each page.
+ * Each page that extends CustomWindow has a customized header.
+ */
+
 public class CustomWindow extends Activity{
 	public TextView title;
 	

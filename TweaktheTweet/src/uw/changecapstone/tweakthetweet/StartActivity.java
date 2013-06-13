@@ -26,6 +26,12 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.Toast;
 
+/**
+ * StartActivity takes the user's initial gps location or text location. This is
+ * used both to generate a list of relevant disaster tags and to zoom the map
+ * on the location page to a relevant area. 
+ *
+ */
 public class StartActivity extends CustomWindow implements DialogListener{
 
 	private EditText location_text_box;
@@ -117,17 +123,17 @@ public class StartActivity extends CustomWindow implements DialogListener{
 				startActivity(i);
 			}			
 		}
+		
 		@Override
 		public void onProviderDisabled(String provider) {
-			// TODO Auto-generated method stub	
 		}
+		
 		@Override
-		public void onProviderEnabled(String provider) {
-			// TODO Auto-generated method stub			
+		public void onProviderEnabled(String provider) {		
 		}
+		
 		@Override
 		public void onStatusChanged(String provider, int status, Bundle extras) {
-			// TODO Auto-generated method stub			
 		}
 	}
 	

@@ -8,7 +8,6 @@ import twitter4j.TwitterFactory;
 import twitter4j.auth.AccessToken;
 import twitter4j.auth.RequestToken;
 import android.app.Activity;
-import android.app.ProgressDialog;
 import android.content.SharedPreferences;
 import android.content.SharedPreferences.Editor;
 import android.content.pm.ApplicationInfo;
@@ -23,14 +22,14 @@ import android.view.Window;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
 
-/*
+/**
  * AuthenticateTwitterActivity handles authenticating with twitter with
  * so that tweets can be sent in the main application. 
  * @author Mary Jones
  */
 public class AuthenticateTwitterActivity extends Activity {
 
-	// Constants to access consumer keys from metadat
+	// Constants to access consumer keys from metadata
 	static String TWITTER_CONSUMER_KEY = "twitterconsumerkey"; 
 	static String TWITTER_CONSUMER_SECRET = "twitterconsumersecret"; 
 

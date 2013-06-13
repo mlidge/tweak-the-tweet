@@ -26,6 +26,12 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 
+/**
+ * PhotoActivity handles taking a photo with the phone's camera or choosing an already-taken
+ * photo from the gallery. It sends the photo's filepath back to AddDetailsActivity to be
+ * sent with the tweet.
+ *
+ */
 public class PhotoActivity extends CustomWindow {
 
 	private static final String BITMAP_STORAGE_KEY = "viewbitmap";
