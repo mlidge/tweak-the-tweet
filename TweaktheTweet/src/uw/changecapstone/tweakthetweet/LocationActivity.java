@@ -14,10 +14,8 @@ import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.view.KeyEvent;
-import android.view.MotionEvent;
 import android.view.View;
 import android.view.View.OnClickListener;
-import android.view.View.OnTouchListener;
 import android.view.inputmethod.EditorInfo;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
@@ -82,7 +80,7 @@ public class LocationActivity extends CustomWindow{
 	private final String CITY_BUTTON_TEXT = "Use my address";
 	private final String CITY_MARKER_TEXT = "Your entered location";
 	
-	/* This counts the number of characters already used up and return 
+	/* This counts the number of characters already used up and returns
 	 * what is left to reach the 140 character limit in twitter.*/
 	private final TextWatcher addLocationTag = new TextWatcher() {
 		public void beforeTextChanged(CharSequence s, int start, int count, int after) {
@@ -175,8 +173,6 @@ public class LocationActivity extends CustomWindow{
 			}		
 		});
 		
-		//Get scrollview
-		final ScrollView locationScroll = (ScrollView) findViewById(R.id.location_scrollview);
 	}
 	
 	private void setMap(String markerTitle){
@@ -213,9 +209,6 @@ public class LocationActivity extends CustomWindow{
 			        useTappedLocation(v);
 			    }
 			});
-			
-			Toast.makeText(getBaseContext(), "Tapped Location: "+lat + "," + 
-					lng, Toast.LENGTH_SHORT).show();
 		}
 		
 	};
@@ -351,4 +344,5 @@ public class LocationActivity extends CustomWindow{
 			startActivity(i);
 		}
 	}
+	
 }
