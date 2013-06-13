@@ -20,9 +20,6 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 public class CategoryActivity extends CustomWindow {
-
-	//private TextView char_count;
-	//private EditText add_details;
 	private ListView category_list;
 	private String tweet, category_tag, custom_category_tag;
 	private TextView char_count;

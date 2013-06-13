@@ -218,9 +218,6 @@ public class DisasterActivity extends CustomWindow {
 		                		json_data.getString("category"), json_data.getString("latitude_top_right"), json_data.getString("longitude_top_right"),
 		                		json_data.getString("latitude_bottom_left"), json_data.getString("longitude_bottom_left"));
 		                eventMap.put(json_data.getString("event_id"), currentEvent);
-		        		
-		        		Log.i(currentEvent.getName(), currentEvent.getLatTopRight() + "," + currentEvent.getLongTopRight()
-		        				+ "   " + currentEvent.getLatBotLeft() + "," + currentEvent.getLongBotLeft());
 			        }
 			        
 	    		} catch(JSONException e) {
