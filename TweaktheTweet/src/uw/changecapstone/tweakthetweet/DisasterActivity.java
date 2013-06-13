@@ -245,19 +245,11 @@ public class DisasterActivity extends CustomWindow {
     {		
 		List<String> testData = new ArrayList<String>();
 		for(String event_tag : eventMap.keySet()) {
-			Log.i("looking at", event_tag);
-			Log.i("city_lat", Double.toString(city_lat));
-			Log.i("city_long", Double.toString(city_long));
-			Log.i("lat_top_right", eventMap.get(event_tag).getLatTopRight());
-			Log.i("lon_top_right", eventMap.get(event_tag).getLongTopRight());
-			Log.i("lat_bot_left", eventMap.get(event_tag).getLatBotLeft());
-			Log.i("lon_bot_left", eventMap.get(event_tag).getLongBotLeft());
 			if (city_lat <= Double.parseDouble(eventMap.get(event_tag).getLatTopRight()) && 
 					city_lat >= Double.parseDouble(eventMap.get(event_tag).getLatBotLeft()) &&
 					city_long <= Double.parseDouble(eventMap.get(event_tag).getLongTopRight()) &&
 					city_long >= Double.parseDouble(eventMap.get(event_tag).getLongBotLeft())) {
 				testData.add(event_tag);
-				Log.i("added", event_tag);
 			}
 		}
 

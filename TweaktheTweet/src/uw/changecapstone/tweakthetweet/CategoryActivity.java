@@ -30,6 +30,7 @@ public class CategoryActivity extends CustomWindow {
 	private ImageButton proceed_custom_category_tag;
 	private double lat;
 	private double longitude;
+	private HashTagData event_data;
 	public final static String LAT = "geolat";
 	public final static String LONG = "geolong";
 	
@@ -80,6 +81,7 @@ public class CategoryActivity extends CustomWindow {
 		String disaster = bundle.getString("disaster");
 		lat = bundle.getDouble(LAT);
 		longitude = bundle.getDouble(LONG);
+		event_data = bundle.getParcelable("event_data");
 		
 		category_list = (ListView) findViewById(R.id.list);
 		category_list.setOnItemClickListener(new OnItemClickListener() {
@@ -135,13 +137,6 @@ public class CategoryActivity extends CustomWindow {
 		//Create adapter
 		ListAdapter adapter = createAdapter(disaster);
 		category_list.setAdapter(adapter);
-		
-		// Create adapter
-		//category_list.setAdapter(createAdapter(disaster));
-		
-//		char_count = (TextView) findViewById(R.id.char_count);
-//		add_details = (EditText) findViewById(R.id.additional_details);
-//		add_details.addTextChangedListener(charCountWatcher);
 	}
 
 	@Override
@@ -154,36 +149,16 @@ public class CategoryActivity extends CustomWindow {
 	
 	protected ListAdapter createAdapter(String disaster)
     {
-    	//Test data for initial event list
-    	//Read this in from somewhere else
-    	String[] testData = new String[] {
-    			"#shelter",
-    			"#food",
-    			"#water",
-    			"#help",
-    			"#medical",
-    	};
+    	String[] tags = event_data.getCategory().split(",");
  
     	// Create a String array adapter using the testData values
-    	ListAdapter adapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, testData);
+    	ListAdapter adapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, tags);
  
     	return adapter;
     }
 	
 	
 	public void nextViewDetails(View view){
-//		if (category_tag_spinner.getSelectedItem()==null){
-//		AlertDialog alertDialog = new AlertDialog.Builder(this).create();
-//		alertDialog.setTitle("Error");
-//		alertDialog.setMessage("Please select a category");
-//		// -1 = BUTTON_POSITIVE = a positive button?
-//		alertDialog.setButton(-1, "OK", new DialogInterface.OnClickListener() {
-//			public void onClick(DialogInterface dialog, int which) {
-//				// here you can add functions
-//			}
-//		});
-//		alertDialog.show();
-//	} else {
 		// In case the user backed, we don't want to accidentally duplicate strings, so we pull from the bundle again
 		Bundle bundle = getIntent().getExtras();
 		tweet = bundle.getString("tweet");

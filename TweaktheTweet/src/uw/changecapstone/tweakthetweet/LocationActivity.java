@@ -51,6 +51,7 @@ public class LocationActivity extends CustomWindow{
 	private GoogleMap mMap;
 	private LatLng geoLatLng;
 	private LatLng tappedLatLng;
+	private HashTagData event_data;
 	public final static String LAT = "geolat";
 	public final static String LONG = "geolong";
 	public final static String GPS_LAT = "uw.changecapstone.tweakthetweet.latitude";
@@ -124,6 +125,8 @@ public class LocationActivity extends CustomWindow{
 		Bundle bundle = getIntent().getExtras();	
 		tweet = bundle.getString("tweet");
 		disaster = bundle.getString("disaster");
+		event_data = bundle.getParcelable("event_data");
+		
 		textPrompt1 = (TextView) findViewById(R.id.text_prompt_1);
 		textPrompt2 = (TextView) findViewById(R.id.text_prompt_2);
 		firstLocBtn = (Button) findViewById(R.id.location_btn);
@@ -174,26 +177,6 @@ public class LocationActivity extends CustomWindow{
 		
 		//Get scrollview
 		final ScrollView locationScroll = (ScrollView) findViewById(R.id.location_scrollview);
-
-		/*
-		mMap.setOnMapLongClickListener(new GoogleMap.OnMapLongClickListener(){
-
-			@Override
-			public void onMapLongClick(LatLng arg0) {
-				
-				// Disable Scrolling by setting up an OnTouchListener to do nothing
-				locationScroll.setOnTouchListener( new OnTouchListener(){ 
-					@Override
-					public boolean onTouch(View arg0, MotionEvent arg1) {
-						Toast.makeText(getBaseContext(), "The map was dragged", Toast.LENGTH_SHORT).show();
-						return true;
-						
-					}
-				}); 
-			}
-			
-		});
-		*/
 	}
 	
 	private void setMap(String markerTitle){
@@ -298,6 +281,7 @@ public class LocationActivity extends CustomWindow{
 		Intent i = new Intent(this, CategoryActivity.class);
 		i.putExtra("tweet", tweet);
 		i.putExtra("disaster", disaster);
+		i.putExtra("event_data", event_data);
 		startActivity(i);
 	}
 	
@@ -320,6 +304,7 @@ public class LocationActivity extends CustomWindow{
 	    Intent i = new Intent(this, CategoryActivity.class);
 		i.putExtra("tweet", tweet);
 		i.putExtra("disaster", disaster);
+		i.putExtra("event_data", event_data);
 		
 		if(StartActivity.isGpsUsed){
 			i.putExtra(LAT, gps_lat);
@@ -356,6 +341,7 @@ public class LocationActivity extends CustomWindow{
 		Intent i = new Intent(this, CategoryActivity.class);
 		i.putExtra("tweet", tweet);
 		i.putExtra("disaster", disaster);
+		i.putExtra("event_data", event_data);
 		
 		if(tappedLatLng==null)
 			Toast.makeText(getBaseContext(), "Please touch the map first.", Toast.LENGTH_SHORT).show();
