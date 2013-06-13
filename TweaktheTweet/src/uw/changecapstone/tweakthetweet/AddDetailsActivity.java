@@ -360,14 +360,10 @@ public class AddDetailsActivity extends CustomWindow {
 	public void nextViewSent(View view) throws NameNotFoundException {
 		if(crntLength<0){
 			Toast.makeText(getApplicationContext(), "Your tweet is longer than 140 characters. Please shorten it.", Toast.LENGTH_SHORT).show();
-		}else{
+		} else {
 			// determine if there are gps coordinates to add to a tweet
-			//geoLocation = (lat == 0.0) && (longitude == 0.0);
-			
-			//Bundle bundle = getIntent().getExtras();
 			if (hasPhoto)
 				photoPath = picPath;
-			//hasPhoto = false;
 			else
 				photoPath = "";
 			
@@ -405,7 +401,6 @@ public class AddDetailsActivity extends CustomWindow {
 	}
 	
 	private void dataTweet() {
-
 		try {
 			// get the consumer keys from metadate
 			ApplicationInfo ai = getPackageManager().getApplicationInfo(this.getPackageName(), PackageManager.GET_META_DATA);

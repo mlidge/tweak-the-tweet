@@ -36,6 +36,7 @@ public class CategoryActivity extends CustomWindow {
 	
 	private final TextWatcher createNewCategoryTag = new TextWatcher() {
 		public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+			// Do nothing
 		}
 	
 		public void onTextChanged(CharSequence s, int start, int before, int count) {
@@ -66,6 +67,7 @@ public class CategoryActivity extends CustomWindow {
 	
 		@Override
 		public void afterTextChanged(Editable arg0) {
+			// Do nothing
 		}
 	
 	};
@@ -85,7 +87,6 @@ public class CategoryActivity extends CustomWindow {
 		
 		category_list = (ListView) findViewById(R.id.list);
 		category_list.setOnItemClickListener(new OnItemClickListener() {
-
 			@Override
 			public void onItemClick(AdapterView<?> adapter, View v, int position,
 					long id) {
@@ -121,7 +122,6 @@ public class CategoryActivity extends CustomWindow {
 		//Set up "next" button for custom hash tag
 		proceed_custom_category_tag = (ImageButton) findViewById(R.id.proceed_with_custom);
 		proceed_custom_category_tag.setOnClickListener(new OnClickListener() {
-
 		    @Override
 		    public void onClick(View v) {
 				if(custom_category_tag != null){
@@ -146,7 +146,10 @@ public class CategoryActivity extends CustomWindow {
 		return true;
 	}
 	
-	
+	/*
+	 * Populate the displayed list of Category tags by parsing the event_data's
+	 * category string, where each hashtag is separated only by a comma.
+	 */
 	protected ListAdapter createAdapter(String disaster)
     {
     	String[] tags = event_data.getCategory().split(",");

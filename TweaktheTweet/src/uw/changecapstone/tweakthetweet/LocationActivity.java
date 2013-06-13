@@ -21,7 +21,6 @@ import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
-import android.widget.ScrollView;
 import android.widget.TextView;
 import android.widget.TextView.OnEditorActionListener;
 import android.widget.Toast;
@@ -84,6 +83,7 @@ public class LocationActivity extends CustomWindow{
 	 * what is left to reach the 140 character limit in twitter.*/
 	private final TextWatcher addLocationTag = new TextWatcher() {
 		public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+			// Do nothing
 		}
 
 		public void onTextChanged(CharSequence s, int start, int before, int count) {
@@ -95,22 +95,22 @@ public class LocationActivity extends CustomWindow{
 			//Handle character count display
 			int crntLength = 140 - tweet.length() - message.length();
 			
-			if(crntLength < 0){
+			if (crntLength < 0) {
 				char_count.setTextColor(Color.RED);
-			}else{
+			} else {
 				char_count.setTextColor(Color.BLACK);
 			}
 			
-			if(crntLength != 1){
+			if (crntLength != 1) {
 				char_count.setText(String.valueOf(crntLength) + " characters left");
-			}else{
+			} else {
 				char_count.setText(String.valueOf(crntLength) + " character left");
 			}
 		}
 		
 		@Override
 		public void afterTextChanged(Editable arg0) {
-			// TODO Auto-generated method stub
+			// Do nothing
 		}
 
 	};
@@ -128,7 +128,9 @@ public class LocationActivity extends CustomWindow{
 		textPrompt1 = (TextView) findViewById(R.id.text_prompt_1);
 		textPrompt2 = (TextView) findViewById(R.id.text_prompt_2);
 		firstLocBtn = (Button) findViewById(R.id.location_btn);
-		if(StartActivity.isGpsUsed){
+		
+		//Sets display based on how users gave their location previously
+		if (StartActivity.isGpsUsed) {
 			gps_lat = bundle.getDouble(GPS_LAT, 0.0);
 			gps_long = bundle.getDouble(GPS_LONG);
 			textPrompt1.setText(GPS_TEXT_1);
@@ -136,7 +138,7 @@ public class LocationActivity extends CustomWindow{
 			firstLocBtn.setText(GPS_BUTTON_TEXT);
 			setMap(GPS_MARKER_TEXT);
 			
-		}else{
+		} else {
 			city_lat = bundle.getDouble(CITY_LAT);
 			city_long = bundle.getDouble(CITY_LONG);
 			textPrompt1.setText(ENTERED_TEXT_1);
@@ -190,28 +192,27 @@ public class LocationActivity extends CustomWindow{
 		mMap.setOnMapClickListener(getOnMapClickListener());
 	}
 
-	/*Gets the lat/long location that was touched and adds a marker.*/
+	/* Gets the lat/long location that was touched and adds a marker */
 	private OnMapClickListener getOnMapClickListener() {
 		return new OnMapClickListener() {			
-		public void onMapClick(LatLng point) {
-			if(tappedMarker != null){
-				tappedMarker.remove();
-			}
-			double lat = point.latitude;
-			double lng = point.longitude;
-			tappedLatLng = new LatLng(lat, lng);
-			tappedMarker = mMap.addMarker(new MarkerOptions().position(tappedLatLng).title("Your tapped location"));
-			tappedLocBtn.setBackgroundColor(getResources().getColor(R.color.default_button_color));
-			tappedLocBtn.setOnClickListener(new OnClickListener() {
-	
-			    @Override
-			    public void onClick(View v) {
-			        useTappedLocation(v);
-			    }
-			});
-		}
+			public void onMapClick(LatLng point) {
+				if(tappedMarker != null){
+					tappedMarker.remove();
+				}
+				double lat = point.latitude;
+				double lng = point.longitude;
+				tappedLatLng = new LatLng(lat, lng);
+				tappedMarker = mMap.addMarker(new MarkerOptions().position(tappedLatLng).title("Your tapped location"));
+				tappedLocBtn.setBackgroundColor(getResources().getColor(R.color.default_button_color));
+				tappedLocBtn.setOnClickListener(new OnClickListener() {
 		
-	};
+				    @Override
+				    public void onClick(View v) {
+				        useTappedLocation(v);
+				    }
+				});
+			}
+		};
 	}
 	
 	/* This method accepts a text address from the user and
@@ -344,5 +345,4 @@ public class LocationActivity extends CustomWindow{
 			startActivity(i);
 		}
 	}
-	
 }

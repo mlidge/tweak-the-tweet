@@ -10,11 +10,9 @@ import java.util.Map;
 
 import org.apache.http.HttpEntity;
 import org.apache.http.HttpResponse;
-import org.apache.http.NameValuePair;
 import org.apache.http.client.HttpClient;
 import org.apache.http.client.methods.HttpGet;
 import org.apache.http.impl.client.DefaultHttpClient;
-import org.apache.http.message.BasicNameValuePair;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -167,33 +165,35 @@ public class DisasterActivity extends CustomWindow {
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
 		// Inflate the menu; this adds items to the action bar if it is present.
-		getMenuInflater().inflate(R.menu.test_string_builder_disaster_list,
-				menu);
+		getMenuInflater().inflate(R.menu.test_string_builder_disaster_list, menu);
 		return true;
 	}
 	
+	/*
+	 * Accesses and pulls the current list of event tag information from the database
+	 * through a PHP frontend, sorting and storing it in a HashMap as a HashTagData object.
+	 */
 	private void updateHashTagData(){
 		eventMap = new HashMap<String, HashTagData>();
 		
 		new AsyncTask<String, Void, String>() {
-
 			@Override
 			protected String doInBackground(String... params) {
 				String result = "";
-	        	ArrayList<NameValuePair> nameValuePairs = new ArrayList<NameValuePair>();
-	        	nameValuePairs.add(new BasicNameValuePair("id","message"));
 	    		InputStream is = null;
-	    		// http get
+	    		
+	    		// HTTP Get call
 	    		try{
 			        HttpClient httpclient = new DefaultHttpClient();
-			        HttpGet httpget = new HttpGet("http://homes.cs.washington.edu/~yaluen/main.php?id=*");
+			        HttpGet httpget = new HttpGet("http://homes.cs.washington.edu/~yaluen/main.php");
 			        HttpResponse response = (HttpResponse) httpclient.execute(httpget);
 			        HttpEntity entity = ((org.apache.http.HttpResponse) response).getEntity();
 			        is = entity.getContent();
 	    		} catch(Exception e) {
 			        Log.e("log_tag", "Error in http connection "+e.toString());
 	    		}
-	    		//convert response to string
+	    		
+	    		// Convert the response into a string
 	    		try {
 			        BufferedReader reader = new BufferedReader(new InputStreamReader(is,"iso-8859-1"),8);
 			        StringBuilder sb = new StringBuilder();
@@ -202,16 +202,14 @@ public class DisasterActivity extends CustomWindow {
 		                sb.append(line + "\n");
 			        }
 			        is.close();
-			 
 			        result=sb.toString();
-			        Log.i("output", result);
+			        
 	    		} catch (Exception e) {
 			        Log.e("log_tag", "Error converting result "+e.toString());
 	    		}
 	    		 
 	    		String returnResult = "";
-	    		
-	    		//parse json data
+	    		// Parse the data through a JSON object
 	    		try {
 			        JSONArray jArray = new JSONArray(result);
 			        for(int i=0;i<jArray.length();i++){
@@ -241,6 +239,11 @@ public class DisasterActivity extends CustomWindow {
 			
 		}.execute("");
 	}
+	
+	/*
+	 * Populates the displayed list of event tags by seeing if the user's inputed general
+	 * location coordinates falls within any of the event's coordinate area.
+	 */
 	protected ListAdapter createAdapter()
     {		
 		List<String> testData = new ArrayList<String>();
