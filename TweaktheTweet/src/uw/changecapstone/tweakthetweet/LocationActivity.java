@@ -36,7 +36,7 @@ import com.google.android.gms.maps.model.MarkerOptions;
 /* LocationActivity implements different functionalities for the 
  * location page. It takes care of the mapping both the current location
  * and other locations. It also uses either GPS or Google Maps API server to 
- * geo-code a given text address and allows users to use send a text address 
+ * geo-code a given text address and allows users to send a text address 
  * or send "none" as part of the tweet. It also lets users send GPS latitude 
  * and longitude, geo-latitude and geo-longitude, or tapped latitude and 
  * longitude as part of tweet metadata or lets them say "continue

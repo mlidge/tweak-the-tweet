@@ -28,7 +28,7 @@ import android.widget.Toast;
 
 /**
  * StartActivity takes the user's initial gps location or text location. This is
- * used both to generate a list of relevant disaster tags and to zoom the map
+ * used to both generate a list of relevant disaster tags and to zoom the map
  * on the location page to a relevant area. 
  *
  */

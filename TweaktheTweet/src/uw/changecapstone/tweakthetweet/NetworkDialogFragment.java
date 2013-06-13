@@ -9,7 +9,7 @@ import android.os.Bundle;
 
 /**
  * The NetworkDialogFragment creates a dialogbox informing 
- * the user no data is available and prompts them
+ * the user that no data is available and prompts them
  * to respond.
  * @author Mary Jones
  */

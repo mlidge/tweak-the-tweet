@@ -40,7 +40,7 @@ import android.widget.AdapterView.OnItemClickListener;
 
 /**
  * DisasterActivity handles picking a disaster tag from a generated list of tags or
- * entering a custom tag. 
+ * entering a custom disaster tag. 
  *
  */
 public class DisasterActivity extends CustomWindow {

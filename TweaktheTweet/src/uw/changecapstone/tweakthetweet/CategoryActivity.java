@@ -21,7 +21,7 @@ import android.widget.Toast;
 
 /**
  * CategoryActivity handles picking a category tag from a generated list of tags or
- * entering a custom tag. 
+ * entering a custom category tag. 
  */
 public class CategoryActivity extends CustomWindow {
 	private ListView category_list;

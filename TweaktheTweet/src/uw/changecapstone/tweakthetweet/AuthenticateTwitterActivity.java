@@ -23,7 +23,7 @@ import android.webkit.WebView;
 import android.webkit.WebViewClient;
 
 /**
- * AuthenticateTwitterActivity handles authenticating with twitter with
+ * AuthenticateTwitterActivity handles authenticating with twitter
  * so that tweets can be sent in the main application. 
  * @author Mary Jones
  */
